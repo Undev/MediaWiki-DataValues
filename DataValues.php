@@ -28,6 +28,13 @@
  */
 
 /**
+ * Data values part of the DataValues extension.
+ *
+ * @defgroup DataValue DataValue
+ * @ingroup DataValues
+ */
+
+/**
  * Tests part of the DataValues extension.
  *
  * @defgroup DataValuesTests DataValuesTests

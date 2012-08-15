@@ -8,7 +8,7 @@ namespace DataValue;
  * @since 0.1
  *
  * @file
- * @ingroup DataValues
+ * @ingroup DataValue
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
