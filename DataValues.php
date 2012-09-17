@@ -9,8 +9,19 @@
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 
-include __DIR__ . '/DataValues/DataValues.php';
-include __DIR__ . '/ValueParser/ValueParser.php';
-include __DIR__ . '/ValueValidator/ValueValidator.php';
-include __DIR__ . '/ValueFormatter/ValueFormatter.php';
-include __DIR__ . '/DataTypes/DataTypes.php';
+call_user_func( function() {
+	$components = array(
+		'DataValues',
+		'ValueParser',
+		'ValueValidator',
+		'ValueFormatter',
+		'DataTypes',
+	);
+
+	$extension = defined( 'MEDIAWIKI' ) ? '.mw.php' : '.php';
+
+	foreach ( $components as $component ) {
+		include __DIR__ . '/' . $component . '/' . $component . $extension;
+	}
+
+} );
