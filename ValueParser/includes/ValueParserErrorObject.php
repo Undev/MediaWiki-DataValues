@@ -21,12 +21,12 @@
  * @since 0.1
  *
  * @file
- * @ingroup ValueHandler
+ * @ingroup ValueParser
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class ValueHandlerErrorObject implements ValueHandlerError {
+class ValueParserErrorObject implements ValueParserError {
 
 	protected $text;
 	protected $severity;
@@ -40,25 +40,11 @@ class ValueHandlerErrorObject implements ValueHandlerError {
 	 * @param string $text
 	 * @param string|null $property
 	 *
-	 * @return ValueHandlerError
+	 * @return ValueParserError
 	 */
 	public static function newError( $text = '', $property = null ) {
-		return new static( $text, ValueHandlerError::SEVERITY_ERROR, $property );
+		return new static( $text, ValueParserError::SEVERITY_ERROR, $property );
 	}
-
-	/**
-	 * Create a new warning.
-	 *
-	 * @since 0.1
-	 *
-	 * @param string $text
-	 * @param string|null $property
-	 *
-	 * @return ValueHandlerError
-	 */
-//	public static function newWarning( $text = '', $property = null ) {
-//		return new static( $text, ValueHandlerError::SEVERITY_WARNING, $property );
-//	}
 
 	/**
 	 * Constructor.

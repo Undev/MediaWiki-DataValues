@@ -22,7 +22,6 @@
  * @since 0.1
  *
  * @file
- * @ingroup ValueHandler
  * @ingroup ValueParser
  *
  * @licence GNU GPL v2+

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Interface for value validator results.
+ * Interface for ValueHandler errors.
  * Immutable.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -22,30 +22,41 @@
  * @since 0.1
  *
  * @file
- * @ingroup ValueHandler
  * @ingroup ValueValidator
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-interface ValueValidatorResult {
+interface ValueValidatorError {
+
+	const SEVERITY_ERROR = 9;
+	const SEVERITY_WARNING = 4;
 
 	/**
-	 * Returns if the value was found to be valid or not.
+	 * Returns the error text.
 	 *
 	 * @since 0.1
 	 *
-	 * @return boolean
+	 * @return string
 	 */
-	public function isValid();
+	public function getText();
 
 	/**
-	 * Returns an array with the errors that occurred during validation.
+	 * Returns the severity of the error
 	 *
 	 * @since 0.1
 	 *
-	 * @return array of ValueHandlerError
+	 * @return integer, element of the ValueHandlerError::SEVERITY_ enum
 	 */
-	public function getErrors();
+	public function getSeverity();
+
+	/**
+	 * Returns the property of the value for which the error occurred, or null if it occurred for the value itself.
+	 *
+	 * @since 0.1
+	 *
+	 * @return string|null
+	 */
+	public function getProperty();
 
 }

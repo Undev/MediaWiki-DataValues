@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Implementation of the value validator result interface.
+ * Implementation of the value handler error interface.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,46 +21,29 @@
  * @since 0.1
  *
  * @file
- * @ingroup ValueHandler
  * @ingroup ValueValidator
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class ValueValidatorResultObject implements  ValueValidatorResult {
+class ValueValidatorErrorObject implements ValueValidatorError {
+
+	protected $text;
+	protected $severity;
+	protected $property;
 
 	/**
+	 * Create a new error.
+	 *
 	 * @since 0.1
 	 *
-	 * @var boolean
-	 */
-	protected $isValid;
-
-	/**
-	 * @since 0.1
+	 * @param string $text
+	 * @param string|null $property
 	 *
-	 * @var array of ValueHandlerError
+	 * @return ValueValidatorError
 	 */
-	protected $errors = array();
-
-	/**
-	 * @since 0.1
-	 *
-	 * @return ValueValidatorResult
-	 */
-	public static function newSuccess() {
-		return new static( true );
-	}
-
-	/**
-	 * @since 0.1
-	 *
-	 * @param $errors array of ValueHandlerError
-	 *
-	 * @return ValueValidatorResult
-	 */
-	public static function newError( array $errors ) {
-		return new static( false, $errors );
+	public static function newError( $text = '', $property = null ) {
+		return new static( $text, ValueParserError::SEVERITY_ERROR, $property );
 	}
 
 	/**
@@ -68,34 +51,47 @@ class ValueValidatorResultObject implements  ValueValidatorResult {
 	 *
 	 * @since 0.1
 	 *
-	 * @param boolean $isValid
-	 * @param $errors array of ValueHandlerError
+	 * @param string $text
+	 * @param integer $severity
+	 * @param string|null $property
 	 */
-	protected function __construct( $isValid, array $errors = array() ) {
-		$this->isValid = $isValid;
-		$this->errors = $errors;
+	protected function __construct( $text, $severity, $property ) {
+		$this->text = $text;
+		$this->severity = $severity;
+		$this->property = $property;
 	}
 
 	/**
-	 * @see ValueParserResult::isValid
+	 * @see ValueHandlerError::getText
 	 *
 	 * @since 0.1
 	 *
-	 * @return boolean
+	 * @return string
 	 */
-	public function isValid() {
-		return $this->isValid;
+	public function getText() {
+		return $this->text;
 	}
 
 	/**
-	 * @see ValueParserResult::getError
+	 * @see ValueHandlerError::getSeverity
 	 *
 	 * @since 0.1
 	 *
-	 * @return array of ValueHandlerError
+	 * @return integer
 	 */
-	public function getErrors() {
-		return $this->errors;
+	public function getSeverity() {
+		return $this->severity;
+	}
+
+	/**
+	 * @see ValueHandlerError::getProperty
+	 *
+	 * @since 0.1
+	 *
+	 * @return string|null
+	 */
+	public function getProperty() {
+		return $this->property;
 	}
 
 }
