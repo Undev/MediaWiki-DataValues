@@ -1,7 +1,7 @@
 <?php
 
 /**
- * MediaWiki entry point for the ValueValidator extension.
+ * MediaWiki setup for the ValueValidator extension.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,11 +31,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 'Not an entry point.' );
 }
 
-if ( !defined( 'DATAVALUES' ) ) {
-	define( 'DATAVALUES', true );
-}
-
-include __DIR__ . '/ValueValidator.php';
+global $wgExtensionCredits, $wgExtensionMessagesFiles, $wgAutoloadClasses, $wgHooks;
 
 $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,

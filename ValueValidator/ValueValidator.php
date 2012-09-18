@@ -2,7 +2,6 @@
 
 /**
  * Entry point for the ValueValidator extension.
- * For usage as MediaWiki extension, use the ValueValidator.mw.php entry point.
  *
  * Documentation:	 		https://www.mediawiki.org/wiki/Extension:ValueValidator
  * Support					https://www.mediawiki.org/wiki/Extension_talk:ValueValidator
@@ -46,13 +45,20 @@
  * @ingroup Test
  */
 
-if ( !defined( 'DATAVALUES' ) ) {
+if ( !defined( 'DATAVALUES' ) && !defined( 'MEDIAWIKI' ) ) {
 	die( 'Not an entry point.' );
+}
+
+if ( !defined( 'DATAVALUES' ) ) {
+	define( 'DATAVALUES', true );
 }
 
 define( 'ValueValidator_VERSION', '0.1' );
 
-if ( !defined( 'MEDIAWIKI' ) ) {
+if ( defined( 'MEDIAWIKI' ) ) {
+	include __DIR__ . '/ValueValidator.mw.php';
+}
+else {
 	spl_autoload_register( function ( $className ) {
 		static $classes = false;
 

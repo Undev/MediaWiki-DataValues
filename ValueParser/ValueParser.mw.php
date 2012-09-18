@@ -1,7 +1,7 @@
 <?php
 
 /**
- * MediaWiki entry point for the ValueParser extension.
+ * MediaWiki setup for the ValueParser extension.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,11 +31,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 'Not an entry point.' );
 }
 
-if ( !defined( 'DATAVALUES' ) ) {
-	define( 'DATAVALUES', true );
-}
-
-include __DIR__ . '/ValueParser.php';
+global $wgExtensionCredits, $wgExtensionMessagesFiles, $wgAutoloadClasses, $wgHooks;
 
 $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,

@@ -2,7 +2,6 @@
 
 /**
  * Entry point for the ValueParser extension.
- * For usage as MediaWiki extension, use the ValueParser.mw.php entry point.
  *
  * Documentation:	 		https://www.mediawiki.org/wiki/Extension:ValueParser
  * Support					https://www.mediawiki.org/wiki/Extension_talk:ValueParser
@@ -46,13 +45,20 @@
  * @ingroup Test
  */
 
-if ( !defined( 'DATAVALUES' ) ) {
+if ( !defined( 'DATAVALUES' ) && !defined( 'MEDIAWIKI' ) ) {
 	die( 'Not an entry point.' );
+}
+
+if ( !defined( 'DATAVALUES' ) ) {
+	define( 'DATAVALUES', true );
 }
 
 define( 'ValueParser_VERSION', '0.1' );
 
-if ( !defined( 'MEDIAWIKI' ) ) {
+if ( defined( 'MEDIAWIKI' ) ) {
+	include __DIR__ . '/ValueParser.mw.php';
+}
+else {
 	spl_autoload_register( function ( $className ) {
 		static $classes = false;
 
