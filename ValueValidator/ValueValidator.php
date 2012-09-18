@@ -4,6 +4,10 @@
  * Entry point for the ValueValidator extension.
  * For usage as MediaWiki extension, use the ValueValidator.mw.php entry point.
  *
+ * Documentation:	 		https://www.mediawiki.org/wiki/Extension:ValueValidator
+ * Support					https://www.mediawiki.org/wiki/Extension_talk:ValueValidator
+ * Source code:				https://gerrit.wikimedia.org/r/gitweb?p=mediawiki/extensions/DataValues.git
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
