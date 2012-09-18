@@ -29,7 +29,7 @@
  */
 interface ValueParserResult {
 
-	/**
+	/** TODO: DataValue
 	 * @since 0.1
 	 *
 	 * @return mixed
@@ -48,7 +48,7 @@ interface ValueParserResult {
 	 *
 	 * @since 0.1
 	 *
-	 * @return ValueHandlerError|null
+	 * @return ValueParserError|null
 	 */
 	public function getError();
 

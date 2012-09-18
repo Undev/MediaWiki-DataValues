@@ -48,6 +48,12 @@ $wgExtensionCredits['other'][] = array(
 
 $wgExtensionMessagesFiles['ValueParser'] = __DIR__ . '/ValueParser.i18n.php';
 
+foreach ( include( __DIR__ . '/ValueParser.classes.php' ) as $class => $file ) {
+	if ( !array_key_exists( $class, $GLOBALS['wgAutoloadLocalClasses'] ) ) {
+		$wgAutoloadClasses[$class] = __DIR__ . '/' . $file;
+	}
+}
+
 /**
  * Hook to add PHPUnit test cases.
  * @see https://www.mediawiki.org/wiki/Manual:Hooks/UnitTestsList

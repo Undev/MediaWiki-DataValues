@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class registration file for the ValueValidator library.
+ * Class registration file for the ValueParser library.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,23 +21,22 @@
  * @since 0.1
  *
  * @file
- * @ingroup ValueValidator
+ * @ingroup ValueParser
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 return array(
-	'ValueValidatorError' => 'includes/ValueValidatorError.php',
-	'ValueValidatorErrorObject' => 'includes/ValueValidatorErrorObject.php',
-	'ValueValidatorResult' => 'includes/ValueValidatorResult.php',
-	'ValueValidatorResultObject' => 'includes/ValueValidatorResultObject.php',
+	'ValueParserError' => 'includes/ValueParserError.php',
+	'ValueParserErrorObject' => 'includes/ValueParserErrorObject.php',
+	'ValueParserResult' => 'includes/ValueParserResult.php',
+	'ValueParserResultObject' => 'includes/ValueParserResultObject.php',
 
-	'DimensionValidator' => 'valuevalidator/DimensionValidator.php',
-	'ListValidator' => 'valuevalidator/ListValidator.php',
-	'NullValidator' => 'valuevalidator/NullValidator.php',
-	'RangeValidator' => 'valuevalidator/RangeValidator.php',
-	'StringValidator' => 'valuevalidator/StringValidator.php',
-	'TitleValidator' => 'valuevalidator/TitleValidator.php',
-	'ValueValidator' => 'valuevalidator/ValueValidator.php',
-	'ValueValidatorObject' => 'valuevalidator/ValueValidatorObject.php',
+	'BoolParser' => 'valueparser/BoolParser.php',
+	'FloatParser' => 'valueparser/FloatParser.php',
+	'IntParser' => 'valueparser/IntParser.php',
+	'NullParser' => 'valueparser/NullParser.php',
+	'StringValueParser' => 'valueparser/StringValueParser.php',
+	'TitleParser' => 'valueparser/TitleParser.php',
+	'ValueParser' => 'valueparser/ValueParser.php',
 );
