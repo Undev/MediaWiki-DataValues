@@ -46,7 +46,7 @@ $wgExtensionCredits['other'][] = array(
 	'descriptionmsg' => 'valuevalidator-desc',
 );
 
-$wgExtensionMessagesFiles['ValueParser'] = __DIR__ . '/ValueParser.i18n.php';
+$wgExtensionMessagesFiles['ValueValidator'] = __DIR__ . '/ValueValidator.i18n.php';
 
 foreach ( include( __DIR__ . '/ValueValidator.classes.php' ) as $class => $file ) {
 	if ( !array_key_exists( $class, $GLOBALS['wgAutoloadLocalClasses'] ) ) {
