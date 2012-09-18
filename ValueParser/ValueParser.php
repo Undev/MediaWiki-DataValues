@@ -43,6 +43,7 @@
  *
  * @defgroup ValueParserTests ValueParserTests
  * @ingroup ValueParser
+ * @ingroup Test
  */
 
 if ( !defined( 'DATAVALUES' ) ) {

@@ -45,7 +45,7 @@ class ValueParserResultObject implements ValueParserResult {
 	/**
 	 * @since 0.1
 	 *
-	 * @var ValueHandlerError|null
+	 * @var ValueParserError|null
 	 */
 	protected $error;
 
@@ -63,11 +63,11 @@ class ValueParserResultObject implements ValueParserResult {
 	/**
 	 * @since 0.1
 	 *
-	 * @param ValueHandlerError $error
+	 * @param ValueParserError $error
 	 *
 	 * @return ValueParserResult
 	 */
-	public static function newError( ValueHandlerError $error ) {
+	public static function newError( ValueParserError $error ) {
 		return new static( false, null, $error );
 	}
 
@@ -79,7 +79,7 @@ class ValueParserResultObject implements ValueParserResult {
 	 * @return ValueParserResult
 	 */
 	public static function newErrorText( $error ) {
-		return static::newError( ValueHandlerErrorObject::newError( $error ) );
+		return static::newError( ValueParserErrorObject::newError( $error ) );
 	}
 
 	/**
@@ -89,9 +89,9 @@ class ValueParserResultObject implements ValueParserResult {
 	 *
 	 * @param boolean $isValid
 	 * @param mixed $value
-	 * @param ValueHandlerError $error
+	 * @param ValueParserError $error
 	 */
-	protected function __construct( $isValid, $value = null, ValueHandlerError $error = null ) {
+	protected function __construct( $isValid, $value = null, ValueParserError $error = null ) {
 		$this->isValid = $isValid;
 		$this->value = $value;
 		$this->error = $error;
@@ -130,7 +130,7 @@ class ValueParserResultObject implements ValueParserResult {
 	 *
 	 * @since 0.1
 	 *
-	 * @return ValueHandlerError|null
+	 * @return ValueParserError|null
 	 */
 	public function getError() {
 		return $this->error;

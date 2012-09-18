@@ -43,6 +43,7 @@
  *
  * @defgroup ValueValidatorTests ValueValidatorTests
  * @ingroup ValueValidator
+ * @ingroup Test
  */
 
 if ( !defined( 'DATAVALUES' ) ) {

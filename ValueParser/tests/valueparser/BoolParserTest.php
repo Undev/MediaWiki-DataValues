@@ -1,6 +1,6 @@
 <?php
 
-namespace ValueHandler\Test;
+namespace ValueParser\Test;
 
 /**
  * Unit test BoolParser class.
@@ -23,10 +23,10 @@ namespace ValueHandler\Test;
  * @file
  * @since 0.1
  *
- * @ingroup ValueHandler
- * @ingroup Test
+ * @ingroup ValueParserTest
  *
- * @group ValueHandler
+ * @group ValueParser
+ * @group DataValueExtensions
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
@@ -37,6 +37,8 @@ class BoolParserTest extends StringValueParserTest {
 	 * @see ValueParserTestBase::parseProvider
 	 *
 	 * @since 0.1
+	 *
+	 * @return array
 	 */
 	public function parseProvider() {
 		$argLists = array();

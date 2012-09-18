@@ -21,8 +21,8 @@
 call_user_func( function() {
 	$components = array(
 		'DataValues',
-		//'ValueParser',
-		//'ValueValidator',
+		'ValueParser',
+		'ValueValidator',
 		//'ValueFormatter',
 		'DataTypes',
 	);
@@ -30,7 +30,13 @@ call_user_func( function() {
 	$extension = defined( 'MEDIAWIKI' ) ? '.mw.php' : '.php';
 
 	foreach ( $components as $component ) {
-		include __DIR__ . '/' . $component . '/' . $component . $extension;
+		// Load extensions in non-global scope.
+		// TODO: move globals to each extension.
+		call_user_func( function() use ( $component, $extension ) {
+			global $wgExtensionCredits, $wgExtensionMessagesFiles, $wgAutoloadClasses, $wgHooks;
+			require_once __DIR__ . '/' . $component . '/' . $component . $extension;
+		} );
+
 	}
 
 } );
