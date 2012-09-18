@@ -39,4 +39,7 @@ return array(
 	'StringValueParser' => 'valueparser/StringValueParser.php',
 	'TitleParser' => 'valueparser/TitleParser.php',
 	'ValueParser' => 'valueparser/ValueParser.php',
+
+	'ValueParser\Test\StringValueParserTest' => 'tests/valueparser/StringValueParserTest.php',
+	'ValueParser\Test\ValueParserTestBase' => 'tests/valueparser/ValueParserTestBase.php',
 );
