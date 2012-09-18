@@ -1,8 +1,7 @@
 <?php
 
 /**
- * Entry point for the ValueValidator extension.
- * For usage as MediaWiki extension, use the ValueValidator.mw.php entry point.
+ * Class registration file for the Diff library.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,36 +26,18 @@
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
+return array(
+	'ValueValidatorError' => 'includes/ValueValidatorError.php',
+	'ValueValidatorErrorObject' => 'includes/ValueValidatorErrorObject.php',
+	'ValueValidatorResult' => 'includes/ValueValidatorResult.php',
+	'ValueValidatorResultObject' => 'includes/ValueValidatorResultObject.php',
 
-/**
- * Files belonging to the ValueValidator extension.
- *
- * @defgroup ValueValidator ValueValidator
- */
-
-/**
- * Tests part of the ValueValidator extension.
- *
- * @defgroup ValueValidatorTests ValueValidatorTests
- * @ingroup ValueValidator
- */
-
-if ( !defined( 'DATAVALUES' ) ) {
-	die( 'Not an entry point.' );
-}
-
-define( 'ValueValidator_VERSION', '0.1' );
-
-if ( !defined( 'MEDIAWIKI' ) ) {
-	spl_autoload_register( function ( $className ) {
-		static $classes = false;
-
-		if ( $classes === false ) {
-			$classes = include( __DIR__ . '/' . 'ValueValidator.classes.php' );
-		}
-
-		if ( array_key_exists( $className, $classes ) ) {
-			include_once __DIR__ . '/' . $classes[$className];
-		}
-	} );
-}
+	'DimensionValidator' => 'valuevalidator/DimensionValidator.php',
+	'ListValidator' => 'valuevalidator/ListValidator.php',
+	'NullValidator' => 'valuevalidator/NullValidator.php',
+	'RangeValidator' => 'valuevalidator/RangeValidator.php',
+	'StringValidator' => 'valuevalidator/StringValidator.php',
+	'TitleValidator' => 'valuevalidator/TitleValidator.php',
+	'ValueValidator' => 'valuevalidator/ValueValidator.php',
+	'ValueValidatorObject' => 'valuevalidator/ValueValidatorObject.php',
+);
