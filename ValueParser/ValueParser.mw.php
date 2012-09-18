@@ -60,7 +60,10 @@ $wgExtensionMessagesFiles['ValueParser'] = __DIR__ . '/ValueParser.i18n.php';
  */
 $wgHooks['UnitTestsList'][] = function( array &$files ) {
 	$testFiles = array(
-
+		'valueparser/BoolParser',
+		'valueparser/NullParser',
+		'valueparser/TitleParser',
+		'valueparser/ValueParser',
 	);
 
 	foreach ( $testFiles as $file ) {
