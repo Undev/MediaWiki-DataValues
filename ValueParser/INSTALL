@@ -1,18 +1,15 @@
-These is the install file for the DataTypes extension.
+These is the install file for the ValueParser extension.
 
-Extension page on mediawiki.org: https://www.mediawiki.org/wiki/Extension:DataTypes
-Latest version of the install file: https://gerrit.wikimedia.org/r/gitweb?p=mediawiki/extensions/DataValues.git;a=blob;f=DataTypes/INSTALL
+Extension page on mediawiki.org: https://www.mediawiki.org/wiki/Extension:ValueParser
+Latest version of the install file: https://gerrit.wikimedia.org/r/gitweb?p=mediawiki/extensions/DataValues.git;a=blob;f=ValueParser/INSTALL
 
 
 == Requirements ==
 
-DataTypes requires:
+ValueParser requires:
 
 * PHP 5.3 or above
 * DataValues
-* ValueFormatter
-* ValueParser
-* ValueValidator
 
 == Download ==
 

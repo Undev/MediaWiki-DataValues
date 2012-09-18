@@ -1,7 +1,8 @@
 <?php
 
 /**
- * Internationalization file for the DataValues extension.
+ * Entry point for the ValueParser extension.
+ * For usage as MediaWiki extension, use the ValueParser.mw.php entry point.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,17 +22,27 @@
  * @since 0.1
  *
  * @file
- * @ingroup DataValues
+ * @ingroup DataTypes
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 
-$messages = array();
-
-/** English
- * @author Jeroen De Dauw
+/**
+ * Files belonging to the ValueParser extension.
+ *
+ * @defgroup ValueParser ValueParser
  */
-$messages['en'] = array(
-	'datavalues-desc' => 'Library of classes to represent data values and classes to parse, format and serialize those.',
-);
+
+/**
+ * Tests part of the DataTypes extension.
+ *
+ * @defgroup ValueParserTests ValueParserTests
+ * @ingroup ValueParser
+ */
+
+if ( !defined( 'DATAVALUES' ) ) {
+	die( 'Not an entry point.' );
+}
+
+define( 'ValueParser_VERSION', '0.1' );

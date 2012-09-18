@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Internationalization file for the DataValues extension.
+ * Internationalization file for the ValueParser extension.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
  * @since 0.1
  *
  * @file
- * @ingroup DataValues
+ * @ingroup DataTypes
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
@@ -33,5 +33,5 @@ $messages = array();
  * @author Jeroen De Dauw
  */
 $messages['en'] = array(
-	'datavalues-desc' => 'Library of classes to represent data values and classes to parse, format and serialize those.',
+	'valueparser-desc' => 'Collection of parsers that take some input and turn it into a DataValue',
 );
