@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Entry point for the ValueParser extension.
- * For usage as MediaWiki extension, use the ValueParser.mw.php entry point.
+ * Entry point for the ValueValidator extension.
+ * For usage as MediaWiki extension, use the ValueValidator.mw.php entry point.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,27 +22,27 @@
  * @since 0.1
  *
  * @file
- * @ingroup ValueParser
+ * @ingroup ValueValidator
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 
 /**
- * Files belonging to the ValueParser extension.
+ * Files belonging to the ValueValidator extension.
  *
- * @defgroup ValueParser ValueParser
+ * @defgroup ValueValidator ValueValidator
  */
 
 /**
- * Tests part of the ValueParser extension.
+ * Tests part of the ValueValidator extension.
  *
- * @defgroup ValueParserTests ValueParserTests
- * @ingroup ValueParser
+ * @defgroup ValueValidatorTests ValueValidatorTests
+ * @ingroup ValueValidator
  */
 
 if ( !defined( 'DATAVALUES' ) ) {
 	die( 'Not an entry point.' );
 }
 
-define( 'ValueParser_VERSION', '0.1' );
+define( 'ValueValidator_VERSION', '0.1' );

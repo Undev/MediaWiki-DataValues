@@ -1,8 +1,7 @@
 <?php
 
 /**
- * Entry point for the ValueParser extension.
- * For usage as MediaWiki extension, use the ValueParser.mw.php entry point.
+ * Internationalization file for the ValueValidator extension.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,27 +21,17 @@
  * @since 0.1
  *
  * @file
- * @ingroup ValueParser
+ * @ingroup ValueValidator
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 
-/**
- * Files belonging to the ValueParser extension.
- *
- * @defgroup ValueParser ValueParser
+$messages = array();
+
+/** English
+ * @author Jeroen De Dauw
  */
-
-/**
- * Tests part of the ValueParser extension.
- *
- * @defgroup ValueParserTests ValueParserTests
- * @ingroup ValueParser
- */
-
-if ( !defined( 'DATAVALUES' ) ) {
-	die( 'Not an entry point.' );
-}
-
-define( 'ValueParser_VERSION', '0.1' );
+$messages['en'] = array(
+	'valuevalidator-desc' => 'Collection of validation components for DataValues',
+);
