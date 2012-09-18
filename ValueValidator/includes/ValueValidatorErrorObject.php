@@ -62,7 +62,7 @@ class ValueValidatorErrorObject implements ValueValidatorError {
 	}
 
 	/**
-	 * @see ValueHandlerError::getText
+	 * @see ValueValidatorError::getText
 	 *
 	 * @since 0.1
 	 *
@@ -73,7 +73,7 @@ class ValueValidatorErrorObject implements ValueValidatorError {
 	}
 
 	/**
-	 * @see ValueHandlerError::getSeverity
+	 * @see ValueValidatorError::getSeverity
 	 *
 	 * @since 0.1
 	 *
@@ -84,7 +84,7 @@ class ValueValidatorErrorObject implements ValueValidatorError {
 	}
 
 	/**
-	 * @see ValueHandlerError::getProperty
+	 * @see ValueValidatorError::getProperty
 	 *
 	 * @since 0.1
 	 *

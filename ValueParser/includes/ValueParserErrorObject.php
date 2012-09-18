@@ -62,7 +62,7 @@ class ValueParserErrorObject implements ValueParserError {
 	}
 
 	/**
-	 * @see ValueHandlerError::getText
+	 * @see ValueParserError::getText
 	 *
 	 * @since 0.1
 	 *
@@ -73,7 +73,7 @@ class ValueParserErrorObject implements ValueParserError {
 	}
 
 	/**
-	 * @see ValueHandlerError::getSeverity
+	 * @see ValueParserError::getSeverity
 	 *
 	 * @since 0.1
 	 *
@@ -84,7 +84,7 @@ class ValueParserErrorObject implements ValueParserError {
 	}
 
 	/**
-	 * @see ValueHandlerError::getProperty
+	 * @see ValueParserError::getProperty
 	 *
 	 * @since 0.1
 	 *

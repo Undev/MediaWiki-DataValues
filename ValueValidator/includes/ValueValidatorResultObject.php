@@ -38,7 +38,7 @@ class ValueValidatorResultObject implements  ValueValidatorResult {
 	/**
 	 * @since 0.1
 	 *
-	 * @var array of ValueHandlerError
+	 * @var array of ValueValidatorError
 	 */
 	protected $errors = array();
 
@@ -54,7 +54,7 @@ class ValueValidatorResultObject implements  ValueValidatorResult {
 	/**
 	 * @since 0.1
 	 *
-	 * @param $errors array of ValueHandlerError
+	 * @param $errors array of ValueValidatorError
 	 *
 	 * @return ValueValidatorResult
 	 */
@@ -68,7 +68,7 @@ class ValueValidatorResultObject implements  ValueValidatorResult {
 	 * @since 0.1
 	 *
 	 * @param boolean $isValid
-	 * @param $errors array of ValueHandlerError
+	 * @param $errors array of ValueValidatorError
 	 */
 	protected function __construct( $isValid, array $errors = array() ) {
 		$this->isValid = $isValid;
@@ -91,7 +91,7 @@ class ValueValidatorResultObject implements  ValueValidatorResult {
 	 *
 	 * @since 0.1
 	 *
-	 * @return array of ValueHandlerError
+	 * @return array of ValueValidatorError
 	 */
 	public function getErrors() {
 		return $this->errors;

@@ -22,7 +22,7 @@
  * @since 0.1
  *
  * @file
- * @ingroup ValueHandler
+ * @ingroup ValueValidator
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
@@ -43,7 +43,7 @@ interface ValueValidatorResult {
 	 *
 	 * @since 0.1
 	 *
-	 * @return array of ValueHandlerError
+	 * @return array of ValueValidatorError
 	 */
 	public function getErrors();
 

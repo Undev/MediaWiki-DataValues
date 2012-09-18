@@ -74,7 +74,7 @@ abstract class ValueParserTestBase extends \MediaWikiTestCase {
 			$this->assertNull( $result->getError() );
 		}
 		else {
-			$this->assertTypeOrValue( 'ValueHandlerError', $result->getError(), null );
+			$this->assertTypeOrValue( 'ValueParserError', $result->getError(), null );
 
 			$this->assertException( function() use ( $result ) { $result->getValue(); } );
 		}

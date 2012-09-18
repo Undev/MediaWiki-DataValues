@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Interface for ValueHandler errors.
+ * Interface for ValueValidator errors.
  * Immutable.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -46,7 +46,7 @@ interface ValueValidatorError {
 	 *
 	 * @since 0.1
 	 *
-	 * @return integer, element of the ValueHandlerError::SEVERITY_ enum
+	 * @return integer, element of the ValueValidatorError::SEVERITY_ enum
 	 */
 	public function getSeverity();
 
