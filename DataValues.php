@@ -29,7 +29,6 @@ call_user_func( function() {
 
 	foreach ( $components as $component ) {
 		// Load extensions in non-global scope.
-		// TODO: move globals to each extension.
 		call_user_func( function() use ( $component ) {
 			require_once __DIR__ . '/' . $component . '/' . $component . '.php';
 		} );
