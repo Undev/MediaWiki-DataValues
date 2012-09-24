@@ -21,8 +21,8 @@
 call_user_func( function() {
 	$components = array(
 		'DataValues',
-		'ValueParser',
-		'ValueValidator',
+		'ValueParsers',
+		'ValueValidators',
 		//'ValueFormatter',
 		'DataTypes',
 	);

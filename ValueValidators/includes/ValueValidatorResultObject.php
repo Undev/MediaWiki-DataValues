@@ -1,9 +1,9 @@
 <?php
 
-namespace DataTypes;
+namespace ValueValidators;
 
 /**
- * Interface for data types.
+ * Implementation of the value validator result interface.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,72 +23,80 @@ namespace DataTypes;
  * @since 0.1
  *
  * @file
- * @ingroup DataTypes
+ * @ingroup ValueValidators
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-interface DataType {
+class ValueValidatorResultObject implements  ValueValidatorResult {
 
 	/**
-	 * Returns the identifier of this data type.
+	 * @since 0.1
+	 *
+	 * @var boolean
+	 */
+	protected $isValid;
+
+	/**
+	 * @since 0.1
+	 *
+	 * @var array of ValueValidatorError
+	 */
+	protected $errors = array();
+
+	/**
+	 * @since 0.1
+	 *
+	 * @return ValueValidatorResult
+	 */
+	public static function newSuccess() {
+		return new static( true );
+	}
+
+	/**
+	 * @since 0.1
+	 *
+	 * @param $errors array of ValueValidatorError
+	 *
+	 * @return ValueValidatorResult
+	 */
+	public static function newError( array $errors ) {
+		return new static( false, $errors );
+	}
+
+	/**
+	 * Constructor.
 	 *
 	 * @since 0.1
 	 *
-	 * @return string
+	 * @param boolean $isValid
+	 * @param $errors array of ValueValidatorError
 	 */
-	public function getId();
+	protected function __construct( $isValid, array $errors = array() ) {
+		$this->isValid = $isValid;
+		$this->errors = $errors;
+	}
 
 	/**
-	 * Returns the DataValue used by this data type.
+	 * @see ValueParserResult::isValid
 	 *
 	 * @since 0.1
 	 *
-	 * @return string
+	 * @return boolean
 	 */
-	public function getDataValueType();
+	public function isValid() {
+		return $this->isValid;
+	}
 
 	/**
-	 * Returns the ValueParser used by this data type.
-	 *
-	 * TODO: support for multiple parsers
+	 * @see ValueParserResult::getError
 	 *
 	 * @since 0.1
 	 *
-	 * @return ValueParser
+	 * @return array of ValueValidatorError
 	 */
-	public function getParser();
-
-	/**
-	 * Returns the ValueFormatter used by this data type.
-	 *
-	 * TODO: support for multiple formatters
-	 *
-	 * @since 0.1
-	 *
-	 * @return ValueFormatter
-	 */
-	public function getFormatter();
-
-	/**
-	 * Returns the label of the data type in the provided language or null if there is none.
-	 *
-	 * @since 0.1
-	 *
-	 * @param string $langCode
-	 *
-	 * @return string|null
-	 */
-	public function getLabel( $langCode );
-
-
-	/**
-	 * Returns the ValueValidators that are supported by this data type.
-	 *
-	 * @since 0.1
-	 *
-	 * @return array of ValueValidator
-	 */
-	public function getValidators();
+	public function getErrors() {
+		return $this->errors;
+	}
 
 }

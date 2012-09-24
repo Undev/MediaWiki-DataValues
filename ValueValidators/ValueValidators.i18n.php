@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class registration file for the DataTypes library.
+ * Internationalization file for the ValueValidator extension.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,14 +21,17 @@
  * @since 0.1
  *
  * @file
- * @ingroup DataTypes
+ * @ingroup ValueValidators
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-return array(
-	'DataTypes\DataType' => 'datatype/DataType.php',
-	'DataTypes\DataTypeObject' => 'datatype/DataTypeObject.php',
 
-	'DataTypes\DataTypeFactory' => 'includes/DataTypeFactory.php',
+$messages = array();
+
+/** English
+ * @author Jeroen De Dauw
+ */
+$messages['en'] = array(
+	'valuevalidator-desc' => 'Collection of validation components for DataValues',
 );

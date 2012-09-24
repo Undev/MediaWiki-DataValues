@@ -1,7 +1,9 @@
 <?php
 
+namespace ValueParsers;
+
 /**
- * Class registration file for the DataTypes library.
+ * ValueParser that parses the string representation of an integer.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,14 +23,31 @@
  * @since 0.1
  *
  * @file
- * @ingroup DataTypes
+ * @ingroup ValueParsers
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-return array(
-	'DataTypes\DataType' => 'datatype/DataType.php',
-	'DataTypes\DataTypeObject' => 'datatype/DataTypeObject.php',
+class IntParser extends StringValueParser {
 
-	'DataTypes\DataTypeFactory' => 'includes/DataTypeFactory.php',
-);
+	/**
+	 * @see StringValueParser::stringParse
+	 *
+	 * @since 0.1
+	 *
+	 * @param string $value
+	 *
+	 * @return ValueParserResult
+	 */
+	public function stringParse( $value ) {
+		$positiveValue = strpos( $value, '-' ) === 0 ? substr( $value, 1 ) : $value;
+
+		if ( ctype_digit( $positiveValue ) ) {
+			return ValueParserResultObject::newSuccess( (int)$value );
+		}
+		else {
+			return ValueParserResultObject::newErrorText( 'Not an integer' );
+		}
+	}
+
+}

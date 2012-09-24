@@ -1,7 +1,9 @@
 <?php
 
+namespace ValueParsers;
+
 /**
- * Class registration file for the DataTypes library.
+ * ValueParser that parses the string representation of a boolean.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,14 +23,40 @@
  * @since 0.1
  *
  * @file
- * @ingroup DataTypes
+ * @ingroup ValueParsers
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-return array(
-	'DataTypes\DataType' => 'datatype/DataType.php',
-	'DataTypes\DataTypeObject' => 'datatype/DataTypeObject.php',
+class BoolParser extends StringValueParser {
 
-	'DataTypes\DataTypeFactory' => 'includes/DataTypeFactory.php',
-);
+	protected $values = array(
+		'yes' => true,
+		'on' => true,
+		'1' => true,
+		'true' => true,
+		'no' => false,
+		'off' => false,
+		'0' => false,
+		'false' => false,
+	);
+
+	/**
+	 * @see StringValueParser::stringParse
+	 *
+	 * @since 0.1
+	 *
+	 * @param string $value
+	 *
+	 * @return ValueParserResult
+	 */
+	public function stringParse( $value ) {
+		if ( array_key_exists( $value, $this->values ) ) {
+			return ValueParserResultObject::newSuccess( $this->values[$value] );
+		}
+		else {
+			return $this->newErrorResult( 'Not a boolean' );
+		}
+	}
+
+}

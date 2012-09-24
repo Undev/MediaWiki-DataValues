@@ -1,7 +1,9 @@
 <?php
 
+namespace ValueValidators;
+
 /**
- * Class registration file for the DataTypes library.
+ * ValueValidator does a null validation (ie everything passes).
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,14 +23,35 @@
  * @since 0.1
  *
  * @file
- * @ingroup DataTypes
+ * @ingroup ValueValidators
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-return array(
-	'DataTypes\DataType' => 'datatype/DataType.php',
-	'DataTypes\DataTypeObject' => 'datatype/DataTypeObject.php',
+class NullValidator implements ValueValidator {
 
-	'DataTypes\DataTypeFactory' => 'includes/DataTypeFactory.php',
-);
+	/**
+	 * @see ValueValidator::validate
+	 *
+	 * @since 0.1
+	 *
+	 * @param mixed $value
+	 *
+	 * @return ValueValidatorResult
+	 */
+	public function validate( $value ) {
+		return ValueValidatorResultObject::newSuccess();
+	}
+
+	/**
+	 * @see ValueValidator::setOptions
+	 *
+	 * @since 0.1
+	 *
+	 * @param array $options
+	 */
+	public function setOptions( array $options ) {
+		// No op
+	}
+
+}

@@ -1,7 +1,10 @@
 <?php
 
+namespace ValueParsers\Test;
+use ValueParsers\ValueParserResultObject;
+
 /**
- * Class registration file for the DataTypes library.
+ * Unit test NullParser class.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,17 +21,41 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @since 0.1
  *
- * @file
- * @ingroup DataTypes
+ * @ingroup ValueParsersTest
+ *
+ * @group ValueParsers
+ * @group DataValueExtensions
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-return array(
-	'DataTypes\DataType' => 'datatype/DataType.php',
-	'DataTypes\DataTypeObject' => 'datatype/DataTypeObject.php',
+class NullParserTest extends ValueParserTestBase {
 
-	'DataTypes\DataTypeFactory' => 'includes/DataTypeFactory.php',
-);
+	/**
+	 * @see ValueParserTestBase::parseProvider
+	 *
+	 * @since 0.1
+	 */
+	public function parseProvider() {
+		$argLists = array();
+
+		foreach ( array( '42', 42, false, array(), 'ohi there!', null, 4.2 ) as $value ) {
+			$argLists[] = array( $value, ValueParserResultObject::newSuccess( $value ) );
+		}
+
+		return $argLists;
+	}
+
+	/**
+	 * @see ValueParserTestBase::getParserClass
+	 * @since 0.1
+	 * @return string
+	 */
+	protected function getParserClass() {
+		return 'ValueParsers\NullParser';
+	}
+
+}

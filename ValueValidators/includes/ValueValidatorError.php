@@ -1,7 +1,10 @@
 <?php
 
+namespace ValueValidators;
+
 /**
- * Class registration file for the DataTypes library.
+ * Interface for ValueValidator errors.
+ * Immutable.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,14 +24,41 @@
  * @since 0.1
  *
  * @file
- * @ingroup DataTypes
+ * @ingroup ValueValidators
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-return array(
-	'DataTypes\DataType' => 'datatype/DataType.php',
-	'DataTypes\DataTypeObject' => 'datatype/DataTypeObject.php',
+interface ValueValidatorError {
 
-	'DataTypes\DataTypeFactory' => 'includes/DataTypeFactory.php',
-);
+	const SEVERITY_ERROR = 9;
+	const SEVERITY_WARNING = 4;
+
+	/**
+	 * Returns the error text.
+	 *
+	 * @since 0.1
+	 *
+	 * @return string
+	 */
+	public function getText();
+
+	/**
+	 * Returns the severity of the error
+	 *
+	 * @since 0.1
+	 *
+	 * @return integer, element of the ValueValidatorError::SEVERITY_ enum
+	 */
+	public function getSeverity();
+
+	/**
+	 * Returns the property of the value for which the error occurred, or null if it occurred for the value itself.
+	 *
+	 * @since 0.1
+	 *
+	 * @return string|null
+	 */
+	public function getProperty();
+
+}

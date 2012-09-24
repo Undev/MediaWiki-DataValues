@@ -1,7 +1,9 @@
 <?php
 
+namespace ValueValidators;
+
 /**
- * Class registration file for the DataTypes library.
+ * ValueValidator that validates a list of values.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,14 +23,44 @@
  * @since 0.1
  *
  * @file
- * @ingroup DataTypes
+ * @ingroup ValueValidators
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-return array(
-	'DataTypes\DataType' => 'datatype/DataType.php',
-	'DataTypes\DataTypeObject' => 'datatype/DataTypeObject.php',
+class ListValidator extends ValueValidatorObject {
 
-	'DataTypes\DataTypeFactory' => 'includes/DataTypeFactory.php',
-);
+	/**
+	 * @see ValueValidator::doValidation
+	 *
+	 * @since 0.1
+	 *
+	 * @param mixed $value
+	 */
+	public function doValidation( $value ) {
+		if ( !is_array( $value ) ) {
+			$this->addErrorMessage( 'Not an array' );
+			return;
+		}
+
+		$optionMap = array(
+			'elementcount' => 'range',
+			'maxelements' => 'upperbound',
+			'minelements' => 'lowerbound',
+		);
+
+		$this->runSubValidator( count( $value ), new RangeValidator(), 'length', $optionMap );
+	}
+
+	/**
+	 * @see ValueValidatorObject::enableWhitelistRestrictions
+	 *
+	 * @since 0.1
+	 *
+	 * @return boolean
+	 */
+	protected function enableWhitelistRestrictions() {
+		return false;
+	}
+
+}

@@ -1,7 +1,10 @@
 <?php
 
+namespace ValueParsers;
+
 /**
- * Class registration file for the DataTypes library.
+ * Interface for value parser results.
+ * Immutable.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,14 +24,34 @@
  * @since 0.1
  *
  * @file
- * @ingroup DataTypes
+ * @ingroup ValueParsers
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-return array(
-	'DataTypes\DataType' => 'datatype/DataType.php',
-	'DataTypes\DataTypeObject' => 'datatype/DataTypeObject.php',
+interface ValueParserResult {
 
-	'DataTypes\DataTypeFactory' => 'includes/DataTypeFactory.php',
-);
+	/** TODO: DataValue
+	 * @since 0.1
+	 *
+	 * @return mixed
+	 */
+	public function getValue();
+
+	/**
+	 * @since 0.1
+	 *
+	 * @return boolean
+	 */
+	public function isValid();
+
+	/**
+	 * Returns error in case the value is invalid or null otherwise.
+	 *
+	 * @since 0.1
+	 *
+	 * @return ValueParserError|null
+	 */
+	public function getError();
+
+}

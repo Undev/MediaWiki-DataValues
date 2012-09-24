@@ -1,7 +1,10 @@
 <?php
 
+namespace ValueParsers\Test;
+use ValueParsers\ValueParserResultObject;
+
 /**
- * Class registration file for the DataTypes library.
+ * Unit test TitleParser class.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,17 +21,46 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @since 0.1
  *
- * @file
- * @ingroup DataTypes
+ * @ingroup ValueParsersTest
+ *
+ * @group ValueParsers
+ * @group DataValueExtensions
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-return array(
-	'DataTypes\DataType' => 'datatype/DataType.php',
-	'DataTypes\DataTypeObject' => 'datatype/DataTypeObject.php',
+class TitleParserTest extends StringValueParserTest {
 
-	'DataTypes\DataTypeFactory' => 'includes/DataTypeFactory.php',
-);
+	/**
+	 * @see ValueParserTestBase::parseProvider
+	 *
+	 * @since 0.1
+	 */
+	public function parseProvider() {
+		$argLists = array();
+
+		$valid = array(
+			'Foo bar',
+			'Ohi there!',
+		);
+
+		foreach ( $valid as $value ) {
+			$argLists[] = array( $value, ValueParserResultObject::newSuccess( \Title::newFromText( $value ) ) );
+		}
+
+		return array_merge( $argLists, parent::parseProvider() );
+	}
+
+	/**
+	 * @see ValueParserTestBase::getParserClass
+	 * @since 0.1
+	 * @return string
+	 */
+	protected function getParserClass() {
+		return 'ValueParsers\TitleParser';
+	}
+
+}

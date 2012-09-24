@@ -1,7 +1,10 @@
 <?php
 
+namespace ValueValidators;
+
 /**
- * Class registration file for the DataTypes library.
+ * Interface for value validator results.
+ * Immutable.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,14 +24,29 @@
  * @since 0.1
  *
  * @file
- * @ingroup DataTypes
+ * @ingroup ValueValidators
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-return array(
-	'DataTypes\DataType' => 'datatype/DataType.php',
-	'DataTypes\DataTypeObject' => 'datatype/DataTypeObject.php',
+interface ValueValidatorResult {
 
-	'DataTypes\DataTypeFactory' => 'includes/DataTypeFactory.php',
-);
+	/**
+	 * Returns if the value was found to be valid or not.
+	 *
+	 * @since 0.1
+	 *
+	 * @return boolean
+	 */
+	public function isValid();
+
+	/**
+	 * Returns an array with the errors that occurred during validation.
+	 *
+	 * @since 0.1
+	 *
+	 * @return array of ValueValidatorError
+	 */
+	public function getErrors();
+
+}

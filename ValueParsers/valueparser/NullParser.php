@@ -1,7 +1,9 @@
 <?php
 
+namespace ValueParsers;
+
 /**
- * Class registration file for the DataTypes library.
+ * Implementation of the ValueParser interface that does a null parse.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,14 +23,24 @@
  * @since 0.1
  *
  * @file
- * @ingroup DataTypes
+ * @ingroup ValueParsers
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-return array(
-	'DataTypes\DataType' => 'datatype/DataType.php',
-	'DataTypes\DataTypeObject' => 'datatype/DataTypeObject.php',
+class NullParser implements ValueParser {
 
-	'DataTypes\DataTypeFactory' => 'includes/DataTypeFactory.php',
-);
+	/**
+	 * @see ValueParser::parse
+	 *
+	 * @since 0.1
+	 *
+	 * @param mixed $value
+	 *
+	 * @return ValueParserResult
+	 */
+	public function parse( $value ) {
+		return ValueParserResultObject::newSuccess( $value );
+	}
+
+}
