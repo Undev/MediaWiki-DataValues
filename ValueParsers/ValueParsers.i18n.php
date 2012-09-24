@@ -35,3 +35,8 @@ $messages = array();
 $messages['en'] = array(
 	'valueparsers-desc' => 'Collection of parsers that take some input and turn it into a DataValue',
 );
+
+/** Message documentation (Message documentation) */
+$messages['qqq'] = array(
+	'valueparsers-desc' => '{{desc}}',
+);

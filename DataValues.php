@@ -32,7 +32,6 @@ call_user_func( function() {
 		call_user_func( function() use ( $component ) {
 			require_once __DIR__ . '/' . $component . '/' . $component . '.php';
 		} );
-
 	}
 
 } );
