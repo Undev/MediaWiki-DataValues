@@ -1,12 +1,12 @@
-These is the install file for the ValueValidator extension.
+These is the install file for the ValueValidators extension.
 
-Extension page on mediawiki.org: https://www.mediawiki.org/wiki/Extension:ValueValidator
-Latest version of the install file: https://gerrit.wikimedia.org/r/gitweb?p=mediawiki/extensions/DataValues.git;a=blob;f=ValueValidator/INSTALL
+Extension page on mediawiki.org: https://www.mediawiki.org/wiki/Extension:ValueValidators
+Latest version of the install file: https://gerrit.wikimedia.org/r/gitweb?p=mediawiki/extensions/DataValues.git;a=blob;f=ValueValidators/INSTALL
 
 
 == Requirements ==
 
-ValueValidator requires:
+ValueValidators requires:
 
 * PHP 5.3 or above
 * DataValues

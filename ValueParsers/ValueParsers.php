@@ -3,7 +3,7 @@
 /**
  * Entry point for the ValueParser extension.
  *
- * Documentation:	 		https://www.mediawiki.org/wiki/Extension:ValueParser
+ * Documentation:	 		https://www.mediawiki.org/wiki/Extension:ValueParsers
  * Support					https://www.mediawiki.org/wiki/Extension_talk:ValueParser
  * Source code:				https://gerrit.wikimedia.org/r/gitweb?p=mediawiki/extensions/DataValues.git
  *
@@ -53,7 +53,8 @@ if ( !defined( 'DATAVALUES' ) ) {
 	define( 'DATAVALUES', true );
 }
 
-define( 'ValueParser_VERSION', '0.1' );
+define( 'ValueParsers_VERSION', '0.1' );
+define( 'ValueParser_VERSION', ValueParsers_VERSION ); // compat, will be removed soonish
 
 if ( defined( 'MEDIAWIKI' ) ) {
 	include __DIR__ . '/ValueParsers.mw.php';

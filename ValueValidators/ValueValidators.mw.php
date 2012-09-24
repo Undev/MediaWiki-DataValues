@@ -1,7 +1,7 @@
 <?php
 
 /**
- * MediaWiki setup for the ValueValidator extension.
+ * MediaWiki setup for the ValueValidators extension.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,14 +35,14 @@ global $wgExtensionCredits, $wgExtensionMessagesFiles, $wgAutoloadClasses, $wgHo
 
 $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,
-	'name' => 'ValueValidator',
-	'version' => ValueValidator_VERSION,
+	'name' => 'ValueValidators',
+	'version' => ValueValidators_VERSION,
 	'author' => array( '[https://www.mediawiki.org/wiki/User:Jeroen_De_Dauw Jeroen De Dauw]' ),
-	'url' => 'https://www.mediawiki.org/wiki/Extension:ValueValidator',
-	'descriptionmsg' => 'valuevalidator-desc',
+	'url' => 'https://www.mediawiki.org/wiki/Extension:ValueValidators',
+	'descriptionmsg' => 'valuevalidators-desc',
 );
 
-$wgExtensionMessagesFiles['ValueValidator'] = __DIR__ . '/ValueValidator.i18n.php';
+$wgExtensionMessagesFiles['ValueValidators'] = __DIR__ . '/ValueValidators.i18n.php';
 
 foreach ( include( __DIR__ . '/ValueValidators.classes.php' ) as $class => $file ) {
 	if ( !array_key_exists( $class, $GLOBALS['wgAutoloadLocalClasses'] ) ) {

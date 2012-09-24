@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Internationalization file for the ValueValidator extension.
+ * Internationalization file for the ValueValidators extension.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,5 +33,5 @@ $messages = array();
  * @author Jeroen De Dauw
  */
 $messages['en'] = array(
-	'valuevalidator-desc' => 'Collection of validation components for DataValues',
+	'valuevalidators-desc' => 'Collection of validation components for DataValues',
 );

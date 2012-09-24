@@ -35,14 +35,14 @@ global $wgExtensionCredits, $wgExtensionMessagesFiles, $wgAutoloadClasses, $wgHo
 
 $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,
-	'name' => 'ValueParser',
-	'version' => ValueParser_VERSION,
+	'name' => 'ValueParsers',
+	'version' => ValueParsers_VERSION,
 	'author' => array( '[https://www.mediawiki.org/wiki/User:Jeroen_De_Dauw Jeroen De Dauw]' ),
-	'url' => 'https://www.mediawiki.org/wiki/Extension:ValueParser',
-	'descriptionmsg' => 'valueparser-desc',
+	'url' => 'https://www.mediawiki.org/wiki/Extension:ValueParsers',
+	'descriptionmsg' => 'valueparsers-desc',
 );
 
-$wgExtensionMessagesFiles['ValueParser'] = __DIR__ . '/ValueParser.i18n.php';
+$wgExtensionMessagesFiles['ValueParsers'] = __DIR__ . '/ValueParsers.i18n.php';
 
 foreach ( include( __DIR__ . '/ValueParsers.classes.php' ) as $class => $file ) {
 	if ( !array_key_exists( $class, $GLOBALS['wgAutoloadLocalClasses'] ) ) {

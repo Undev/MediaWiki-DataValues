@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Internationalization file for the ValueParser extension.
+ * Internationalization file for the ValueParsers extension.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,5 +33,5 @@ $messages = array();
  * @author Jeroen De Dauw
  */
 $messages['en'] = array(
-	'valueparser-desc' => 'Collection of parsers that take some input and turn it into a DataValue',
+	'valueparsers-desc' => 'Collection of parsers that take some input and turn it into a DataValue',
 );
