@@ -4,7 +4,7 @@
  * Entry point for the ValueValidators extension.
  *
  * Documentation:	 		https://www.mediawiki.org/wiki/Extension:ValueValidators
- * Support					https://www.mediawiki.org/wiki/Extension_talk:ValueValidator
+ * Support					https://www.mediawiki.org/wiki/Extension_talk:ValueValidators
  * Source code:				https://gerrit.wikimedia.org/r/gitweb?p=mediawiki/extensions/DataValues.git
  *
  * This program is free software; you can redistribute it and/or modify
@@ -34,7 +34,7 @@
 /**
  * Files belonging to the ValueValidators extension.
  *
- * @defgroup ValueValidator ValueValidator
+ * @defgroup ValueValidators ValueValidators
  */
 
 /**
@@ -53,7 +53,7 @@ if ( !defined( 'DATAVALUES' ) ) {
 	define( 'DATAVALUES', true );
 }
 
-define( 'ValueValidators_VERSION', '0.1' );
+define( 'ValueValidators_VERSION', '0.1 alpha' );
 
 if ( defined( 'MEDIAWIKI' ) ) {
 	include __DIR__ . '/ValueValidators.mw.php';

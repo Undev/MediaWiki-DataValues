@@ -4,7 +4,7 @@
  * Entry point for the ValueParser extension.
  *
  * Documentation:	 		https://www.mediawiki.org/wiki/Extension:ValueParsers
- * Support					https://www.mediawiki.org/wiki/Extension_talk:ValueParser
+ * Support					https://www.mediawiki.org/wiki/Extension_talk:ValueParsers
  * Source code:				https://gerrit.wikimedia.org/r/gitweb?p=mediawiki/extensions/DataValues.git
  *
  * This program is free software; you can redistribute it and/or modify
@@ -32,13 +32,13 @@
  */
 
 /**
- * Files belonging to the ValueParser extension.
+ * Files belonging to the ValueParsers extension.
  *
  * @defgroup ValueParsers ValueParsers
  */
 
 /**
- * Tests part of the ValueParser extension.
+ * Tests part of the ValueParsers extension.
  *
  * @defgroup ValueParserTests ValueParserTests
  * @ingroup ValueParsers
@@ -53,7 +53,7 @@ if ( !defined( 'DATAVALUES' ) ) {
 	define( 'DATAVALUES', true );
 }
 
-define( 'ValueParsers_VERSION', '0.1' );
+define( 'ValueParsers_VERSION', '0.1 alpha' );
 define( 'ValueParser_VERSION', ValueParsers_VERSION ); // compat, will be removed soonish
 
 if ( defined( 'MEDIAWIKI' ) ) {
