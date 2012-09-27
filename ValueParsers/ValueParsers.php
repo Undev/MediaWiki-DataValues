@@ -54,7 +54,6 @@ if ( !defined( 'DATAVALUES' ) ) {
 }
 
 define( 'ValueParsers_VERSION', '0.1 alpha' );
-define( 'ValueParser_VERSION', ValueParsers_VERSION ); // compat, will be removed soonish
 
 if ( defined( 'MEDIAWIKI' ) ) {
 	include __DIR__ . '/ValueParsers.mw.php';
