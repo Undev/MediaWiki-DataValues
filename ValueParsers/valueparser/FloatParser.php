@@ -41,7 +41,7 @@ class FloatParser extends StringValueParser {
 	 */
 	public function stringParse( $value ) {
 		if ( preg_match( '/^(-)?\d+((\.|,)\d+)?$/', $value ) ) {
-			return ValueParserResultObject::newSuccess( (float)$value );
+			return ValueParserResultObject::newSuccess( new \DataValues\NumberValue( (float)$value ) );
 		}
 		else {
 			return ValueParserResultObject::newErrorText( 'Not a float' );

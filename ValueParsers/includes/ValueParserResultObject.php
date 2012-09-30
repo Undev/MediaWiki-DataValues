@@ -1,7 +1,7 @@
 <?php
 
 namespace ValueParsers;
-use Exception;
+use DataValues\DataValue, Exception;
 
 /**
  * Implementation of the value parser result interface.
@@ -32,6 +32,8 @@ use Exception;
 class ValueParserResultObject implements ValueParserResult {
 
 	/**
+	 * Indicates if the parsing process was successful.
+	 *
 	 * @since 0.1
 	 *
 	 * @var boolean
@@ -39,9 +41,12 @@ class ValueParserResultObject implements ValueParserResult {
 	protected $isValid;
 
 	/**
+	 * A DataValue instance representing the parsed value,
+	 * or null if the parsing process failed.
+	 *
 	 * @since 0.1
 	 *
-	 * @var mixed
+	 * @var DataValue|null
 	 */
 	protected $value;
 
@@ -55,11 +60,11 @@ class ValueParserResultObject implements ValueParserResult {
 	/**
 	 * @since 0.1
 	 *
-	 * @param mixed $value
+	 * @param DataValue $value
 	 *
 	 * @return ValueParserResult
 	 */
-	public static function newSuccess( $value ) {
+	public static function newSuccess( DataValue $value ) {
 		return new static( true, $value );
 	}
 
@@ -91,24 +96,24 @@ class ValueParserResultObject implements ValueParserResult {
 	 * @since 0.1
 	 *
 	 * @param boolean $isValid
-	 * @param mixed $value
-	 * @param ValueParserError $error
+	 * @param DataValue|null $value
+	 * @param ValueParserError|null $error
 	 */
-	protected function __construct( $isValid, $value = null, ValueParserError $error = null ) {
+	protected function __construct( $isValid, DataValue $value = null, ValueParserError $error = null ) {
 		$this->isValid = $isValid;
 		$this->value = $value;
 		$this->error = $error;
 	}
 
 	/**
-	 * @see ValueParserResult::getValue
+	 * @see ValueParserResult::getDataValue
 	 *
 	 * @since 0.1
 	 *
-	 * @return mixed
+	 * @return DataValue
 	 * @throws Exception
 	 */
-	public function getValue() {
+	public function getDataValue() {
 		if ( $this->isValid() ) {
 			return $this->value;
 		}

@@ -1,6 +1,7 @@
 <?php
 
 namespace ValueParsers;
+use DataValues\DataValue, Exception, Immutable;
 
 /**
  * Interface for value parser results.
@@ -29,16 +30,25 @@ namespace ValueParsers;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-interface ValueParserResult {
-
-	/** TODO: DataValue
-	 * @since 0.1
-	 *
-	 * @return mixed
-	 */
-	public function getValue();
+interface ValueParserResult extends Immutable {
 
 	/**
+	 * Returns a DataValue instance representing the parsed value.
+	 * If the parsing process failed, this method will throw an
+	 * exception when called. You can check for failure using
+	 * the @see isValid method first.
+	 *
+	 * @since 0.1
+	 *
+	 * @return DataValue
+	 * @throws Exception
+	 */
+	public function getDataValue();
+
+	/**
+	 * Returns if the parsing was successful.
+	 * If it was, you can obtain the resulting value via @see getDataValue
+	 *
 	 * @since 0.1
 	 *
 	 * @return boolean

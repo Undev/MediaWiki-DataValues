@@ -56,6 +56,7 @@ class BoolParserTest extends StringValueParserTest {
 		);
 
 		foreach ( $valid as $value => $expected ) {
+			$expected = new \DataValues\BooleanValue( $expected );
 			$argLists[] = array( (string)$value, ValueParserResultObject::newSuccess( $expected ) );
 		}
 

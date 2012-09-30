@@ -38,6 +38,8 @@ class TitleParserTest extends StringValueParserTest {
 	 * @see ValueParserTestBase::parseProvider
 	 *
 	 * @since 0.1
+	 *
+	 * @return array
 	 */
 	public function parseProvider() {
 		$argLists = array();
@@ -48,7 +50,7 @@ class TitleParserTest extends StringValueParserTest {
 		);
 
 		foreach ( $valid as $value ) {
-			$argLists[] = array( $value, ValueParserResultObject::newSuccess( \Title::newFromText( $value ) ) );
+			$argLists[] = array( $value, ValueParserResultObject::newSuccess( new \DataValues\MediaWikiTitleValue( \Title::newFromText( $value ) ) ) );
 		}
 
 		return array_merge( $argLists, parent::parseProvider() );

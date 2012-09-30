@@ -38,6 +38,8 @@ abstract class StringValueParserTest extends ValueParserTestBase {
 	 * @see ValueParserTestBase::parseProvider
 	 *
 	 * @since 0.1
+	 *
+	 * @return array
 	 */
 	public function parseProvider() {
 		$argLists = array();

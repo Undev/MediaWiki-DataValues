@@ -29,7 +29,7 @@ namespace ValueParsers;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-interface ValueParserError {
+interface ValueParserError extends \Immutable {
 
 	const SEVERITY_ERROR = 9;
 	const SEVERITY_WARNING = 4;

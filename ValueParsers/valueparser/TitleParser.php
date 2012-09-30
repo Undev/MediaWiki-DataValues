@@ -46,7 +46,7 @@ class TitleParser extends StringValueParser {
 			return $this->newErrorResult( 'Not a title' );
 		}
 		else {
-			return ValueParserResultObject::newSuccess( $value );
+			return ValueParserResultObject::newSuccess( new \DataValues\MediaWikiTitleValue( $value ) );
 		}
 	}
 

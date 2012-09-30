@@ -38,12 +38,27 @@ class NullParserTest extends ValueParserTestBase {
 	 * @see ValueParserTestBase::parseProvider
 	 *
 	 * @since 0.1
+	 *
+	 * @return array
 	 */
 	public function parseProvider() {
 		$argLists = array();
 
-		foreach ( array( '42', 42, false, array(), 'ohi there!', null, 4.2 ) as $value ) {
-			$argLists[] = array( $value, ValueParserResultObject::newSuccess( $value ) );
+		$values = array(
+			'42',
+			42,
+			false,
+			array(),
+			'ohi there!',
+			null,
+			4.2,
+		);
+
+		foreach ( $values as $value ) {
+			$argLists[] = array(
+				$value,
+				ValueParserResultObject::newSuccess( new \DataValues\UnknownValue( $value ) )
+			);
 		}
 
 		return $argLists;
