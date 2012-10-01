@@ -60,16 +60,9 @@ abstract class ValueValidatorObject implements ValueValidator {
 	/**
 	 * @since 0.1
 	 *
-	 * @var array of string
-	 */
-	private $errorMessages;
-
-	/**
-	 * @since 0.1
-	 *
 	 * @var array of ValueHandlerError
 	 */
-	private $errors;
+	protected $errors = array();
 
 	/**
 	 * @see ValueValidator::validate
@@ -81,7 +74,7 @@ abstract class ValueValidatorObject implements ValueValidator {
 	 * @return Result
 	 */
 	public final function validate( $value ) {
-		$this->errorMessages = array();
+		$this->errors = array();
 
 		if ( $this->enableWhitelistRestrictions() ) {
 			$this->valueIsAllowed( $value );
@@ -89,17 +82,11 @@ abstract class ValueValidatorObject implements ValueValidator {
 
 		$this->doValidation( $value );
 
-		if ( $this->errorMessages === array() ) {
+		if ( $this->errors === array() ) {
 			return ResultObject::newSuccess();
 		}
 		else {
-			$errors = $this->errors;
-
-			foreach ( $this->errorMessages as $errorMessage ) {
-				$errors[] = ErrorObject::newError( $errorMessage );
-			}
-
-			return ResultObject::newError( $errors );
+			return ResultObject::newError( $this->errors );
 		}
 	}
 
@@ -159,7 +146,7 @@ abstract class ValueValidatorObject implements ValueValidator {
 	 * @param string $errorMessage
 	 */
 	protected function addErrorMessage( $errorMessage ) {
-		$this->errorMessages[] = $errorMessage;
+		$this->addError( ErrorObject::newError( $errorMessage ) );
 	}
 
 	/**
@@ -219,7 +206,7 @@ abstract class ValueValidatorObject implements ValueValidator {
 	}
 
 	/**
-	 * If the "values" and "excluding" arguments should be helf into account.
+	 * If the "values" and "excluding" arguments should be held into account.
 	 *
 	 * @since 0.1
 	 *

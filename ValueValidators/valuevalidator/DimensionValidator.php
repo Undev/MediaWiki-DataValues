@@ -127,9 +127,13 @@ class DimensionValidator extends ValueValidatorObject {
 	 * @param mixed $value
 	 */
 	public function doValidation( $value ) {
-		if ( !is_string( $value ) ) {
-			$this->addErrorMessage( 'Dimension is not a string' );
+		if ( !is_string( $value ) && !is_int( $value ) && !is_float( $value ) ) {
+			$this->addErrorMessage( 'Dimension is not a string, float or int' );
 			return;
+		}
+
+		if ( !is_string( $value ) ) {
+			$value = (string)$value;
 		}
 
 		if ( $value === 'auto' ) {
@@ -267,6 +271,14 @@ class DimensionValidator extends ValueValidatorObject {
 
 		if ( array_key_exists( 'defaultunit', $options ) ) {
 			$this->setDefaultUnit( $options['defaultunit'] );
+		}
+
+		if ( array_key_exists( 'lowerbound', $options ) ) {
+			$this->setLowerBound( $options['lowerbound'] );
+		}
+
+		if ( array_key_exists( 'upperbound', $options ) ) {
+			$this->setUpperBound( $options['upperbound'] );
 		}
 	}
 
