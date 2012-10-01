@@ -27,10 +27,10 @@
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 return array(
-	'ValueValidators\ValueValidatorError' => 'includes/ValueValidatorError.php',
-	'ValueValidators\ValueValidatorErrorObject' => 'includes/ValueValidatorErrorObject.php',
-	'ValueValidators\ValueValidatorResult' => 'includes/ValueValidatorResult.php',
-	'ValueValidators\ValueValidatorResultObject' => 'includes/ValueValidatorResultObject.php',
+	'ValueValidators\Error' => 'includes/Error.php',
+	'ValueValidators\ErrorObject' => 'includes/ErrorObject.php',
+	'ValueValidators\Result' => 'includes/Result.php',
+	'ValueValidators\ResultObject' => 'includes/ResultObject.php',
 
 	'ValueValidators\DimensionValidator' => 'valuevalidator/DimensionValidator.php',
 	'ValueValidators\ListValidator' => 'valuevalidator/ListValidator.php',

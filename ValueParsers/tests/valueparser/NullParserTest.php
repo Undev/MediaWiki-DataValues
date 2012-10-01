@@ -1,7 +1,7 @@
 <?php
 
 namespace ValueParsers\Test;
-use ValueParsers\ValueParserResultObject;
+use ValueParsers\ResultObject;
 
 /**
  * Unit test NullParser class.
@@ -57,7 +57,7 @@ class NullParserTest extends ValueParserTestBase {
 		foreach ( $values as $value ) {
 			$argLists[] = array(
 				$value,
-				ValueParserResultObject::newSuccess( new \DataValues\UnknownValue( $value ) )
+				ResultObject::newSuccess( new \DataValues\UnknownValue( $value ) )
 			);
 		}
 

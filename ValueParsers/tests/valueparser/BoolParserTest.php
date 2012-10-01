@@ -1,7 +1,7 @@
 <?php
 
 namespace ValueParsers\Test;
-use ValueParsers\ValueParserResultObject;
+use ValueParsers\ResultObject;
 
 /**
  * Unit test BoolParser class.
@@ -57,7 +57,7 @@ class BoolParserTest extends StringValueParserTest {
 
 		foreach ( $valid as $value => $expected ) {
 			$expected = new \DataValues\BooleanValue( $expected );
-			$argLists[] = array( (string)$value, ValueParserResultObject::newSuccess( $expected ) );
+			$argLists[] = array( (string)$value, ResultObject::newSuccess( $expected ) );
 		}
 
 		$invalid = array(
@@ -66,7 +66,7 @@ class BoolParserTest extends StringValueParserTest {
 		);
 
 		foreach ( $invalid as $value ) {
-			$argLists[] = array( $value, ValueParserResultObject::newErrorText( '' ) );
+			$argLists[] = array( $value, ResultObject::newErrorText( '' ) );
 		}
 
 		return array_merge( $argLists, parent::parseProvider() );

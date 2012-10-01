@@ -29,7 +29,7 @@ use DataValues\DataValue, Exception;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class ValueParserResultObject implements ValueParserResult {
+class ResultObject implements Result {
 
 	/**
 	 * Indicates if the parsing process was successful.
@@ -53,7 +53,7 @@ class ValueParserResultObject implements ValueParserResult {
 	/**
 	 * @since 0.1
 	 *
-	 * @var ValueParserError|null
+	 * @var Error|null
 	 */
 	protected $error;
 
@@ -62,7 +62,7 @@ class ValueParserResultObject implements ValueParserResult {
 	 *
 	 * @param DataValue $value
 	 *
-	 * @return ValueParserResult
+	 * @return Result
 	 */
 	public static function newSuccess( DataValue $value ) {
 		return new static( true, $value );
@@ -71,11 +71,11 @@ class ValueParserResultObject implements ValueParserResult {
 	/**
 	 * @since 0.1
 	 *
-	 * @param ValueParserError $error
+	 * @param Error $error
 	 *
-	 * @return ValueParserResult
+	 * @return Result
 	 */
-	public static function newError( ValueParserError $error ) {
+	public static function newError( Error $error ) {
 		return new static( false, null, $error );
 	}
 
@@ -84,10 +84,10 @@ class ValueParserResultObject implements ValueParserResult {
 	 *
 	 * @param string $error
 	 *
-	 * @return ValueParserResult
+	 * @return Result
 	 */
 	public static function newErrorText( $error ) {
-		return static::newError( ValueParserErrorObject::newError( $error ) );
+		return static::newError( ErrorObject::newError( $error ) );
 	}
 
 	/**
@@ -97,9 +97,9 @@ class ValueParserResultObject implements ValueParserResult {
 	 *
 	 * @param boolean $isValid
 	 * @param DataValue|null $value
-	 * @param ValueParserError|null $error
+	 * @param Error|null $error
 	 */
-	protected function __construct( $isValid, DataValue $value = null, ValueParserError $error = null ) {
+	protected function __construct( $isValid, DataValue $value = null, Error $error = null ) {
 		$this->isValid = $isValid;
 		$this->value = $value;
 		$this->error = $error;
@@ -138,7 +138,7 @@ class ValueParserResultObject implements ValueParserResult {
 	 *
 	 * @since 0.1
 	 *
-	 * @return ValueParserError|null
+	 * @return Error|null
 	 */
 	public function getError() {
 		return $this->error;

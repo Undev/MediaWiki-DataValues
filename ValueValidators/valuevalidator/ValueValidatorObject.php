@@ -78,7 +78,7 @@ abstract class ValueValidatorObject implements ValueValidator {
 	 *
 	 * @param mixed $value
 	 *
-	 * @return ValueValidatorResult
+	 * @return Result
 	 */
 	public final function validate( $value ) {
 		$this->errorMessages = array();
@@ -90,16 +90,16 @@ abstract class ValueValidatorObject implements ValueValidator {
 		$this->doValidation( $value );
 
 		if ( $this->errorMessages === array() ) {
-			return ValueValidatorResultObject::newSuccess();
+			return ResultObject::newSuccess();
 		}
 		else {
 			$errors = $this->errors;
 
 			foreach ( $this->errorMessages as $errorMessage ) {
-				$errors[] = ValueHandlerErrorObject::newError( $errorMessage );
+				$errors[] = ErrorObject::newError( $errorMessage );
 			}
 
-			return ValueValidatorResultObject::newError( $errors );
+			return ResultObject::newError( $errors );
 		}
 	}
 
@@ -167,9 +167,9 @@ abstract class ValueValidatorObject implements ValueValidator {
 	 *
 	 * @since 0.1
 	 *
-	 * @param ValueHandlerError $error
+	 * @param Error $error
 	 */
-	protected function addError( ValueHandlerError $error ) {
+	protected function addError( Error $error ) {
 		$this->errors[] = $error;
 	}
 
@@ -211,10 +211,10 @@ abstract class ValueValidatorObject implements ValueValidator {
 		}
 
 		/**
-		 * @var ValueHandlerError $error
+		 * @var Error $error
 		 */
 		foreach ( $validator->validate( $value )->getErrors() as $error ) {
-			$this->addError( ValueHandlerErrorObject::newError( $error->getText(), $property ) );
+			$this->addError( ErrorObject::newError( $error->getText(), $property ) );
 		}
 	}
 

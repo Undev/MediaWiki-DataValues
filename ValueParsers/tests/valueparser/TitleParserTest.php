@@ -1,7 +1,7 @@
 <?php
 
 namespace ValueParsers\Test;
-use ValueParsers\ValueParserResultObject;
+use ValueParsers\ResultObject;
 
 /**
  * Unit test TitleParser class.
@@ -50,7 +50,7 @@ class TitleParserTest extends StringValueParserTest {
 		);
 
 		foreach ( $valid as $value ) {
-			$argLists[] = array( $value, ValueParserResultObject::newSuccess( new \DataValues\MediaWikiTitleValue( \Title::newFromText( $value ) ) ) );
+			$argLists[] = array( $value, ResultObject::newSuccess( new \DataValues\MediaWikiTitleValue( \Title::newFromText( $value ) ) ) );
 		}
 
 		return array_merge( $argLists, parent::parseProvider() );

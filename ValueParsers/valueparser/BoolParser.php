@@ -48,11 +48,11 @@ class BoolParser extends StringValueParser {
 	 *
 	 * @param string $value
 	 *
-	 * @return ValueParserResult
+	 * @return Result
 	 */
 	public function stringParse( $value ) {
 		if ( array_key_exists( $value, $this->values ) ) {
-			return ValueParserResultObject::newSuccess( new \DataValues\BooleanValue( $this->values[$value] ) );
+			return ResultObject::newSuccess( new \DataValues\BooleanValue( $this->values[$value] ) );
 		}
 		else {
 			return $this->newErrorResult( 'Not a boolean' );

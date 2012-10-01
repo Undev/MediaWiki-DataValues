@@ -63,7 +63,7 @@ class ValueParserTest extends \MediaWikiTestCase {
 	 */
 	public function testParser( ValueParser $parser ) {
 		foreach ( array( 'foo', 42, array(), false, 'ohi there!' ) as $value ) {
-			$this->assertInstanceOf( 'ValueParsers\ValueParserResult', $parser->parse( $value ) );
+			$this->assertInstanceOf( 'ValueParsers\Result', $parser->parse( $value ) );
 		}
 	}
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace ValueValidators;
+namespace ValueParsers;
 
 /**
  * Implementation of the value handler error interface.
@@ -23,12 +23,12 @@ namespace ValueValidators;
  * @since 0.1
  *
  * @file
- * @ingroup ValueValidators
+ * @ingroup ValueParsers
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class ValueValidatorErrorObject implements ValueValidatorError {
+class ErrorObject implements Error {
 
 	protected $text;
 	protected $severity;
@@ -42,10 +42,10 @@ class ValueValidatorErrorObject implements ValueValidatorError {
 	 * @param string $text
 	 * @param string|null $property
 	 *
-	 * @return ValueValidatorError
+	 * @return Error
 	 */
 	public static function newError( $text = '', $property = null ) {
-		return new static( $text, ValueParserError::SEVERITY_ERROR, $property );
+		return new static( $text, Error::SEVERITY_ERROR, $property );
 	}
 
 	/**
@@ -64,7 +64,7 @@ class ValueValidatorErrorObject implements ValueValidatorError {
 	}
 
 	/**
-	 * @see ValueValidatorError::getText
+	 * @see ValueParserError::getText
 	 *
 	 * @since 0.1
 	 *
@@ -75,7 +75,7 @@ class ValueValidatorErrorObject implements ValueValidatorError {
 	}
 
 	/**
-	 * @see ValueValidatorError::getSeverity
+	 * @see ValueParserError::getSeverity
 	 *
 	 * @since 0.1
 	 *
@@ -86,7 +86,7 @@ class ValueValidatorErrorObject implements ValueValidatorError {
 	}
 
 	/**
-	 * @see ValueValidatorError::getProperty
+	 * @see ValueParserError::getProperty
 	 *
 	 * @since 0.1
 	 *
