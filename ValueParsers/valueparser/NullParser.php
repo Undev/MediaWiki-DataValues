@@ -37,10 +37,10 @@ class NullParser implements ValueParser {
 	 *
 	 * @param mixed $value
 	 *
-	 * @return ValueParserResult
+	 * @return Result
 	 */
 	public function parse( $value ) {
-		return ValueParserResultObject::newSuccess( new \DataValues\UnknownValue( $value ) );
+		return ResultObject::newSuccess( new \DataValues\UnknownValue( $value ) );
 	}
 
 }

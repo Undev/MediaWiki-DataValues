@@ -37,7 +37,7 @@ interface ValueValidator {
 	 *
 	 * @param mixed $value The value to validate
 	 *
-	 * @return ValueValidatorResult
+	 * @return Result
 	 */
 	public function validate( $value );
 

@@ -29,7 +29,7 @@ namespace ValueValidators;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-interface ValueValidatorResult {
+interface Result extends \Immutable {
 
 	/**
 	 * Returns if the value was found to be valid or not.

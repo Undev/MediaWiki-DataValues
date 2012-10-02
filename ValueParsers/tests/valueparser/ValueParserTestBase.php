@@ -1,8 +1,9 @@
 <?php
 
 namespace ValueParsers\Test;
-use ValueParsers\ValueParserResult;
+use ValueParsers\Result;
 use ValueParsers\ValueParser;
+use callable;
 
 /**
  * Base for unit tests for ValueParser implementing classes.
@@ -59,10 +60,10 @@ abstract class ValueParserTestBase extends \MediaWikiTestCase {
 	 * @dataProvider parseProvider
 	 * @since 0.1
 	 * @param $value
-	 * @param ValueParserResult $expected
+	 * @param Result $expected
 	 * @param ValueParser|null $parser
 	 */
-	public function testParse( $value, ValueParserResult $expected, ValueParser $parser = null ) {
+	public function testParse( $value, Result $expected, ValueParser $parser = null ) {
 		if ( is_null( $parser ) ) {
 			$parser = $this->getInstance();
 		}
@@ -77,7 +78,7 @@ abstract class ValueParserTestBase extends \MediaWikiTestCase {
 			$this->assertNull( $result->getError() );
 		}
 		else {
-			$this->assertTypeOrValue( '\ValueParsers\ValueParserError', $result->getError(), null );
+			$this->assertTypeOrValue( '\ValueParsers\Error', $result->getError(), null );
 
 			$this->assertException( function() use ( $result ) { $result->getDataValue(); } );
 		}

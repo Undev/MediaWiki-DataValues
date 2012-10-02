@@ -1,9 +1,10 @@
 <?php
 
 namespace ValueParsers;
+use DataValues\DataValue, Exception, Immutable;
 
 /**
- * Interface for ValueParser errors.
+ * Interface for value parser results.
  * Immutable.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -29,36 +30,38 @@ namespace ValueParsers;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-interface ValueParserError extends \Immutable {
-
-	const SEVERITY_ERROR = 9;
-	const SEVERITY_WARNING = 4;
+interface Result extends Immutable {
 
 	/**
-	 * Returns the error text.
+	 * Returns a DataValue instance representing the parsed value.
+	 * If the parsing process failed, this method will throw an
+	 * exception when called. You can check for failure using
+	 * the @see isValid method first.
 	 *
 	 * @since 0.1
 	 *
-	 * @return string
+	 * @return DataValue
+	 * @throws Exception
 	 */
-	public function getText();
+	public function getDataValue();
 
 	/**
-	 * Returns the severity of the error
+	 * Returns if the parsing was successful.
+	 * If it was, you can obtain the resulting value via @see getDataValue
 	 *
 	 * @since 0.1
 	 *
-	 * @return integer, element of the ValueParserError::SEVERITY_ enum
+	 * @return boolean
 	 */
-	public function getSeverity();
+	public function isValid();
 
 	/**
-	 * Returns the property of the value for which the error occurred, or null if it occurred for the value itself.
+	 * Returns error in case the value is invalid or null otherwise.
 	 *
 	 * @since 0.1
 	 *
-	 * @return string|null
+	 * @return Error|null
 	 */
-	public function getProperty();
+	public function getError();
 
 }

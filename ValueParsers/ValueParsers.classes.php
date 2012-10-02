@@ -27,10 +27,10 @@
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 return array(
-	'ValueParsers\ValueParserError' => 'includes/ValueParserError.php',
-	'ValueParsers\ValueParserErrorObject' => 'includes/ValueParserErrorObject.php',
-	'ValueParsers\ValueParserResult' => 'includes/ValueParserResult.php',
-	'ValueParsers\ValueParserResultObject' => 'includes/ValueParserResultObject.php',
+	'ValueParsers\Error' => 'includes/Error.php',
+	'ValueParsers\ErrorObject' => 'includes/ErrorObject.php',
+	'ValueParsers\Result' => 'includes/Result.php',
+	'ValueParsers\ResultObject' => 'includes/ResultObject.php',
 
 	'ValueParsers\BoolParser' => 'valueparser/BoolParser.php',
 	'ValueParsers\FloatParser' => 'valueparser/FloatParser.php',

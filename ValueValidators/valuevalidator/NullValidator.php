@@ -37,10 +37,10 @@ class NullValidator implements ValueValidator {
 	 *
 	 * @param mixed $value
 	 *
-	 * @return ValueValidatorResult
+	 * @return Result
 	 */
 	public function validate( $value ) {
-		return ValueValidatorResultObject::newSuccess();
+		return ResultObject::newSuccess();
 	}
 
 	/**

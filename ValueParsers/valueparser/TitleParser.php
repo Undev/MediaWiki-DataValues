@@ -37,7 +37,7 @@ class TitleParser extends StringValueParser {
 	 *
 	 * @param string $value
 	 *
-	 * @return ValueParserResult
+	 * @return Result
 	 */
 	public function stringParse( $value ) {
 		$value = \Title::newFromText( $value );
@@ -46,7 +46,7 @@ class TitleParser extends StringValueParser {
 			return $this->newErrorResult( 'Not a title' );
 		}
 		else {
-			return ValueParserResultObject::newSuccess( new \DataValues\MediaWikiTitleValue( $value ) );
+			return ResultObject::newSuccess( new \DataValues\MediaWikiTitleValue( $value ) );
 		}
 	}
 

@@ -1,7 +1,7 @@
 <?php
 
 namespace ValueParsers\Test;
-use ValueParsers\ValueParserResultObject;
+use ValueParsers\ResultObject;
 
 /**
  * Unit test StringValueParser class.
@@ -54,7 +54,7 @@ abstract class StringValueParserTest extends ValueParserTestBase {
 		);
 
 		foreach ( $invalid as $value ) {
-			$argLists[] = array( $value, ValueParserResultObject::newErrorText( '' ) );
+			$argLists[] = array( $value, ResultObject::newErrorText( '' ) );
 		}
 
 		return $argLists;

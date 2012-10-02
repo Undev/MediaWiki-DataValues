@@ -37,16 +37,16 @@ class IntParser extends StringValueParser {
 	 *
 	 * @param string $value
 	 *
-	 * @return ValueParserResult
+	 * @return Result
 	 */
 	public function stringParse( $value ) {
 		$positiveValue = strpos( $value, '-' ) === 0 ? substr( $value, 1 ) : $value;
 
 		if ( ctype_digit( $positiveValue ) ) {
-			return ValueParserResultObject::newSuccess( new \DataValues\NumberValue( (int)$value ) );
+			return ResultObject::newSuccess( new \DataValues\NumberValue( (int)$value ) );
 		}
 		else {
-			return ValueParserResultObject::newErrorText( 'Not an integer' );
+			return ResultObject::newErrorText( 'Not an integer' );
 		}
 	}
 

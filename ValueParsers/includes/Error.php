@@ -1,9 +1,9 @@
 <?php
 
-namespace ValueValidators;
+namespace ValueParsers;
 
 /**
- * Interface for ValueValidator errors.
+ * Interface for ValueParser errors.
  * Immutable.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -24,12 +24,12 @@ namespace ValueValidators;
  * @since 0.1
  *
  * @file
- * @ingroup ValueValidators
+ * @ingroup ValueParsers
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-interface ValueValidatorError {
+interface Error extends \Immutable {
 
 	const SEVERITY_ERROR = 9;
 	const SEVERITY_WARNING = 4;
@@ -48,7 +48,7 @@ interface ValueValidatorError {
 	 *
 	 * @since 0.1
 	 *
-	 * @return integer, element of the ValueValidatorError::SEVERITY_ enum
+	 * @return integer, element of the ValueParserError::SEVERITY_ enum
 	 */
 	public function getSeverity();
 
