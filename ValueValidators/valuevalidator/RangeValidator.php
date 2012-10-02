@@ -1,6 +1,7 @@
 <?php
 
 namespace ValueValidators;
+use Exception;
 
 /**
  * ValueValidator that validates if a numeric value is within a certain range.

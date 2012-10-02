@@ -1,6 +1,7 @@
 <?php
 
 namespace ValueValidators;
+use Title;
 
 /**
  * ValueValidator that validates a Title object.
