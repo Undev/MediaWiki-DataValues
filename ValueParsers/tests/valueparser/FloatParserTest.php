@@ -4,7 +4,7 @@ namespace ValueParsers\Test;
 use ValueParsers\ResultObject;
 
 /**
- * Unit test IntParser class.
+ * Unit test FloatParser class.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,11 +28,12 @@ use ValueParsers\ResultObject;
  *
  * @group ValueParsers
  * @group DataValueExtensions
+ * @group FloatParserTest
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class IntParserTest extends StringValueParserTest {
+class FloatParserTest extends StringValueParserTest {
 
 	/**
 	 * @see ValueParserTestBase::parseProvider
@@ -52,11 +53,22 @@ class IntParserTest extends StringValueParserTest {
 			'9001' => 9001,
 			'-1' => -1,
 			'-42' => -42,
+
+			'0.0' => 0,
+			'1.0' => 1,
+			'4.2' => 4.2,
+			'0.1' => 0.1,
+			'90.01' => 90.01,
+			'-1.0' => -1,
+			'-4.2' => -4.2,
 		);
 
 		foreach ( $valid as $value => $expected ) {
-			// Because PHP turns them into ints using black magic
+			// Because PHP turns them into ints/floats using black magic
 			$value = (string)$value;
+
+			// Because 1 is an int but will come out as a float
+			$expected = (float)$expected;
 
 			$expected = new \DataValues\NumberValue( $expected );
 			$argLists[] = array( $value, ResultObject::newSuccess( $expected ) );
@@ -64,7 +76,6 @@ class IntParserTest extends StringValueParserTest {
 
 		$invalid = array(
 			'foo',
-			'4.2',
 			'',
 			'--1',
 			'1-',
@@ -93,7 +104,7 @@ class IntParserTest extends StringValueParserTest {
 	 * @return string
 	 */
 	protected function getParserClass() {
-		return 'ValueParsers\IntParser';
+		return 'ValueParsers\FloatParser';
 	}
 
 }

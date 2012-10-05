@@ -33,6 +33,8 @@ class FloatParser extends StringValueParser {
 	/**
 	 * @see StringValueParser::stringParse
 	 *
+	 * TODO: add options for different group and decimal separators.
+	 *
 	 * @since 0.1
 	 *
 	 * @param string $value
