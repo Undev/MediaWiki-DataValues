@@ -69,7 +69,7 @@ abstract class ValueParserTestBase extends \MediaWikiTestCase {
 
 		$result = $parser->parse( $value );
 
-		$this->assertEquals( $expected->isValid(), $result->isValid() );
+		$this->assertEquals( $expected->isValid(), $result->isValid(), 'Validity of the value is not valid' );
 
 		if ( $expected->isValid() ) {
 			$this->assertInstanceOf( '\DataValues\DataValue', $result->getDataValue() );

@@ -30,6 +30,92 @@ namespace ValueParsers;
  */
 class GeoParserOptions extends SimpleParserOptions {
 
-	// TODO
+	/**
+	 * Returns the symbol used to indicate the north.
+	 *
+	 * @since 0.1
+	 *
+	 * @return string
+	 */
+	public function getNorthSymbol() {
+		return 'N'; // TODO: i18n using $this->language
+	}
+
+	/**
+	 * Returns the symbol used to indicate the east.
+	 *
+	 * @since 0.1
+	 *
+	 * @return string
+	 */
+	public function getEastSymbol() {
+		return 'E'; // TODO: i18n using $this->language
+	}
+
+	/**
+	 * Returns the symbol used to indicate the south.
+	 *
+	 * @since 0.1
+	 *
+	 * @return string
+	 */
+	public function getSouthSymbol() {
+		return 'S'; // TODO: i18n using $this->language
+	}
+
+	/**
+	 * Returns the symbol used to indicate the west.
+	 *
+	 * @since 0.1
+	 *
+	 * @return string
+	 */
+	public function getWestSymbol() {
+		return 'W'; // TODO: i18n using $this->language
+	}
+
+	/**
+	 * Returns the symbol used to indicate degrees.
+	 *
+	 * @since 0.1
+	 *
+	 * @return string
+	 */
+	public function getDegreeSymbol() {
+		return '°'; // TODO: setter
+	}
+
+	/**
+	 * Returns the symbol used to indicate degrees.
+	 *
+	 * @since 0.1
+	 *
+	 * @return string
+	 */
+	public function getMinuteSymbol() {
+		return "'"; // TODO: setter
+	}
+
+	/**
+	 * Returns the symbol used to indicate degrees.
+	 *
+	 * @since 0.1
+	 *
+	 * @return string
+	 */
+	public function getSecondSymbol() {
+		return '"'; // TODO: setter
+	}
+
+	/**
+	 * Returns the symbol used to separate latitude from longitude.
+	 *
+	 * @since 0.1
+	 *
+	 * @return string
+	 */
+	public function getSeparatorSymbol() {
+		return ','; // TODO: setter
+	}
 
 }
