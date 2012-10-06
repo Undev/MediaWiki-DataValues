@@ -63,6 +63,7 @@ foreach ( include( __DIR__ . '/ValueParsers.classes.php' ) as $class => $file ) 
 $wgHooks['UnitTestsList'][] = function( array &$files ) {
 	$testFiles = array(
 		'valueparser/BoolParser',
+		//'valueparser/GeoCoordinateParser', // TODO
 		'valueparser/FloatParser',
 		'valueparser/IntParser',
 		'valueparser/NullParser',

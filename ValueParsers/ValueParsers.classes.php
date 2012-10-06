@@ -29,10 +29,15 @@
 return array(
 	'ValueParsers\Error' => 'includes/Error.php',
 	'ValueParsers\ErrorObject' => 'includes/ErrorObject.php',
+	'ValueParsers\ParserOptions' => 'includes/ParserOptions.php',
 	'ValueParsers\Result' => 'includes/Result.php',
 	'ValueParsers\ResultObject' => 'includes/ResultObject.php',
+	'ValueParsers\SimpleParserOptions' => 'includes/SimpleParserOptions.php',
+
+	'ValueParsers\GeoParserOptions' => 'includes/options/GeoParserOptions.php',
 
 	'ValueParsers\BoolParser' => 'valueparser/BoolParser.php',
+	'ValueParsers\GeoCoordinateParser' => 'valueparser/GeoCoordinateParser.php',
 	'ValueParsers\FloatParser' => 'valueparser/FloatParser.php',
 	'ValueParsers\IntParser' => 'valueparser/IntParser.php',
 	'ValueParsers\NullParser' => 'valueparser/NullParser.php',

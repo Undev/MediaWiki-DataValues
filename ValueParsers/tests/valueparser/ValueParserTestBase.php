@@ -3,7 +3,6 @@
 namespace ValueParsers\Test;
 use ValueParsers\Result;
 use ValueParsers\ValueParser;
-use callable;
 
 /**
  * Base for unit tests for ValueParser implementing classes.
