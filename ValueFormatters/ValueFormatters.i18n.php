@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Internationalization file for the ValueParsers extension.
+ * Internationalization file for the ValueFormatters extension.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
  * @since 0.1
  *
  * @file
- * @ingroup ValueParsers
+ * @ingroup ValueFormatters
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
@@ -33,10 +33,10 @@ $messages = array();
  * @author Jeroen De Dauw
  */
 $messages['en'] = array(
-	'valueparsers-desc' => 'Collection of parsers that take some input and turn it into a DataValue',
+	'valueformatters-desc' => 'Collection of formatters that take some input and format it',
 );
 
 /** Message documentation (Message documentation) */
 $messages['qqq'] = array(
-	'valueparsers-desc' => '{{desc}}',
+	'valueformatters-desc' => '{{desc}}',
 );
