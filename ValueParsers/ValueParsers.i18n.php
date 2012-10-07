@@ -40,3 +40,46 @@ $messages['en'] = array(
 $messages['qqq'] = array(
 	'valueparsers-desc' => '{{desc}}',
 );
+
+/** Belarusian (Taraškievica orthography) (беларуская (тарашкевіца)‎)
+ * @author Wizardist
+ */
+$messages['be-tarask'] = array(
+	'valueparsers-desc' => 'Збор парсэраў для апрацоўкі зьвестак і пераўтварэньня ў DataValue',
+);
+
+/** German (Deutsch)
+ * @author Kghbln
+ */
+$messages['de'] = array(
+	'valueparsers-desc' => 'Stellt eine Zusammenstellung von Parsererweiterungen bereit, die Eingaben in einen Datenwert umwandeln',
+);
+
+/** Upper Sorbian (hornjoserbsce)
+ * @author Michawiki
+ */
+$messages['hsb'] = array(
+	'valueparsers-desc' => 'Zběrka parserow, kotrež zapodaća přijimaja a je do datoweje hódnoty přetworjeja',
+);
+
+/** Italian (italiano)
+ * @author Beta16
+ */
+$messages['it'] = array(
+	'valueparsers-desc' => 'Collezione di parser che ricevono qualcosa ingresso e lo convertono in un formato DataValue',
+);
+
+/** Japanese (日本語)
+ * @author Shirayuki
+ */
+$messages['ja'] = array(
+	'valueparsers-desc' => '何らかの入力を受け取って DataValue に変えるパーサーのコレクション',
+);
+
+/** Macedonian (македонски)
+ * @author Bjankuloski06
+ */
+$messages['mk'] = array(
+	'valueparsers-desc' => 'Збир парсери што претвораат извесен внос во ПодаточнаВредност',
+);
+

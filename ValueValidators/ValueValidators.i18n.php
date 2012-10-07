@@ -40,3 +40,46 @@ $messages['en'] = array(
 $messages['qqq'] = array(
 	'valuevalidators-desc' => '{{desc}}',
 );
+
+/** Belarusian (Taraškievica orthography) (беларуская (тарашкевіца)‎)
+ * @author Wizardist
+ */
+$messages['be-tarask'] = array(
+	'valuevalidators-desc' => 'Збор сродкаў праверкі для DataValues',
+);
+
+/** German (Deutsch)
+ * @author Kghbln
+ */
+$messages['de'] = array(
+	'valuevalidators-desc' => 'Stellt eine Sammlung von Komponenten zur Validierung von Datenwerten bereit',
+);
+
+/** Upper Sorbian (hornjoserbsce)
+ * @author Michawiki
+ */
+$messages['hsb'] = array(
+	'valuevalidators-desc' => 'Zběrka walidowanskich komponentow za Datowe hódnoty',
+);
+
+/** Italian (italiano)
+ * @author Beta16
+ */
+$messages['it'] = array(
+	'valuevalidators-desc' => 'Collezione di componenti di validazione per DataValues',
+);
+
+/** Japanese (日本語)
+ * @author Shirayuki
+ */
+$messages['ja'] = array(
+	'valuevalidators-desc' => 'データの値を検証するコンポーネントのコレクション',
+);
+
+/** Macedonian (македонски)
+ * @author Bjankuloski06
+ */
+$messages['mk'] = array(
+	'valuevalidators-desc' => 'Збир елементи за проверка за ПодаточниВредности',
+);
+
