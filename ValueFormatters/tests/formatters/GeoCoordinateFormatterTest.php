@@ -1,7 +1,10 @@
 <?php
 
+namespace ValueFormatters\Test;
+use DataValues\GeoCoordinateValue;
+
 /**
- * Class registration file for the ValueFormatters library.
+ * Unit tests for the ValueFormatters\GeoCoordinateFormatter class.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,21 +21,44 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @since 0.1
  *
- * @file
- * @ingroup ValueFormatters
+ * @ingroup ValueFormattersTest
+ *
+ * @group ValueFormatters
+ * @group DataValueExtensions
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-return array(
-	'ValueFormatters\Result' => 'includes/Result.php',
-	'ValueFormatters\ResultObject' => 'includes/ResultObject.php',
-	'ValueFormatters\ValueFormatter' => 'includes/ValueFormatter.php',
-	'ValueFormatters\ValueFormatterBase' => 'includes/ValueFormatterBase.php',
+class GeoCoordinateFormatterTest extends ValueFormatterTestBase {
 
-	'ValueFormatters\GeoCoordinateFormatter' => 'includes/formatters/GeoCoordinateFormatter.php',
+	/**
+	 * @see ValueFormatterTestBase::validProvider
+	 *
+	 * @since 0.1
+	 *
+	 * @return array
+	 */
+	public function validProvider() {
+		$argLists = array();
 
-	'ValueFormatters\Test\ValueFormatterTestBase' => 'tests/ValueFormatterTestBase.php',
-);
+		// TODO
+		//$argLists[] = array( new GeoCoordinateValue( 0, 0 ), '' );
+
+		return $argLists;
+	}
+
+	/**
+	 * @see ValueFormatterTestBase::getFormatterClass
+	 *
+	 * @since 0.1
+	 *
+	 * @return string
+	 */
+	protected function getFormatterClass() {
+		return 'ValueFormatters\GeoCoordinateFormatter';
+	}
+
+}

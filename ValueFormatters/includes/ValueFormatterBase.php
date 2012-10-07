@@ -1,7 +1,9 @@
 <?php
 
+namespace ValueFormatters;
+
 /**
- * Class registration file for the ValueFormatters library.
+ * Base class for ValueFormatters.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,13 +28,17 @@
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-return array(
-	'ValueFormatters\Result' => 'includes/Result.php',
-	'ValueFormatters\ResultObject' => 'includes/ResultObject.php',
-	'ValueFormatters\ValueFormatter' => 'includes/ValueFormatter.php',
-	'ValueFormatters\ValueFormatterBase' => 'includes/ValueFormatterBase.php',
+abstract class ValueFormatterBase implements ValueFormatter {
 
-	'ValueFormatters\GeoCoordinateFormatter' => 'includes/formatters/GeoCoordinateFormatter.php',
+	/**
+	 * @since 0.1
+	 *
+	 * @param mixed $value
+	 *
+	 * @return Result
+	 */
+	protected function newSuccess( $value ) {
+		return ResultObject::newSuccess( $value );
+	}
 
-	'ValueFormatters\Test\ValueFormatterTestBase' => 'tests/ValueFormatterTestBase.php',
-);
+}

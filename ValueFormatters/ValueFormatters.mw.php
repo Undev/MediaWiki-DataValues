@@ -62,6 +62,7 @@ foreach (include(__DIR__ . '/ValueFormatters.classes.php') as $class => $file ) 
  */
 $wgHooks['UnitTestsList'][] = function( array &$files ) {
 	$testFiles = array(
+		'formatters/GeoCoordinateFormatter'
 	);
 
 	foreach ( $testFiles as $file ) {

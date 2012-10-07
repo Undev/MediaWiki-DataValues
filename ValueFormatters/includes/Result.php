@@ -1,7 +1,13 @@
 <?php
 
+namespace ValueFormatters;
+use Exception, Immutable;
+
 /**
- * Class registration file for the ValueFormatters library.
+ * Interface for value parser results.
+ * Immutable.
+ *
+ * TODO: error support
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,13 +32,29 @@
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-return array(
-	'ValueFormatters\Result' => 'includes/Result.php',
-	'ValueFormatters\ResultObject' => 'includes/ResultObject.php',
-	'ValueFormatters\ValueFormatter' => 'includes/ValueFormatter.php',
-	'ValueFormatters\ValueFormatterBase' => 'includes/ValueFormatterBase.php',
+interface Result extends Immutable {
 
-	'ValueFormatters\GeoCoordinateFormatter' => 'includes/formatters/GeoCoordinateFormatter.php',
+	/**
+	 * Returns the formatted value.
+	 * If the formatting process failed, this method will throw an
+	 * exception when called. You can check for failure using
+	 * the @see isValid method first.
+	 *
+	 * @since 0.1
+	 *
+	 * @return mixed
+	 * @throws Exception
+	 */
+	public function getValue();
 
-	'ValueFormatters\Test\ValueFormatterTestBase' => 'tests/ValueFormatterTestBase.php',
-);
+	/**
+	 * Returns if the formatting was successful.
+	 * If it was, you can obtain the resulting value via @see getValue
+	 *
+	 * @since 0.1
+	 *
+	 * @return boolean
+	 */
+	public function isValid();
+
+}

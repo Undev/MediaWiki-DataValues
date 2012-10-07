@@ -9,6 +9,7 @@ Latest version of the install file: https://gerrit.wikimedia.org/r/gitweb?p=medi
 ValueFormatters requires:
 
 * PHP 5.3 or above
+* DataValues
 
 == Download ==
 
