@@ -1,10 +1,9 @@
 <?php
 
 namespace ValueFormatters;
-use DataValues\GeoCoordinateValue, InvalidArgumentException;
 
 /**
- * Geographical coordinates formatter.
+ * Options interface for value formatters.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,33 +28,8 @@ use DataValues\GeoCoordinateValue, InvalidArgumentException;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class GeoCoordinateFormatter extends ValueFormatterBase {
+interface FormatterOptions {
 
-	// TODO: figure out what would be a sensible place to put these
-	const TYPE_FLOAT = 'float';
-	const TYPE_DMS = 'dms';
-	const TYPE_DM = 'dm';
-	const TYPE_DD = 'dd';
-
-	/**
-	 * @see ValueFormatter::format
-	 *
-	 * @since 0.1
-	 *
-	 * @param mixed $value The value to format
-	 *
-	 * @return Result
-	 * @throws InvalidArgumentException
-	 */
-	public function format( $value ) {
-		if ( !( $value instanceof GeoCoordinateValue ) ) {
-			throw new InvalidArgumentException( 'The ValueFormatters\GeoCoordinateFormatter cam only format instances of DataValues\GeoCoordinateValue' );
-		}
-
-		// TODO
-		return $this->newSuccess( '' );
-	}
+	// TODO
 
 }
-
-
