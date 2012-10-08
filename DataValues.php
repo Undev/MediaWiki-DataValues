@@ -23,7 +23,7 @@ call_user_func( function() {
 		'DataValues',
 		'ValueParsers',
 		'ValueValidators',
-		//'ValueFormatter',
+		'ValueFormatters',
 		'DataTypes',
 	);
 
