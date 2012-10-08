@@ -1,7 +1,9 @@
 <?php
 
+namespace ValueFormatters;
+
 /**
- * Class registration file for the ValueFormatters library.
+ * Interface for value formatters.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,13 +28,17 @@
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-return array(
-	'ValueFormatters\Result' => 'includes/Result.php',
-	'ValueFormatters\ResultObject' => 'includes/ResultObject.php',
-	'ValueFormatters\ValueFormatter' => 'includes/ValueFormatter.php',
-	'ValueFormatters\ValueFormatterBase' => 'includes/ValueFormatterBase.php',
+interface ValueFormatter {
 
-	'ValueFormatters\GeoCoordinateFormatter' => 'includes/formatters/GeoCoordinateFormatter.php',
+	/**
+	 * Formats a value.
+	 *
+	 * @since 0.1
+	 *
+	 * @param mixed $value The value to format
+	 *
+	 * @return Result
+	 */
+	public function format( $value );
 
-	'ValueFormatters\Test\ValueFormatterTestBase' => 'tests/ValueFormatterTestBase.php',
-);
+}

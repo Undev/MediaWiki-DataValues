@@ -1,12 +1,11 @@
 <?php
 
-namespace ValueParsers\Test;
-use ValueParsers\Result;
-use ValueParsers\ValueParser;
-use callable;
+namespace ValueFormatters\Test;
+use ValueFormatters\ValueFormatter;
+use ValueFormatters\Result;
 
 /**
- * Base for unit tests for ValueParser implementing classes.
+ * Base for unit tests for ValueFormatter implementing classes.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,61 +25,78 @@ use callable;
  * @file
  * @since 0.1
  *
- * @ingroup ValueParsersTest
+ * @ingroup ValueFormattersTest
  *
- * @group ValueParsers
+ * @group ValueFormatters
  * @group DataValueExtensions
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-abstract class ValueParserTestBase extends \MediaWikiTestCase {
+abstract class ValueFormatterTestBase extends \MediaWikiTestCase {
 
 	/**
+	 * Returns a list with valid inputs and their associated formatting output.
+	 *
 	 * @since 0.1
+	 *
+	 * @return array
 	 */
-	public abstract function parseProvider();
+	public abstract function validProvider();
 
 	/**
+	 * Returns the name of the ValueFormatter implementing class.
+	 *
 	 * @since 0.1
+	 *
 	 * @return string
 	 */
-	protected abstract function getParserClass();
+	protected abstract function getFormatterClass();
 
 	/**
 	 * @since 0.1
-	 * @return ValueParser
+	 * @return ValueFormatter
 	 */
 	protected function getInstance() {
-		$class = $this->getParserClass();
+		$class = $this->getFormatterClass();
 		return new $class();
 	}
 
 	/**
-	 * @dataProvider parseProvider
+	 * @dataProvider validProvider
+	 *
+	 * @since 0.1
+	 *
+	 * @param mixed $value
+	 * @param mixed $expected
+	 */
+	public function testValidFormat( $value, $expected ) {
+		$this->doTestFormat(
+			$value,
+			\ValueFormatters\ResultObject::newSuccess( $expected )
+		);
+	}
+
+	/**
 	 * @since 0.1
 	 * @param $value
 	 * @param Result $expected
-	 * @param ValueParser|null $parser
+	 * @param ValueFormatter|null $formatter
 	 */
-	public function testParse( $value, Result $expected, ValueParser $parser = null ) {
-		if ( is_null( $parser ) ) {
-			$parser = $this->getInstance();
+	protected function doTestFormat( $value, Result $expected, ValueFormatter $formatter = null ) {
+		if ( is_null( $formatter ) ) {
+			$formatter = $this->getInstance();
 		}
 
-		$result = $parser->parse( $value );
+		$result = $formatter->format( $value );
 
 		$this->assertEquals( $expected->isValid(), $result->isValid() );
 
 		if ( $expected->isValid() ) {
-			$this->assertInstanceOf( '\DataValues\DataValue', $result->getDataValue() );
-			$this->assertEquals( $expected->getDataValue(), $result->getDataValue() );
-			$this->assertNull( $result->getError() );
+			$this->assertEquals( $expected->getValue(), $result->getValue() );
 		}
 		else {
-			$this->assertTypeOrValue( '\ValueParsers\Error', $result->getError(), null );
-
-			$this->assertException( function() use ( $result ) { $result->getDataValue(); } );
+			$this->assertException( function() use ( $result ) { $result->getValue(); } );
 		}
 	}
 
