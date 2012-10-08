@@ -55,6 +55,13 @@ $messages['de'] = array(
 	'valueparsers-desc' => 'Stellt eine Zusammenstellung von Parsererweiterungen bereit, die Eingaben in einen Datenwert umwandeln',
 );
 
+/** Spanish (español)
+ * @author Armando-Martin
+ */
+$messages['es'] = array(
+	'valueparsers-desc' => 'Colección de analizadores que toman un valor de entrada y lo convierten en un valor DataValue',
+);
+
 /** Upper Sorbian (hornjoserbsce)
  * @author Michawiki
  */
@@ -74,6 +81,13 @@ $messages['it'] = array(
  */
 $messages['ja'] = array(
 	'valueparsers-desc' => '何らかの入力を受け取って DataValue に変えるパーサーのコレクション',
+);
+
+/** Korean (한국어)
+ * @author 아라
+ */
+$messages['ko'] = array(
+	'valueparsers-desc' => '어떤 입력을 가지고 DataValue로 바꾸는 파서 함수 모음집',
 );
 
 /** Macedonian (македонски)

@@ -55,6 +55,13 @@ $messages['de'] = array(
 	'valuevalidators-desc' => 'Stellt eine Sammlung von Komponenten zur Validierung von Datenwerten bereit',
 );
 
+/** Spanish (español)
+ * @author Armando-Martin
+ */
+$messages['es'] = array(
+	'valuevalidators-desc' => 'Colección de componentes de validación para DataValues',
+);
+
 /** Upper Sorbian (hornjoserbsce)
  * @author Michawiki
  */
@@ -74,6 +81,13 @@ $messages['it'] = array(
  */
 $messages['ja'] = array(
 	'valuevalidators-desc' => 'データの値を検証するコンポーネントのコレクション',
+);
+
+/** Korean (한국어)
+ * @author 아라
+ */
+$messages['ko'] = array(
+	'valuevalidators-desc' => 'DataValues​​에 대한 유효성 검사 구성 요소 모음집',
 );
 
 /** Macedonian (македонски)

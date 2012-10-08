@@ -40,3 +40,18 @@ $messages['en'] = array(
 $messages['qqq'] = array(
 	'valueformatters-desc' => '{{desc}}',
 );
+
+/** German (Deutsch)
+ * @author Metalhead64
+ */
+$messages['de'] = array(
+	'valueformatters-desc' => 'Sammlung von Formatierungsprogrammen, die Eingaben verarbeiten und sie formatieren',
+);
+
+/** Macedonian (македонски)
+ * @author Bjankuloski06
+ */
+$messages['mk'] = array(
+	'valueformatters-desc' => 'Збир форматори што го форматираат внесеното',
+);
+
