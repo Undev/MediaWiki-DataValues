@@ -61,6 +61,7 @@ foreach ( include( __DIR__ . '/ValueValidators.classes.php' ) as $class => $file
  * @return boolean
  */
 $wgHooks['UnitTestsList'][] = function( array &$files ) {
+	// @codeCoverageIgnoreStart
 	$testFiles = array(
 	);
 
@@ -69,4 +70,5 @@ $wgHooks['UnitTestsList'][] = function( array &$files ) {
 	}
 
 	return true;
+	// @codeCoverageIgnoreEnd
 };

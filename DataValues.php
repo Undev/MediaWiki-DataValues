@@ -19,6 +19,7 @@
  */
 
 call_user_func( function() {
+	// @codeCoverageIgnoreStart
 	$components = array(
 		'DataValues',
 		'ValueParsers',
@@ -33,5 +34,5 @@ call_user_func( function() {
 			require_once __DIR__ . '/' . $component . '/' . $component . '.php';
 		} );
 	}
-
+	// @codeCoverageIgnoreEnd
 } );
