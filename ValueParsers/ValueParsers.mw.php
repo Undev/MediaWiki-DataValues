@@ -63,13 +63,13 @@ foreach ( include( __DIR__ . '/ValueParsers.classes.php' ) as $class => $file ) 
 $wgHooks['UnitTestsList'][] = function( array &$files ) {
 	// @codeCoverageIgnoreStart
 	$testFiles = array(
-		'valueparser/BoolParser',
-		'valueparser/GeoCoordinateParser',
-		'valueparser/FloatParser',
-		'valueparser/IntParser',
-		'valueparser/NullParser',
-		'valueparser/TitleParser',
-		'valueparser/ValueParser',
+		'includes/parsers/BoolParser',
+		'includes/parsers/GeoCoordinateParser',
+		'includes/parsers/FloatParser',
+		'includes/parsers/IntParser',
+		'includes/parsers/NullParser',
+		'includes/parsers/TitleParser',
+		'includes/parsers/ValueParser',
 	);
 
 	foreach ( $testFiles as $file ) {

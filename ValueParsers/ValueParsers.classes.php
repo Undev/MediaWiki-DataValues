@@ -33,18 +33,18 @@ return array(
 	'ValueParsers\Result' => 'includes/Result.php',
 	'ValueParsers\ResultObject' => 'includes/ResultObject.php',
 	'ValueParsers\SimpleParserOptions' => 'includes/SimpleParserOptions.php',
+	'ValueParsers\ValueParser' => 'includes/ValueParser.php',
 
 	'ValueParsers\GeoParserOptions' => 'includes/options/GeoParserOptions.php',
 
-	'ValueParsers\BoolParser' => 'valueparser/BoolParser.php',
-	'ValueParsers\GeoCoordinateParser' => 'valueparser/GeoCoordinateParser.php',
-	'ValueParsers\FloatParser' => 'valueparser/FloatParser.php',
-	'ValueParsers\IntParser' => 'valueparser/IntParser.php',
-	'ValueParsers\NullParser' => 'valueparser/NullParser.php',
-	'ValueParsers\StringValueParser' => 'valueparser/StringValueParser.php',
-	'ValueParsers\TitleParser' => 'valueparser/TitleParser.php',
-	'ValueParsers\ValueParser' => 'valueparser/ValueParser.php',
+	'ValueParsers\BoolParser' => 'includes/parsers/BoolParser.php',
+	'ValueParsers\GeoCoordinateParser' => 'includes/parsers/GeoCoordinateParser.php',
+	'ValueParsers\FloatParser' => 'includes/parsers/FloatParser.php',
+	'ValueParsers\IntParser' => 'includes/parsers/IntParser.php',
+	'ValueParsers\NullParser' => 'includes/parsers/NullParser.php',
+	'ValueParsers\StringValueParser' => 'includes/parsers/StringValueParser.php',
+	'ValueParsers\TitleParser' => 'includes/parsers/TitleParser.php',
 
-	'ValueParsers\Test\StringValueParserTest' => 'tests/valueparser/StringValueParserTest.php',
-	'ValueParsers\Test\ValueParserTestBase' => 'tests/valueparser/ValueParserTestBase.php',
+	'ValueParsers\Test\StringValueParserTest' => 'tests/includes/parsers/StringValueParserTest.php',
+	'ValueParsers\Test\ValueParserTestBase' => 'tests/includes/parsers/ValueParserTestBase.php',
 );
