@@ -2,6 +2,7 @@
 
 namespace ValueFormatters\Test;
 use DataValues\GeoCoordinateValue;
+use ValueFormatters\GeoCoordinateFormatter;
 
 /**
  * Unit tests for the ValueFormatters\GeoCoordinateFormatter class.
@@ -42,10 +43,15 @@ class GeoCoordinateFormatterTest extends ValueFormatterTestBase {
 	 * @return array
 	 */
 	public function validProvider() {
+		$values = array(
+			'0, 0' => array( 0, 0, GeoCoordinateFormatter::TYPE_FLOAT )
+		);
+
 		$argLists = array();
 
-		// TODO
-		//$argLists[] = array( new GeoCoordinateValue( 0, 0 ), '' );
+		foreach ( $values as $expected => $arguments ) {
+			//$argLists[] = array( new GeoCoordinateValue( $arguments[0], $arguments[1] ), $expected );
+		}
 
 		return $argLists;
 	}

@@ -27,6 +27,7 @@
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 return array(
+	'ValueFormatters\FormatterOptions' => 'includes/FormatterOptions.php',
 	'ValueFormatters\Result' => 'includes/Result.php',
 	'ValueFormatters\ResultObject' => 'includes/ResultObject.php',
 	'ValueFormatters\ValueFormatter' => 'includes/ValueFormatter.php',

@@ -41,4 +41,13 @@ interface ValueFormatter {
 	 */
 	public function format( $value );
 
+	/**
+	 * Sets the options the formatter should use.
+	 *
+	 * @since 0.1
+	 *
+	 * @param FormatterOptions $options
+	 */
+	public function setOptions( FormatterOptions $options );
+
 }

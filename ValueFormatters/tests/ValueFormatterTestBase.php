@@ -3,6 +3,7 @@
 namespace ValueFormatters\Test;
 use ValueFormatters\ValueFormatter;
 use ValueFormatters\Result;
+use ValueFormatters\FormatterOptions;
 
 /**
  * Base for unit tests for ValueFormatter implementing classes.
@@ -69,23 +70,31 @@ abstract class ValueFormatterTestBase extends \MediaWikiTestCase {
 	 *
 	 * @param mixed $value
 	 * @param mixed $expected
+	 * @param FormatterOptions|null $options
 	 */
-	public function testValidFormat( $value, $expected ) {
+	public function testValidFormat( $value, $expected, FormatterOptions $options = null ) {
 		$this->doTestFormat(
 			$value,
-			\ValueFormatters\ResultObject::newSuccess( $expected )
+			\ValueFormatters\ResultObject::newSuccess( $expected ),
+			$options
 		);
 	}
 
 	/**
 	 * @since 0.1
-	 * @param $value
+	 *
+	 * @param mixed $value
 	 * @param Result $expected
+	 * @param FormatterOptions|null $options
 	 * @param ValueFormatter|null $formatter
 	 */
-	protected function doTestFormat( $value, Result $expected, ValueFormatter $formatter = null ) {
+	protected function doTestFormat( $value, Result $expected, FormatterOptions $options = null, ValueFormatter $formatter = null ) {
 		if ( is_null( $formatter ) ) {
 			$formatter = $this->getInstance();
+		}
+
+		if ( $options !== null ) {
+			$formatter->setOptions( $options );
 		}
 
 		$result = $formatter->format( $value );
