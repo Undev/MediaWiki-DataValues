@@ -42,10 +42,32 @@ $messages['qqq'] = array(
 );
 
 /** German (Deutsch)
+ * @author Kghbln
  * @author Metalhead64
  */
 $messages['de'] = array(
-	'valueformatters-desc' => 'Sammlung von Formatierungsprogrammen, die Eingaben verarbeiten und sie formatieren',
+	'valueformatters-desc' => 'Stellt eine Sammlung von Programmen zum Formatieren von Daten bereit',
+);
+
+/** Galician (galego)
+ * @author Toliño
+ */
+$messages['gl'] = array(
+	'valueformatters-desc' => 'Colección de programas de formato que collen unha entrada para darlle formato',
+);
+
+/** Italian (italiano)
+ * @author Beta16
+ */
+$messages['it'] = array(
+	'valueformatters-desc' => 'Raccolta di formattatori che ricevono qualcosa ingresso e lo formattano',
+);
+
+/** Japanese (日本語)
+ * @author Shirayuki
+ */
+$messages['ja'] = array(
+	'valueformatters-desc' => '何らかの入力を受け取って整形する整形ツールのコレクション',
 );
 
 /** Macedonian (македонски)

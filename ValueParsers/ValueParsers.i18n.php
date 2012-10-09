@@ -62,6 +62,13 @@ $messages['es'] = array(
 	'valueparsers-desc' => 'Colección de analizadores que toman un valor de entrada y lo convierten en un valor DataValue',
 );
 
+/** Galician (galego)
+ * @author Toliño
+ */
+$messages['gl'] = array(
+	'valueparsers-desc' => 'Colección de analizadores que collen unha entrada para convertela nun valor de datos',
+);
+
 /** Upper Sorbian (hornjoserbsce)
  * @author Michawiki
  */
@@ -73,7 +80,7 @@ $messages['hsb'] = array(
  * @author Beta16
  */
 $messages['it'] = array(
-	'valueparsers-desc' => 'Collezione di parser che ricevono qualcosa ingresso e lo convertono in un formato DataValue',
+	'valueparsers-desc' => 'Raccolta di parser che ricevono qualcosa ingresso e lo convertono in un formato DataValue',
 );
 
 /** Japanese (日本語)
