@@ -49,11 +49,25 @@ $messages['de'] = array(
 	'valueformatters-desc' => 'Stellt eine Sammlung von Programmen zum Formatieren von Daten bereit',
 );
 
+/** Lower Sorbian (dolnoserbski)
+ * @author Michawiki
+ */
+$messages['dsb'] = array(
+	'valueformatters-desc' => 'Zběrka rědow, kótarež formatěruju zapódane daty',
+);
+
 /** Galician (galego)
  * @author Toliño
  */
 $messages['gl'] = array(
 	'valueformatters-desc' => 'Colección de programas de formato que collen unha entrada para darlle formato',
+);
+
+/** Upper Sorbian (hornjoserbsce)
+ * @author Michawiki
+ */
+$messages['hsb'] = array(
+	'valueformatters-desc' => 'Zběrka nastrojow, kotrež zapodate daty formatuja',
 );
 
 /** Italian (italiano)
