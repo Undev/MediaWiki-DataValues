@@ -56,6 +56,13 @@ $messages['dsb'] = array(
 	'valueformatters-desc' => 'Zběrka rědow, kótarež formatěruju zapódane daty',
 );
 
+/** Spanish (español)
+ * @author Armando-Martin
+ */
+$messages['es'] = array(
+	'valueformatters-desc' => 'Colección de programas de formato que toman alguna entrada para darle formato',
+);
+
 /** Galician (galego)
  * @author Toliño
  */
