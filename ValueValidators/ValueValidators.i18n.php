@@ -69,6 +69,13 @@ $messages['gl'] = array(
 	'valuevalidators-desc' => 'Colección de compoñentes de validación para os valores de datos',
 );
 
+/** Hebrew (עברית)
+ * @author Amire80
+ */
+$messages['he'] = array(
+	'valuevalidators-desc' => 'אוסף של רכיבי אימות עבור פריטי DataValue',
+);
+
 /** Upper Sorbian (hornjoserbsce)
  * @author Michawiki
  */

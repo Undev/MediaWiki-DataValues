@@ -69,6 +69,13 @@ $messages['gl'] = array(
 	'valueparsers-desc' => 'Colección de analizadores que collen unha entrada para convertela nun valor de datos',
 );
 
+/** Hebrew (עברית)
+ * @author Amire80
+ */
+$messages['he'] = array(
+	'valueparsers-desc' => 'אוסף של מפענחים שמקבלים קלט כלשהו והופכים אותו ל־DataValue',
+);
+
 /** Upper Sorbian (hornjoserbsce)
  * @author Michawiki
  */

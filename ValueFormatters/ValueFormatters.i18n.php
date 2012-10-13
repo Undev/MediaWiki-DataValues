@@ -70,6 +70,13 @@ $messages['gl'] = array(
 	'valueformatters-desc' => 'Colección de programas de formato que collen unha entrada para darlle formato',
 );
 
+/** Hebrew (עברית)
+ * @author Amire80
+ */
+$messages['he'] = array(
+	'valueformatters-desc' => 'אוסף של מעצבים שמקבלים קלט כלשהו ומעצבות אותו',
+);
+
 /** Upper Sorbian (hornjoserbsce)
  * @author Michawiki
  */
