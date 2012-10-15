@@ -30,6 +30,22 @@ namespace ValueFormatters;
  */
 interface FormatterOptions {
 
-	// TODO
+	/**
+	 * Sets the language (as language code) in which the formatting process should happen.
+	 *
+	 * @since 0.1
+	 *
+	 * @param string $languageCode
+	 */
+	public function setLanguage( $languageCode );
+
+	/**
+	 * Returns the language (as language code) in which the formatting process should happen.
+	 *
+	 * @since 0.1
+	 *
+	 * @return string Language code
+	 */
+	public function getLanguage();
 
 }

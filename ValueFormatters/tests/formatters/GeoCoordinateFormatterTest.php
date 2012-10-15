@@ -2,7 +2,7 @@
 
 namespace ValueFormatters\Test;
 use DataValues\GeoCoordinateValue;
-use ValueFormatters\GeoCoordinateFormatter;
+use ValueFormatters\GeoFormatterOptions;
 
 /**
  * Unit tests for the ValueFormatters\GeoCoordinateFormatter class.
@@ -43,14 +43,59 @@ class GeoCoordinateFormatterTest extends ValueFormatterTestBase {
 	 * @return array
 	 */
 	public function validProvider() {
-		$values = array(
-			'0, 0' => array( 0, 0, GeoCoordinateFormatter::TYPE_FLOAT )
+		$floats = array(
+			'55.755786, -37.617633' => array( 55.755786, -37.617633 ),
+			'-55.755786, 37.617633' => array( -55.755786, 37.617633 ),
+			'-55, -37.617633' => array( -55, -37.617633 ),
+			'5.5, 37' => array( 5.5, 37 ),
+			'0, 0' => array( 0, 0 ),
+		);
+
+		$decimalDegrees = array(
+			'55.755786°, 37.617633°' => array( 55.755786, 37.617633 ),
+			'55.755786°, -37.617633°' => array( 55.755786, -37.617633 ),
+			'-55°, -37.617633°' => array( -55, -37.617633 ),
+			'-5.5°, -37°' => array( -5.5, -37 ),
+			'0°, 0°' => array( 0, 0 ),
+		);
+
+		$dmsCoordinates = array(
+			'55° 45\' 20.8296", 37° 37\' 3.4788"' => array( 55.755786, 37.617633 ),
+			'55° 45\' 20.8296", -37° 37\' 3.4788"' => array( 55.755786, -37.617633 ),
+			'-55° 45\' 20.8296", -37° 37\' 3.4788"' => array( -55.755786, -37.617633 ),
+			'-55° 45\' 20.8296", 37° 37\' 3.4788"' => array( -55.755786, 37.617633 ),
+
+			'55° 0\' 0", 37° 0\' 0"' => array( 55, 37 ),
+			'55° 30\' 0", 37° 30\' 0"' => array( 55.5, 37.5 ),
+			'55° 0\' 18", 37° 0\' 18"' => array( 55.005, 37.005 ),
+			'0° 0\' 0", 0° 0\' 0"' => array( 0, 0 ),
+			'0° 0\' 18", 0° 0\' 18"' => array( 0.005, 0.005 ),
+			'-0° 0\' 18", -0° 0\' 18"' => array( -0.005, -0.005 ),
+		);
+
+		$dmCoordinates = array(
+			'55° 0\', 37° 0\'' => array( 55, 37 ),
+			'55° 30\', 37° 30\'' => array( 55.5, 37.5 ),
+			'0° 0\', 0° 0\'' => array( 0, 0 ),
+			'-55° 30\', -37° 30\'' => array( -55.5, -37.5 ),
+			'-0° 0.3\', -0° 0.3\'' => array( -0.005, -0.005 ),
 		);
 
 		$argLists = array();
 
-		foreach ( $values as $expected => $arguments ) {
-			//$argLists[] = array( new GeoCoordinateValue( $arguments[0], $arguments[1] ), $expected );
+		$tests = array(
+			GeoFormatterOptions::TYPE_FLOAT => $floats,
+			GeoFormatterOptions::TYPE_DD => $decimalDegrees,
+			GeoFormatterOptions::TYPE_DMS => $dmsCoordinates,
+			GeoFormatterOptions::TYPE_DM => $dmCoordinates,
+		);
+
+		foreach ( $tests as $format => $coords ) {
+			foreach ( $coords as $expected => $arguments ) {
+				$options = new GeoFormatterOptions();
+				$options->setFormat( $format );
+				$argLists[] = array( new GeoCoordinateValue( $arguments[0], $arguments[1] ), $expected, $options );
+			}
 		}
 
 		return $argLists;

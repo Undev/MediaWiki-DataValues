@@ -30,10 +30,13 @@ return array(
 	'ValueFormatters\FormatterOptions' => 'includes/FormatterOptions.php',
 	'ValueFormatters\Result' => 'includes/Result.php',
 	'ValueFormatters\ResultObject' => 'includes/ResultObject.php',
+	'ValueFormatters\SimpleFormatterOptions' => 'includes/SimpleFormatterOptions.php',
 	'ValueFormatters\ValueFormatter' => 'includes/ValueFormatter.php',
 	'ValueFormatters\ValueFormatterBase' => 'includes/ValueFormatterBase.php',
 
 	'ValueFormatters\GeoCoordinateFormatter' => 'includes/formatters/GeoCoordinateFormatter.php',
+
+	'ValueFormatters\GeoFormatterOptions' => 'includes/options/GeoFormatterOptions.php',
 
 	'ValueFormatters\Test\ValueFormatterTestBase' => 'tests/ValueFormatterTestBase.php',
 );

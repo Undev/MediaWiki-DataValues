@@ -3,7 +3,7 @@
 namespace ValueFormatters;
 
 /**
- * Base class for ValueFormatters.
+ * Base set of options for formatters.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,46 +28,48 @@ namespace ValueFormatters;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-abstract class ValueFormatterBase implements ValueFormatter {
+class SimpleFormatterOptions implements FormatterOptions {
 
 	/**
+	 * The language (as language code) in which the formatting process should happen.
+	 *
 	 * @since 0.1
 	 *
-	 * @var FormatterOptions
+	 * @var string
 	 */
-	protected $options;
+	protected $languageCode;
 
 	/**
+	 * Constructor.
+	 *
 	 * @since 0.1
 	 *
-	 * @param mixed $value
-	 *
-	 * @return Result
+	 * @param string $languageCode the language (as language code) in which the formatting process should happen.
 	 */
-	protected function newSuccess( $value ) {
-		return ResultObject::newSuccess( $value );
+	public function __construct( $languageCode = 'en' ) {
+		$this->languageCode = $languageCode;
 	}
 
 	/**
-	 * @see ValueFormatter::setOptions
+	 * @see FormatterOptions::setLanguage
 	 *
 	 * @since 0.1
 	 *
-	 * @param FormatterOptions $options
+	 * @param string $languageCode
 	 */
-	public function setOptions( FormatterOptions $options ) {
-		$this->options = $options;
+	public function setLanguage( $languageCode ) {
+		$this->languageCode = $languageCode;
 	}
 
 	/**
-	 * @see ValueFormatter::getOptions
+	 * @see FormatterOptions::getLanguage
 	 *
 	 * @since 0.1
 	 *
-	 * @return FormatterOptions
+	 * @return string Language code
 	 */
-	public function getOptions() {
-		return $this->options;
+	public function getLanguage() {
+		return $this->languageCode;
 	}
 
 }

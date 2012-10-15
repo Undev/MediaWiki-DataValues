@@ -6,6 +6,17 @@ use DataValues\GeoCoordinateValue, InvalidArgumentException;
 /**
  * Geographical coordinates formatter.
  *
+ * Supports the following notations:
+ * - Degree minute second
+ * - Decimal degrees
+ * - Decimal minutes
+ * - Float
+ *
+ * TODO: support directional notation
+ *
+ * Some code in this class has been borrowed from the
+ * MapsCoordinateParser class of the Maps extension for MediaWiki.
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -31,11 +42,10 @@ use DataValues\GeoCoordinateValue, InvalidArgumentException;
  */
 class GeoCoordinateFormatter extends ValueFormatterBase {
 
-	// TODO: figure out what would be a sensible place to put these
-	const TYPE_FLOAT = 'float';
-	const TYPE_DMS = 'dms';
-	const TYPE_DM = 'dm';
-	const TYPE_DD = 'dd';
+	/**
+	 * @var GeoFormatterOptions $options
+	 */
+	protected $options;
 
 	/**
 	 * @see ValueFormatter::format
@@ -52,10 +62,69 @@ class GeoCoordinateFormatter extends ValueFormatterBase {
 			throw new InvalidArgumentException( 'The ValueFormatters\GeoCoordinateFormatter cam only format instances of DataValues\GeoCoordinateValue' );
 		}
 
-		// TODO
-		return $this->newSuccess( '' );
+
+		$latitude = $this->formatCoordinate( $value->getLatitude() );
+		$longitude = $this->formatCoordinate( $value->getLongitude() );
+
+		$formatted = implode( $this->options->getSeparatorSymbol() . ' ', array( $latitude, $longitude ) );
+
+		return $this->newSuccess( $formatted );
+	}
+
+	/**
+	 * Formats a single coordinate
+	 *
+	 * @param string $coordinate
+	 *
+	 * @return string
+	 * @throws InvalidArgumentException
+	 */
+	protected function formatCoordinate( $coordinate ) {
+		$options = $this->options;
+
+		switch ( $options->getFormat() ) {
+			case GeoFormatterOptions::TYPE_FLOAT:
+				return (string)$coordinate;
+			case GeoFormatterOptions::TYPE_DMS:
+				$isNegative = $coordinate < 0;
+				$coordinate = abs( $coordinate );
+
+				$degrees = floor( $coordinate );
+				$minutes = ( $coordinate - $degrees ) * 60;
+				$seconds = ( $minutes - floor( $minutes ) ) * 60;
+
+				$minutes = floor( $minutes );
+				$seconds = round( $seconds, $options->getPrecision() );
+
+				$result = $degrees . $options->getDegreeSymbol()
+					. ' ' . $minutes . $options->getMinuteSymbol()
+					. ' ' . $seconds . $options->getSecondSymbol();
+
+				if ( $isNegative ) {
+					$result = '-' . $result;
+				}
+
+				return $result;
+			case GeoFormatterOptions::TYPE_DD:
+				return $coordinate . $options->getDegreeSymbol();
+			case GeoFormatterOptions::TYPE_DM:
+				$isNegative = $coordinate < 0;
+				$coordinate = abs( $coordinate );
+				$degrees = floor( $coordinate );
+
+				$minutes = round( ( $coordinate - $degrees ) * 60, $options->getPrecision() );
+
+				return sprintf(
+					"%s%d%s %s%s",
+					$isNegative ? '-' : '',
+					$degrees,
+					$options->getDegreeSymbol(),
+					$minutes,
+					$options->getMinuteSymbol()
+				);
+			default:
+				throw new InvalidArgumentException( 'Invalid coordinate format specified in the options' );
+		}
 	}
 
 }
-
-
