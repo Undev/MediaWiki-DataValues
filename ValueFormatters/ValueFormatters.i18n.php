@@ -98,6 +98,13 @@ $messages['ja'] = array(
 	'valueformatters-desc' => '何らかの入力を受け取って整形する整形ツールのコレクション',
 );
 
+/** Korean (한국어)
+ * @author 아라
+ */
+$messages['ko'] = array(
+	'valueformatters-desc' => '어떤 입력과 형식을 가져오는 형식기 모음집',
+);
+
 /** Macedonian (македонски)
  * @author Bjankuloski06
  */
