@@ -50,4 +50,13 @@ interface ValueFormatter {
 	 */
 	public function setOptions( FormatterOptions $options );
 
+	/**
+	 * Gets the options of the formatter.
+	 *
+	 * @since 0.1
+	 *
+	 * @return FormatterOptions
+	 */
+	public function getOptions();
+
 }
