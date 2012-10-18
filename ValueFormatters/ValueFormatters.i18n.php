@@ -41,6 +41,13 @@ $messages['qqq'] = array(
 	'valueformatters-desc' => '{{desc}}',
 );
 
+/** Belarusian (Taraškievica orthography) (беларуская (тарашкевіца)‎)
+ * @author Wizardist
+ */
+$messages['be-tarask'] = array(
+	'valueformatters-desc' => 'Збор фарматавальнікаў, якія пераўтвараюць пададзеныя зьвесткі ў патрэбны фармат',
+);
+
 /** German (Deutsch)
  * @author Kghbln
  * @author Metalhead64
