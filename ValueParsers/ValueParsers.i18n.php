@@ -111,3 +111,10 @@ $messages['mk'] = array(
 	'valueparsers-desc' => 'Збир парсери што претвораат извесен внос во ПодаточнаВредност',
 );
 
+/** Dutch (Nederlands)
+ * @author Siebrand
+ */
+$messages['nl'] = array(
+	'valueparsers-desc' => 'Verzameling van parsers die invoer omzetten in een gegevenswaarde',
+);
+

@@ -119,3 +119,10 @@ $messages['mk'] = array(
 	'valueformatters-desc' => 'Збир форматори што го форматираат внесеното',
 );
 
+/** Dutch (Nederlands)
+ * @author Siebrand
+ */
+$messages['nl'] = array(
+	'valueformatters-desc' => 'Verzameling van weergavemethoden voor invoer',
+);
+

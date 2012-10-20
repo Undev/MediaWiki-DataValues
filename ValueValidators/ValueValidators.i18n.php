@@ -111,3 +111,10 @@ $messages['mk'] = array(
 	'valuevalidators-desc' => 'Збир елементи за проверка за ПодаточниВредности',
 );
 
+/** Dutch (Nederlands)
+ * @author Siebrand
+ */
+$messages['nl'] = array(
+	'valuevalidators-desc' => 'Verzameling van validatiecomponenten voor gegevenswaarden',
+);
+
