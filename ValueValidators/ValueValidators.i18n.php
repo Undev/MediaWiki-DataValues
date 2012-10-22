@@ -36,7 +36,8 @@ $messages['en'] = array(
 	'valuevalidators-desc' => 'Collection of validation components for DataValues',
 );
 
-/** Message documentation (Message documentation) */
+/** Message documentation (Message documentation)
+ */
 $messages['qqq'] = array(
 	'valuevalidators-desc' => '{{desc}}',
 );
@@ -117,4 +118,3 @@ $messages['mk'] = array(
 $messages['nl'] = array(
 	'valuevalidators-desc' => 'Verzameling van validatiecomponenten voor gegevenswaarden',
 );
-

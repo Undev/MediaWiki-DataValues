@@ -36,7 +36,8 @@ $messages['en'] = array(
 	'valueformatters-desc' => 'Collection of formatters that take some input and format it',
 );
 
-/** Message documentation (Message documentation) */
+/** Message documentation (Message documentation)
+ */
 $messages['qqq'] = array(
 	'valueformatters-desc' => '{{desc}}',
 );
@@ -125,4 +126,3 @@ $messages['mk'] = array(
 $messages['nl'] = array(
 	'valueformatters-desc' => 'Verzameling van weergavemethoden voor invoer',
 );
-

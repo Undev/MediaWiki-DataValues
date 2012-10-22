@@ -36,7 +36,8 @@ $messages['en'] = array(
 	'valueparsers-desc' => 'Collection of parsers that take some input and turn it into a DataValue',
 );
 
-/** Message documentation (Message documentation) */
+/** Message documentation (Message documentation)
+ */
 $messages['qqq'] = array(
 	'valueparsers-desc' => '{{desc}}',
 );
@@ -117,4 +118,3 @@ $messages['mk'] = array(
 $messages['nl'] = array(
 	'valueparsers-desc' => 'Verzameling van parsers die invoer omzetten in een gegevenswaarde',
 );
-
