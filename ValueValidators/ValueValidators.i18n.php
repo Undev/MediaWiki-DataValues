@@ -63,6 +63,13 @@ $messages['es'] = array(
 	'valuevalidators-desc' => 'Colección de componentes de validación para DataValues',
 );
 
+/** French (français)
+ * @author Gomoko
+ */
+$messages['fr'] = array(
+	'valuevalidators-desc' => 'Collection de composants de validation pour les DataValues',
+);
+
 /** Galician (galego)
  * @author Toliño
  */

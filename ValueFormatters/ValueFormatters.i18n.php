@@ -71,6 +71,13 @@ $messages['es'] = array(
 	'valueformatters-desc' => 'Colección de programas de formato que toman alguna entrada para darle formato',
 );
 
+/** French (français)
+ * @author Gomoko
+ */
+$messages['fr'] = array(
+	'valueformatters-desc' => 'Collection de formateurs qui prennent quelque chose en entrée et le mettent en forme',
+);
+
 /** Galician (galego)
  * @author Toliño
  */
