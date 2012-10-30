@@ -425,4 +425,22 @@ class GeoCoordinateParser extends StringValueParser {
 		return $match;
 	}
 
+	/**
+	 * Convenience function for determining if something is a valid coordinate string.
+	 * Analogous to creating an instance of the parser, parsing the string and checking isValid on the result.
+	 *
+	 * @since 0.1
+	 *
+	 * @param string $string
+	 */
+	public static function areCoordinates( $string ) {
+		static $parser = null;
+
+		if ( $parser === null ) {
+			$parser = new self();
+		}
+
+		return $parser->parse( $string )->isValid();
+	}
+
 }
