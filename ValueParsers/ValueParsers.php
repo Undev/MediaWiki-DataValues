@@ -55,6 +55,18 @@ if ( !defined( 'DATAVALUES' ) ) {
 
 define( 'ValueParsers_VERSION', '0.1 alpha' );
 
+global $wgValueParsers;
+
+$wgValueParsers = array();
+
+$wgValueParsers['bool'] = 'ValueParsers\BoolParser';
+$wgValueParsers['float'] = 'ValueParsers\FloatParser';
+$wgValueParsers['geocoordinate'] = 'ValueParsers\GeoCoordinateParser';
+$wgValueParsers['int'] = 'ValueParsers\IntParser';
+$wgValueParsers['null'] = 'ValueParsers\NullParser';
+$wgValueParsers['string'] = 'ValueParsers\StringParser';
+$wgValueParsers['title'] = 'ValueParsers\TitleParser';
+
 if ( defined( 'MEDIAWIKI' ) ) {
 	include __DIR__ . '/ValueParsers.mw.php';
 }

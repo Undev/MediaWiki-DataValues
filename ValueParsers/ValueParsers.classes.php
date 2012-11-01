@@ -34,6 +34,9 @@ return array(
 	'ValueParsers\ResultObject' => 'includes/ResultObject.php',
 	'ValueParsers\SimpleParserOptions' => 'includes/SimpleParserOptions.php',
 	'ValueParsers\ValueParser' => 'includes/ValueParser.php',
+	'ValueParsers\ValueParserFactory' => 'includes/ValueParserFactory.php',
+
+	'ValueParsers\ApiParseValue' => 'includes/api/ApiParseValue.php',
 
 	'ValueParsers\GeoParserOptions' => 'includes/options/GeoParserOptions.php',
 

@@ -31,7 +31,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 'Not an entry point.' );
 }
 
-global $wgExtensionCredits, $wgExtensionMessagesFiles, $wgAutoloadClasses, $wgHooks;
+global $wgExtensionCredits, $wgExtensionMessagesFiles, $wgAutoloadClasses, $wgHooks, $wgAPIModules;
 
 $wgExtensionCredits['datavalues'][] = array(
 	'path' => __FILE__,
@@ -49,6 +49,9 @@ foreach ( include( __DIR__ . '/ValueParsers.classes.php' ) as $class => $file ) 
 		$wgAutoloadClasses[$class] = __DIR__ . '/' . $file;
 	}
 }
+
+// API module registration
+$wgAPIModules['parsevalue'] = 'ValueParsers\ApiParseValue';
 
 /**
  * Hook to add PHPUnit test cases.
