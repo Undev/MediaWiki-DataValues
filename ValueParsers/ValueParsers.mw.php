@@ -66,6 +66,8 @@ $wgAPIModules['parsevalue'] = 'ValueParsers\ApiParseValue';
 $wgHooks['UnitTestsList'][] = function( array &$files ) {
 	// @codeCoverageIgnoreStart
 	$testFiles = array(
+		'includes/api/ApiParseValue',
+
 		'includes/parsers/BoolParser',
 		'includes/parsers/GeoCoordinateParser',
 		'includes/parsers/FloatParser',
