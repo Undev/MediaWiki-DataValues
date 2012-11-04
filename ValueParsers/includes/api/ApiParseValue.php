@@ -46,22 +46,35 @@ class ApiParseValue extends ApiBase {
 			throw new MWException( 'Could not obtain a ValueParser instance' );
 		}
 
-		$parseResult = $parser->parse( $params['value'] );
+		$results = array();
 
-		if ( $parseResult->isValid() ) {
-			$this->getResult()->addValue(
-				null,
-				'value',
-				$parseResult->getDataValue()->getArrayValue()
+		foreach ( $params['values'] as $value ) {
+			$parseResult = $parser->parse( $value );
+
+			$result = array(
+				'raw' => $value
 			);
+
+			if ( $parseResult->isValid() ) {
+				$dataValue = $parseResult->getDataValue();
+
+				$result['value'] = $dataValue->getArrayValue();
+				$result['type'] = $dataValue->getType();
+			}
+			else {
+				$result['error'] = $parseResult->getError()->getText();
+			}
+
+			$results[] = $result;
 		}
-		else {
-			$this->getResult()->addValue(
-				null,
-				'error',
-				$parseResult->getError()->getText()
-			);
-		}
+
+		$this->getResult()->setIndexedTagName( $results, 'result' );
+
+		$this->getResult()->addValue(
+			null,
+			'results',
+			$results
+		);
 	}
 
 	/**
@@ -77,9 +90,10 @@ class ApiParseValue extends ApiBase {
 				ApiBase::PARAM_TYPE => ValueParserFactory::singleton()->getParserIds(),
 				ApiBase::PARAM_REQUIRED => true,
 			),
-			'value' => array(
+			'values' => array(
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true,
+				ApiBase::PARAM_ISMULTI => true,
 			),
 			// TODO: options
 		);
@@ -95,7 +109,7 @@ class ApiParseValue extends ApiBase {
 	public function getParamDescription() {
 		return array(
 			'parser' => 'Id of the ValueParser to use',
-			'value' => 'The value to parse',
+			'values' => 'The values to parse',
 		);
 	}
 

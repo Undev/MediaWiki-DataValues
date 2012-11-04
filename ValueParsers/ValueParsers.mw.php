@@ -31,7 +31,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 'Not an entry point.' );
 }
 
-global $wgExtensionCredits, $wgExtensionMessagesFiles, $wgAutoloadClasses, $wgHooks, $wgAPIModules;
+global $wgExtensionCredits, $wgExtensionMessagesFiles, $wgAutoloadClasses, $wgHooks, $wgAPIModules, $wgResourceModules;
 
 $wgExtensionCredits['datavalues'][] = array(
 	'path' => __FILE__,
@@ -86,3 +86,45 @@ $wgHooks['UnitTestsList'][] = function( array &$files ) {
 	return true;
 	// @codeCoverageIgnoreEnd
 };
+
+/**
+ * Hook to add QUnit test cases.
+ * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderTestModules
+ * @since 0.1
+ *
+ * @param array &$testModules
+ * @param \ResourceLoader &$resourceLoader
+ * @return boolean
+ */
+$wgHooks['ResourceLoaderTestModules'][] = function ( array &$testModules, \ResourceLoader &$resourceLoader ) {
+	$moduleTemplate = array(
+		'localBasePath' => __DIR__,
+		'remoteExtPath' => 'DataValues/ValueParsers',
+	);
+
+	$testModules['qunit']['ext.valueParsers.tests'] = $moduleTemplate + array(
+		'scripts' => array(
+			'tests/qunit/ValueParser.tests.js',
+		),
+		'dependencies' => array(
+			'valueParsers.parsers',
+		),
+	);
+
+	$testModules['qunit']['ext.valueParsers.parsers'] = $moduleTemplate + array(
+		'scripts' => array(
+			'tests/qunit/parsers/IntParser.tests.js',
+		),
+		'dependencies' => array(
+			'ext.valueParsers.tests',
+		),
+	);
+
+	return true;
+};
+
+// Resource Loader module registration
+$wgResourceModules = array_merge(
+	$wgResourceModules,
+	include( __DIR__ . '/Resources.php' )
+);

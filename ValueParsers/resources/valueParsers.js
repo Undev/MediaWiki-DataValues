@@ -3,15 +3,15 @@
  * @see https://www.mediawiki.org/wiki/Extension:DataValues
  *
  * @file
- * @ingroup DataValues
+ * @ingroup ValueParsers
  *
  * @licence GNU GPL v2+
- * @author Daniel Werner
+ * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 
 /**
- * Global 'dataValues' object
+ * Global 'valueParsers' object
  * @since 0.1
  * @type Object
  */
-var dataValues = {};
+var valueParsers = {};
