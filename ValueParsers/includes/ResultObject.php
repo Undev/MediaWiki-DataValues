@@ -118,7 +118,7 @@ class ResultObject implements Result {
 			return $this->value;
 		}
 		else {
-			throw new Exception( 'Cannot obtain the value of the parsing result as the parser got invalid input' );
+			throw new Exception( 'The parsing process failed, so the result value cannot be obtained' );
 		}
 	}
 
