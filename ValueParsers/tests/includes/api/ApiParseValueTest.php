@@ -28,6 +28,7 @@ use ValueParsers\ApiParseValue;
  *
  * @group ValueParsers
  * @group DataValueExtensions
+ * @group ApiParseValue
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
