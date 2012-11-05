@@ -93,7 +93,7 @@ class ResultObject implements  Result {
 	 *
 	 * @since 0.1
 	 *
-	 * @return array of ValueValidatorError
+	 * @return ValueValidatorError[]
 	 */
 	public function getErrors() {
 		return $this->errors;

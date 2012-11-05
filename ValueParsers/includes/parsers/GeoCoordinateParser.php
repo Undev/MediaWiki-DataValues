@@ -432,6 +432,8 @@ class GeoCoordinateParser extends StringValueParser {
 	 * @since 0.1
 	 *
 	 * @param string $string
+	 *
+	 * @return boolean
 	 */
 	public static function areCoordinates( $string ) {
 		static $parser = null;

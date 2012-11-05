@@ -45,7 +45,7 @@ interface Result extends \Immutable {
 	 *
 	 * @since 0.1
 	 *
-	 * @return array of ValueValidatorError
+	 * @return ValueValidatorError[]
 	 */
 	public function getErrors();
 

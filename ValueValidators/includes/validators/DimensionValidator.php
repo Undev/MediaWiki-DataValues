@@ -225,7 +225,7 @@ class DimensionValidator extends ValueValidatorObject {
 	 *
 	 * @since 0.1
 	 *
-	 * @return array of string
+	 * @return string[]
 	 */
 	public function getAllowedUnits() {
 		return $this->allowedUnits;

@@ -86,7 +86,7 @@ class ValueParserFactory {
 	 *
 	 * @since 0.1
 	 *
-	 * @return array of string
+	 * @return string[]
 	 */
 	public function getParserIds() {
 		return array_keys( $this->parsers );
