@@ -60,7 +60,7 @@ abstract class ValueValidatorObject implements ValueValidator {
 	/**
 	 * @since 0.1
 	 *
-	 * @var array of ValueHandlerError
+	 * @var Error[]
 	 */
 	protected $errors = array();
 
@@ -165,7 +165,7 @@ abstract class ValueValidatorObject implements ValueValidator {
 	 *
 	 * @since 0.1
 	 *
-	 * @param $errors array of ValueHandlerError
+	 * @param Error[] $errors
 	 */
 	protected function addErrors( array $errors ) {
 		$this->errors = array_merge( $this->errors, $errors );

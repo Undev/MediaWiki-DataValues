@@ -40,7 +40,7 @@ class ResultObject implements  Result {
 	/**
 	 * @since 0.1
 	 *
-	 * @var array of ValueValidatorError
+	 * @var Error[]
 	 */
 	protected $errors = array();
 
@@ -56,7 +56,7 @@ class ResultObject implements  Result {
 	/**
 	 * @since 0.1
 	 *
-	 * @param $errors array of ValueValidatorError
+	 * @param Error[] $errors
 	 *
 	 * @return Result
 	 */
@@ -70,7 +70,7 @@ class ResultObject implements  Result {
 	 * @since 0.1
 	 *
 	 * @param boolean $isValid
-	 * @param $errors array of ValueValidatorError
+	 * @param Error[] $errors
 	 */
 	protected function __construct( $isValid, array $errors = array() ) {
 		$this->isValid = $isValid;
@@ -93,7 +93,7 @@ class ResultObject implements  Result {
 	 *
 	 * @since 0.1
 	 *
-	 * @return ValueValidatorError[]
+	 * @return Error[]
 	 */
 	public function getErrors() {
 		return $this->errors;

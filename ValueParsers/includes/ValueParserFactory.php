@@ -36,7 +36,7 @@ class ValueParserFactory {
 	 *
 	 * @since 0.1
 	 *
-	 * @var array of ValueParser
+	 * @var ValueParser[]
 	 */
 	protected $parsers = array();
 
