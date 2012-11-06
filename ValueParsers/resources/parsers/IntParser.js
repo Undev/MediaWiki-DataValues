@@ -32,7 +32,7 @@
 		 * @return $.Promise
 		 */
 		parse: function( rawValue ) {
-			return vp.api.parseValues( 'intparser', [ rawValue ] );
+			return vp.api.parseValues( 'int', [ rawValue ] );
 		}
 
 	} );

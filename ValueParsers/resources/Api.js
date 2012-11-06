@@ -36,7 +36,7 @@
 				var dataValues = [];
 
 				for ( var i in apiResult.results ) {
-					var result = apiResult.results;
+					var result = apiResult.results[i];
 
 					if ( result.hasOwnProperty( 'value' ) && result.hasOwnProperty( 'type' ) ) {
 						// TODO: get dv from factory using factory.getDv( result['type'], result['value'] )

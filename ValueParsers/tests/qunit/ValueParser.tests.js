@@ -74,7 +74,7 @@
 
 			$.each( this, function( property, value ) {
 				if ( property.substring( 0, 4 ) === 'test' && $.isFunction( self[property] ) ) {
-					QUnit.test(
+					QUnit.asyncTest(
 						property,
 						function( assert ) {
 							self[property].call( self, assert );
@@ -95,25 +95,30 @@
 			var parseArguments = this.getParseArguments(),
 				parser = this.getInstance();
 
-			// TODO: figure out how to test stuff bound to promises with qunit
-//			for ( var i in parseArguments ) {
-//
-//				( function( assert, parseArguments ) {
-//					parser.parse( parseArguments[0] )
-//						.done( function( dataValue ) {
-//							assert.ok( true, 'parsing succeeded' );
-//							assert.ok( dataValue instanceof dv.DataValue, 'result is instanceof DataValue' );
-//
-//							if ( parseArguments.length > 1 ) {
-//								assert.ok( dataValue.equals( parseArguments[1] ), 'result is equal to the expected DataValue' );
-//							}
-//						} )
-//						.fail( function( errorMessage ) {
-//							assert.ok( false, 'parsing succeeded' );
-//						} );
-//				} ( assert, parseArguments[i] ) );
-//
-//			}
+			for ( var i in parseArguments ) {
+
+				( function( assert, parseArguments ) {
+					parser.parse( parseArguments[0] )
+						.done( function( dataValues ) {
+							assert.ok( true, 'parsing succeeded' );
+
+							for ( var j in dataValues ) {
+								assert.ok( dataValues[j] instanceof dv.DataValue, 'result is instanceof DataValue' );
+
+								if ( parseArguments.length > 1 ) {
+									assert.ok( dataValues[j].equals( parseArguments[1] ), 'result is equal to the expected DataValue' );
+								}
+							}
+
+							QUnit.start();
+						} )
+						.fail( function( errorMessage ) {
+							assert.ok( false, 'parsing failed' );
+							QUnit.start();
+						} );
+				} ( assert, parseArguments[i] ) );
+
+			}
 
 			assert.ok( true );
 		}
