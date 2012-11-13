@@ -26,7 +26,7 @@
 		 *
 		 * @return array
 		 */
-		getParseArguments: dv.util.abstractMember,
+		getParseArguments: vp.util.abstractMember,
 
 		/**
 		 * Returns the ValueParser object to be tested (ie vp.IntParser).
@@ -35,7 +35,7 @@
 		 *
 		 * @return vp.ValueParser
 		 */
-		getObject: dv.util.abstractMember,
+		getObject: vp.util.abstractMember,
 
 		/**
 		 * Returns the dataValue object to be tested (ie dv.StringValue).
