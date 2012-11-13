@@ -55,6 +55,12 @@ if ( !defined( 'DATAVALUES' ) ) {
 
 define( 'ValueValidators_VERSION', '0.1 alpha' );
 
+global $wgValueValidators;
+
+$wgValueValidators = array();
+
+$wgValueValidators['range'] = 'ValueValidators\RangeValidator';
+
 if ( defined( 'MEDIAWIKI' ) ) {
 	include __DIR__ . '/ValueValidators.mw.php';
 }

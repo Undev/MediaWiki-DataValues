@@ -32,6 +32,7 @@ return array(
 	'ValueValidators\Result' => 'includes/Result.php',
 	'ValueValidators\ResultObject' => 'includes/ResultObject.php',
 	'ValueValidators\ValueValidator' => 'includes/ValueValidator.php',
+	'ValueValidators\ValueValidatorFactory' => 'includes/ValueValidatorFactory.php',
 	'ValueValidators\ValueValidatorObject' => 'includes/ValueValidatorObject.php',
 
 	'ValueValidators\DimensionValidator' => 'includes/validators/DimensionValidator.php',
