@@ -33,10 +33,12 @@ return array(
 	'ValueFormatters\SimpleFormatterOptions' => 'includes/SimpleFormatterOptions.php',
 	'ValueFormatters\ValueFormatter' => 'includes/ValueFormatter.php',
 	'ValueFormatters\ValueFormatterBase' => 'includes/ValueFormatterBase.php',
+	'ValueFormatters\ValueFormatterFactory' => 'includes/ValueFormatterFactory.php',
 
 	'ValueFormatters\GeoCoordinateFormatter' => 'includes/formatters/GeoCoordinateFormatter.php',
 
 	'ValueFormatters\GeoFormatterOptions' => 'includes/options/GeoFormatterOptions.php',
 
+	'ValueFormatters\Test\ValueFormatterFactoryTest' => 'tests/ValueFormatterFactoryTest.php',
 	'ValueFormatters\Test\ValueFormatterTestBase' => 'tests/ValueFormatterTestBase.php',
 );
