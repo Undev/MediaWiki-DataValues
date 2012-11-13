@@ -1,7 +1,6 @@
 <?php
 
 namespace ValueParsers;
-use InvalidArgumentException;
 
 /**
  * Factory for creating ValueParser objects.
