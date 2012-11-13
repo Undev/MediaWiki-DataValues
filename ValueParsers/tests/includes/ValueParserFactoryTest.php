@@ -1,7 +1,7 @@
 <?php
 
 namespace ValueParsers\Test;
-use ValueParsers\ValueParserFactory, ValueParsers\ValueParser;
+use ValueParsers\ValueParserFactory;
 
 /**
  * Unit tests for the ValueParserFactory class.
