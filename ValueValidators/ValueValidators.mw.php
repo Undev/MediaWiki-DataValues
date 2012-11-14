@@ -63,10 +63,11 @@ foreach ( include( __DIR__ . '/ValueValidators.classes.php' ) as $class => $file
 $wgHooks['UnitTestsList'][] = function( array &$files ) {
 	// @codeCoverageIgnoreStart
 	$testFiles = array(
+		'ValueValidatorFactory',
 	);
 
 	foreach ( $testFiles as $file ) {
-		$files[] = __DIR__ . '/tests/' . $file . 'Test.php';
+		$files[] = __DIR__ . '/tests/phpunit/' . $file . 'Test.php';
 	}
 
 	return true;
