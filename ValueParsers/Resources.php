@@ -54,6 +54,7 @@ return call_user_func( function() {
 
 		'valueParsers.parsers' => $moduleTemplate + array(
 			'scripts' => array(
+				'parsers/BoolParser.js',
 				'parsers/IntParser.js',
 				'parsers/NullParser.js',
 			),
