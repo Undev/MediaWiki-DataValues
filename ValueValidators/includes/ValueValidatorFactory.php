@@ -113,7 +113,7 @@ class ValueValidatorFactory {
 	 *
 	 * @return ValueValidator|null
 	 */
-	public function getValidator( $validatorId ) {
+	public function newValidator( $validatorId ) {
 		return array_key_exists( $validatorId, $this->validators ) ? new $this->validators[$validatorId]() : null;
 	}
 

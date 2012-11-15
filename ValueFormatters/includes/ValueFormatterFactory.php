@@ -113,7 +113,7 @@ class ValueFormatterFactory {
 	 *
 	 * @return ValueFormatter|null
 	 */
-	public function getFormatter( $formatterId ) {
+	public function newFormatter( $formatterId ) {
 		return array_key_exists( $formatterId, $this->formatters ) ? new $this->formatters[$formatterId]() : null;
 	}
 

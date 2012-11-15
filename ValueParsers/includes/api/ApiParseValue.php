@@ -39,7 +39,7 @@ class ApiParseValue extends ApiBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 
-		$parser = ValueParserFactory::singleton()->getParser( $params['parser'] );
+		$parser = ValueParserFactory::singleton()->newParser( $params['parser'] );
 
 		// Paranoid check, should never fail as we only accept registered parsers for the parser parameter.
 		if ( $parser === null ) {

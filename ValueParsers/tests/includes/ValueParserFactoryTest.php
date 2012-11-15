@@ -54,10 +54,10 @@ class ValueParserFactoryTest extends \MediaWikiTestCase {
 		$factory = ValueParserFactory::singleton();
 
 		foreach ( $factory->getParserIds() as $id ) {
-			$this->assertInstanceOf( 'ValueParsers\ValueParser', $factory->getParser( $id ) );
+			$this->assertInstanceOf( 'ValueParsers\ValueParser', $factory->newParser( $id ) );
 		}
 
-		$this->assertInternalType( 'null', $factory->getParser( "I'm in your tests, being rather silly ~=[,,_,,]:3" ) );
+		$this->assertInternalType( 'null', $factory->newParser( "I'm in your tests, being rather silly ~=[,,_,,]:3" ) );
 	}
 
 	public function testGetParserClass() {

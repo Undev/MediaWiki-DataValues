@@ -54,10 +54,10 @@ class ValueValidatorFactoryTest extends \MediaWikiTestCase {
 		$factory = ValueValidatorFactory::singleton();
 
 		foreach ( $factory->getValidatorIds() as $id ) {
-			$this->assertInstanceOf( 'ValueValidators\ValueValidator', $factory->getValidator( $id ) );
+			$this->assertInstanceOf( 'ValueValidators\ValueValidator', $factory->newValidator( $id ) );
 		}
 
-		$this->assertInternalType( 'null', $factory->getValidator( "I'm in your tests, being rather silly ~=[,,_,,]:3" ) );
+		$this->assertInternalType( 'null', $factory->newValidator( "I'm in your tests, being rather silly ~=[,,_,,]:3" ) );
 	}
 
 	public function testGetValidatorClass() {
