@@ -56,6 +56,13 @@ $messages['de'] = array(
 	'valuevalidators-desc' => 'Stellt eine Sammlung von Komponenten zur Validierung von Datenwerten bereit',
 );
 
+/** Lower Sorbian (dolnoserbski)
+ * @author Michawiki
+ */
+$messages['dsb'] = array(
+	'valuevalidators-desc' => 'Zběrka waliděrowańskich komponentow za Datowe gódnoty',
+);
+
 /** Spanish (español)
  * @author Armando-Martin
  */

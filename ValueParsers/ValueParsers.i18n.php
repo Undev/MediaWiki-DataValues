@@ -56,6 +56,13 @@ $messages['de'] = array(
 	'valueparsers-desc' => 'Stellt eine Zusammenstellung von Parsererweiterungen bereit, die Eingaben in einen Datenwert umwandeln',
 );
 
+/** Lower Sorbian (dolnoserbski)
+ * @author Michawiki
+ */
+$messages['dsb'] = array(
+	'valueparsers-desc' => 'Zběrka parserow, kótarež pśiwzeju zapódaśa a pśetwórjujo je do datoweje gódnoty',
+);
+
 /** Spanish (español)
  * @author Armando-Martin
  */
