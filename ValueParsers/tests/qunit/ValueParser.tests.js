@@ -102,7 +102,7 @@
 						.done( function( dataValues ) {
 							assert.ok( true, 'parsing succeeded' );
 
-							for ( var j in dataValues ) {
+							for ( var j = 0, l = dataValues.length; j < l; j++ ) {
 								assert.ok( dataValues[j] instanceof dv.DataValue, 'result is instanceof DataValue' );
 
 								if ( parseArguments.length > 1 ) {

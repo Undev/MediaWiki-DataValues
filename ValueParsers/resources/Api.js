@@ -40,7 +40,19 @@
 
 					if ( result.hasOwnProperty( 'value' ) && result.hasOwnProperty( 'type' ) ) {
 						// TODO: get dv from factory using factory.getDv( result['type'], result['value'] )
-						var dataValue = new dv.StringValue( 'foobar' );
+						var dataValue;
+
+						switch ( result['type'] ) {
+							case 'boolean':
+								dataValue = new dv.BoolValue( result['value'] );
+								break;
+							case 'number':
+								dataValue = new dv.StringValue( 'foobar' );
+								break;
+							case 'unknown':
+								dataValue = new dv.UnknownValue( result['value'] );
+								break;
+						}
 
 						dataValues.push( dataValue );
 					}
