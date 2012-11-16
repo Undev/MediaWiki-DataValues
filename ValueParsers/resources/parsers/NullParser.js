@@ -13,13 +13,13 @@
 		constructor = function() {};
 
 	/**
-	 * Constructor for string to integer parsers.
+	 * Constructor for null parsers.
 	 *
 	 * @constructor
 	 * @extends vp.ValueParser
 	 * @since 0.1
 	 */
-	vp.IntParser = dv.util.inherit( PARENT, constructor, {
+	vp.NullParser = dv.util.inherit( PARENT, constructor, {
 
 		/**
 		 * @see vp.ValueParser.parse
@@ -31,7 +31,11 @@
 		 * @return $.Promise
 		 */
 		parse: function( rawValue ) {
-			return vp.api.parseValues( 'int', [ rawValue ] );
+			var deferred = $.Deferred();
+
+			deferred.resolve( [ new dv.UnknownValue( rawValue ) ] );
+
+			return deferred.promise();
 		}
 
 	} );
