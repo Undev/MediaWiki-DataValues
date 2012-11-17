@@ -72,15 +72,30 @@ abstract class ValueParserTestBase extends \MediaWikiTestCase {
 		$this->assertEquals( $expected->isValid(), $result->isValid(), 'Validity of the value is not valid' );
 
 		if ( $expected->isValid() ) {
-			$this->assertInstanceOf( '\DataValues\DataValue', $result->getDataValue() );
-			$this->assertEquals( $expected->getDataValue(), $result->getDataValue() );
+			if ( $this->requireDataValue() ) {
+				$this->assertInstanceOf( '\DataValues\DataValue', $result->getValue() );
+				$this->assertTrue( $expected->getValue()->equals( $result->getValue() ) );
+			}
+			else {
+				$this->assertEquals( $expected->getValue(), $result->getValue() );
+			}
+
 			$this->assertNull( $result->getError() );
 		}
 		else {
 			$this->assertTypeOrValue( '\ValueParsers\Error', $result->getError(), null );
 
-			$this->assertException( function() use ( $result ) { $result->getDataValue(); } );
+			$this->assertException( function() use ( $result ) { $result->getValue(); } );
 		}
+	}
+
+	/**
+	 * @since 0.1
+	 *
+	 * @return boolean
+	 */
+	protected function requireDataValue() {
+		return true;
 	}
 
 	/**

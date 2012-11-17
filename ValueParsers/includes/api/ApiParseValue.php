@@ -56,10 +56,15 @@ class ApiParseValue extends ApiBase {
 			);
 
 			if ( $parseResult->isValid() ) {
-				$dataValue = $parseResult->getDataValue();
+				$value = $parseResult->getValue();
 
-				$result['value'] = $dataValue->getArrayValue();
-				$result['type'] = $dataValue->getType();
+				if ( $value instanceof \DataValues\DataValue ) {
+					$result['value'] = $value->getArrayValue();
+					$result['type'] = $value->getType();
+				}
+				else {
+					$result['value'] = $value;
+				}
 			}
 			else {
 				$result['error'] = $parseResult->getError()->getText();

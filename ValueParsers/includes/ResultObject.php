@@ -46,7 +46,7 @@ class ResultObject implements Result {
 	 *
 	 * @since 0.1
 	 *
-	 * @var DataValue|null
+	 * @var mixed
 	 */
 	protected $value;
 
@@ -60,11 +60,11 @@ class ResultObject implements Result {
 	/**
 	 * @since 0.1
 	 *
-	 * @param DataValue $value
+	 * @param mixed $value
 	 *
 	 * @return Result
 	 */
-	public static function newSuccess( DataValue $value ) {
+	public static function newSuccess(  $value ) {
 		return new static( true, $value );
 	}
 
@@ -96,24 +96,24 @@ class ResultObject implements Result {
 	 * @since 0.1
 	 *
 	 * @param boolean $isValid
-	 * @param DataValue|null $value
+	 * @param mixed $value
 	 * @param Error|null $error
 	 */
-	protected function __construct( $isValid, DataValue $value = null, Error $error = null ) {
+	protected function __construct( $isValid, $value = null, Error $error = null ) {
 		$this->isValid = $isValid;
 		$this->value = $value;
 		$this->error = $error;
 	}
 
 	/**
-	 * @see ValueParserResult::getDataValue
+	 * @see ValueParserResult::getValue
 	 *
 	 * @since 0.1
 	 *
-	 * @return DataValue
+	 * @return mixed
 	 * @throws Exception
 	 */
-	public function getDataValue() {
+	public function getValue() {
 		if ( $this->isValid() ) {
 			return $this->value;
 		}
