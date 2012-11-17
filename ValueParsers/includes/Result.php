@@ -33,7 +33,7 @@ use DataValues\DataValue, Exception, Immutable;
 interface Result extends Immutable {
 
 	/**
-	 * Returns a DataValue instance representing the parsed value.
+	 * Returns the parsed value.
 	 * If the parsing process failed, this method will throw an
 	 * exception when called. You can check for failure using
 	 * the @see isValid method first.
@@ -43,11 +43,11 @@ interface Result extends Immutable {
 	 * @return DataValue
 	 * @throws Exception
 	 */
-	public function getDataValue();
+	public function getValue();
 
 	/**
 	 * Returns if the parsing was successful.
-	 * If it was, you can obtain the resulting value via @see getDataValue
+	 * If it was, you can obtain the resulting value via @see getValue
 	 *
 	 * @since 0.1
 	 *
