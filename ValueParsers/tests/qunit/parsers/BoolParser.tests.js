@@ -52,7 +52,10 @@
 				}
 			}
 
-			return [['true', new dv.BoolValue(true)]];
+			// TODO: return the argList, but something is going awfully wrong there, many errors
+			//       because of asynchronous handling fails or so.
+			return argLists
+			//return [['true', new dv.BoolValue(true)]];
 		}
 
 	} );

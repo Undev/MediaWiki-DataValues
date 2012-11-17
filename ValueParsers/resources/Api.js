@@ -4,7 +4,7 @@
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-( function( vp, $, dv, undefined ) {
+( function( mw, vp, $, dv, undefined ) {
 	'use strict';
 
 	/**
@@ -15,7 +15,10 @@
 	vp.api = {};
 
 	/**
-	 * Helper for prototypical inheritance.
+	 * Makes an request to the API to parse values on the server side. Will return a jQuery.Promise
+	 * which will be resolved if the parsing is successful or rejected if it fails or the API can't
+	 * be reached.
+	 *
 	 * @since 0.1
 	 *
 	 * @param {String} parser
@@ -73,4 +76,4 @@
 		return deferred.promise();
 	};
 
-}( valueParsers, jQuery, dataValues ) );
+}( mediaWiki, valueParsers, jQuery, dataValues ) );

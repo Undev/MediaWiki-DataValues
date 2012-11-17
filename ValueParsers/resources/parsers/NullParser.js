@@ -1,6 +1,6 @@
 /**
  * @file
- * @ingroup DataValues
+ * @ingroup ValueParsers
  *
  * @licence GNU GPL v2+
  *
@@ -33,7 +33,7 @@
 		parse: function( rawValue ) {
 			var deferred = $.Deferred();
 
-			deferred.resolve( [ new dv.UnknownValue( rawValue ) ] );
+			deferred.resolve( new dv.UnknownValue( rawValue ) );
 
 			return deferred.promise();
 		}
