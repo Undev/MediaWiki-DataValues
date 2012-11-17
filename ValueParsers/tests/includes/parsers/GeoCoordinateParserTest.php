@@ -55,6 +55,7 @@ class GeoCoordinateParserTest extends StringValueParserTest {
 			'-55, -37.6176330' => array( -55, -37.6176330 ),
 			'5.5S,37W ' => array( -5.5, -37 ),
 			'-5.5,-37 ' => array( -5.5, -37 ),
+			'4,2' => array( 4, 2 ),
 
 			// DD
 			'55.7557860° N, 37.6176330° W' => array( 55.7557860, -37.6176330 ),
