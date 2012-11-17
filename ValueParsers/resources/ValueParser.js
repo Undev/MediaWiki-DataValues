@@ -18,13 +18,16 @@
 	vp.ValueParser.prototype = {
 
 		/**
-		 * Parses a value.
+		 * Parses a value. Will return a jQuery.Promise which will be resolved if the parsing is
+		 * successful or rejected if it fails. There can be various reasons for the parsing to fail,
+		 * e.g. the parser is using the API and the API can't be reached.
 		 *
 		 * @since 0.1
 		 *
-		 * @param {mixed} $value
+		 * @param {*} rawValue
 		 *
-		 * @return $.Promise
+		 * @return $.Promise In the resolved callbacks the first parameter will be the parsed
+		 *         DataValue object.
 		 */
 		parse: vp.util.abstractMember
 

@@ -1,39 +1,28 @@
 /**
  * @file
- * @ingroup DataValues
+ * @ingroup ValueParsers
  *
  * @licence GNU GPL v2+
  *
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-( function( mw, vp, dv, $, undefined ) {
+( function( vp, dv, $, undefined ) {
 	'use strict';
 
-	var PARENT = vp.ValueParser,
-		constructor = function() {};
+	var PARENT = vp.ApiBasedValueParser;
 
 	/**
 	 * Constructor for string to integer parsers.
 	 *
 	 * @constructor
-	 * @extends vp.ValueParser
+	 * @extends vp.ApiBasedValueParser
 	 * @since 0.1
 	 */
-	vp.IntParser = dv.util.inherit( PARENT, constructor, {
-
+	vp.IntParser = dv.util.inherit( PARENT, {
 		/**
-		 * @see vp.ValueParser.parse
-		 *
-		 * @since 0.1
-		 *
-		 * @param {String} rawValue
-		 *
-		 * @return $.Promise
+		 * @see ApiBasedValueParser.API_VALUE_PARSER_ID
 		 */
-		parse: function( rawValue ) {
-			return vp.api.parseValues( 'int', [ rawValue ] );
-		}
-
+		API_VALUE_PARSER_ID: 'int'
 	} );
 
-}( mediaWiki, valueParsers, dataValues, jQuery ) );
+}( valueParsers, dataValues, jQuery ) );

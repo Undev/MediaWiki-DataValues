@@ -3,6 +3,7 @@
  * @ingroup DataValues
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
+ * @author Daniel Werner < danweetz@web.de >
  */
 ( function( vp, dv, $, QUnit, undefined ) {
 	'use strict';
@@ -74,10 +75,10 @@
 
 			$.each( this, function( property, value ) {
 				if ( property.substring( 0, 4 ) === 'test' && $.isFunction( self[property] ) ) {
-					QUnit.asyncTest(
+					QUnit.test(
 						property,
 						function( assert ) {
-							self[property].call( self, assert );
+							self[property]( assert );
 						}
 					);
 				}
@@ -93,34 +94,50 @@
 		 */
 		testParse: function( assert ) {
 			var parseArguments = this.getParseArguments(),
-				parser = this.getInstance();
+				parser = this.getInstance(),
+				requests = [];
 
-			for ( var i in parseArguments ) {
+			// prevent from going to next test until all parser requests are handled
+			QUnit.stop();
 
-				( function( assert, parseArguments ) {
-					parser.parse( parseArguments[0] )
-						.done( function( dataValues ) {
-							assert.ok( true, 'parsing succeeded' );
+			$.each( parseArguments, function( i, args ) {
+				var parseInput = args[0],
+					expected = args[1],
+					inputDetailMsg = typeof parseInput === 'string'
+						? 'for input "' + parseInput + '" '
+						: '';
 
-							for ( var j = 0, l = dataValues.length; j < l; j++ ) {
-								assert.ok( dataValues[j] instanceof dv.DataValue, 'result is instanceof DataValue' );
+				var request = parser.parse( parseInput )
+					.always( function() {
+						//QUnit.start();
+					} )
+					.done( function( dataValue ) {
+						// promise resolved, so no error has occured
+						assert.ok( true, 'parsing succeeded' );
 
-								if ( parseArguments.length > 1 ) {
-									assert.ok( dataValues[j].equals( parseArguments[1] ), 'result is equal to the expected DataValue' );
-								}
-							}
+						assert.ok(
+							dataValue instanceof dv.DataValue,
+							'result ' + inputDetailMsg + 'is instanceof DataValue'
+						);
 
-							QUnit.start();
-						} )
-						.fail( function( errorMessage ) {
-							assert.ok( false, 'parsing failed' );
-							QUnit.start();
-						} );
-				} ( assert, parseArguments[i] ) );
+						if( expected !== undefined ) {
+							assert.ok(
+								dataValue.equals( expected ),
+								'result ' + inputDetailMsg + 'is equal to the expected DataValue'
+							);
+						}
+					} )
+					.fail( function( errorMessage ) {
+						assert.ok( false, 'parsing ' + inputDetailMsg + 'failed' );
+					} );
 
-			}
+				requests.push( request );
+			} );
 
-			assert.ok( true );
+			// only start next test after all parser requests are handled
+			$.when.apply( null, requests ).always( function() {
+				QUnit.start();
+			} );
 		}
 
 	};

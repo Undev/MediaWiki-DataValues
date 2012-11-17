@@ -45,6 +45,7 @@ return call_user_func( function() {
 		'valueParsers.ValueParser' => $moduleTemplate + array(
 			'scripts' => array(
 				'ValueParser.js',
+				'ApiBasedValueParser.js',
 			),
 			'dependencies' => array(
 				'valueParsers',
@@ -56,6 +57,7 @@ return call_user_func( function() {
 			'scripts' => array(
 				'parsers/BoolParser.js',
 				'parsers/IntParser.js',
+				'parsers/StringParser.js',
 				'parsers/NullParser.js',
 			),
 			'dependencies' => array(
