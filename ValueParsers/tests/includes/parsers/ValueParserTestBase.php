@@ -90,6 +90,8 @@ abstract class ValueParserTestBase extends \MediaWikiTestCase {
 	}
 
 	/**
+	 * Returns if the result of the parsing process should be checked to be a DataValue.
+	 *
 	 * @since 0.1
 	 *
 	 * @return boolean
