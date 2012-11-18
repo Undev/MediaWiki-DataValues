@@ -53,6 +53,11 @@ class BoolParserTest extends StringValueParserTest {
 			'off' => false,
 			'0' => false,
 			'false' => false,
+
+			'YeS' => true,
+			'ON' => true,
+			'No' => false,
+			'OfF' => false,
 		);
 
 		foreach ( $valid as $value => $expected ) {

@@ -51,6 +51,8 @@ class BoolParser extends StringValueParser {
 	 * @return Result
 	 */
 	public function stringParse( $value ) {
+		$value = strtolower( $value );
+
 		if ( array_key_exists( $value, $this->values ) ) {
 			return ResultObject::newSuccess( new \DataValues\BooleanValue( $this->values[$value] ) );
 		}
