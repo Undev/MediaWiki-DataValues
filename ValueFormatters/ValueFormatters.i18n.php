@@ -120,6 +120,13 @@ $messages['ko'] = array(
 	'valueformatters-desc' => '어떤 입력과 형식을 가져오는 형식기 모음집',
 );
 
+/** Luxembourgish (Lëtzebuergesch)
+ * @author Robby
+ */
+$messages['lb'] = array(
+	'valueformatters-desc' => "Sammlung vu Programmer fir d'Formatéiere vun Daten",
+);
+
 /** Macedonian (македонски)
  * @author Bjankuloski06
  */
