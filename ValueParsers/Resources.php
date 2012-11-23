@@ -58,6 +58,7 @@ return call_user_func( function() {
 				'parsers/BoolParser.js',
 				'parsers/IntParser.js',
 				'parsers/StringParser.js',
+				//'parsers/NumberParser.js', // TODO: insert again after server-side parser is done
 				'parsers/NullParser.js',
 			),
 			'dependencies' => array(

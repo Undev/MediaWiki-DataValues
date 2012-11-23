@@ -116,6 +116,7 @@ $wgHooks['ResourceLoaderTestModules'][] = function ( array &$testModules, \Resou
 			'tests/qunit/parsers/BoolParser.tests.js',
 			'tests/qunit/parsers/IntParser.tests.js',
 			'tests/qunit/parsers/StringParser.tests.js',
+			//'tests/qunit/parsers/NumberParser.tests.js', // TODO: insert again after server-side parser is done
 			'tests/qunit/parsers/NullParser.tests.js',
 		),
 		'dependencies' => array(
