@@ -12,13 +12,13 @@
 	var PARENT = vp.tests.ValueParserTest;
 
 	/**
-	 * Constructor for creating a test object holding tests for the NullParser.
+	 * Constructor for creating a test object holding tests for the StringParser.
 	 *
 	 * @constructor
 	 * @extends dv.tests.ValueParserTest
 	 * @since 0.1
 	 */
-	vp.tests.NullParserTest = vp.util.inherit( PARENT, {
+	vp.tests.StringParserTest = vp.util.inherit( PARENT, {
 
 		/**
 		 * @see vp.tests.ValueParserTest.getObject
@@ -41,7 +41,7 @@
 
 	} );
 
-	var test = new vp.tests.NullParserTest();
+	var test = new vp.tests.StringParserTest();
 
 	test.runTests( 'valueParsers.StringParser' );
 

@@ -46,16 +46,14 @@
 
 			var argLists = [];
 
+			// build a list with arrays as entries, [0] is parser input, [1] expected output:
 			for ( var rawValue in validValues ) {
 				if ( validValues.hasOwnProperty( rawValue ) ) {
 					argLists.push( [ rawValue, new dv.BoolValue( validValues[rawValue] ) ] );
 				}
 			}
 
-			// TODO: return the argList, but something is going awfully wrong there, many errors
-			//       because of asynchronous handling fails or so.
-			return argLists
-			//return [['true', new dv.BoolValue(true)]];
+			return argLists;
 		}
 
 	} );
