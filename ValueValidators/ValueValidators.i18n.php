@@ -42,6 +42,13 @@ $messages['qqq'] = array(
 	'valuevalidators-desc' => '{{desc}}',
 );
 
+/** Asturian (asturianu)
+ * @author Xuacu
+ */
+$messages['ast'] = array(
+	'valuevalidators-desc' => 'Coleición de componentes de validación pa DataValues',
+);
+
 /** Belarusian (Taraškievica orthography) (беларуская (тарашкевіца)‎)
  * @author Wizardist
  */

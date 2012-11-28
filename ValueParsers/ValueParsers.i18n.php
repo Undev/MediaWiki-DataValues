@@ -42,6 +42,13 @@ $messages['qqq'] = array(
 	'valueparsers-desc' => '{{desc}}',
 );
 
+/** Asturian (asturianu)
+ * @author Xuacu
+ */
+$messages['ast'] = array(
+	'valueparsers-desc' => "Coleición d'analizadores que cueyen una entrada para convertila nun valor DataValue",
+);
+
 /** Belarusian (Taraškievica orthography) (беларуская (тарашкевіца)‎)
  * @author Wizardist
  */

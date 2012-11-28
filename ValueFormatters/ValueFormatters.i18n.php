@@ -42,6 +42,13 @@ $messages['qqq'] = array(
 	'valueformatters-desc' => '{{desc}}',
 );
 
+/** Asturian (asturianu)
+ * @author Xuacu
+ */
+$messages['ast'] = array(
+	'valueformatters-desc' => 'Coleición de programes de formatu que cueyen una entrada pa da-y formatu',
+);
+
 /** Belarusian (Taraškievica orthography) (беларуская (тарашкевіца)‎)
  * @author Wizardist
  */
