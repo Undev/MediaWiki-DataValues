@@ -39,7 +39,7 @@ class StringValidator extends ValueValidatorObject {
 	 */
 	public function doValidation( $value ) {
 		if ( !is_string( $value ) ) {
-			$this->addErrorMessage( 'Not a string' );
+			$this->addErrorMessage( 'Not a string' ); // TODO
 			return;
 		}
 

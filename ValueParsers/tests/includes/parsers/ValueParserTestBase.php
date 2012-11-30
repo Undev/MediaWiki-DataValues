@@ -100,26 +100,4 @@ abstract class ValueParserTestBase extends \MediaWikiTestCase {
 		return true;
 	}
 
-	/**
-	 * Asserts that an exception of the specified type occurs when running
-	 * the provided code.
-	 *
-	 * @since 0.1
-	 *
-	 * @param callable $code
-	 * @param string $expected
-	 */
-	protected function assertException( $code, $expected = 'Exception' ) {
-		$pokemons = null;
-
-		try {
-			call_user_func( $code );
-		}
-		catch ( \Exception $pokemons ) {
-			// Gotta Catch 'Em All!
-		}
-
-		$this->assertInstanceOf( $expected, $pokemons );
-	}
-
 }
