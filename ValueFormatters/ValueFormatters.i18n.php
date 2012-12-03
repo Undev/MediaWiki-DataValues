@@ -147,3 +147,10 @@ $messages['mk'] = array(
 $messages['nl'] = array(
 	'valueformatters-desc' => 'Verzameling van weergavemethoden voor invoer',
 );
+
+/** Ukrainian (українська)
+ * @author Base
+ */
+$messages['uk'] = array(
+	'valueformatters-desc' => 'Набір форматувальників для форматування вводу',
+);

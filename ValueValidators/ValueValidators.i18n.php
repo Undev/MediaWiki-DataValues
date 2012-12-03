@@ -139,3 +139,10 @@ $messages['mk'] = array(
 $messages['nl'] = array(
 	'valuevalidators-desc' => 'Verzameling van validatiecomponenten voor gegevenswaarden',
 );
+
+/** Ukrainian (українська)
+ * @author Base
+ */
+$messages['uk'] = array(
+	'valuevalidators-desc' => 'Набір компонентів перевірки DataValues',
+);

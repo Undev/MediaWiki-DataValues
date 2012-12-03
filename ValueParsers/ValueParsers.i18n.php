@@ -139,3 +139,10 @@ $messages['mk'] = array(
 $messages['nl'] = array(
 	'valueparsers-desc' => 'Verzameling van parsers die invoer omzetten in een gegevenswaarde',
 );
+
+/** Ukrainian (українська)
+ * @author Base
+ */
+$messages['uk'] = array(
+	'valueparsers-desc' => 'Набір парсерів, для перетворення вводу у DataValue',
+);
