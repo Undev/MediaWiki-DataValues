@@ -65,6 +65,15 @@ class StringValidator extends ValueValidatorObject {
 			$rangeValidator->setRange( $lowerBound, $upperBound );
 			$this->runSubValidator( count( $value ), $rangeValidator, 'length' );
 		}
+
+		if ( array_key_exists( 'regex', $this->options ) ) {
+			$match = preg_match( $this->option['regex'], $value );
+			if ( $match === false ) {
+				throw new Exception( 'The regex argument must be a valid Perl regular expression.' );
+			} elseif ( $match === 0 ) {
+				$this->addErrorMessage( 'String does not match the regular expression ' . $this->option['regex'] );
+			}
+		}
 	}
 
 }
