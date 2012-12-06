@@ -114,7 +114,18 @@ class ValueParserFactory {
 	 * @return ValueParser|null
 	 */
 	public function newParser( $parserId ) {
-		return array_key_exists( $parserId, $this->parsers ) ? new $this->parsers[$parserId]() : null;
+		if ( !array_key_exists( $parserId, $this->parsers ) ) {
+			return null;
+		}
+
+		// TODO: caller should provide this
+		$parserOptions = new ParserOptions();
+
+		$parser = new $this->parsers[$parserId]( $parserOptions );
+
+		assert( $parser instanceof ValueParser );
+
+		return $parser;
 	}
 
 }

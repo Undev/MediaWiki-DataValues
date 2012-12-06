@@ -52,7 +52,8 @@ abstract class ValueParserTestBase extends \MediaWikiTestCase {
 	 */
 	protected function getInstance() {
 		$class = $this->getParserClass();
-		return new $class();
+		$options = new \ValueParsers\ParserOptions();
+		return new $class( $options );
 	}
 
 	/**

@@ -32,13 +32,10 @@ return array(
 	'ValueParsers\ParserOptions' => 'includes/ParserOptions.php',
 	'ValueParsers\Result' => 'includes/Result.php',
 	'ValueParsers\ResultObject' => 'includes/ResultObject.php',
-	'ValueParsers\SimpleParserOptions' => 'includes/SimpleParserOptions.php',
 	'ValueParsers\ValueParser' => 'includes/ValueParser.php',
 	'ValueParsers\ValueParserFactory' => 'includes/ValueParserFactory.php',
 
 	'ValueParsers\ApiParseValue' => 'includes/api/ApiParseValue.php',
-
-	'ValueParsers\GeoParserOptions' => 'includes/options/GeoParserOptions.php',
 
 	'ValueParsers\BoolParser' => 'includes/parsers/BoolParser.php',
 	'ValueParsers\GeoCoordinateParser' => 'includes/parsers/GeoCoordinateParser.php',

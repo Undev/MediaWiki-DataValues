@@ -52,32 +52,46 @@ class GeoCoordinateParser extends StringValueParser {
 	const TYPE_DD = 'dd';
 
 	/**
+	 * The symbols representing the different directions for usage in directional notation.
 	 * @since 0.1
-	 *
-	 * @var GeoParserOptions
 	 */
-	protected $options;
+	const OPT_NORTH_SYMBOL = 'north';
+	const OPT_EAST_SYMBOL = 'east';
+	const OPT_SOUTH_SYMBOL = 'south';
+	const OPT_WEST_SYMBOL = 'west';
 
 	/**
-	 * Sets the options to use during the parsing process.
-	 *
+	 * The symbols representing degrees, minutes and seconds.
 	 * @since 0.1
-	 *
-	 * @param GeoParserOptions $options
 	 */
-	public function setOptions( GeoParserOptions $options ) {
-		$this->options = $options;
-	}
+	const OPT_DEGREE_SYMBOL = 'degree';
+	const OPT_MINUTE_SYMBOL = 'minute';
+	const OPT_SECOND_SYMBOL = 'second';
 
 	/**
-	 * Returns the options to use during the parsing process.
-	 *
+	 * The symbol to use as separator between latitude and longitude.
+	 * @since 0.1
+	 */
+	const OPT_SEPARATOR_SYMBOL = 'separator';
+
+	/**
 	 * @since 0.1
 	 *
-	 * @return GeoParserOptions
+	 * @param ParserOptions $options
 	 */
-	public function getOptions() {
-		return $this->options;
+	public function __construct( ParserOptions $options ) {
+		parent::__construct( $options );
+
+		$this->defaultOption( self::OPT_NORTH_SYMBOL, 'N' );
+		$this->defaultOption( self::OPT_EAST_SYMBOL, 'E' );
+		$this->defaultOption( self::OPT_SOUTH_SYMBOL, 'S' );
+		$this->defaultOption( self::OPT_WEST_SYMBOL, 'W' );
+
+		$this->defaultOption( self::OPT_DEGREE_SYMBOL, '°' );
+		$this->defaultOption( self::OPT_MINUTE_SYMBOL, "'" );
+		$this->defaultOption( self::OPT_SECOND_SYMBOL, '"' );
+
+		$this->defaultOption( self::OPT_SEPARATOR_SYMBOL, ',' );
 	}
 
 	/**
@@ -91,11 +105,6 @@ class GeoCoordinateParser extends StringValueParser {
 	 * @throws Exception
 	 */
 	public function stringParse( $value ) {
-		// TODO: improve options interface
-		if ( !isset( $this->options ) ) {
-			$this->options = new GeoParserOptions();
-		}
-
 		$value = $this->getNormalizedNotation( $value );
 
 		$notationType = $this->getCoordinatesType( $value );
@@ -104,7 +113,7 @@ class GeoCoordinateParser extends StringValueParser {
 			return $this->newErrorResult( 'Not a geographical coordinate' );
 		}
 
-		$coordinates = explode( $this->options->getSeparatorSymbol(), $value );
+		$coordinates = explode( $this->getOption( self::OPT_SEPARATOR_SYMBOL ), $value );
 
 		if ( count( $coordinates ) !== 2 ) {
 			throw new Exception( 'A coordinates string with an incorrect segment count has made it through validation' );
@@ -192,10 +201,10 @@ class GeoCoordinateParser extends StringValueParser {
 		// Get the last char, which could be a direction indicator
 		$lastChar = strtoupper( substr( $coordinate, -1 ) );
 
-		$n = $this->options->getNorthSymbol();
-		$e = $this->options->getEastSymbol();
-		$s = $this->options->getSouthSymbol();
-		$w = $this->options->getWestSymbol();
+		$n = $this->getOption( self::OPT_NORTH_SYMBOL );
+		$e = $this->getOption( self::OPT_EAST_SYMBOL );
+		$s = $this->getOption( self::OPT_SOUTH_SYMBOL );
+		$w = $this->getOption( self::OPT_WEST_SYMBOL );
 
 		// If there is a direction indicator, remove it, and prepend a minus sign for south and west directions.
 		// If there is no direction indicator, the coordinate is already non-directional and no work is required.
@@ -220,10 +229,10 @@ class GeoCoordinateParser extends StringValueParser {
 	 * @return string
 	 */
 	protected function getNormalizedNotation( $coordinates ) {
-		$second = $this->options->getSecondSymbol();
-		$minute = $this->options->getMinuteSymbol();
+		$second = $this->getOption( self::OPT_SECOND_SYMBOL );
+		$minute = $this->getOption( self::OPT_MINUTE_SYMBOL );
 
-		$coordinates = str_replace( array( '&#176;', '&deg;' ), $this->options->getDegreeSymbol(), $coordinates );
+		$coordinates = str_replace( array( '&#176;', '&deg;' ), $this->getOption( self::OPT_DEGREE_SYMBOL ), $coordinates );
 		$coordinates = str_replace( array( '&acute;', '&#180;' ), $second, $coordinates );
 		$coordinates = str_replace( array( '&#8242;', '&prime;', '´', '′' ), $minute, $coordinates );
 		$coordinates = str_replace( array( '&#8243;', '&Prime;', $minute . $minute, '´´', '′′', '″' ), $second, $coordinates );
@@ -272,21 +281,21 @@ class GeoCoordinateParser extends StringValueParser {
 			$coordinate = substr( $coordinate, 1 );
 		}
 
-		$degreePosition = strpos( $coordinate, $this->options->getDegreeSymbol() );
+		$degreePosition = strpos( $coordinate, $this->getOption( self::OPT_DEGREE_SYMBOL ) );
 		$degrees = substr( $coordinate, 0, $degreePosition );
 
-		$minutePosition = strpos( $coordinate, $this->options->getMinuteSymbol() );
+		$minutePosition = strpos( $coordinate, $this->getOption( self::OPT_MINUTE_SYMBOL ) );
 
 		if ( $minutePosition === false ) {
 			$minutes = 0;
 		}
 		else {
-			$degSignLength = strlen( $this->options->getDegreeSymbol() );
+			$degSignLength = strlen( $this->getOption( self::OPT_DEGREE_SYMBOL ) );
 			$minuteLength = $minutePosition - $degreePosition - $degSignLength;
 			$minutes = substr( $coordinate, $degreePosition + $degSignLength, $minuteLength );
 		}
 
-		$secondPosition = strpos( $coordinate, $this->options->getSecondSymbol() );
+		$secondPosition = strpos( $coordinate, $this->getOption( self::OPT_SECOND_SYMBOL ) );
 
 		if ( $minutePosition === false ) {
 			$seconds = 0;
@@ -315,7 +324,7 @@ class GeoCoordinateParser extends StringValueParser {
 	 * @return float
 	 */
 	protected function parseDDCoordinate( $coordinate ) {
-		return (float)str_replace( $this->options->getDegreeSymbol(), '', $coordinate );
+		return (float)str_replace( $this->getOption( self::OPT_DEGREE_SYMBOL ), '', $coordinate );
 	}
 
 	/**
@@ -334,7 +343,7 @@ class GeoCoordinateParser extends StringValueParser {
 			$coordinate = substr( $coordinate, 1 );
 		}
 
-		list( $degrees, $minutes ) = explode( $this->options->getDegreeSymbol(), $coordinate );
+		list( $degrees, $minutes ) = explode( $this->getOption( self::OPT_DEGREE_SYMBOL ), $coordinate );
 
 		$minutes = substr( $minutes, 0, -1 );
 
@@ -358,7 +367,7 @@ class GeoCoordinateParser extends StringValueParser {
 	 * @return boolean
 	 */
 	protected function areFloatCoordinates( $coordinates ) {
-		$sep = $this->options->getSeparatorSymbol();
+		$sep = $this->getOption( self::OPT_SEPARATOR_SYMBOL );
 
 		$match = preg_match( '/^(-)?\d{1,3}(\.\d{1,20})?' . $sep . '(-)?\d{1,3}(\.\d{1,20})?$/i', $coordinates ) // Non-directional
 			|| preg_match( '/^\d{1,3}(\.\d{1,20})?(N|S)' . $sep . '\d{1,3}(\.\d{1,20})?(E|W)$/i', $coordinates ); // Directional;
@@ -377,7 +386,7 @@ class GeoCoordinateParser extends StringValueParser {
 	 * @return boolean
 	 */
 	protected function areDMSCoordinates( $coordinates ) {
-		$sep = $this->options->getSeparatorSymbol();
+		$sep = $this->getOption( self::OPT_SEPARATOR_SYMBOL );
 
 		$match = preg_match( '/^(-)?(\d{1,3}°)(\d{1,2}(\′|\'))?((\d{1,2}(″|"))?|(\d{1,2}\.\d{1,20}(″|"))?)'
 			. $sep . '(-)?(\d{1,3}°)(\d{1,2}(\′|\'))?((\d{1,2}(″|"))?|(\d{1,2}\.\d{1,20}(″|"))?)$/i', $coordinates ) // Non-directional
@@ -398,7 +407,7 @@ class GeoCoordinateParser extends StringValueParser {
 	 * @return boolean
 	 */
 	protected function areDDCoordinates( $coordinates ) {
-		$sep = $this->options->getSeparatorSymbol();
+		$sep = $this->getOption( self::OPT_SEPARATOR_SYMBOL );
 
 		$match = preg_match( '/^(-)?\d{1,3}(|\.\d{1,20})°' . $sep . '(-)?\d{1,3}(|\.\d{1,20})°$/i', $coordinates ) // Non-directional
 			|| preg_match( '/^\d{1,3}(|\.\d{1,20})°(N|S)' . $sep . '\d{1,3}(|\.\d{1,20})°(E|W)?$/i', $coordinates ); // Directional
@@ -417,7 +426,7 @@ class GeoCoordinateParser extends StringValueParser {
 	 * @return boolean
 	 */
 	protected function areDMCoordinates( $coordinates ) {
-		$sep = $this->options->getSeparatorSymbol();
+		$sep = $this->getOption( self::OPT_SEPARATOR_SYMBOL );
 
 		$match = preg_match( '/(-)?\d{1,3}°(\d{1,2}(\.\d{1,20}\')?)?' . $sep . '(-)?\d{1,3}°(\d{1,2}(\.\d{1,20}\')?)?$/i', $coordinates ) // Non-directional
 			|| preg_match( '/\d{1,3}°(\d{1,2}(\.\d{1,20}\')?)?(N|S)' . $sep . '\d{1,3}°(\d{1,2}(\.\d{1,20}\')?)?(E|W)?$/i', $coordinates ); // Directional
