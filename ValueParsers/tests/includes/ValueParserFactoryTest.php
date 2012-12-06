@@ -4,7 +4,7 @@ namespace ValueParsers\Test;
 use ValueParsers\ValueParserFactory;
 
 /**
- * Unit tests for the ValueParserFactory class.
+ * Unit tests for the ValueParsers\ValueParserFactory class.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
