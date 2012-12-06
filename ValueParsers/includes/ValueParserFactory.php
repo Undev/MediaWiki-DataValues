@@ -35,47 +35,20 @@ class ValueParserFactory {
 	 *
 	 * @since 0.1
 	 *
-	 * @var ValueParser[]
+	 * @var string[]
 	 */
 	protected $parsers = array();
 
 	/**
-	 * Constructor.
-	 *
-	 * @since 0.1
-	 */
-	protected function __construct() {
-		// enforces singleton
-	}
-
-	/**
-	 * Returns the global instance of the factory.
-	 *
 	 * @since 0.1
 	 *
-	 * @return ValueParserFactory
+	 * @param array $valueParsers
 	 */
-	public static function singleton() {
-		static $instance = false;
+	public function __construct( array $valueParsers ) {
+		foreach ( $valueParsers as $parserId => $parserClass ) {
+			assert( is_string( $parserId ) );
+			assert( is_string( $parserClass ) );
 
-		if ( $instance === false ) {
-			$instance = new static();
-			$instance->initialize();
-		}
-
-
-		return $instance;
-	}
-
-	/**
-	 * Initializes the factory.
-	 *
-	 * @since 0.1
-	 */
-	protected function initialize() {
-		global $wgValueParsers;
-
-		foreach ( $wgValueParsers as $parserId => $parserClass ) {
 			$this->parsers[$parserId] = $parserClass;
 		}
 	}
@@ -110,16 +83,14 @@ class ValueParserFactory {
 	 * @since 0.1
 	 *
 	 * @param string $parserId
+	 * @param ParserOptions $parserOptions
 	 *
 	 * @return ValueParser|null
 	 */
-	public function newParser( $parserId ) {
+	public function newParser( $parserId, ParserOptions $parserOptions ) {
 		if ( !array_key_exists( $parserId, $this->parsers ) ) {
 			return null;
 		}
-
-		// TODO: caller should provide this
-		$parserOptions = new ParserOptions();
 
 		$parser = new $this->parsers[$parserId]( $parserOptions );
 

@@ -34,13 +34,26 @@ use ValueParsers\ValueParserFactory;
  */
 class ValueParserFactoryTest extends \MediaWikiTestCase {
 
-	public function testSingleton() {
-		$this->assertInstanceOf( 'ValueParsers\ValueParserFactory', ValueParserFactory::singleton() );
-		$this->assertTrue( ValueParserFactory::singleton() === ValueParserFactory::singleton() );
+	/**
+	 * @var null|ValueParserFactory
+	 */
+	protected $factory = null;
+
+	/**
+	 * @since 0.1
+	 *
+	 * @return ValueParserFactory
+	 */
+	protected function getFactoryFromGlobals() {
+		if ( $this->factory === null ) {
+			$this->factory = new ValueParserFactory( $GLOBALS['wgValueParsers'] );
+		}
+
+		return $this->factory;
 	}
 
 	public function testGetParserIds() {
-		$ids = ValueParserFactory::singleton()->getParserIds();
+		$ids = $this->getFactoryFromGlobals()->getParserIds();
 		$this->assertInternalType( 'array', $ids );
 
 		foreach ( $ids as $id ) {
@@ -51,17 +64,19 @@ class ValueParserFactoryTest extends \MediaWikiTestCase {
 	}
 
 	public function testGetParser() {
-		$factory = ValueParserFactory::singleton();
+		$factory = $this->getFactoryFromGlobals();
+
+		$options = new \ValueParsers\ParserOptions();
 
 		foreach ( $factory->getParserIds() as $id ) {
-			$this->assertInstanceOf( 'ValueParsers\ValueParser', $factory->newParser( $id ) );
+			$this->assertInstanceOf( 'ValueParsers\ValueParser', $factory->newParser( $id, $options ) );
 		}
 
-		$this->assertInternalType( 'null', $factory->newParser( "I'm in your tests, being rather silly ~=[,,_,,]:3" ) );
+		$this->assertInternalType( 'null', $factory->newParser( "I'm in your tests, being rather silly ~=[,,_,,]:3", $options ) );
 	}
 
 	public function testGetParserClass() {
-		$factory = ValueParserFactory::singleton();
+		$factory = $this->getFactoryFromGlobals();
 
 		foreach ( $factory->getParserIds() as $id ) {
 			$this->assertInternalType( 'string', $factory->getParserClass( $id ) );

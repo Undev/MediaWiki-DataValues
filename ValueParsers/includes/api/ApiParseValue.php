@@ -32,6 +32,24 @@ use ApiBase, MWException;
 class ApiParseValue extends ApiBase {
 
 	/**
+	 * @var null|ValueParserFactory
+	 */
+	protected $factory = null;
+
+	/**
+	 * @since 0.1
+	 *
+	 * @return ValueParserFactory
+	 */
+	protected function getFactory() {
+		if ( $this->factory === null ) {
+			$this->factory = new ValueParserFactory( $GLOBALS['wgValueParsers'] );
+		}
+
+		return $this->factory;
+	}
+
+	/**
 	 * @see ApiBase::execute
 	 *
 	 * @since 0.1
@@ -39,7 +57,9 @@ class ApiParseValue extends ApiBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 
-		$parser = ValueParserFactory::singleton()->newParser( $params['parser'] );
+		$parserOptions = new ParserOptions();
+		$parserOptions->setOption( ValueParser::OPT_LANG, $this->getLanguage()->getCode() );
+		$parser = $this->getFactory()->newParser( $params['parser'], $parserOptions );
 
 		// Paranoid check, should never fail as we only accept registered parsers for the parser parameter.
 		if ( $parser === null ) {
@@ -92,7 +112,7 @@ class ApiParseValue extends ApiBase {
 	public function getAllowedParams() {
 		return array(
 			'parser' => array(
-				ApiBase::PARAM_TYPE => ValueParserFactory::singleton()->getParserIds(),
+				ApiBase::PARAM_TYPE => $this->getFactory()->getParserIds(),
 				ApiBase::PARAM_REQUIRED => true,
 			),
 			'values' => array(

@@ -36,7 +36,18 @@ final class ParserOptions {
 	 *
 	 * @var array
 	 */
-	protected $options = array();
+	protected $options;
+
+	/**
+	 * @since 0.1
+	 */
+	public function __construct( array $options = array() ) {
+		foreach ( array_keys( $options ) as $option ) {
+			assert( is_string( $option ) );
+		}
+
+		$this->options = $options;
+	}
 
 	/**
 	 * @since 0.1
