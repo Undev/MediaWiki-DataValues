@@ -31,7 +31,7 @@ namespace ValueParsers;
 interface ValueParser {
 
 	/**
-	 * The code of the language in which the parser should operate.
+	 * Identifier for the option that holds the code of the language in which the parser should operate.
 	 * @since 0.1
 	 */
 	const OPT_LANG = 'lang';
