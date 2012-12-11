@@ -37,8 +37,6 @@ return array(
 
 	'ValueFormatters\GeoCoordinateFormatter' => 'includes/formatters/GeoCoordinateFormatter.php',
 
-	'ValueFormatters\GeoFormatterOptions' => 'includes/options/GeoFormatterOptions.php',
-
 	'ValueFormatters\Test\ValueFormatterFactoryTest' => 'tests/ValueFormatterFactoryTest.php',
 	'ValueFormatters\Test\ValueFormatterTestBase' => 'tests/ValueFormatterTestBase.php',
 );

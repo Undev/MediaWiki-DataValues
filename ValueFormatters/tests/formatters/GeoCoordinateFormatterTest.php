@@ -2,7 +2,7 @@
 
 namespace ValueFormatters\Test;
 use DataValues\GeoCoordinateValue;
-use ValueFormatters\GeoFormatterOptions;
+use ValueFormatters\GeoCoordinateFormatter;
 
 /**
  * Unit tests for the ValueFormatters\GeoCoordinateFormatter class.
@@ -84,16 +84,16 @@ class GeoCoordinateFormatterTest extends ValueFormatterTestBase {
 		$argLists = array();
 
 		$tests = array(
-			GeoFormatterOptions::TYPE_FLOAT => $floats,
-			GeoFormatterOptions::TYPE_DD => $decimalDegrees,
-			GeoFormatterOptions::TYPE_DMS => $dmsCoordinates,
-			GeoFormatterOptions::TYPE_DM => $dmCoordinates,
+			GeoCoordinateFormatter::TYPE_FLOAT => $floats,
+			GeoCoordinateFormatter::TYPE_DD => $decimalDegrees,
+			GeoCoordinateFormatter::TYPE_DMS => $dmsCoordinates,
+			GeoCoordinateFormatter::TYPE_DM => $dmCoordinates,
 		);
 
 		foreach ( $tests as $format => $coords ) {
 			foreach ( $coords as $expected => $arguments ) {
-				$options = new GeoFormatterOptions();
-				$options->setFormat( $format );
+				$options = new \ValueFormatters\FormatterOptions();
+				$options->setOption( GeoCoordinateFormatter::OPT_FORMAT, $format );
 				$argLists[] = array( new GeoCoordinateValue( $arguments[0], $arguments[1] ), $expected, $options );
 			}
 		}
