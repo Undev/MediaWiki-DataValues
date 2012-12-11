@@ -1,7 +1,7 @@
 <?php
 
 namespace ValueFormatters\Test;
-use ValueFormatters\ValueFormatterFactory, ValueFormatters\ValueFormatter;
+use ValueFormatters\ValueFormatterFactory;
 
 /**
  * Unit tests for the ValueFormatterFactory class.

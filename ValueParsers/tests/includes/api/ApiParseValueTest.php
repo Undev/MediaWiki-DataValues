@@ -1,7 +1,6 @@
 <?php
 
 namespace ValueParsers\Test;
-use ValueParsers\ApiParseValue;
 
 /**
  * Unit tests for the ValueParsers\ApiParseValue class.
