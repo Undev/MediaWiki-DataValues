@@ -43,40 +43,15 @@ class ValueFormatterFactory {
 	 * Constructor.
 	 *
 	 * @since 0.1
-	 */
-	protected function __construct() {
-		// enforces singleton
-	}
-
-	/**
-	 * Returns the global instance of the factory.
 	 *
-	 * @since 0.1
-	 *
-	 * @return ValueFormatterFactory
+	 * @param string[] $valueFormatters
 	 */
-	public static function singleton() {
-		static $instance = false;
+	public function __construct( array $valueFormatters ) {
+		foreach ( $valueFormatters as $formatterId => $formatterClass ) {
+			assert( is_string( $formatterId ) );
+			assert( is_string( $formatterClass ) );
 
-		if ( $instance === false ) {
-			$instance = new static();
-			$instance->initialize();
-		}
-
-
-		return $instance;
-	}
-
-	/**
-	 * Initializes the factory.
-	 *
-	 * @since 0.1
-	 */
-	protected function initialize() {
-		global $wgValueFormatters;
-
-		foreach ( $wgValueFormatters as $fomatterId => $formatterClass ) {
-			$this->formatters[$fomatterId] = $formatterClass;
+			$this->formatters[$formatterId] = $formatterClass;
 		}
 	}
 
