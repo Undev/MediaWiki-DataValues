@@ -36,6 +36,7 @@ class StringValidator extends ValueValidatorObject {
 	 * @since 0.1
 	 *
 	 * @param mixed $value
+	 * @throws \Exception
 	 */
 	public function doValidation( $value ) {
 		if ( !is_string( $value ) ) {

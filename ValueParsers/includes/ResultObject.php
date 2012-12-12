@@ -1,7 +1,7 @@
 <?php
 
 namespace ValueParsers;
-use DataValues\DataValue, Exception;
+use Exception;
 
 /**
  * Implementation of the value parser result interface.
