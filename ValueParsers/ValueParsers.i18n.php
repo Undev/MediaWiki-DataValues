@@ -133,6 +133,13 @@ $messages['mk'] = array(
 	'valueparsers-desc' => 'Збир парсери што претвораат извесен внос во ПодаточнаВредност',
 );
 
+/** Malay (Bahasa Melayu)
+ * @author Anakmalaysia
+ */
+$messages['ms'] = array(
+	'valueparsers-desc' => 'Koleksi penghurai yang mengambil input lalu menukarkannya kepada DataValue',
+);
+
 /** Dutch (Nederlands)
  * @author Siebrand
  */
@@ -145,4 +152,11 @@ $messages['nl'] = array(
  */
 $messages['uk'] = array(
 	'valueparsers-desc' => 'Набір парсерів, для перетворення вводу у DataValue',
+);
+
+/** Vietnamese (Tiếng Việt)
+ * @author Minh Nguyen
+ */
+$messages['vi'] = array(
+	'valueparsers-desc' => 'Bộ sưu tập các bộ xử lý biến đầu vào thành một giá trị dữ liệu',
 );

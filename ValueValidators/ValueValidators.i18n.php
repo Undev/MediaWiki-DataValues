@@ -133,6 +133,13 @@ $messages['mk'] = array(
 	'valuevalidators-desc' => 'Збир елементи за проверка за ПодаточниВредности',
 );
 
+/** Malay (Bahasa Melayu)
+ * @author Anakmalaysia
+ */
+$messages['ms'] = array(
+	'valuevalidators-desc' => 'Koleksi komponen penentusahan untuk DataValues',
+);
+
 /** Dutch (Nederlands)
  * @author Siebrand
  */
@@ -145,4 +152,11 @@ $messages['nl'] = array(
  */
 $messages['uk'] = array(
 	'valuevalidators-desc' => 'Набір компонентів перевірки DataValues',
+);
+
+/** Vietnamese (Tiếng Việt)
+ * @author Minh Nguyen
+ */
+$messages['vi'] = array(
+	'valuevalidators-desc' => 'Bộ sưu tập các bộ phận phê chuẩn giá trị dữ liệu',
 );

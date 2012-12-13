@@ -141,6 +141,13 @@ $messages['mk'] = array(
 	'valueformatters-desc' => 'Збир форматори што го форматираат внесеното',
 );
 
+/** Malay (Bahasa Melayu)
+ * @author Anakmalaysia
+ */
+$messages['ms'] = array(
+	'valueformatters-desc' => 'Koleksi pemformat yang mengambil input lalu memformatkannya',
+);
+
 /** Dutch (Nederlands)
  * @author Siebrand
  */
@@ -153,4 +160,11 @@ $messages['nl'] = array(
  */
 $messages['uk'] = array(
 	'valueformatters-desc' => 'Набір форматувальників для форматування вводу',
+);
+
+/** Vietnamese (Tiếng Việt)
+ * @author Minh Nguyen
+ */
+$messages['vi'] = array(
+	'valueformatters-desc' => 'Bộ sưu tập áp dụng định dạng cho đầu vào',
 );
