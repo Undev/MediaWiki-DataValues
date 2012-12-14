@@ -34,13 +34,26 @@ use ValueFormatters\ValueFormatterFactory;
  */
 class ValueFormatterFactoryTest extends \MediaWikiTestCase {
 
-	public function testSingleton() {
-		$this->assertInstanceOf( 'ValueFormatters\ValueFormatterFactory', ValueFormatterFactory::singleton() );
-		$this->assertTrue( ValueFormatterFactory::singleton() === ValueFormatterFactory::singleton() );
+	/**
+	 * @var null|ValueFormatterFactory
+	 */
+	protected $factory = null;
+
+	/**
+	 * @since 0.1
+	 *
+	 * @return ValueFormatterFactory
+	 */
+	protected function getFactoryFromGlobals() {
+		if ( $this->factory === null ) {
+			$this->factory = new ValueFormatterFactory( $GLOBALS['wgValueFormatters'] );
+		}
+
+		return $this->factory;
 	}
 
 	public function testGetFormatterIds() {
-		$ids = ValueFormatterFactory::singleton()->getFormatterIds();
+		$ids = $this->getFactoryFromGlobals()->getFormatterIds();
 		$this->assertInternalType( 'array', $ids );
 
 		foreach ( $ids as $id ) {
@@ -51,7 +64,7 @@ class ValueFormatterFactoryTest extends \MediaWikiTestCase {
 	}
 
 	public function testGetFormatter() {
-		$factory = ValueFormatterFactory::singleton();
+		$factory = $this->getFactoryFromGlobals();
 
 		$options = new \ValueFormatters\FormatterOptions();
 
@@ -63,7 +76,7 @@ class ValueFormatterFactoryTest extends \MediaWikiTestCase {
 	}
 
 	public function testGetFormatterClass() {
-		$factory = ValueFormatterFactory::singleton();
+		$factory = $this->getFactoryFromGlobals();
 
 		foreach ( $factory->getFormatterIds() as $id ) {
 			$this->assertInternalType( 'string', $factory->getFormatterClass( $id ) );
