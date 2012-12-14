@@ -56,11 +56,14 @@ abstract class ValueFormatterTestBase extends \MediaWikiTestCase {
 
 	/**
 	 * @since 0.1
+	 *
+	 * @param FormatterOptions $options
+	 *
 	 * @return ValueFormatter
 	 */
-	protected function getInstance() {
+	protected function getInstance( FormatterOptions $options ) {
 		$class = $this->getFormatterClass();
-		return new $class();
+		return new $class( $options );
 	}
 
 	/**
@@ -89,12 +92,12 @@ abstract class ValueFormatterTestBase extends \MediaWikiTestCase {
 	 * @param ValueFormatter|null $formatter
 	 */
 	protected function doTestFormat( $value, Result $expected, FormatterOptions $options = null, ValueFormatter $formatter = null ) {
-		if ( is_null( $formatter ) ) {
-			$formatter = $this->getInstance();
+		if ( $options === null ) {
+			$options = new FormatterOptions();
 		}
 
-		if ( $options !== null ) {
-			$formatter->setOptions( $options );
+		if ( is_null( $formatter ) ) {
+			$formatter = $this->getInstance( $options );
 		}
 
 		$result = $formatter->format( $value );

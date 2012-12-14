@@ -40,6 +40,17 @@ abstract class ValueFormatterBase implements ValueFormatter {
 	/**
 	 * @since 0.1
 	 *
+	 * @param FormatterOptions $options
+	 */
+	public function __construct( FormatterOptions $options ) {
+		$this->options = $options;
+
+		$this->options->defaultOption( ValueFormatter::OPT_LANG, 'en' );
+	}
+
+	/**
+	 * @since 0.1
+	 *
 	 * @param mixed $value
 	 *
 	 * @return Result
@@ -49,25 +60,35 @@ abstract class ValueFormatterBase implements ValueFormatter {
 	}
 
 	/**
-	 * @see ValueFormatter::setOptions
+	 * Shortcut to $this->options->getOption.
 	 *
 	 * @since 0.1
 	 *
-	 * @param FormatterOptions $options
+	 * @param string $option
 	 */
-	public function setOptions( FormatterOptions $options ) {
-		$this->options = $options;
+	protected final function getOption( $option ) {
+		return $this->options->getOption( $option );
 	}
 
 	/**
-	 * @see ValueFormatter::getOptions
+	 * Shortcut to $this->options->requireOption.
+	 *
+	 * @param string $option
+	 */
+	protected final function requireOption( $option ) {
+		$this->options->requireOption( $option );
+	}
+
+	/**
+	 * Shortcut to $this->options->defaultOption.
 	 *
 	 * @since 0.1
 	 *
-	 * @return FormatterOptions
+	 * @param string $option
+	 * @param mixed $default
 	 */
-	public function getOptions() {
-		return $this->options;
+	protected final function defaultOption( $option, $default ) {
+		$this->options->defaultOption( $option, $default );
 	}
 
 }

@@ -110,11 +110,20 @@ class ValueFormatterFactory {
 	 * @since 0.1
 	 *
 	 * @param string $formatterId
+	 * @param FormatterOptions $options
 	 *
 	 * @return ValueFormatter|null
 	 */
-	public function newFormatter( $formatterId ) {
-		return array_key_exists( $formatterId, $this->formatters ) ? new $this->formatters[$formatterId]() : null;
+	public function newFormatter( $formatterId, FormatterOptions $options ) {
+		if ( !array_key_exists( $formatterId, $this->formatters ) ) {
+			return null;
+		}
+
+		$instance = new $this->formatters[$formatterId]( $options );
+
+		assert( $instance instanceof ValueFormatter );
+
+		return $instance;
 	}
 
 }

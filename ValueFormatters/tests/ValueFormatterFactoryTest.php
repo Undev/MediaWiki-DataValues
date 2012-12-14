@@ -53,11 +53,13 @@ class ValueFormatterFactoryTest extends \MediaWikiTestCase {
 	public function testGetFormatter() {
 		$factory = ValueFormatterFactory::singleton();
 
+		$options = new \ValueFormatters\FormatterOptions();
+
 		foreach ( $factory->getFormatterIds() as $id ) {
-			$this->assertInstanceOf( 'ValueFormatters\ValueFormatter', $factory->newFormatter( $id ) );
+			$this->assertInstanceOf( 'ValueFormatters\ValueFormatter', $factory->newFormatter( $id, $options ) );
 		}
 
-		$this->assertInternalType( 'null', $factory->newFormatter( "I'm in your tests, being rather silly ~=[,,_,,]:3" ) );
+		$this->assertInternalType( 'null', $factory->newFormatter( "I'm in your tests, being rather silly ~=[,,_,,]:3", $options ) );
 	}
 
 	public function testGetFormatterClass() {

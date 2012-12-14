@@ -31,6 +31,12 @@ namespace ValueFormatters;
 interface ValueFormatter {
 
 	/**
+	 * Identifier for the option that holds the code of the language in which the parser should operate.
+	 * @since 0.1
+	 */
+	const OPT_LANG = 'lang';
+
+	/**
 	 * Formats a value.
 	 *
 	 * @since 0.1
@@ -40,23 +46,5 @@ interface ValueFormatter {
 	 * @return Result
 	 */
 	public function format( $value );
-
-	/**
-	 * Sets the options the formatter should use.
-	 *
-	 * @since 0.1
-	 *
-	 * @param FormatterOptions $options
-	 */
-	public function setOptions( FormatterOptions $options );
-
-	/**
-	 * Gets the options of the formatter.
-	 *
-	 * @since 0.1
-	 *
-	 * @return FormatterOptions
-	 */
-	public function getOptions();
 
 }
