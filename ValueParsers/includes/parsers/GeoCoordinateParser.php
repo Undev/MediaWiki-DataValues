@@ -448,7 +448,7 @@ class GeoCoordinateParser extends StringValueParser {
 		static $parser = null;
 
 		if ( $parser === null ) {
-			$parser = new self();
+			$parser = new self( new ParserOptions() );
 		}
 
 		return $parser->parse( $string )->isValid();
