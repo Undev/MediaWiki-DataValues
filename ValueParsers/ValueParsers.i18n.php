@@ -37,9 +37,10 @@ $messages['en'] = array(
 );
 
 /** Message documentation (Message documentation)
+ * @author Shirayuki
  */
 $messages['qqq'] = array(
-	'valueparsers-desc' => '{{desc}}',
+	'valueparsers-desc' => '{{desc|name=Value Parsers|url=http://www.mediawiki.org/wiki/Extension:ValueParsers}}',
 );
 
 /** Asturian (asturianu)
@@ -105,6 +106,13 @@ $messages['hsb'] = array(
 	'valueparsers-desc' => 'Zběrka parserow, kotrež zapodaća přijimaja a je do datoweje hódnoty přetworjeja',
 );
 
+/** Indonesian (Bahasa Indonesia)
+ * @author Farras
+ */
+$messages['id'] = array(
+	'valueparsers-desc' => 'Kumpulan parser yang mengambil sejumlah input dan mengubahnya menjadi DataValue',
+);
+
 /** Italian (italiano)
  * @author Beta16
  */
@@ -145,6 +153,13 @@ $messages['ms'] = array(
  */
 $messages['nl'] = array(
 	'valueparsers-desc' => 'Verzameling van parsers die invoer omzetten in een gegevenswaarde',
+);
+
+/** Piedmontese (Piemontèis)
+ * @author Dragonòt
+ */
+$messages['pms'] = array(
+	'valueparsers-desc' => 'Colession ëd parsificador che a pijo quaicòs an angress e a lo viro ant un DataValue',
 );
 
 /** Ukrainian (українська)

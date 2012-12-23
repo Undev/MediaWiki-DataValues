@@ -37,9 +37,11 @@ $messages['en'] = array(
 );
 
 /** Message documentation (Message documentation)
+ * @author Shirayuki
  */
 $messages['qqq'] = array(
-	'valueformatters-desc' => '{{desc}}',
+	'valueformatters-desc' => '
+{{desc|name=Value Formatters|url=http://www.mediawiki.org/wiki/Extension:DataValues}}', # Fuzzy
 );
 
 /** Asturian (asturianu)
@@ -106,6 +108,13 @@ $messages['hsb'] = array(
 	'valueformatters-desc' => 'Zběrka nastrojow, kotrež zapodate daty formatuja',
 );
 
+/** Indonesian (Bahasa Indonesia)
+ * @author Farras
+ */
+$messages['id'] = array(
+	'valueformatters-desc' => 'Kumpulan formater yang mengambil sejumlah input dan memformatnya',
+);
+
 /** Italian (italiano)
  * @author Beta16
  */
@@ -153,6 +162,13 @@ $messages['ms'] = array(
  */
 $messages['nl'] = array(
 	'valueformatters-desc' => 'Verzameling van weergavemethoden voor invoer',
+);
+
+/** Piedmontese (Piemontèis)
+ * @author Dragonòt
+ */
+$messages['pms'] = array(
+	'valueformatters-desc' => "Colession ëd formatador ch'a pijo quaicòs an angress e a lo formato",
 );
 
 /** Ukrainian (українська)

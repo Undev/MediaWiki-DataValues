@@ -37,9 +37,10 @@ $messages['en'] = array(
 );
 
 /** Message documentation (Message documentation)
+ * @author Shirayuki
  */
 $messages['qqq'] = array(
-	'valuevalidators-desc' => '{{desc}}',
+	'valuevalidators-desc' => '{{desc|name=Value Validators|url=http://www.mediawiki.org/wiki/Extension:ValueValidators}}',
 );
 
 /** Asturian (asturianu)
@@ -105,6 +106,13 @@ $messages['hsb'] = array(
 	'valuevalidators-desc' => 'Zběrka walidowanskich komponentow za Datowe hódnoty',
 );
 
+/** Indonesian (Bahasa Indonesia)
+ * @author Farras
+ */
+$messages['id'] = array(
+	'valuevalidators-desc' => 'Kumpulan komponen validasi untuk DataValues',
+);
+
 /** Italian (italiano)
  * @author Beta16
  */
@@ -145,6 +153,13 @@ $messages['ms'] = array(
  */
 $messages['nl'] = array(
 	'valuevalidators-desc' => 'Verzameling van validatiecomponenten voor gegevenswaarden',
+);
+
+/** Piedmontese (Piemontèis)
+ * @author Dragonòt
+ */
+$messages['pms'] = array(
+	'valuevalidators-desc' => 'Colession ëd component ëd validassion për DataValue',
 );
 
 /** Ukrainian (українська)
