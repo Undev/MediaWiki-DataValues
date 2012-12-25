@@ -38,10 +38,10 @@ $messages['en'] = array(
 
 /** Message documentation (Message documentation)
  * @author Shirayuki
+ * @author Siebrand
  */
 $messages['qqq'] = array(
-	'valueformatters-desc' => '
-{{desc|name=Value Formatters|url=http://www.mediawiki.org/wiki/Extension:DataValues}}', # Fuzzy
+	'valueformatters-desc' => '{{desc|name=Value Formatters|url=http://www.mediawiki.org/wiki/Extension:DataValues}}',
 );
 
 /** Asturian (asturianu)
@@ -165,10 +165,11 @@ $messages['nl'] = array(
 );
 
 /** Piedmontese (Piemontèis)
+ * @author Borichèt
  * @author Dragonòt
  */
 $messages['pms'] = array(
-	'valueformatters-desc' => "Colession ëd formatador ch'a pijo quaicòs an angress e a lo formato",
+	'valueformatters-desc' => "Colession d'inissialisator ch'a pijo quaicòs an intrada e a-j dan na forma",
 );
 
 /** Ukrainian (українська)

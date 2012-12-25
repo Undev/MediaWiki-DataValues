@@ -156,10 +156,11 @@ $messages['nl'] = array(
 );
 
 /** Piedmontese (Piemontèis)
+ * @author Borichèt
  * @author Dragonòt
  */
 $messages['pms'] = array(
-	'valueparsers-desc' => 'Colession ëd parsificador che a pijo quaicòs an angress e a lo viro ant un DataValue',
+	'valueparsers-desc' => "Colession d'analisator che a pijo quaicòs an intrada e a lo trasformo ant un DataValue",
 );
 
 /** Ukrainian (українська)
