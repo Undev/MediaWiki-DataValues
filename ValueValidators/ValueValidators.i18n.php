@@ -162,6 +162,13 @@ $messages['pms'] = array(
 	'valuevalidators-desc' => 'Colession ëd component ëd validassion për DataValue',
 );
 
+/** Russian (русский)
+ * @author KPu3uC B Poccuu
+ */
+$messages['ru'] = array(
+	'valuevalidators-desc' => 'Коллекция компонентов проверки для DataValues',
+);
+
 /** Ukrainian (українська)
  * @author Base
  */

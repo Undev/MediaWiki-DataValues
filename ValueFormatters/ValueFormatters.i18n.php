@@ -172,6 +172,13 @@ $messages['pms'] = array(
 	'valueformatters-desc' => "Colession d'inissialisator ch'a pijo quaicòs an intrada e a-j dan na forma",
 );
 
+/** Russian (русский)
+ * @author Ole Yves
+ */
+$messages['ru'] = array(
+	'valueformatters-desc' => 'Коллекция форматтеров, принимающих некоторые значения и форматирующих их',
+);
+
 /** Ukrainian (українська)
  * @author Base
  */

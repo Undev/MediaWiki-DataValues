@@ -163,6 +163,13 @@ $messages['pms'] = array(
 	'valueparsers-desc' => "Colession d'analisator che a pijo quaicòs an intrada e a lo trasformo ant un DataValue",
 );
 
+/** Russian (русский)
+ * @author Ole Yves
+ */
+$messages['ru'] = array(
+	'valueparsers-desc' => 'Коллекция парсеров, принимающих некоторые значения и превращающих их в DataValue',
+);
+
 /** Ukrainian (українська)
  * @author Base
  */
