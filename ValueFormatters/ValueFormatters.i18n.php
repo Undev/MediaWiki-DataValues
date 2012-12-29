@@ -108,6 +108,13 @@ $messages['hsb'] = array(
 	'valueformatters-desc' => 'Zběrka nastrojow, kotrež zapodate daty formatuja',
 );
 
+/** Hungarian (magyar)
+ * @author Dj
+ */
+$messages['hu'] = array(
+	'valueformatters-desc' => 'Formatálók gyűjteménye, amely néhány paramétert vesz és megformázza azokat',
+);
+
 /** Indonesian (Bahasa Indonesia)
  * @author Farras
  */
