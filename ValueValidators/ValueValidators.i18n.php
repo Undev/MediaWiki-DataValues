@@ -169,6 +169,13 @@ $messages['ru'] = array(
 	'valuevalidators-desc' => 'Коллекция компонентов проверки для DataValues',
 );
 
+/** Sinhala (සිංහල)
+ * @author පසිඳු කාවින්ද
+ */
+$messages['si'] = array(
+	'valuevalidators-desc' => 'DataValues සඳහා සත්‍යාපන සංරචකවල එකතුව',
+);
+
 /** Ukrainian (українська)
  * @author Base
  */
