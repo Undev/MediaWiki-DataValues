@@ -134,6 +134,13 @@ $messages['ko'] = array(
 	'valueparsers-desc' => '어떤 입력을 가지고 DataValue로 바꾸는 파서 함수 모음집',
 );
 
+/** Colognian (Ripoarisch)
+ * @author Purodha
+ */
+$messages['ksh'] = array(
+	'valueparsers-desc' => 'En Sammlong vun Projramme för en Aanzahl Daate-Ennjaabe ze ongersöhke un in ene Wäät ömzewandelle.',
+);
+
 /** Macedonian (македонски)
  * @author Bjankuloski06
  */

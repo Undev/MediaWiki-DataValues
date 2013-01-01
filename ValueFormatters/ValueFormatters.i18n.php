@@ -143,6 +143,13 @@ $messages['ko'] = array(
 	'valueformatters-desc' => '어떤 입력과 형식을 가져오는 형식기 모음집',
 );
 
+/** Colognian (Ripoarisch)
+ * @author Purodha
+ */
+$messages['ksh'] = array(
+	'valueformatters-desc' => 'En Sammlong vun Projramme för en Aanzahl Zoote Daate ze fommateere.',
+);
+
 /** Luxembourgish (Lëtzebuergesch)
  * @author Robby
  */

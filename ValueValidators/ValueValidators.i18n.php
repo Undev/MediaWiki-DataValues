@@ -134,6 +134,13 @@ $messages['ko'] = array(
 	'valuevalidators-desc' => 'DataValues​​에 대한 유효성 검사 구성 요소 모음집',
 );
 
+/** Colognian (Ripoarisch)
+ * @author Purodha
+ */
+$messages['ksh'] = array(
+	'valuevalidators-desc' => 'En Sammlong vun Projramme för en Aanzahl Daate udder Wääte ze prööve.',
+);
+
 /** Macedonian (македонски)
  * @author Bjankuloski06
  */
