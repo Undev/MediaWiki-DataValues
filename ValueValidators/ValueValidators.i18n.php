@@ -141,6 +141,13 @@ $messages['ksh'] = array(
 	'valuevalidators-desc' => 'En Sammlong vun Projramme för en Aanzahl Daate udder Wääte ze prööve.',
 );
 
+/** Luxembourgish (Lëtzebuergesch)
+ * @author Robby
+ */
+$messages['lb'] = array(
+	'valuevalidators-desc' => "Sammlung vu Komponenten fir d'Validatioun vun DataValues",
+);
+
 /** Macedonian (македонски)
  * @author Bjankuloski06
  */
@@ -167,6 +174,13 @@ $messages['nl'] = array(
  */
 $messages['pms'] = array(
 	'valuevalidators-desc' => 'Colession ëd component ëd validassion për DataValue',
+);
+
+/** tarandíne (tarandíne)
+ * @author Joetaras
+ */
+$messages['roa-tara'] = array(
+	'valuevalidators-desc' => 'Collezzione de combonende de validazione pe DataValue',
 );
 
 /** Russian (русский)

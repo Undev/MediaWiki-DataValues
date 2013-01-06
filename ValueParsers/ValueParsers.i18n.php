@@ -141,6 +141,13 @@ $messages['ksh'] = array(
 	'valueparsers-desc' => 'En Sammlong vun Projramme för en Aanzahl Daate-Ennjaabe ze ongersöhke un in ene Wäät ömzewandelle.',
 );
 
+/** Luxembourgish (Lëtzebuergesch)
+ * @author Robby
+ */
+$messages['lb'] = array(
+	'valueparsers-desc' => 'Sammlung vu Parseren déi Input an DataValue ëmwandelen',
+);
+
 /** Macedonian (македонски)
  * @author Bjankuloski06
  */
@@ -168,6 +175,13 @@ $messages['nl'] = array(
  */
 $messages['pms'] = array(
 	'valueparsers-desc' => "Colession d'analisator che a pijo quaicòs an intrada e a lo trasformo ant un DataValue",
+);
+
+/** tarandíne (tarandíne)
+ * @author Joetaras
+ */
+$messages['roa-tara'] = array(
+	'valueparsers-desc' => "Collezzione de analizzature ca pigghiane quacche date de ingresse e le girane jndr'à 'nu DataValue",
 );
 
 /** Russian (русский)

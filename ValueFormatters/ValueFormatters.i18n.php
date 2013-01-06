@@ -186,6 +186,13 @@ $messages['pms'] = array(
 	'valueformatters-desc' => "Colession d'inissialisator ch'a pijo quaicòs an intrada e a-j dan na forma",
 );
 
+/** tarandíne (tarandíne)
+ * @author Joetaras
+ */
+$messages['roa-tara'] = array(
+	'valueformatters-desc' => "Collezzione de formattature ca pigghiane quacche date de ingresse e 'u formattane",
+);
+
 /** Russian (русский)
  * @author Ole Yves
  */
