@@ -41,7 +41,7 @@ class ResultObject implements Result {
 	protected $isValid;
 
 	/**
-	 * A DataValue instance representing the parsed value,
+	 * The parsed value,
 	 * or null if the parsing process failed.
 	 *
 	 * @since 0.1

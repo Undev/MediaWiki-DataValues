@@ -40,7 +40,7 @@ interface Result extends Immutable {
 	 *
 	 * @since 0.1
 	 *
-	 * @return DataValue
+	 * @return mixed
 	 * @throws Exception
 	 */
 	public function getValue();
