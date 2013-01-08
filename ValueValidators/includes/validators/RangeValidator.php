@@ -99,7 +99,7 @@ class RangeValidator extends ValueValidatorObject {
 	}
 
 	/**
-	 * @see ValueValidator::doValidation
+	 * @see ValueValidatorObject::doValidation
 	 *
 	 * @since 0.1
 	 *
