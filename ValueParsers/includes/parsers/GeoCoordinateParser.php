@@ -126,7 +126,7 @@ class GeoCoordinateParser extends StringValueParser {
 
 		$coordinate = new \DataValues\GeoCoordinateValue( $latitude, $longitude );
 
-		return ResultObject::newSuccess( $coordinate );
+		return Result::newSuccess( $coordinate );
 	}
 
 	/**

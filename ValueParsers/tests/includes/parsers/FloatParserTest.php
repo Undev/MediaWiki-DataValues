@@ -1,7 +1,7 @@
 <?php
 
 namespace ValueParsers\Test;
-use ValueParsers\ResultObject;
+use ValueParsers\Result;
 
 /**
  * Unit test FloatParser class.
@@ -71,7 +71,7 @@ class FloatParserTest extends StringValueParserTest {
 			$expected = (float)$expected;
 
 			$expected = new \DataValues\NumberValue( $expected );
-			$argLists[] = array( $value, ResultObject::newSuccess( $expected ) );
+			$argLists[] = array( $value, Result::newSuccess( $expected ) );
 		}
 
 		$invalid = array(
@@ -92,7 +92,7 @@ class FloatParserTest extends StringValueParserTest {
 		);
 
 		foreach ( $invalid as $value ) {
-			$argLists[] = array( $value, ResultObject::newErrorText( '' ) );
+			$argLists[] = array( $value, Result::newErrorText( '' ) );
 		}
 
 		return array_merge( $argLists, parent::parseProvider() );

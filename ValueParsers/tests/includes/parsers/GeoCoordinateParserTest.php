@@ -1,7 +1,7 @@
 <?php
 
 namespace ValueParsers\Test;
-use ValueParsers\ResultObject;
+use ValueParsers\Result;
 
 /**
  * Unit tests for the GeoCoordinateValue class.
@@ -87,7 +87,7 @@ class GeoCoordinateParserTest extends StringValueParserTest {
 
 		foreach ( $valid as $value => $expected ) {
 			$expected = new \DataValues\GeoCoordinateValue( $expected[0], $expected[1] );
-			$argLists[] = array( (string)$value, ResultObject::newSuccess( $expected ) );
+			$argLists[] = array( (string)$value, Result::newSuccess( $expected ) );
 		}
 
 		return array_merge( $argLists, parent::parseProvider() );

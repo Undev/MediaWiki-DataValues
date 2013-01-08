@@ -31,7 +31,7 @@ return array(
 	'ValueParsers\ErrorObject' => 'includes/ErrorObject.php',
 	'ValueParsers\ParserOptions' => 'includes/ParserOptions.php',
 	'ValueParsers\Result' => 'includes/Result.php',
-	'ValueParsers\ResultObject' => 'includes/ResultObject.php',
+	'ValueParsers\ResultObject' => 'includes/Result.php',
 	'ValueParsers\ValueParser' => 'includes/ValueParser.php',
 	'ValueParsers\ValueParserFactory' => 'includes/ValueParserFactory.php',
 
