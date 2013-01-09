@@ -43,10 +43,10 @@ class IntParser extends StringValueParser {
 		$positiveValue = strpos( $value, '-' ) === 0 ? substr( $value, 1 ) : $value;
 
 		if ( ctype_digit( $positiveValue ) ) {
-			return ResultObject::newSuccess( new \DataValues\NumberValue( (int)$value ) );
+			return Result::newSuccess( new \DataValues\NumberValue( (int)$value ) );
 		}
 		else {
-			return ResultObject::newErrorText( 'Not an integer' );
+			return Result::newErrorText( 'Not an integer' );
 		}
 	}
 

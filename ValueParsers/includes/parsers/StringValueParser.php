@@ -63,7 +63,7 @@ abstract class StringValueParser implements ValueParser {
 			return $this->stringParse( $value );
 		}
 		else {
-			return ResultObject::newErrorText( 'Not a string' ); // TODO
+			return Result::newErrorText( 'Not a string' ); // TODO
 		}
 	}
 
@@ -86,7 +86,7 @@ abstract class StringValueParser implements ValueParser {
 	 * @return Result
 	 */
 	protected function newErrorResult( $errorMessage ) {
-		return ResultObject::newErrorText( $errorMessage );
+		return Result::newErrorText( $errorMessage );
 	}
 
 	/**
