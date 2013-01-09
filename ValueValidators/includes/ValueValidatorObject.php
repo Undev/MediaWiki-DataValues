@@ -216,4 +216,18 @@ abstract class ValueValidatorObject implements ValueValidator {
 		return true;
 	}
 
+	/**
+	 * Returns the allowed values.
+	 *
+	 * TODO: think about how to access set options in general and if we want to have
+	 * whitelist and baclklist values in the validator objects to begin with.
+	 *
+	 * @since 0.1
+	 *
+	 * @return array|boolean false
+	 */
+	public function getWhitelistedValues() {
+		return $this->allowedValues;
+	}
+
 }
