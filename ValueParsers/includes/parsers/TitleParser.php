@@ -39,7 +39,7 @@ class TitleParser extends StringValueParser {
 	 *
 	 * @return Result
 	 */
-	public function stringParse( $value ) {
+	protected function stringParse( $value ) {
 		$value = \Title::newFromText( $value );
 
 		if ( is_null( $value ) ) {

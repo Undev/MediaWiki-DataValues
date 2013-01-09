@@ -39,7 +39,7 @@ class IntParser extends StringValueParser {
 	 *
 	 * @return Result
 	 */
-	public function stringParse( $value ) {
+	protected function stringParse( $value ) {
 		$positiveValue = strpos( $value, '-' ) === 0 ? substr( $value, 1 ) : $value;
 
 		if ( ctype_digit( $positiveValue ) ) {

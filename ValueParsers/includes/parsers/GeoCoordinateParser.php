@@ -104,7 +104,7 @@ class GeoCoordinateParser extends StringValueParser {
 	 * @return Result
 	 * @throws Exception
 	 */
-	public function stringParse( $value ) {
+	protected function stringParse( $value ) {
 		$value = $this->getNormalizedNotation( $value );
 
 		$notationType = $this->getCoordinatesType( $value );

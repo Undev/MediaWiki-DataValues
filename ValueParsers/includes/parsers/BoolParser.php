@@ -50,7 +50,7 @@ class BoolParser extends StringValueParser {
 	 *
 	 * @return Result
 	 */
-	public function stringParse( $value ) {
+	protected function stringParse( $value ) {
 		$value = strtolower( $value );
 
 		if ( array_key_exists( $value, $this->values ) ) {

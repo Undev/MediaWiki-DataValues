@@ -41,9 +41,13 @@ abstract class StringValueParser implements ValueParser {
 	/**
 	 * @since 0.1
 	 *
-	 * @param ParserOptions $options
+	 * @param ParserOptions|null $options
 	 */
-	public function __construct( ParserOptions $options ) {
+	public function __construct( ParserOptions $options = null ) {
+		if ( $options === null ) {
+			$options = new ParserOptions();
+		}
+
 		$this->options = $options;
 
 		$this->defaultOption( ValueParser::OPT_LANG, 'en' );
