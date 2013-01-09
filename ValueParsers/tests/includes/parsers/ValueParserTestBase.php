@@ -70,7 +70,7 @@ abstract class ValueParserTestBase extends \MediaWikiTestCase {
 
 		$result = $parser->parse( $value );
 
-		$this->assertEquals( $expected->isValid(), $result->isValid(), 'Validity of the value is not valid' );
+		$this->assertEquals( $expected->isValid(), $result->isValid(), 'Validity of the value is not valid. Error: ' . var_export( $result->getError(), true ) );
 
 		if ( $expected->isValid() ) {
 			if ( $this->requireDataValue() ) {
