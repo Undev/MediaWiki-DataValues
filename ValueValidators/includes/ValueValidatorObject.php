@@ -83,10 +83,10 @@ abstract class ValueValidatorObject implements ValueValidator {
 		$this->doValidation( $value );
 
 		if ( $this->errors === array() ) {
-			return ResultObject::newSuccess();
+			return Result::newSuccess();
 		}
 		else {
-			return ResultObject::newError( $this->errors );
+			return Result::newError( $this->errors );
 		}
 	}
 
@@ -146,7 +146,7 @@ abstract class ValueValidatorObject implements ValueValidator {
 	 * @param string $errorMessage
 	 */
 	protected function addErrorMessage( $errorMessage ) {
-		$this->addError( ErrorObject::newError( $errorMessage ) );
+		$this->addError( Error::newError( $errorMessage ) );
 	}
 
 	/**
@@ -201,7 +201,7 @@ abstract class ValueValidatorObject implements ValueValidator {
 		 * @var Error $error
 		 */
 		foreach ( $validator->validate( $value )->getErrors() as $error ) {
-			$this->addError( ErrorObject::newError( $error->getText(), $property ) );
+			$this->addError( Error::newError( $error->getText(), $property ) );
 		}
 	}
 
