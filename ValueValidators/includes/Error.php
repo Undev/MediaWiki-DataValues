@@ -4,7 +4,6 @@ namespace ValueValidators;
 
 /**
  * Interface for ValueValidator errors.
- * Immutable.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,10 +28,43 @@ namespace ValueValidators;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-interface Error extends \Immutable {
+class Error implements \Immutable {
 
 	const SEVERITY_ERROR = 9;
 	const SEVERITY_WARNING = 4;
+
+	protected $text;
+	protected $severity;
+	protected $property;
+
+	/**
+	 * Create a new error.
+	 *
+	 * @since 0.1
+	 *
+	 * @param string $text
+	 * @param string|null $property
+	 *
+	 * @return Error
+	 */
+	public static function newError( $text = '', $property = null ) {
+		return new static( $text, Error::SEVERITY_ERROR, $property );
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @since 0.1
+	 *
+	 * @param string $text
+	 * @param integer $severity
+	 * @param string|null $property
+	 */
+	protected function __construct( $text, $severity, $property ) {
+		$this->text = $text;
+		$this->severity = $severity;
+		$this->property = $property;
+	}
 
 	/**
 	 * Returns the error text.
@@ -41,7 +73,9 @@ interface Error extends \Immutable {
 	 *
 	 * @return string
 	 */
-	public function getText();
+	public function getText() {
+		return $this->text;
+	}
 
 	/**
 	 * Returns the severity of the error
@@ -50,7 +84,9 @@ interface Error extends \Immutable {
 	 *
 	 * @return integer, element of the ValueValidatorError::SEVERITY_ enum
 	 */
-	public function getSeverity();
+	public function getSeverity() {
+		return $this->severity;
+	}
 
 	/**
 	 * Returns the property of the value for which the error occurred, or null if it occurred for the value itself.
@@ -59,6 +95,13 @@ interface Error extends \Immutable {
 	 *
 	 * @return string|null
 	 */
-	public function getProperty();
+	public function getProperty() {
+		return $this->property;
+	}
 
 }
+
+/**
+ * @deprecated
+ */
+class ErrorObject extends Error {}

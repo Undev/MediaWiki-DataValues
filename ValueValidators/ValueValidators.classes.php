@@ -28,9 +28,9 @@
  */
 return array(
 	'ValueValidators\Error' => 'includes/Error.php',
-	'ValueValidators\ErrorObject' => 'includes/ErrorObject.php',
+	'ValueValidators\ErrorObject' => 'includes/Error.php',
 	'ValueValidators\Result' => 'includes/Result.php',
-	'ValueValidators\ResultObject' => 'includes/ResultObject.php',
+	'ValueValidators\ResultObject' => 'includes/Result.php',
 	'ValueValidators\ValueValidator' => 'includes/ValueValidator.php',
 	'ValueValidators\ValueValidatorFactory' => 'includes/ValueValidatorFactory.php',
 	'ValueValidators\ValueValidatorObject' => 'includes/ValueValidatorObject.php',

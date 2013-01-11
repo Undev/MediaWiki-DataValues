@@ -40,7 +40,7 @@ class NullValidator implements ValueValidator {
 	 * @return Result
 	 */
 	public function validate( $value ) {
-		return ResultObject::newSuccess();
+		return Result::newSuccess();
 	}
 
 	/**

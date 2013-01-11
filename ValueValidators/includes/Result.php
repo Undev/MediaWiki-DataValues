@@ -4,7 +4,6 @@ namespace ValueValidators;
 
 /**
  * Interface for value validator results.
- * Immutable.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,7 +28,54 @@ namespace ValueValidators;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-interface Result extends \Immutable {
+class Result implements \Immutable {
+
+	/**
+	 * @since 0.1
+	 *
+	 * @var boolean
+	 */
+	protected $isValid;
+
+	/**
+	 * @since 0.1
+	 *
+	 * @var Error[]
+	 */
+	protected $errors = array();
+
+	/**
+	 * @since 0.1
+	 *
+	 * @return Result
+	 */
+	public static function newSuccess() {
+		return new static( true );
+	}
+
+	/**
+	 * @since 0.1
+	 *
+	 * @param Error[] $errors
+	 *
+	 * @return Result
+	 */
+	public static function newError( array $errors ) {
+		return new static( false, $errors );
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @since 0.1
+	 *
+	 * @param boolean $isValid
+	 * @param Error[] $errors
+	 */
+	protected function __construct( $isValid, array $errors = array() ) {
+		$this->isValid = $isValid;
+		$this->errors = $errors;
+	}
 
 	/**
 	 * Returns if the value was found to be valid or not.
@@ -38,7 +84,9 @@ interface Result extends \Immutable {
 	 *
 	 * @return boolean
 	 */
-	public function isValid();
+	public function isValid() {
+		return $this->isValid;
+	}
 
 	/**
 	 * Returns an array with the errors that occurred during validation.
@@ -47,6 +95,13 @@ interface Result extends \Immutable {
 	 *
 	 * @return Error[]
 	 */
-	public function getErrors();
+	public function getErrors() {
+		return $this->errors;
+	}
 
 }
+
+/**
+ * @deprecated
+ */
+class ResultObject extends Result {}
