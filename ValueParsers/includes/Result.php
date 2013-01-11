@@ -87,7 +87,7 @@ class Result implements Immutable {
 	 * @return Result
 	 */
 	public static function newErrorText( $error ) {
-		return static::newError( ErrorObject::newError( $error ) );
+		return static::newError( Error::newError( $error ) );
 	}
 
 	/**
