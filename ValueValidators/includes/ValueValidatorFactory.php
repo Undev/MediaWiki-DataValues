@@ -43,41 +43,26 @@ class ValueValidatorFactory {
 	 * Constructor.
 	 *
 	 * @since 0.1
+	 *
+	 * @param ValueValidator[] $valueValidators
 	 */
-	protected function __construct() {
-		// enforces singleton
+	public function __construct( array $valueValidators ) {
+		foreach ( $valueValidators as $validatorId => $validatorClass ) {
+			assert( is_string( $validatorId ) );
+			assert( is_string( $validatorClass ) );
+
+			$this->parsers[$validatorId] = $validatorClass;
+		}
 	}
 
 	/**
-	 * Returns the global instance of the factory.
-	 *
-	 * @since 0.1
+	 * @deprecated
 	 *
 	 * @return ValueValidatorFactory
 	 */
-	public static function singleton() {
-		static $instance = false;
-
-		if ( $instance === false ) {
-			$instance = new static();
-			$instance->initialize();
-		}
-
-
-		return $instance;
-	}
-
-	/**
-	 * Initializes the factory.
-	 *
-	 * @since 0.1
-	 */
-	protected function initialize() {
+	public function singleton() {
 		global $wgValueValidators;
-
-		foreach ( $wgValueValidators as $validatorId => $validatorClass ) {
-			$this->validators[$validatorId] = $validatorClass;
-		}
+		return new static( $wgValueValidators );
 	}
 
 	/**
