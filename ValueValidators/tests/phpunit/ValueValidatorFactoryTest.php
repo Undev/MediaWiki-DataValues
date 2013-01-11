@@ -34,13 +34,26 @@ use ValueValidators\ValueValidatorFactory;
  */
 class ValueValidatorFactoryTest extends \MediaWikiTestCase {
 
-	public function testSingleton() {
-		$this->assertInstanceOf( 'ValueValidators\ValueValidatorFactory', ValueValidatorFactory::singleton() );
-		$this->assertTrue( ValueValidatorFactory::singleton() === ValueValidatorFactory::singleton() );
+	/**
+	 * @var null|ValueValidatorFactory
+	 */
+	protected $factory = null;
+
+	/**
+	 * @since 0.1
+	 *
+	 * @return ValueValidatorFactory
+	 */
+	protected function getFactoryFromGlobals() {
+		if ( $this->factory === null ) {
+			$this->factory = new ValueValidatorFactory( $GLOBALS['wgValueValidators'] );
+		}
+
+		return $this->factory;
 	}
 
 	public function testGetValidatorIds() {
-		$ids = ValueValidatorFactory::singleton()->getValidatorIds();
+		$ids = $this->getFactoryFromGlobals()->getValidatorIds();
 		$this->assertInternalType( 'array', $ids );
 
 		foreach ( $ids as $id ) {
@@ -51,7 +64,7 @@ class ValueValidatorFactoryTest extends \MediaWikiTestCase {
 	}
 
 	public function testGetValidator() {
-		$factory = ValueValidatorFactory::singleton();
+		$factory = $this->getFactoryFromGlobals();
 
 		foreach ( $factory->getValidatorIds() as $id ) {
 			$this->assertInstanceOf( 'ValueValidators\ValueValidator', $factory->newValidator( $id ) );
@@ -61,7 +74,7 @@ class ValueValidatorFactoryTest extends \MediaWikiTestCase {
 	}
 
 	public function testGetValidatorClass() {
-		$factory = ValueValidatorFactory::singleton();
+		$factory = $this->getFactoryFromGlobals();
 
 		foreach ( $factory->getValidatorIds() as $id ) {
 			$this->assertInternalType( 'string', $factory->getValidatorClass( $id ) );
