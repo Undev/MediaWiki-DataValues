@@ -78,7 +78,7 @@ abstract class ValueFormatterTestBase extends \MediaWikiTestCase {
 	public function testValidFormat( $value, $expected, FormatterOptions $options = null ) {
 		$this->doTestFormat(
 			$value,
-			\ValueFormatters\ResultObject::newSuccess( $expected ),
+			\ValueFormatters\Result::newSuccess( $expected ),
 			$options
 		);
 	}

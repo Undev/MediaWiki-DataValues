@@ -32,7 +32,50 @@ use Exception, Immutable;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-interface Result extends Immutable {
+class Result implements Immutable {
+
+	/**
+	 * Indicates if the parsing process was successful.
+	 *
+	 * @since 0.1
+	 *
+	 * @var boolean
+	 */
+	protected $isValid;
+
+	/**
+	 * A DataValue instance representing the parsed value,
+	 * or null if the parsing process failed.
+	 *
+	 * @since 0.1
+	 *
+	 * @var mixed
+	 */
+	protected $value;
+
+	/**
+	 * @since 0.1
+	 *
+	 * @param mixed $value
+	 *
+	 * @return Result
+	 */
+	public static function newSuccess( $value ) {
+		return new static( true, $value );
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @since 0.1
+	 *
+	 * @param boolean $isValid
+	 * @param mixed $value
+	 */
+	protected function __construct( $isValid, $value = null ) {
+		$this->isValid = $isValid;
+		$this->value = $value;
+	}
 
 	/**
 	 * Returns the formatted value.
@@ -45,7 +88,14 @@ interface Result extends Immutable {
 	 * @return mixed
 	 * @throws Exception
 	 */
-	public function getValue();
+	public function getValue() {
+		if ( $this->isValid() ) {
+			return $this->value;
+		}
+		else {
+			throw new Exception( 'Cannot obtain the formatted value as the formatting process failed' );
+		}
+	}
 
 	/**
 	 * Returns if the formatting was successful.
@@ -55,6 +105,13 @@ interface Result extends Immutable {
 	 *
 	 * @return boolean
 	 */
-	public function isValid();
+	public function isValid() {
+		return $this->isValid;
+	}
 
 }
+
+/**
+ * @deprecated
+ */
+class ResultObject extends Result {}

@@ -56,7 +56,7 @@ abstract class ValueFormatterBase implements ValueFormatter {
 	 * @return Result
 	 */
 	protected function newSuccess( $value ) {
-		return ResultObject::newSuccess( $value );
+		return Result::newSuccess( $value );
 	}
 
 	/**
