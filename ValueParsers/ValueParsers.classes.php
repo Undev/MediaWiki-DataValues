@@ -28,7 +28,7 @@
  */
 return array(
 	'ValueParsers\Error' => 'includes/Error.php',
-	'ValueParsers\ErrorObject' => 'includes/ErrorObject.php',
+	'ValueParsers\ErrorObject' => 'includes/Error.php',
 	'ValueParsers\ParserOptions' => 'includes/ParserOptions.php',
 	'ValueParsers\Result' => 'includes/Result.php',
 	'ValueParsers\ResultObject' => 'includes/Result.php',
