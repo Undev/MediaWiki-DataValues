@@ -35,11 +35,10 @@
 		getParseArguments: function() {
 			return [
 				// TODO: replace test stub
-				[ '42', new dv.StringValue( 'foobar' ) ]
-//				[ '4', new dv.NumberValue( 4 ) ],
-//				[ '42', new dv.NumberValue( 42 ) ],
-//				[ '0', new dv.NumberValue( 0 ) ],
-//				[ '9001' ]
+				[ '4', new dv.NumberValue( 4 ) ],
+				[ '42', new dv.NumberValue( 42 ) ],
+				[ '0', new dv.NumberValue( 0 ) ],
+				[ '9001', new dv.NumberValue( 9001 ) ]
 			];
 		}
 

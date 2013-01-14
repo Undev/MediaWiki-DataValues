@@ -53,12 +53,21 @@ return call_user_func( function() {
 			),
 		),
 
+		'valueParsers.factory' => $moduleTemplate + array(
+			'scripts' => array(
+				'ValueParserFactory.js',
+			),
+			'dependencies' => array(
+				'valueParsers.ValueParser',
+			),
+		),
+
 		'valueParsers.parsers' => $moduleTemplate + array(
 			'scripts' => array(
 				'parsers/BoolParser.js',
+				'parsers/FloatParser.js',
 				'parsers/IntParser.js',
 				'parsers/StringParser.js',
-				//'parsers/NumberParser.js', // TODO: insert again after server-side parser is done
 				'parsers/NullParser.js',
 			),
 			'dependencies' => array(

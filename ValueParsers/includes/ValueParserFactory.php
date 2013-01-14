@@ -31,11 +31,11 @@ namespace ValueParsers;
 class ValueParserFactory {
 
 	/**
-	 * Maps parser id to ValueParser class.
+	 * Maps parser id to ValueParser class or instance.
 	 *
 	 * @since 0.1
 	 *
-	 * @var string[]
+	 * @var array
 	 */
 	protected $parsers = array();
 
@@ -74,7 +74,11 @@ class ValueParserFactory {
 	 * @return string|null
 	 */
 	public function getParserClass( $parserId ) {
-		return array_key_exists( $parserId, $this->parsers ) ? $this->parsers[$parserId] : null;
+		if ( array_key_exists( $parserId, $this->parsers ) ) {
+			return is_string( $this->parsers[$parserId] ) ? $this->parsers[$parserId] : get_class( $this->parsers[$parserId] );
+		}
+
+		return null;
 	}
 
 	/**

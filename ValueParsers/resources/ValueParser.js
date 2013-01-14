@@ -13,9 +13,22 @@
 	 * @constructor
 	 * @abstract
 	 * @since 0.1
+	 *
+	 * @param {Object} options
 	 */
-	vp.ValueParser = function() {};
+	vp.ValueParser = function( options ) {
+		this._options = options || {};
+	};
+
 	vp.ValueParser.prototype = {
+
+		/**
+		 * Parser options.
+		 * Option name: option value.
+		 *
+		 * @since 0.1
+		 */
+		_options: {},
 
 		/**
 		 * Parses a value. Will return a jQuery.Promise which will be resolved if the parsing is

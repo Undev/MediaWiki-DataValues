@@ -18,11 +18,11 @@
 	 * @extends vp.ApiBasedValueParser
 	 * @since 0.1
 	 */
-	vp.NumberParser = dv.util.inherit( PARENT, {
+	vp.FloatParser = dv.util.inherit( PARENT, {
 		/**
 		 * @see ApiBasedValueParser.API_VALUE_PARSER_ID
 		 */
-		API_VALUE_PARSER_ID: 'number'
+		API_VALUE_PARSER_ID: 'float'
 	} );
 
 }( valueParsers, dataValues, jQuery ) );
