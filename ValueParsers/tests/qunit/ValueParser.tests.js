@@ -48,7 +48,7 @@
 		 * @return vp.ValueParser
 		 */
 		getInstance: function( constructorArguments ) {
-			constructorArguments = constructorArguments || [];
+			constructorArguments = constructorArguments || this.getDefaultConstructorArgs();
 
 			var
 				self = this,
@@ -57,8 +57,11 @@
 				};
 
 			ValueParserInstance.prototype = this.getObject().prototype;
-
 			return new ValueParserInstance( constructorArguments );
+		},
+
+		getDefaultConstructorArgs: function() {
+			return [];
 		},
 
 		/**
@@ -128,7 +131,7 @@
 						}
 					} )
 					.fail( function( errorMessage ) {
-						assert.ok( false, 'parsing ' + inputDetailMsg + 'failed' );
+						assert.ok( false, 'parsing ' + inputDetailMsg + 'failed: ' + errorMessage );
 					} );
 
 				requests.push( request );

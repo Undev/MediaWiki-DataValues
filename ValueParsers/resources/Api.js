@@ -23,17 +23,21 @@
 	 *
 	 * @param {String} parser
 	 * @param {Array} values
+	 * @param {Object} options
 	 *
 	 * @return $.Promise
 	 */
-	vp.api.parseValues = function( parser, values ) {
+	vp.api.parseValues = function( parser, values, options ) {
 		var api = new mw.Api(),
 			deferred = $.Deferred();
+
+		options = options || {};
 
 		api.get( {
 			action: 'parsevalue',
 			parser: parser,
-			values: values.join( '|' )
+			values: values.join( '|' ),
+			options: $.toJSON( options )
 		} ).done( function( apiResult ) {
 			if ( apiResult.hasOwnProperty( 'results' ) ) {
 				var dataValues = [];
@@ -42,25 +46,15 @@
 					var result = apiResult.results[i];
 
 					if ( result.hasOwnProperty( 'value' ) && result.hasOwnProperty( 'type' ) ) {
-						// TODO: get dv from factory using factory.getDv( result['type'], result['value'] )
-						var dataValue;
-
-						switch ( result['type'] ) {
-							case 'boolean':
-								dataValue = new dv.BoolValue( result['value'] );
-								break;
-							case 'number':
-								dataValue = new dv.StringValue( 'foobar' );
-								break;
-							case 'unknown':
-								dataValue = new dv.UnknownValue( result['value'] );
-								break;
+						try {
+							dataValues.push( dv.newDataValue( result['type'], result['value'] ) );
 						}
-
-						dataValues.push( dataValue );
+						catch ( error ) {
+							deferred.reject( error.hasOwnProperty( 'message' ) ? error.message : 'Unknown error during value unserialization' );
+						}
 					}
 					else {
-						deferred.reject( result.hasOwnProperty( 'error' ) ? result.error : 'Unknown error' );
+						deferred.reject( result.hasOwnProperty( 'error' ) ? result.error : 'Unknown error from the API' );
 					}
 				}
 

@@ -57,9 +57,8 @@ class ApiParseValue extends ApiBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 
-		$parserOptions = new ParserOptions();
-		$parserOptions->setOption( ValueParser::OPT_LANG, $this->getLanguage()->getCode() );
-		$parser = $this->getFactory()->newParser( $params['parser'], $parserOptions );
+		$options = $this->getOptionsObject( $params['options'] );
+		$parser = $this->getFactory()->newParser( $params['parser'], $options );
 
 		// Paranoid check, should never fail as we only accept registered parsers for the parser parameter.
 		if ( $parser === null ) {
@@ -103,6 +102,28 @@ class ApiParseValue extends ApiBase {
 	}
 
 	/**
+	 * @since 0.1
+	 *
+	 * @param string $optionsParam
+	 *
+	 * @return ParserOptions
+	 */
+	protected function getOptionsObject( $optionsParam ) {
+		$parserOptions = new ParserOptions();
+		$parserOptions->setOption( ValueParser::OPT_LANG, $this->getLanguage()->getCode() );
+
+		$options = \FormatJson::decode( $optionsParam, true );
+
+		if ( is_array( $options ) ) {
+			foreach ( $options as $name => $value ) {
+				$parserOptions->setOption( $name, $value );
+			}
+		}
+
+		return $parserOptions;
+	}
+
+	/**
 	 * @see ApiBase::getAllowedParams
 	 *
 	 * @since 0.1
@@ -120,7 +141,10 @@ class ApiParseValue extends ApiBase {
 				ApiBase::PARAM_REQUIRED => true,
 				ApiBase::PARAM_ISMULTI => true,
 			),
-			// TODO: options
+			'options' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => false,
+			),
 		);
 	}
 
@@ -135,6 +159,7 @@ class ApiParseValue extends ApiBase {
 		return array(
 			'parser' => 'Id of the ValueParser to use',
 			'values' => 'The values to parse',
+			'options' => 'The options the parser should use. Provided as a JSON object.',
 		);
 	}
 

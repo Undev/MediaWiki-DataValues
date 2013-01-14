@@ -37,7 +37,7 @@
 		parse: function( rawValue ) {
 			var deferred = $.Deferred();
 
-			vp.api.parseValues( this.API_VALUE_PARSER_ID, [ rawValue ] )
+			vp.api.parseValues( this.API_VALUE_PARSER_ID, [ rawValue ], this._options )
 				.done( function( results ) {
 					// we don't want to give an array, only the one DV related to the given rawValue
 					deferred.resolve( results[0] );
