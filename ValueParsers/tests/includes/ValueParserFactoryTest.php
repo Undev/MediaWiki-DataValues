@@ -69,7 +69,13 @@ class ValueParserFactoryTest extends \MediaWikiTestCase {
 		$options = new \ValueParsers\ParserOptions();
 
 		foreach ( $factory->getParserIds() as $id ) {
-			$this->assertInstanceOf( 'ValueParsers\ValueParser', $factory->newParser( $id, $options ) );
+			try {
+				$parser = $factory->newParser( $id, $options );
+				$this->assertInstanceOf( 'ValueParsers\ValueParser', $parser );
+			}
+			catch ( \Exception $ex ) {
+				$this->assertTrue( true, 'Exceptions can be raised due to not providing required options' );
+			}
 		}
 
 		$this->assertInternalType( 'null', $factory->newParser( "I'm in your tests, being rather silly ~=[,,_,,]:3", $options ) );
