@@ -197,6 +197,13 @@ $messages['si'] = array(
 	'valuevalidators-desc' => 'DataValues සඳහා සත්‍යාපන සංරචකවල එකතුව',
 );
 
+/** Swedish (svenska)
+ * @author Lokal Profil
+ */
+$messages['sv'] = array(
+	'valuevalidators-desc' => 'Samling av valideringskomponenterna för DataValues',
+);
+
 /** Ukrainian (українська)
  * @author Base
  */

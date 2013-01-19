@@ -200,6 +200,13 @@ $messages['ru'] = array(
 	'valueformatters-desc' => 'Коллекция форматтеров, принимающих некоторые значения и форматирующих их',
 );
 
+/** Swedish (svenska)
+ * @author Lokal Profil
+ */
+$messages['sv'] = array(
+	'valueformatters-desc' => 'Samling av formaterare som tar viss indata och formaterar den',
+);
+
 /** Ukrainian (українська)
  * @author Base
  */
