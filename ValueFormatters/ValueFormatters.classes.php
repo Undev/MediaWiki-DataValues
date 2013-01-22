@@ -30,7 +30,6 @@ return array(
 	'ValueFormatters\FormatterOptions' => 'includes/FormatterOptions.php',
 	'ValueFormatters\Result' => 'includes/Result.php',
 	'ValueFormatters\ResultObject' => 'includes/Result.php',
-	'ValueFormatters\SimpleFormatterOptions' => 'includes/SimpleFormatterOptions.php',
 	'ValueFormatters\ValueFormatter' => 'includes/ValueFormatter.php',
 	'ValueFormatters\ValueFormatterBase' => 'includes/ValueFormatterBase.php',
 	'ValueFormatters\ValueFormatterFactory' => 'includes/ValueFormatterFactory.php',
