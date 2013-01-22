@@ -63,6 +63,7 @@ foreach ( include( __DIR__ . '/ValueValidators.classes.php' ) as $class => $file
 $wgHooks['UnitTestsList'][] = function( array &$files ) {
 	// @codeCoverageIgnoreStart
 	$testFiles = array(
+		'Error',
 		'ValueValidatorFactory',
 	);
 
