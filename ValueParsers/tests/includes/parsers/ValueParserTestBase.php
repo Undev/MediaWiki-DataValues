@@ -52,8 +52,7 @@ abstract class ValueParserTestBase extends \MediaWikiTestCase {
 	 */
 	protected function getInstance() {
 		$class = $this->getParserClass();
-		$options = new \ValueParsers\ParserOptions();
-		return new $class( $options );
+		return new $class( $this->newParserOptions() );
 	}
 
 	/**
@@ -98,6 +97,17 @@ abstract class ValueParserTestBase extends \MediaWikiTestCase {
 	 */
 	protected function requireDataValue() {
 		return true;
+	}
+
+	/**
+	 * Returns some parser options object with all required options for the parser under test set.
+	 *
+	 * @since 0.1
+	 *
+	 * @return \ValueParsers\ParserOptions
+	 */
+	protected function newParserOptions() {
+		return new \ValueParsers\ParserOptions();
 	}
 
 }
