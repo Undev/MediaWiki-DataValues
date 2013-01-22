@@ -3,7 +3,6 @@
 namespace ValueParsers\Test;
 use ValueParsers\ParserOptions;
 
-
 /**
  * Unit tests for the ValueParsers\ParserOptions class.
  *
@@ -114,6 +113,43 @@ class ParserOptionsTest extends \MediaWikiTestCase {
 
 		$this->assertFalse( $parserOptions->hasOption( 'ohi' ) );
 		$this->assertFalse( $parserOptions->hasOption( 'Foo' ) );
+	}
+
+	public function testSetOption() {
+		$parserOptions = new ParserOptions( array( 'foo' => 'bar' ) );
+
+		$values = array(
+			array( 'foo', 'baz' ),
+			array( 'foo', 'bar' ),
+			array( 'onoez', '' ),
+			array( 'hax', 'zor' ),
+			array( 'nyan', 9001 ),
+			array( 'cat', 4.2 ),
+			array( 'spam', array( '~=[,,_,,]:3' ) ),
+		);
+
+		foreach ( $values as $value ) {
+			$parserOptions->setOption( $value[0], $value[1] );
+			$this->assertEquals( $value[1], $parserOptions->getOption( $value[0] ) );
+		}
+	}
+
+	public function testForSomeReasonPhpSegfaultsIfThereIsOneMethodLess() {
+		$this->assertTrue( (bool)'This is fucking weird' );
+	}
+
+	public function testGetOption() {
+		$this->assertTrue( true );
+		$parserOptions = new ParserOptions( array( 'foo' => 'bar' ) );
+
+		foreach ( array( 'bar', 'Foo', 'FOO', 'spam', 'onoez' ) as $nonExistingOption ) {
+			$this->assertException(
+				function() use ( $parserOptions, $nonExistingOption ) {
+					$parserOptions->getOption( $nonExistingOption );
+				},
+				'InvalidArgumentException'
+			);
+		}
 	}
 
 	public function testRequireOption() {
