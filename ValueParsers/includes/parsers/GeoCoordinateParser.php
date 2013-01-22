@@ -77,9 +77,9 @@ class GeoCoordinateParser extends StringValueParser {
 	/**
 	 * @since 0.1
 	 *
-	 * @param ParserOptions $options
+	 * @param ParserOptions|null $options
 	 */
-	public function __construct( ParserOptions $options ) {
+	public function __construct( ParserOptions $options = null ) {
 		parent::__construct( $options );
 
 		$this->defaultOption( self::OPT_NORTH_SYMBOL, 'N' );
@@ -116,7 +116,9 @@ class GeoCoordinateParser extends StringValueParser {
 		$coordinates = explode( $this->getOption( self::OPT_SEPARATOR_SYMBOL ), $value );
 
 		if ( count( $coordinates ) !== 2 ) {
+			// @codeCoverageIgnoreStart
 			throw new Exception( 'A coordinates string with an incorrect segment count has made it through validation' );
+			// @codeCoverageIgnoreEnd
 		}
 
 		list( $latitude, $longitude ) = $coordinates;
@@ -154,7 +156,9 @@ class GeoCoordinateParser extends StringValueParser {
 			case self::TYPE_DMS:
 				return $this->parseDMSCoordinate( $coordinate );
 			default:
+				// @codeCoverageIgnoreStart
 				throw new InvalidArgumentException( 'Invalid coordinate type specified' );
+				// @codeCoverageIgnoreEnd
 		}
 	}
 
@@ -168,7 +172,7 @@ class GeoCoordinateParser extends StringValueParser {
 	 *
 	 * @return integer or false
 	 */
-	public function getCoordinatesType( $coordinates ) {
+	protected function getCoordinatesType( $coordinates ) {
 		switch ( true ) {
 			case $this->areFloatCoordinates( $coordinates ):
 				return self::TYPE_FLOAT;

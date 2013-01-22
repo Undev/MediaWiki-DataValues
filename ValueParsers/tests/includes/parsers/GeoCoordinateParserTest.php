@@ -2,6 +2,7 @@
 
 namespace ValueParsers\Test;
 use ValueParsers\Result;
+use ValueParsers\GeoCoordinateParser;
 
 /**
  * Unit tests for the GeoCoordinateValue class.
@@ -88,6 +89,10 @@ class GeoCoordinateParserTest extends StringValueParserTest {
 		foreach ( $valid as $value => $expected ) {
 			$expected = new \DataValues\GeoCoordinateValue( $expected[0], $expected[1] );
 			$argLists[] = array( (string)$value, Result::newSuccess( $expected ) );
+		}
+
+		foreach ( array( '~=[,,_,,]:3', 'ohi there' ) as $invalid ) {
+			$argLists[] = array( $invalid, Result::newErrorText( 'Not a geographical coordinate' ) );
 		}
 
 		return array_merge( $argLists, parent::parseProvider() );

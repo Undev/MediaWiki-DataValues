@@ -2,6 +2,8 @@
 
 namespace ValueParsers\Test;
 use ValueParsers\Result;
+use ValueParsers\ParserOptions;
+use ValueParsers\StringValueParser;
 
 /**
  * Unit test StringValueParser class.
@@ -58,6 +60,26 @@ abstract class StringValueParserTest extends ValueParserTestBase {
 		}
 
 		return $argLists;
+	}
+
+	public function testSetAndGetOptions() {
+		$options = new ParserOptions();
+
+		/**
+		 * @var StringValueParser $parser
+		 */
+		$parser = $this->getInstance();
+
+		$parser->setOptions( $options );
+
+		$this->assertEquals( $options, $parser->getOptions() );
+
+		$options = new ParserOptions();
+		$options->setOption( '~=[,,_,,]:3', '~=[,,_,,]:3' );
+
+		$parser->setOptions( $options );
+
+		$this->assertEquals( $options, $parser->getOptions() );
 	}
 
 }
