@@ -65,6 +65,7 @@ $wgHooks['UnitTestsList'][] = function( array &$files ) {
 	$testFiles = array(
 		'formatters/GeoCoordinateFormatter',
 
+		'FormatterOptions',
 		'ValueFormatterFactory',
 	);
 
