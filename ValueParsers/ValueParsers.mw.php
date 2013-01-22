@@ -98,6 +98,7 @@ $wgHooks['UnitTestsList'][] = function( array &$files ) {
  * @return boolean
  */
 $wgHooks['ResourceLoaderTestModules'][] = function ( array &$testModules, \ResourceLoader &$resourceLoader ) {
+	// @codeCoverageIgnoreStart
 	$moduleTemplate = array(
 		'localBasePath' => __DIR__,
 		'remoteExtPath' => 'DataValues/ValueParsers',
@@ -136,6 +137,7 @@ $wgHooks['ResourceLoaderTestModules'][] = function ( array &$testModules, \Resou
 	);
 
 	return true;
+	// @codeCoverageIgnoreEnd
 };
 
 // Resource Loader module registration
