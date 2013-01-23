@@ -34,7 +34,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 global $wgExtensionCredits, $wgExtensionMessagesFiles, $wgAutoloadClasses, $wgHooks;
 
 $wgExtensionCredits['datavalues'][] = array(
-	'path' => __FILE__,
+	'path' => __DIR__,
 	'name' => 'ValueValidators',
 	'version' => ValueValidators_VERSION,
 	'author' => array( '[https://www.mediawiki.org/wiki/User:Jeroen_De_Dauw Jeroen De Dauw]' ),
