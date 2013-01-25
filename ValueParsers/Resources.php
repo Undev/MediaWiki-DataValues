@@ -93,6 +93,7 @@ return call_user_func( function() {
 			'dependencies' => array(
 				'valueParsers',
 				'dataValues.values',
+				'jquery.json',
 			),
 		),
 	);
