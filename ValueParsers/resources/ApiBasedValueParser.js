@@ -42,8 +42,8 @@
 					// we don't want to give an array, only the one DV related to the given rawValue
 					deferred.resolve( results[0] );
 				} )
-				.fail( function( error ) {
-					deferred.reject( error );
+				.fail( function( error, details ) {
+					deferred.reject( error, details );
 				} );
 
 			return deferred.promise();
