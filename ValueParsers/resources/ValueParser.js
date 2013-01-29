@@ -4,7 +4,7 @@
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-( function( vp, $, undefined ) {
+( function( vp, $ ) {
 	'use strict';
 
 	/**
@@ -33,7 +33,13 @@
 		/**
 		 * Parses a value. Will return a jQuery.Promise which will be resolved if the parsing is
 		 * successful or rejected if it fails. There can be various reasons for the parsing to fail,
-		 * e.g. the parser is using the API and the API can't be reached.
+		 * e.g. the parser is using the API and the API can't be reached. In case of success, the
+		 * callbacks will get a dataValues.DataValue object. In case of failure, the callback's
+		 * parameter will be an error object of some sort (not implemented yet!).
+		 *
+		 * TODO: Specify Error object for parser failure. Consider different error scenarios e.g.
+		 *       API can not be reached or real parsing issues.
+		 * TODO: Think about introducing parser warnings or a status object in done() callbacks.
 		 *
 		 * @since 0.1
 		 *
