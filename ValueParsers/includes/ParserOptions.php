@@ -45,7 +45,9 @@ final class ParserOptions {
 	 */
 	public function __construct( array $options = array() ) {
 		foreach ( array_keys( $options ) as $option ) {
-			assert( is_string( $option ) );
+			if ( !is_string( $option ) ) {
+				throw new InvalidArgumentException( 'Option names need to be strings' );
+			}
 		}
 
 		$this->options = $options;
