@@ -171,6 +171,13 @@ $messages['ms'] = array(
 	'valueformatters-desc' => 'Koleksi pemformat yang mengambil input lalu memformatkannya',
 );
 
+/** Norwegian Bokmål (norsk bokmål)
+ * @author Jeblad
+ */
+$messages['nb'] = array(
+	'valueformatters-desc' => "Samling av ''formattere'' som tar dataverdier og gjør de om til en presentasjonsform",
+);
+
 /** Dutch (Nederlands)
  * @author Siebrand
  */

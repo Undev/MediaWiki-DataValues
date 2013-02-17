@@ -162,6 +162,13 @@ $messages['ms'] = array(
 	'valueparsers-desc' => 'Koleksi penghurai yang mengambil input lalu menukarkannya kepada DataValue',
 );
 
+/** Norwegian Bokmål (norsk bokmål)
+ * @author Jeblad
+ */
+$messages['nb'] = array(
+	'valueparsers-desc' => "Samling av ''parsere'' som tar et argument og gjør det om til en dataverdi",
+);
+
 /** Dutch (Nederlands)
  * @author Siebrand
  */

@@ -162,6 +162,13 @@ $messages['ms'] = array(
 	'valuevalidators-desc' => 'Koleksi komponen penentusahan untuk DataValues',
 );
 
+/** Norwegian Bokmål (norsk bokmål)
+ * @author Jeblad
+ */
+$messages['nb'] = array(
+	'valuevalidators-desc' => "Samling av ''validatorer'' for dataverdier",
+);
+
 /** Dutch (Nederlands)
  * @author Siebrand
  */
