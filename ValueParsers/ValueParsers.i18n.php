@@ -78,6 +78,13 @@ $messages['es'] = array(
 	'valueparsers-desc' => 'Colección de analizadores que toman un valor de entrada y lo convierten en un valor DataValue',
 );
 
+/** Persian (فارسی)
+ * @author Calak
+ */
+$messages['fa'] = array(
+	'valueparsers-desc' => 'مجموعه‌ای از تجزیه‌کننده‌ها که تعدادی ورودی گرفته و آن را تبدیل به مقدار داده می‌کند',
+);
+
 /** French (français)
  * @author Gomoko
  */

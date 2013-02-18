@@ -80,6 +80,13 @@ $messages['es'] = array(
 	'valueformatters-desc' => 'Colección de programas de formato que toman alguna entrada para darle formato',
 );
 
+/** Persian (فارسی)
+ * @author Calak
+ */
+$messages['fa'] = array(
+	'valueformatters-desc' => 'مجموعه‌ای از قالب‌بندی‌ها که تعدادی ورودی گرفته و آن را قالب‌بندی می‌کند',
+);
+
 /** French (français)
  * @author Gomoko
  */
