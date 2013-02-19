@@ -44,6 +44,13 @@ $messages['qqq'] = array(
 	'valueformatters-desc' => '{{desc|name=Value Formatters|url=http://www.mediawiki.org/wiki/Extension:DataValues}}',
 );
 
+/** Arabic (العربية)
+ * @author Tarawneh
+ */
+$messages['ar'] = array(
+	'valueformatters-desc' => 'مجموعة مُنسِّقات تأخذ بعض المُدخلات وتنسقها',
+);
+
 /** Asturian (asturianu)
  * @author Xuacu
  */

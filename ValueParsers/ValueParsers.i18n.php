@@ -43,6 +43,13 @@ $messages['qqq'] = array(
 	'valueparsers-desc' => '{{desc|name=Value Parsers|url=http://www.mediawiki.org/wiki/Extension:ValueParsers}}',
 );
 
+/** Arabic (العربية)
+ * @author Abanima
+ */
+$messages['ar'] = array(
+	'valueparsers-desc' => 'مجموعة بارسرات تأخذ مدخلة ما وتحولها إلى DataValue',
+);
+
 /** Asturian (asturianu)
  * @author Xuacu
  */

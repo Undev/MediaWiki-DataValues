@@ -43,6 +43,13 @@ $messages['qqq'] = array(
 	'valuevalidators-desc' => '{{desc|name=Value Validators|url=http://www.mediawiki.org/wiki/Extension:ValueValidators}}',
 );
 
+/** Arabic (العربية)
+ * @author Tarawneh
+ */
+$messages['ar'] = array(
+	'valuevalidators-desc' => 'مجموعة من عناصر تحقق صحة الداتافالويز',
+);
+
 /** Asturian (asturianu)
  * @author Xuacu
  */
