@@ -14,7 +14,7 @@
 	 *
 	 * @param {Object} valueParsers
 	 */
-	vp.ValueParserFactory = function( valueParsers ) {
+	vp.ValueParserFactory = function VpValueParserFactory( valueParsers ) {
 		this._parsers = {};
 
 		for ( var parserId in valueParsers ) {

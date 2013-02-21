@@ -4,7 +4,7 @@
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-( function( mw, vp, $, dv, undefined ) {
+( function( mw, vp, $, dv ) {
 	'use strict';
 
 	/**
