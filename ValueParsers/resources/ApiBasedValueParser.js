@@ -6,7 +6,7 @@
  *
  * @author Daniel Werner < danweetz@web.de >
  */
-( function( vp, dv, $, undefined ) {
+( function( vp, dv, $ ) {
 	'use strict';
 
 	var PARENT = vp.ValueParser;
@@ -20,7 +20,7 @@
 	 * @abstract
 	 * @since 0.1
 	 */
-	vp.ApiBasedValueParser = dv.util.inherit( PARENT, {
+	vp.ApiBasedValueParser = dv.util.inherit( 'VpApiBasedValueParser', PARENT, {
 		/**
 		 * The key of the related API parser.
 		 * @type String

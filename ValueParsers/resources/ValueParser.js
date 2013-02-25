@@ -16,7 +16,7 @@
 	 *
 	 * @param {Object} options
 	 */
-	vp.ValueParser = function( options ) {
+	vp.ValueParser = function VpValueParser( options ) {
 		this._options = options || {};
 	};
 
