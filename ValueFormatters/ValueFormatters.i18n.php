@@ -136,6 +136,13 @@ $messages['id'] = array(
 	'valueformatters-desc' => 'Kumpulan formater yang mengambil sejumlah input dan memformatnya',
 );
 
+/** Iloko (Ilokano)
+ * @author Lam-ang
+ */
+$messages['ilo'] = array(
+	'valueformatters-desc' => 'Urnong dagiti panagporma a makaala ti sumagmamano a panangikabil ken pormaenna daytoy',
+);
+
 /** Italian (italiano)
  * @author Beta16
  */

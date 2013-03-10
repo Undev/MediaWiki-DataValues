@@ -127,6 +127,13 @@ $messages['id'] = array(
 	'valueparsers-desc' => 'Kumpulan parser yang mengambil sejumlah input dan mengubahnya menjadi DataValue',
 );
 
+/** Iloko (Ilokano)
+ * @author Lam-ang
+ */
+$messages['ilo'] = array(
+	'valueparsers-desc' => 'Urnong dagiti parser a makaala ti sumagmamano a panagikabil ken pagbalinenna iti maysa a DataValue',
+);
+
 /** Italian (italiano)
  * @author Beta16
  */

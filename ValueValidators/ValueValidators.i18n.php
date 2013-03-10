@@ -85,6 +85,13 @@ $messages['es'] = array(
 	'valuevalidators-desc' => 'Colección de componentes de validación para DataValues',
 );
 
+/** Persian (فارسی)
+ * @author Reza1615
+ */
+$messages['fa'] = array(
+	'valuevalidators-desc' => 'مجموعه‌ای از اجزای ارزشیابی برای ارزش اطلاعات',
+);
+
 /** French (français)
  * @author Gomoko
  */
@@ -118,6 +125,13 @@ $messages['hsb'] = array(
  */
 $messages['id'] = array(
 	'valuevalidators-desc' => 'Kumpulan komponen validasi untuk DataValues',
+);
+
+/** Iloko (Ilokano)
+ * @author Lam-ang
+ */
+$messages['ilo'] = array(
+	'valuevalidators-desc' => 'Urnong dagiti pangpasingked a paset para iti DataValues',
 );
 
 /** Italian (italiano)
