@@ -16,12 +16,11 @@
 	 *
 	 * @param {Object} options
 	 */
-	vp.ValueParser = function VpValueParser( options ) {
+	var SELF = vp.ValueParser = function VpValueParser( options ) {
 		this._options = options || {};
 	};
 
-	vp.ValueParser.prototype = {
-
+	$.extend( SELF.prototype, {
 		/**
 		 * Parser options.
 		 * Option name: option value.
@@ -50,6 +49,6 @@
 		 */
 		parse: vp.util.abstractMember
 
-	};
+	} );
 
 }( valueParsers, jQuery ) );

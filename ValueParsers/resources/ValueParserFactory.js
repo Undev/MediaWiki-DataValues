@@ -5,7 +5,7 @@
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-( function( vp, $, undefined ) {
+( function( vp, $ ) {
 	'use strict';
 
 	/**
@@ -14,7 +14,7 @@
 	 *
 	 * @param {Object} valueParsers
 	 */
-	vp.ValueParserFactory = function VpValueParserFactory( valueParsers ) {
+	var SELF = vp.ValueParserFactory = function VpValueParserFactory( valueParsers ) {
 		this._parsers = {};
 
 		for ( var parserId in valueParsers ) {
@@ -24,8 +24,7 @@
 		}
 	};
 
-	vp.ValueParserFactory.prototype = {
-
+	$.extend( SELF.prototype, {
 		/**
 		 * @type Object
 		 */
@@ -76,6 +75,6 @@
 			throw new Error( 'Instantiated parser does not implement vp.ValueParser interface' );
 		}
 
-	};
+	} );
 
 }( valueParsers, jQuery ) );
