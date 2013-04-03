@@ -64,6 +64,13 @@ $messages['be-tarask'] = array(
 	'valuevalidators-desc' => 'Збор сродкаў праверкі для DataValues',
 );
 
+/** Czech (česky)
+ * @author Mormegil
+ */
+$messages['cs'] = array(
+	'valuevalidators-desc' => 'Soubor validačních komponent pro DataValues',
+);
+
 /** German (Deutsch)
  * @author Kghbln
  */

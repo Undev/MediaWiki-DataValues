@@ -65,6 +65,13 @@ $messages['be-tarask'] = array(
 	'valueformatters-desc' => 'Збор фарматавальнікаў, якія пераўтвараюць пададзеныя зьвесткі ў патрэбны фармат',
 );
 
+/** Czech (česky)
+ * @author Mormegil
+ */
+$messages['cs'] = array(
+	'valueformatters-desc' => 'Soubor formátovačů, které naformátují dodaný vstup',
+);
+
 /** German (Deutsch)
  * @author Kghbln
  * @author Metalhead64

@@ -64,6 +64,13 @@ $messages['be-tarask'] = array(
 	'valueparsers-desc' => 'Збор парсэраў для апрацоўкі зьвестак і пераўтварэньня ў DataValue',
 );
 
+/** Czech (česky)
+ * @author Mormegil
+ */
+$messages['cs'] = array(
+	'valueparsers-desc' => 'Soubor parserů, které z dodaného vstupu vytvoří DataValue',
+);
+
 /** German (Deutsch)
  * @author Kghbln
  */
