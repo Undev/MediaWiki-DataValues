@@ -148,7 +148,7 @@ class FormatterOptionsTest extends \MediaWikiTestCase {
 				function() use ( $formatterOptions, $nonExistingOption ) {
 					$formatterOptions->getOption( $nonExistingOption );
 				},
-				'InvalidArgumentException'
+				'OutOfBoundsException'
 			);
 		}
 	}
