@@ -40,8 +40,6 @@ class ValueValidatorFactory {
 	protected $validators = array();
 
 	/**
-	 * Constructor.
-	 *
 	 * @since 0.1
 	 *
 	 * @param ValueValidator[] $valueValidators

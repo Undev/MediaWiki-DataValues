@@ -41,8 +41,6 @@ final class FormatterOptions {
 	protected $options;
 
 	/**
-	 * Constructor.
-	 *
 	 * @since 0.1
 	 *
 	 * @throws InvalidArgumentException
