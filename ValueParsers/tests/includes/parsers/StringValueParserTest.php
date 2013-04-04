@@ -1,8 +1,8 @@
 <?php
 
 namespace ValueParsers\Test;
+
 use ValueParsers\Result;
-use ValueParsers\ParserOptions;
 use ValueParsers\StringValueParser;
 
 /**

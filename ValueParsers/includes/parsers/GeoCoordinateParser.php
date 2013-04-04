@@ -1,7 +1,9 @@
 <?php
 
 namespace ValueParsers;
-use Exception, InvalidArgumentException;
+
+use Exception;
+use InvalidArgumentException;
 
 /**
  * ValueParser that parses the string representation of a geographical coordinate.

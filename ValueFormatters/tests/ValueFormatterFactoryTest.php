@@ -1,6 +1,7 @@
 <?php
 
 namespace ValueFormatters\Test;
+
 use ValueFormatters\ValueFormatterFactory;
 
 /**

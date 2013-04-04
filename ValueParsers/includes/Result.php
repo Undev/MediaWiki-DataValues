@@ -1,7 +1,9 @@
 <?php
 
 namespace ValueParsers;
-use Exception, Immutable;
+
+use Exception;
+use Immutable;
 
 /**
  * Result of a parsing process.

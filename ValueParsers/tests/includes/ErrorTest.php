@@ -1,8 +1,8 @@
 <?php
 
 namespace ValueParsers\Test;
-use ValueParsers\Error;
 
+use ValueParsers\Error;
 
 /**
  * Unit tests for the ValueParsers\Error class.

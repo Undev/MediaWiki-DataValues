@@ -1,7 +1,9 @@
 <?php
 
 namespace ValueParsers;
-use ApiBase, MWException;
+
+use ApiBase;
+use MWException;
 
 /**
  * API module for using value parsers.

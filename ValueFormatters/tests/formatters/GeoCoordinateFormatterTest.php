@@ -1,6 +1,7 @@
 <?php
 
 namespace ValueFormatters\Test;
+
 use DataValues\GeoCoordinateValue;
 use ValueFormatters\GeoCoordinateFormatter;
 

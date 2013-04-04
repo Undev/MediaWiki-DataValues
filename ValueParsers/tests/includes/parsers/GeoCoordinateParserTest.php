@@ -1,8 +1,9 @@
 <?php
 
 namespace ValueParsers\Test;
-use ValueParsers\Result;
+
 use ValueParsers\GeoCoordinateParser;
+use ValueParsers\Result;
 
 /**
  * Unit tests for the GeoCoordinateValue class.

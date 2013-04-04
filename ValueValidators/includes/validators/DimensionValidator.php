@@ -1,6 +1,7 @@
 <?php
 
 namespace ValueValidators;
+
 use Exception;
 
 /**

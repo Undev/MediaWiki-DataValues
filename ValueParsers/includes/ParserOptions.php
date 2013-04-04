@@ -1,7 +1,9 @@
 <?php
 
 namespace ValueParsers;
-use InvalidArgumentException, RuntimeException;
+
+use InvalidArgumentException;
+use RuntimeException;
 
 /**
  * Options interface for parsers.

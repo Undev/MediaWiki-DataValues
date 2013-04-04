@@ -1,9 +1,10 @@
 <?php
 
 namespace ValueFormatters\Test;
-use ValueFormatters\ValueFormatter;
-use ValueFormatters\Result;
+
 use ValueFormatters\FormatterOptions;
+use ValueFormatters\Result;
+use ValueFormatters\ValueFormatter;
 
 /**
  * Base for unit tests for ValueFormatter implementing classes.

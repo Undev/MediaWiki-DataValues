@@ -1,6 +1,7 @@
 <?php
 
 namespace ValueParsers\Test;
+
 use ValueParsers\Result;
 use ValueParsers\ValueParser;
 

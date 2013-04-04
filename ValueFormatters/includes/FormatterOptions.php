@@ -1,7 +1,9 @@
 <?php
 
 namespace ValueFormatters;
-use InvalidArgumentException, RuntimeException;
+
+use InvalidArgumentException;
+use RuntimeException;
 
 /**
  * Object holding options for a formatter.

@@ -1,7 +1,9 @@
 <?php
 
 namespace ValueFormatters;
-use Exception, Immutable;
+
+use Exception;
+use Immutable;
 
 /**
  * Interface for value parser results.

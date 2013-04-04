@@ -1,8 +1,8 @@
 <?php
 
 namespace ValueValidators\Test;
-use ValueValidators\Error;
 
+use ValueValidators\Error;
 
 /**
  * Unit tests for the ValueParsers\Error class.

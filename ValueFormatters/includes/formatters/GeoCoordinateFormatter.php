@@ -1,7 +1,9 @@
 <?php
 
 namespace ValueFormatters;
-use DataValues\GeoCoordinateValue, InvalidArgumentException;
+
+use DataValues\GeoCoordinateValue;
+use InvalidArgumentException;
 
 /**
  * Geographical coordinates formatter.

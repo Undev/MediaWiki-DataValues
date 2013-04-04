@@ -1,6 +1,7 @@
 <?php
 
 namespace ValueParsers;
+
 use RuntimeException;
 
 /**
