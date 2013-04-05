@@ -26,6 +26,7 @@ call_user_func( function() {
 		'ValueValidators',
 		'ValueFormatters',
 		'DataTypes',
+		'ValueView'
 	);
 
 	foreach ( $components as $component ) {
