@@ -6,7 +6,7 @@
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-( function( vp, dv, $, QUnit, undefined ) {
+( function( vp, dv, $, QUnit ) {
 	'use strict';
 
 	var PARENT = vp.tests.ValueParserTest,
@@ -34,9 +34,12 @@
 		 */
 		getParseArguments: function() {
 			var date = new Date(),
-				list = [ true, false, null ];
+				list = [ true, false, null ],
+				dataValue = new dv.UnknownValue( 'foo' );
 
 			return [
+				[ dataValue, dataValue ],
+				[ null, null ],
 				[ '42', new dv.UnknownValue( '42' ) ],
 				[ -4.2, new dv.UnknownValue( -4.2 ) ],
 				[ date, new dv.UnknownValue( date ) ],

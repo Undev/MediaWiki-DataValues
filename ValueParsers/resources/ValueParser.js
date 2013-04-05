@@ -45,7 +45,7 @@
 		 * @param {*} rawValue
 		 *
 		 * @return $.Promise In the resolved callbacks the first parameter will be the parsed
-		 *         DataValue object.
+		 *         DataValue object or null for an empty value.
 		 */
 		parse: vp.util.abstractMember
 

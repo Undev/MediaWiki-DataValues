@@ -119,13 +119,13 @@
 						assert.ok( true, 'parsing succeeded' );
 
 						assert.ok(
-							dataValue instanceof dv.DataValue,
-							'result ' + inputDetailMsg + 'is instanceof DataValue'
+							dataValue === null || ( dataValue instanceof dv.DataValue ),
+							'result ' + inputDetailMsg + 'is instanceof DataValue or null'
 						);
 
 						if( expected !== undefined ) {
 							assert.ok(
-								dataValue.equals( expected ),
+								dataValue === expected || dataValue.equals( expected ),
 								'result ' + inputDetailMsg + 'is equal to the expected DataValue'
 							);
 						}
