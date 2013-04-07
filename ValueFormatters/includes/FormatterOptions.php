@@ -3,6 +3,7 @@
 namespace ValueFormatters;
 
 use InvalidArgumentException;
+use OutOfBoundsException;
 use RuntimeException;
 
 /**
@@ -81,11 +82,11 @@ final class FormatterOptions {
 	 *
 	 * @param string $option
 	 *
-	 * @throws InvalidArgumentException
+	 * @throws OutOfBoundsException
 	 */
 	public function getOption( $option ) {
 		if ( !array_key_exists( $option, $this->options ) ) {
-			throw new InvalidArgumentException();
+			throw new OutOfBoundsException( "Option '$option' has not been set so cannot be obtained" );
 		}
 
 		return $this->options[$option];
