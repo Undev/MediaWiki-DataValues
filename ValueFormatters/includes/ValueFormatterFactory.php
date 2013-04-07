@@ -40,8 +40,6 @@ class ValueFormatterFactory {
 	protected $formatters = array();
 
 	/**
-	 * Constructor.
-	 *
 	 * @since 0.1
 	 *
 	 * @param string[] $valueFormatters

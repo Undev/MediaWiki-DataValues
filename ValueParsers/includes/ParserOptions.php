@@ -41,8 +41,6 @@ final class ParserOptions {
 	protected $options;
 
 	/**
-	 * Constructor.
-	 *
 	 * @since 0.1
 	 */
 	public function __construct( array $options = array() ) {

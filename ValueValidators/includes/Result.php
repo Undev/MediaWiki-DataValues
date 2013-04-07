@@ -65,8 +65,6 @@ class Result implements \Immutable {
 	}
 
 	/**
-	 * Constructor.
-	 *
 	 * @since 0.1
 	 *
 	 * @param boolean $isValid
