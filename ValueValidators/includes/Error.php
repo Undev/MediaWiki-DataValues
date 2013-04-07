@@ -52,8 +52,6 @@ class Error implements \Immutable {
 	}
 
 	/**
-	 * Constructor.
-	 *
 	 * @since 0.1
 	 *
 	 * @param string $text
