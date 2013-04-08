@@ -1,7 +1,8 @@
 <?php
 /**
- * Definition of 'DataTypes' resourceloader modules.
- * When included this returns an array with all modules introduced by the 'DataTypes' extension.
+ * Definition of 'DataTypes' qunit test modules.
+ * When included this returns an array with all qunit test module definitions. Given file patchs
+ * are relative to the package's root.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,24 +31,27 @@
  */
 return call_user_func( function() {
 
-	$moduleTemplate = array(
-		'localBasePath' => __DIR__ . '/resources',
-		'remoteExtPath' =>  'DataValues/DataTypes/resources',
-	);
+	// base path from package root:
+	$bp = 'tests/qunit';
 
 	return array(
-		'dataTypes' => $moduleTemplate + array(
-			'scripts' => 'dataTypes.js', // also contains dataType.DataType constructor
+		'jquery.eachchange.tests' => array(
+			'scripts' => array(
+				"$bp/jquery/jquery.eachchange.tests.js",
+			),
 			'dependencies' => array(
-				'dataTypes.dataTypesModule',
-				'dataValues',
-				'valueParsers'
+				'jquery.eachchange',
 			),
 		),
-
-		'dataTypes.dataTypesModule' => $moduleTemplate + array(
-			'class' => 'DataTypes\DataTypesModule',
-		),
+	
+		'jquery.inputAutoExpand.tests' => array(
+			'scripts' => array(
+				"$bp/jquery/jquery.inputAutoExpand.tests.js",
+			),
+			'dependencies' => array(
+				'jquery.inputAutoExpand',
+			),
+		)
 	);
 
 } );

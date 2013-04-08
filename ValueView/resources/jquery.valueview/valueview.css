@@ -3,7 +3,7 @@
  *
  * @since 0.1
  * @file
- * @ingroup DataTypes
+ * @ingroup ValueView
  *
  * @license GNU GPL v2+
  * @author Daniel Werner < danweetz@web.de >
@@ -12,7 +12,7 @@
 .valueview-disabled input,
 .valueview-disabled textarea {
 	background-color: #F0F0F0 !important;
-	color: #565656;
+	color: gray;
 }
 
 .valueview .valueview-input {
@@ -31,7 +31,7 @@
 }
 
 .valueview-ineditmode .valueview-input {
-	border-color: #AAA;
+	border-color: gray;
 	background-color: white;
 }
 

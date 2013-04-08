@@ -1,7 +1,13 @@
 <?php
 /**
- * Definition of 'DataValues' resourceloader modules.
- * When included this returns an array with all the modules introduced by 'DataValues' extension.
+ * Definition of "ValueView" resourceloader modules.
+ * When included this returns an array with all modules introduced by the "valueview" jQuery
+ * extension.
+ *
+ * External dependencies:
+ * - jQuery 1.8
+ * - jQuery.eachchange (maintained by wikidata team)
+ * - jQuery.inputAutoExpand (maintained by wikidata team)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +30,7 @@
  * @ingroup DataValues
  *
  * @licence GNU GPL v2+
- * @author Daniel Werner
+ * @author Daniel Werner < daniel.werner@wikimedia.de >
  *
  * @codeCoverageIgnoreStart
  */
@@ -32,51 +38,41 @@ return call_user_func( function() {
 
 	$moduleTemplate = array(
 		'localBasePath' => __DIR__ . '/resources',
-		'remoteExtPath' =>  'DataValues/DataValues/resources',
+		'remoteExtPath' =>  'DataValues/ValueView/resources',
 	);
 
-	return array(
-		'dataValues' => $moduleTemplate + array(
+	$mwVvResources = array(
+		'mw.ext.valueView' => $moduleTemplate + array(
 			'scripts' => array(
-				'dataValues.js',
+				'mw.ext.valueView.js',
+			),
+			'dependencies' => array(
+				'jquery.valueview',
+				'jquery.valueview.experts.stringvalue',
 			),
 		),
 
-		'dataValues.DataValue' => $moduleTemplate + array(
+		// Dependencies required by jQuery.valueview library:
+		'jquery.eachchange' => $moduleTemplate + array(
 			'scripts' => array(
-				'DataValue.js',
+				'jquery/jquery.eachchange.js'
 			),
 			'dependencies' => array(
-				'dataValues',
-				'dataValues.util',
-			),
+				'jquery.client'
+			)
 		),
 
-		'dataValues.values' => $moduleTemplate + array(
+		'jquery.inputAutoExpand' => $moduleTemplate + array(
 			'scripts' => array(
-				// Note: the order here is relevant, scripts should be places after the ones they depend on
-				'values/BoolValue.js',
-				'values/MonolingualTextValue.js',
-				'values/MultilingualTextValue.js',
-				'values/StringValue.js',
-				'values/NumberValue.js',
-				'values/UnknownValue.js',
+				'jquery/jquery.inputAutoExpand.js',
 			),
 			'dependencies' => array(
-				'dataValues.DataValue',
-			),
-		),
-
-		'dataValues.util' => $moduleTemplate + array(
-			'scripts' => array(
-				'dataValues.util.js',
-				'dataValues.util.Notify.js',
-			),
-			'dependencies' => array(
-				'dataValues',
-			),
+				'jquery.eachchange'
+			)
 		),
 	);
 
+	// return jQuery.valueview's native resources plus those required by the MW extension:
+	return $mwVvResources + include( __DIR__ . '/ValueView.resources.php' );
 } );
 // @codeCoverageIgnoreEnd
