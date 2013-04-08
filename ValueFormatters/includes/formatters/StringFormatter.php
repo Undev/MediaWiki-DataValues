@@ -1,6 +1,7 @@
 <?php
 
 namespace ValueFormatters;
+
 use DataValues\StringValue;
 use InvalidArgumentException;
 

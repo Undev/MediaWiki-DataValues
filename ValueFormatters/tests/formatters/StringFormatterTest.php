@@ -1,8 +1,8 @@
 <?php
 
 namespace ValueFormatters\Test;
+
 use DataValues\StringValue;
-use ValueFormatters\StringFormatter;
 
 /**
  * Unit tests for the ValueFormatters\StringFormatter class.
