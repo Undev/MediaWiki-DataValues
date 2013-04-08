@@ -64,6 +64,7 @@ $wgHooks['UnitTestsList'][] = function( array &$files ) {
 	// @codeCoverageIgnoreStart
 	$testFiles = array(
 		'formatters/GeoCoordinateFormatter',
+		'formatters/IriFormatter',
 		'formatters/StringFormatter',
 
 		'FormatterOptions',

@@ -35,6 +35,7 @@ return array(
 	'ValueFormatters\ValueFormatterFactory' => 'includes/ValueFormatterFactory.php',
 
 	'ValueFormatters\GeoCoordinateFormatter' => 'includes/formatters/GeoCoordinateFormatter.php',
+	'ValueFormatters\IriFormatter' => 'includes/formatters/IriFormatter.php',
 	'ValueFormatters\StringFormatter' => 'includes/formatters/StringFormatter.php',
 
 	'ValueFormatters\Test\ValueFormatterFactoryTest' => 'tests/ValueFormatterFactoryTest.php',

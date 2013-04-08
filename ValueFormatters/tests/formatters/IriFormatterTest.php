@@ -2,10 +2,11 @@
 
 namespace ValueFormatters\Test;
 
-use DataValues\StringValue;
+use DataValues\IriValue;
+use ValueFormatters\GeoCoordinateFormatter;
 
 /**
- * Unit tests for the ValueFormatters\StringFormatter class.
+ * Unit tests for the ValueFormatters\GeoCoordinateFormatter class.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,9 +32,9 @@ use DataValues\StringValue;
  * @group DataValueExtensions
  *
  * @licence GNU GPL v2+
- * @author Katie Filbert < aude.wiki@gmail.com >
+ * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class StringFormatterTest extends ValueFormatterTestBase {
+class IriFormatterTest extends ValueFormatterTestBase {
 
 	/**
 	 * @see ValueFormatterTestBase::validProvider
@@ -43,17 +44,54 @@ class StringFormatterTest extends ValueFormatterTestBase {
 	 * @return array
 	 */
 	public function validProvider() {
-		$strings = array(
-			'ice cream',
-			'cake',
-			'',
-		);
-
 		$argLists = array();
 
-		foreach ( $strings as $string ) {
-			$argLists[] = array( new StringValue( $string ), $string );
-		}
+		$argLists[] = array(
+			new IriValue(
+				'http',
+				'//www.wikidata.org'
+			),
+			'http://www.wikidata.org'
+		);
+
+		$argLists[] = array(
+			new IriValue(
+				'http',
+				'//www.wikidata.org',
+				'type=animal&name=narwhal'
+			),
+			'http://www.wikidata.org?type=animal&name=narwhal'
+		);
+
+		$argLists[] = array(
+			new IriValue(
+				'http',
+				'//www.wikidata.org',
+				'type=animal&name=narwhal',
+				'headerSection'
+			),
+			'http://www.wikidata.org?type=animal&name=narwhal#headerSection'
+		);
+
+		$argLists[] = array(
+			new IriValue(
+				'http',
+				'//www.wikidata.org',
+				'',
+				'headerSection'
+			),
+			'http://www.wikidata.org#headerSection'
+		);
+
+		$argLists[] = array(
+			new IriValue(
+				'irc',
+				'//en.wikipedia.org',
+				'',
+				''
+			),
+			'irc://en.wikipedia.org'
+		);
 
 		return $argLists;
 	}
@@ -66,7 +104,7 @@ class StringFormatterTest extends ValueFormatterTestBase {
 	 * @return string
 	 */
 	protected function getFormatterClass() {
-		return 'ValueFormatters\StringFormatter';
+		return 'ValueFormatters\IriFormatter';
 	}
 
 }
