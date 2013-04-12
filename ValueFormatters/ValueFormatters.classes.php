@@ -28,8 +28,7 @@
  */
 return array(
 	'ValueFormatters\FormatterOptions' => 'includes/FormatterOptions.php',
-	'ValueFormatters\Result' => 'includes/Result.php',
-	'ValueFormatters\ResultObject' => 'includes/Result.php',
+	'ValueFormatters\FormattingException' => 'includes/FormattingException.php',
 	'ValueFormatters\ValueFormatter' => 'includes/ValueFormatter.php',
 	'ValueFormatters\ValueFormatterBase' => 'includes/ValueFormatterBase.php',
 	'ValueFormatters\ValueFormatterFactory' => 'includes/ValueFormatterFactory.php',

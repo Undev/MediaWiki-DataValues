@@ -49,17 +49,6 @@ abstract class ValueFormatterBase implements ValueFormatter {
 	}
 
 	/**
-	 * @since 0.1
-	 *
-	 * @param mixed $value
-	 *
-	 * @return Result
-	 */
-	protected function newSuccess( $value ) {
-		return Result::newSuccess( $value );
-	}
-
-	/**
 	 * Shortcut to $this->options->getOption.
 	 *
 	 * @since 0.1

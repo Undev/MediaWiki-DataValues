@@ -43,7 +43,7 @@ interface ValueFormatter {
 	 *
 	 * @param mixed $value The value to format
 	 *
-	 * @return Result
+	 * @return mixed
 	 */
 	public function format( $value );
 
