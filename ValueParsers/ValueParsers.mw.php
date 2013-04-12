@@ -79,7 +79,6 @@ $wgHooks['UnitTestsList'][] = function( array &$files ) {
 		'includes/parsers/IntParser',
 		'includes/parsers/NullParser',
 
-		'includes/Error',
 		'includes/ParserOptions',
 		'includes/ValueParserFactory',
 	);

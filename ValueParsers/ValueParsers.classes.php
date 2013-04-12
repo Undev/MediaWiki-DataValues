@@ -27,9 +27,7 @@
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 return array(
-	'ValueParsers\Error' => 'includes/Error.php',
 	'ValueParsers\ParseException' => 'includes/ParseException.php',
-	'ValueParsers\ErrorObject' => 'includes/Error.php',
 	'ValueParsers\ParserOptions' => 'includes/ParserOptions.php',
 	'ValueParsers\ValueParser' => 'includes/ValueParser.php',
 	'ValueParsers\ValueParserFactory' => 'includes/ValueParserFactory.php',
