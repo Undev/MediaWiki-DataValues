@@ -84,18 +84,6 @@ abstract class StringValueParser implements ValueParser {
 	protected abstract function stringParse( $value );
 
 	/**
-	 * @since 0.1
-	 * @deprecated
-	 *
-	 * @param string $errorMessage
-	 *
-	 * @return Result
-	 */
-	protected function newErrorResult( $errorMessage ) {
-		return Result::newErrorText( $errorMessage );
-	}
-
-	/**
 	 * @see ValueParser::setOptions
 	 *
 	 * @since 0.1
