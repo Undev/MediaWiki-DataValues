@@ -1,13 +1,8 @@
 <?php
 
-namespace ValueFormatters;
-
-use DataValues\StringValue;
-use InvalidArgumentException;
+namespace ValueParsers;
 
 /**
- * Formatter for string values
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -29,26 +24,8 @@ use InvalidArgumentException;
  * @ingroup ValueFormatters
  *
  * @licence GNU GPL v2+
- * @author Katie Filbert < aude.wiki@gmail.com >
+ * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class StringFormatter extends ValueFormatterBase {
-
-	/**
-	 * Formats a StringValue data value
-	 *
-	 * @since 0.1
-	 *
-	 * @param mixed $dataValue value to format
-	 *
-	 * @return string
-	 * @throws InvalidArgumentException
-	 */
-	public function format( $dataValue ) {
-		if ( !( $dataValue instanceof StringValue ) ) {
-			throw new InvalidArgumentException( 'DataValue is not a StringValue.' );
-		}
-
-		return $dataValue->getValue();
-	}
+class FormattingException extends \RuntimeException {
 
 }

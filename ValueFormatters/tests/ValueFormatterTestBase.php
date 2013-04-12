@@ -75,24 +75,9 @@ abstract class ValueFormatterTestBase extends \MediaWikiTestCase {
 	 * @param mixed $value
 	 * @param mixed $expected
 	 * @param FormatterOptions|null $options
-	 */
-	public function testValidFormat( $value, $expected, FormatterOptions $options = null ) {
-		$this->doTestFormat(
-			$value,
-			\ValueFormatters\Result::newSuccess( $expected ),
-			$options
-		);
-	}
-
-	/**
-	 * @since 0.1
-	 *
-	 * @param mixed $value
-	 * @param Result $expected
-	 * @param FormatterOptions|null $options
 	 * @param ValueFormatter|null $formatter
 	 */
-	protected function doTestFormat( $value, Result $expected, FormatterOptions $options = null, ValueFormatter $formatter = null ) {
+	public function testValidFormat( $value, $expected, FormatterOptions $options = null, ValueFormatter $formatter = null ) {
 		if ( $options === null ) {
 			$options = new FormatterOptions();
 		}
@@ -101,16 +86,7 @@ abstract class ValueFormatterTestBase extends \MediaWikiTestCase {
 			$formatter = $this->getInstance( $options );
 		}
 
-		$result = $formatter->format( $value );
-
-		$this->assertEquals( $expected->isValid(), $result->isValid() );
-
-		if ( $expected->isValid() ) {
-			$this->assertEquals( $expected->getValue(), $result->getValue() );
-		}
-		else {
-			$this->assertException( function() use ( $result ) { $result->getValue(); } );
-		}
+		$this->assertEquals( $expected, $formatter->format( $value ) );
 	}
 
 }

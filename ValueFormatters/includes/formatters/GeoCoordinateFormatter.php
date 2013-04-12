@@ -99,7 +99,7 @@ class GeoCoordinateFormatter extends ValueFormatterBase {
 	 *
 	 * @param mixed $value The value to format
 	 *
-	 * @return Result
+	 * @return string
 	 * @throws InvalidArgumentException
 	 */
 	public function format( $value ) {
@@ -113,7 +113,7 @@ class GeoCoordinateFormatter extends ValueFormatterBase {
 
 		$formatted = implode( $this->getOption( self::OPT_SEPARATOR_SYMBOL ) . ' ', array( $latitude, $longitude ) );
 
-		return $this->newSuccess( $formatted );
+		return $formatted;
 	}
 
 	/**

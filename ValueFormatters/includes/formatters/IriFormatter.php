@@ -40,7 +40,7 @@ class IriFormatter extends ValueFormatterBase {
 	 *
 	 * @param mixed $dataValue value to format
 	 *
-	 * @return Result
+	 * @return string
 	 * @throws InvalidArgumentException
 	 */
 	public function format( $dataValue ) {
@@ -53,7 +53,7 @@ class IriFormatter extends ValueFormatterBase {
 			. ( $dataValue->getQuery() === '' ? '' : '?' . $dataValue->getQuery() )
 			. ( $dataValue->getFragment() === '' ? '' : '#' . $dataValue->getFragment() );
 
-		return $this->newSuccess( $formatted );
+		return $formatted;
 	}
 
 }
