@@ -3,8 +3,6 @@
 namespace ValueParsers;
 
 use DataValues\GeoCoordinateValue;
-use Exception;
-use InvalidArgumentException;
 
 /**
  * ValueParser that parses the string representation of a geographical coordinate.
