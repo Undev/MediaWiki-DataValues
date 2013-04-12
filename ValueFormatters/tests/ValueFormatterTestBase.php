@@ -3,7 +3,6 @@
 namespace ValueFormatters\Test;
 
 use ValueFormatters\FormatterOptions;
-use ValueFormatters\Result;
 use ValueFormatters\ValueFormatter;
 
 /**
