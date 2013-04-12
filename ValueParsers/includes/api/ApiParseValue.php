@@ -3,6 +3,8 @@
 namespace ValueParsers;
 
 use ApiBase;
+use DataValues\DataValue;
+use LogicException;
 use MWException;
 
 /**
@@ -57,6 +59,24 @@ class ApiParseValue extends ApiBase {
 	 * @since 0.1
 	 */
 	public function execute() {
+		$parser = $this->getParser();
+
+		$results = array();
+
+		$params = $this->extractRequestParams();
+
+		foreach ( $params['values'] as $value ) {
+			$results[] = $this->parseValue( $parser, $value );
+		}
+
+		$this->outputResults( $results );
+	}
+
+	/**
+	 * @return ValueParser
+	 * @throws LogicException
+	 */
+	private function getParser() {
 		$params = $this->extractRequestParams();
 
 		$options = $this->getOptionsObject( $params['options'] );
@@ -64,36 +84,37 @@ class ApiParseValue extends ApiBase {
 
 		// Paranoid check, should never fail as we only accept registered parsers for the parser parameter.
 		if ( $parser === null ) {
-			throw new MWException( 'Could not obtain a ValueParser instance' );
+			throw new LogicException( 'Could not obtain a ValueParser instance' );
 		}
 
-		$results = array();
+		return $parser;
+	}
 
-		foreach ( $params['values'] as $value ) {
+	private function parseValue( ValueParser $parser, $value ) {
+		$result = array(
+			'raw' => $value
+		);
+
+		try {
 			$parseResult = $parser->parse( $value );
-
-			$result = array(
-				'raw' => $value
-			);
-
-			if ( $parseResult->isValid() ) {
-				$value = $parseResult->getValue();
-
-				if ( $value instanceof \DataValues\DataValue ) {
-					$result['value'] = $value->getArrayValue();
-					$result['type'] = $value->getType();
-				}
-				else {
-					$result['value'] = $value;
-				}
-			}
-			else {
-				$result['error'] = $parseResult->getError()->getText();
-			}
-
-			$results[] = $result;
+		}
+		catch ( ParseException $parsingError ) {
+			$result['error'] = $parsingError->getMessage();
+			return $result;
 		}
 
+		if ( $parseResult instanceof DataValue ) {
+			$result['value'] = $parseResult->getArrayValue();
+			$result['type'] = $parseResult->getType();
+		}
+		else {
+			$result['value'] = $parseResult;
+		}
+
+		return $result;
+	}
+
+	private function outputResults( array $results ) {
 		$this->getResult()->setIndexedTagName( $results, 'result' );
 
 		$this->getResult()->addValue(

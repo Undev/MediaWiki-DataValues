@@ -2,8 +2,8 @@
 
 namespace ValueParsers\Test;
 
+use DataValues\GeoCoordinateValue;
 use ValueParsers\GeoCoordinateParser;
-use ValueParsers\Result;
 
 /**
  * Unit tests for the GeoCoordinateValue class.
@@ -38,13 +38,13 @@ use ValueParsers\Result;
 class GeoCoordinateParserTest extends StringValueParserTest {
 
 	/**
-	 * @see ValueParserTestBase::parseProvider
+	 * @see ValueParserTestBase::validInputProvider
 	 *
 	 * @since 0.1
 	 *
 	 * @return array
 	 */
-	public function parseProvider() {
+	public function validInputProvider() {
 		$argLists = array();
 
 		// TODO: test with different parser options
@@ -88,15 +88,26 @@ class GeoCoordinateParserTest extends StringValueParserTest {
 		);
 
 		foreach ( $valid as $value => $expected ) {
-			$expected = new \DataValues\GeoCoordinateValue( $expected[0], $expected[1] );
-			$argLists[] = array( (string)$value, Result::newSuccess( $expected ) );
+			$expected = new GeoCoordinateValue( $expected[0], $expected[1] );
+			$argLists[] = array( (string)$value, $expected );
 		}
 
-		foreach ( array( '~=[,,_,,]:3', 'ohi there' ) as $invalid ) {
-			$argLists[] = array( $invalid, Result::newErrorText( 'Not a geographical coordinate' ) );
+		return $argLists;
+	}
+
+	public function invalidInputProvider() {
+		$argLists = parent::invalidInputProvider();
+
+		$invalid = array(
+			'~=[,,_,,]:3',
+			'ohi there',
+		);
+
+		foreach ( $invalid as $value ) {
+			$argLists[] = array( $value );
 		}
 
-		return array_merge( $argLists, parent::parseProvider() );
+		return $argLists;
 	}
 
 	/**

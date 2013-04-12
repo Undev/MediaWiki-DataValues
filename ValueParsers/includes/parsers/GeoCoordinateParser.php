@@ -2,6 +2,7 @@
 
 namespace ValueParsers;
 
+use DataValues\GeoCoordinateValue;
 use Exception;
 use InvalidArgumentException;
 
@@ -103,8 +104,8 @@ class GeoCoordinateParser extends StringValueParser {
 	 *
 	 * @param string $value
 	 *
-	 * @return Result
-	 * @throws Exception
+	 * @return GeoCoordinateValue
+	 * @throws ParseException
 	 */
 	protected function stringParse( $value ) {
 		$value = $this->getNormalizedNotation( $value );
@@ -112,15 +113,13 @@ class GeoCoordinateParser extends StringValueParser {
 		$notationType = $this->getCoordinatesType( $value );
 
 		if ( $notationType === false ) {
-			return $this->newErrorResult( 'Not a geographical coordinate' );
+			throw new ParseException( 'Not a geographical coordinate' );
 		}
 
 		$coordinates = explode( $this->getOption( self::OPT_SEPARATOR_SYMBOL ), $value );
 
 		if ( count( $coordinates ) !== 2 ) {
-			// @codeCoverageIgnoreStart
-			throw new Exception( 'A coordinates string with an incorrect segment count has made it through validation' );
-			// @codeCoverageIgnoreEnd
+			throw new ParseException( 'A coordinates string with an incorrect segment count has made it through validation' );
 		}
 
 		list( $latitude, $longitude ) = $coordinates;
@@ -128,9 +127,9 @@ class GeoCoordinateParser extends StringValueParser {
 		$latitude = $this->getParsedCoordinate( $notationType, $latitude );
 		$longitude = $this->getParsedCoordinate( $notationType, $longitude );
 
-		$coordinate = new \DataValues\GeoCoordinateValue( $latitude, $longitude );
+		$coordinate = new GeoCoordinateValue( $latitude, $longitude );
 
-		return Result::newSuccess( $coordinate );
+		return $coordinate;
 	}
 
 	/**
@@ -143,7 +142,7 @@ class GeoCoordinateParser extends StringValueParser {
 	 *
 	 * @return float
 	 *
-	 * @throws InvalidArgumentException
+	 * @throws ParseException
 	 */
 	protected function getParsedCoordinate( $notationType, $coordinate ) {
 		$coordinate = $this->resolveDirection( $coordinate );
@@ -158,9 +157,7 @@ class GeoCoordinateParser extends StringValueParser {
 			case self::TYPE_DMS:
 				return $this->parseDMSCoordinate( $coordinate );
 			default:
-				// @codeCoverageIgnoreStart
-				throw new InvalidArgumentException( 'Invalid coordinate type specified' );
-				// @codeCoverageIgnoreEnd
+				throw new ParseException( 'Invalid coordinate type specified' );
 		}
 	}
 

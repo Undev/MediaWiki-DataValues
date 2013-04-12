@@ -2,7 +2,6 @@
 
 namespace ValueParsers\Test;
 
-use ValueParsers\Result;
 use ValueParsers\StringValueParser;
 
 /**
@@ -36,14 +35,7 @@ use ValueParsers\StringValueParser;
  */
 abstract class StringValueParserTest extends ValueParserTestBase {
 
-	/**
-	 * @see ValueParserTestBase::parseProvider
-	 *
-	 * @since 0.1
-	 *
-	 * @return array
-	 */
-	public function parseProvider() {
+	public function invalidInputProvider() {
 		$argLists = array();
 
 		$invalid = array(
@@ -56,7 +48,7 @@ abstract class StringValueParserTest extends ValueParserTestBase {
 		);
 
 		foreach ( $invalid as $value ) {
-			$argLists[] = array( $value, Result::newErrorText( '' ) );
+			$argLists[] = array( $value );
 		}
 
 		return $argLists;

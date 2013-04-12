@@ -28,6 +28,7 @@
  */
 return array(
 	'ValueParsers\Error' => 'includes/Error.php',
+	'ValueParsers\ParseException' => 'includes/ParseException.php',
 	'ValueParsers\ErrorObject' => 'includes/Error.php',
 	'ValueParsers\ParserOptions' => 'includes/ParserOptions.php',
 	'ValueParsers\Result' => 'includes/Result.php',

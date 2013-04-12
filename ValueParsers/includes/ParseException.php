@@ -2,10 +2,8 @@
 
 namespace ValueParsers;
 
-use DataValues\NumberValue;
-
 /**
- * ValueParser that parses the string representation of a float.
+ * Parse exception
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,26 +28,6 @@ use DataValues\NumberValue;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class FloatParser extends StringValueParser {
-
-	/**
-	 * @see StringValueParser::stringParse
-	 *
-	 * TODO: add options for different group and decimal separators.
-	 *
-	 * @since 0.1
-	 *
-	 * @param string $value
-	 *
-	 * @return NumberValue
-	 * @throws ParseException
-	 */
-	protected function stringParse( $value ) {
-		if ( preg_match( '/^(-)?\d+((\.|,)\d+)?$/', $value ) ) {
-			return new NumberValue( (float)$value );
-		}
-
-		throw new ParseException( 'Not a float' );
-	}
+class ParseException extends \RuntimeException {
 
 }

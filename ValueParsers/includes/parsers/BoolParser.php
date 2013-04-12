@@ -2,6 +2,8 @@
 
 namespace ValueParsers;
 
+use DataValues\BooleanValue;
+
 /**
  * ValueParser that parses the string representation of a boolean.
  *
@@ -48,17 +50,17 @@ class BoolParser extends StringValueParser {
 	 *
 	 * @param string $value
 	 *
-	 * @return Result
+	 * @return BooleanValue
+	 * @throws ParseException
 	 */
 	protected function stringParse( $value ) {
 		$value = strtolower( $value );
 
 		if ( array_key_exists( $value, $this->values ) ) {
-			return Result::newSuccess( new \DataValues\BooleanValue( $this->values[$value] ) );
+			return new BooleanValue( $this->values[$value] );
 		}
-		else {
-			return $this->newErrorResult( 'Not a boolean' );
-		}
+
+		throw new ParseException( 'Not a boolean' );
 	}
 
 }

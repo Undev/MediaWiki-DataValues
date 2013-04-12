@@ -2,7 +2,7 @@
 
 namespace ValueParsers\Test;
 
-use ValueParsers\Result;
+use DataValues\NumberValue;
 
 /**
  * Unit test IntParser class.
@@ -36,13 +36,13 @@ use ValueParsers\Result;
 class IntParserTest extends StringValueParserTest {
 
 	/**
-	 * @see ValueParserTestBase::parseProvider
+	 * @see ValueParserTestBase::validInputProvider
 	 *
 	 * @since 0.1
 	 *
 	 * @return array
 	 */
-	public function parseProvider() {
+	public function validInputProvider() {
 		$argLists = array();
 
 		$valid = array(
@@ -59,9 +59,15 @@ class IntParserTest extends StringValueParserTest {
 			// Because PHP turns them into ints using black magic
 			$value = (string)$value;
 
-			$expected = new \DataValues\NumberValue( $expected );
-			$argLists[] = array( $value, Result::newSuccess( $expected ) );
+			$expected = new NumberValue( $expected );
+			$argLists[] = array( $value, $expected );
 		}
+
+		return $argLists;
+	}
+
+	public function invalidInputProvider() {
+		$argLists = parent::invalidInputProvider();
 
 		$invalid = array(
 			'foo',
@@ -82,10 +88,10 @@ class IntParserTest extends StringValueParserTest {
 		);
 
 		foreach ( $invalid as $value ) {
-			$argLists[] = array( $value, Result::newErrorText( '' ) );
+			$argLists[] = array( $value );
 		}
 
-		return array_merge( $argLists, parent::parseProvider() );
+		return $argLists;
 	}
 
 	/**

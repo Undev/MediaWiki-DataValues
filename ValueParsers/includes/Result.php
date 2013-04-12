@@ -24,6 +24,7 @@ use Immutable;
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @since 0.1
+ * @deprecated
  *
  * @file
  * @ingroup ValueParsers

@@ -2,7 +2,7 @@
 
 namespace ValueParsers\Test;
 
-use ValueParsers\Result;
+use DataValues\BooleanValue;
 
 /**
  * Unit test BoolParser class.
@@ -36,13 +36,13 @@ use ValueParsers\Result;
 class BoolParserTest extends StringValueParserTest {
 
 	/**
-	 * @see ValueParserTestBase::parseProvider
+	 * @see ValueParserTestBase::validInputProvider
 	 *
 	 * @since 0.1
 	 *
 	 * @return array
 	 */
-	public function parseProvider() {
+	public function validInputProvider() {
 		$argLists = array();
 
 		$valid = array(
@@ -62,9 +62,15 @@ class BoolParserTest extends StringValueParserTest {
 		);
 
 		foreach ( $valid as $value => $expected ) {
-			$expected = new \DataValues\BooleanValue( $expected );
-			$argLists[] = array( (string)$value, Result::newSuccess( $expected ) );
+			$expected = new BooleanValue( $expected );
+			$argLists[] = array( (string)$value, $expected );
 		}
+
+		return $argLists;
+	}
+
+	public function invalidInputProvider() {
+		$argLists = parent::invalidInputProvider();
 
 		$invalid = array(
 			'foo',
@@ -72,10 +78,10 @@ class BoolParserTest extends StringValueParserTest {
 		);
 
 		foreach ( $invalid as $value ) {
-			$argLists[] = array( $value, Result::newErrorText( '' ) );
+			$argLists[] = array( $value );
 		}
 
-		return array_merge( $argLists, parent::parseProvider() );
+		return $argLists;
 	}
 
 	/**

@@ -61,15 +61,15 @@ abstract class StringValueParser implements ValueParser {
 	 *
 	 * @param mixed $value
 	 *
-	 * @return Result
+	 * @return mixed
+	 * @throws ParseException
 	 */
 	public function parse( $value ) {
 		if ( is_string( $value ) ) {
 			return $this->stringParse( $value );
 		}
-		else {
-			return Result::newErrorText( 'Not a string' ); // TODO
-		}
+
+		throw new ParseException( 'Not a string' );
 	}
 
 	/**
@@ -79,12 +79,13 @@ abstract class StringValueParser implements ValueParser {
 	 *
 	 * @param string $value
 	 *
-	 * @return Result
+	 * @return mixed
 	 */
 	protected abstract function stringParse( $value );
 
 	/**
 	 * @since 0.1
+	 * @deprecated
 	 *
 	 * @param string $errorMessage
 	 *

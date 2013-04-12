@@ -43,7 +43,7 @@ interface ValueParser {
 	 *
 	 * @param mixed $value The value to parse
 	 *
-	 * @return Result
+	 * @return mixed
 	 */
 	public function parse( $value );
 

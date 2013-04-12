@@ -2,7 +2,7 @@
 
 namespace ValueParsers\Test;
 
-use ValueParsers\Result;
+use ValueParsers\ParserOptions;
 use ValueParsers\ValueParser;
 
 /**
@@ -38,14 +38,21 @@ abstract class ValueParserTestBase extends \MediaWikiTestCase {
 
 	/**
 	 * @since 0.1
-	 */
-	public abstract function parseProvider();
-
-	/**
-	 * @since 0.1
 	 * @return string
 	 */
 	protected abstract function getParserClass();
+
+	/**
+	 * @since 0.1
+	 */
+	public abstract function validInputProvider();
+
+	/**
+	 * @since 0.1
+	 */
+	public function invalidInputProvider() {
+		return array();
+	}
 
 	/**
 	 * @since 0.1
@@ -57,36 +64,43 @@ abstract class ValueParserTestBase extends \MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider parseProvider
+	 * @dataProvider validInputProvider
 	 * @since 0.1
 	 * @param $value
-	 * @param Result $expected
+	 * @param mixed $expected
 	 * @param ValueParser|null $parser
 	 */
-	public function testParse( $value, Result $expected, ValueParser $parser = null ) {
+	public function testParseWithValidInputs( $value, $expected, ValueParser $parser = null ) {
 		if ( is_null( $parser ) ) {
 			$parser = $this->getInstance();
 		}
 
-		$result = $parser->parse( $value );
+		$this->assertSmartEquals( $expected, $parser->parse( $value ) );
+	}
 
-		$this->assertEquals( $expected->isValid(), $result->isValid(), 'Validity of the value is not valid. Error: ' . var_export( $result->getError(), true ) );
-
-		if ( $expected->isValid() ) {
-			if ( $this->requireDataValue() || $result->getValue() instanceof \Comparable ) {
-				$this->assertTrue( $expected->getValue()->equals( $result->getValue() ) );
-			}
-			else {
-				$this->assertEquals( $expected->getValue(), $result->getValue() );
-			}
-
-			$this->assertNull( $result->getError() );
+	private function assertSmartEquals( $expected, $actual ) {
+		if ( $this->requireDataValue() || $expected instanceof \Comparable ) {
+			$this->assertTrue( $expected->equals( $actual ) );
 		}
 		else {
-			$this->assertTypeOrValue( '\ValueParsers\Error', $result->getError(), null );
-
-			$this->assertException( function() use ( $result ) { $result->getValue(); } );
+			$this->assertEquals( $expected, $actual );
 		}
+	}
+
+	/**
+	 * @dataProvider invalidInputProvider
+	 * @since 0.1
+	 * @param $value
+	 * @param ValueParser|null $parser
+	 */
+	public function testParseWithInvalidInputs( $value, ValueParser $parser = null ) {
+		if ( is_null( $parser ) ) {
+			$parser = $this->getInstance();
+		}
+
+		$this->setExpectedException( 'ValueParsers\ParseException' );
+
+		$parser->parse( $value );
 	}
 
 	/**
@@ -105,10 +119,10 @@ abstract class ValueParserTestBase extends \MediaWikiTestCase {
 	 *
 	 * @since 0.1
 	 *
-	 * @return \ValueParsers\ParserOptions
+	 * @return ParserOptions
 	 */
 	protected function newParserOptions() {
-		return new \ValueParsers\ParserOptions();
+		return new ParserOptions();
 	}
 
 }

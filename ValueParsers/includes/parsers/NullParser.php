@@ -2,6 +2,8 @@
 
 namespace ValueParsers;
 
+use DataValues\UnknownValue;
+
 /**
  * Implementation of the ValueParser interface that does a null parse.
  *
@@ -37,10 +39,10 @@ class NullParser implements ValueParser {
 	 *
 	 * @param mixed $value
 	 *
-	 * @return Result
+	 * @return UnknownValue
 	 */
 	public function parse( $value ) {
-		return Result::newSuccess( new \DataValues\UnknownValue( $value ) );
+		return new UnknownValue( $value );
 	}
 
 }

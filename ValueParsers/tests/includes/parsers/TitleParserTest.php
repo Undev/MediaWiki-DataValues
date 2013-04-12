@@ -2,7 +2,7 @@
 
 namespace ValueParsers\Test;
 
-use ValueParsers\Result;
+use DataValues\MediaWikiTitleValue;
 
 /**
  * Unit test TitleParser class.
@@ -36,13 +36,13 @@ use ValueParsers\Result;
 class TitleParserTest extends StringValueParserTest {
 
 	/**
-	 * @see ValueParserTestBase::parseProvider
+	 * @see ValueParserTestBase::validInputProvider
 	 *
 	 * @since 0.1
 	 *
 	 * @return array
 	 */
-	public function parseProvider() {
+	public function validInputProvider() {
 		$argLists = array();
 
 		$valid = array(
@@ -51,10 +51,10 @@ class TitleParserTest extends StringValueParserTest {
 		);
 
 		foreach ( $valid as $value ) {
-			$argLists[] = array( $value, Result::newSuccess( new \DataValues\MediaWikiTitleValue( \Title::newFromText( $value ) ) ) );
+			$argLists[] = array( $value, new MediaWikiTitleValue( \Title::newFromText( $value ) ) );
 		}
 
-		return array_merge( $argLists, parent::parseProvider() );
+		return $argLists;
 	}
 
 	/**

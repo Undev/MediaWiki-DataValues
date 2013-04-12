@@ -2,6 +2,8 @@
 
 namespace ValueParsers;
 
+use DataValues\MediaWikiTitleValue;
+
 /**
  * ValueParser that parses the string representation of a Title object.
  *
@@ -37,17 +39,17 @@ class TitleParser extends StringValueParser {
 	 *
 	 * @param string $value
 	 *
-	 * @return Result
+	 * @return MediaWikiTitleValue
+	 * @throws ParseException
 	 */
 	protected function stringParse( $value ) {
 		$value = \Title::newFromText( $value );
 
 		if ( is_null( $value ) ) {
-			return $this->newErrorResult( 'Not a title' );
+			throw new ParseException( 'Not a title' );
 		}
-		else {
-			return Result::newSuccess( new \DataValues\MediaWikiTitleValue( $value ) );
-		}
+
+		return new MediaWikiTitleValue( $value );
 	}
 
 }

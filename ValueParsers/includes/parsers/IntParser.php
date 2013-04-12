@@ -2,6 +2,8 @@
 
 namespace ValueParsers;
 
+use DataValues\NumberValue;
+
 /**
  * ValueParser that parses the string representation of an integer.
  *
@@ -37,17 +39,17 @@ class IntParser extends StringValueParser {
 	 *
 	 * @param string $value
 	 *
-	 * @return Result
+	 * @return NumberValue
+	 * @throws ParseException
 	 */
 	protected function stringParse( $value ) {
 		$positiveValue = strpos( $value, '-' ) === 0 ? substr( $value, 1 ) : $value;
 
 		if ( ctype_digit( $positiveValue ) ) {
-			return Result::newSuccess( new \DataValues\NumberValue( (int)$value ) );
+			return new NumberValue( (int)$value );
 		}
-		else {
-			return Result::newErrorText( 'Not an integer' );
-		}
+
+		throw new ParseException( 'Not an integer' );
 	}
 
 }
