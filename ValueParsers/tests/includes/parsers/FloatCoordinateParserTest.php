@@ -3,10 +3,10 @@
 namespace ValueParsers\Test;
 
 use DataValues\GeoCoordinateValue;
-use ValueParsers\DmsCoordinateParser;
+use ValueParsers\FloatCoordinateParser;
 
 /**
- * Unit tests for the ValueParsers\DmsCoordinateValue class.
+ * Unit tests for the ValueParsers\FloatCoordinateValue class.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ use ValueParsers\DmsCoordinateParser;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class DmsCoordinateParserTest extends StringValueParserTest {
+class FloatCoordinateParserTest extends StringValueParserTest {
 
 	/**
 	 * @see ValueParserTestBase::validInputProvider
@@ -50,17 +50,13 @@ class DmsCoordinateParserTest extends StringValueParserTest {
 		// TODO: test with different parser options
 
 		$valid = array(
-			// DMS
-			'55° 45\' 20.8296", 37° 37\' 3.4788"' => array( 55.755786, 37.617633 ),
-			'55° 45\' 20.8296", -37° 37\' 3.4788"' => array( 55.755786, -37.617633 ),
-			'-55° 45\' 20.8296", -37° 37\' 3.4788"' => array( -55.755786, -37.617633 ),
-			'-55° 45\' 20.8296", 37° 37\' 3.4788"' => array( -55.755786, 37.617633 ),
-			'55° 0\' 0", 37° 0\' 0"' => array( 55, 37 ),
-			'55° 30\' 0", 37° 30\' 0"' => array( 55.5, 37.5 ),
-			'55° 0\' 18", 37° 0\' 18"' => array( 55.005, 37.005 ),
-			'0° 0\' 0", 0° 0\' 0"' => array( 0, 0 ),
-			'0° 0\' 18" N, 0° 0\' 18" E' => array( 0.005, 0.005 ),
-			' 0° 0\' 18" S  , 0°  0\' 18"  W ' => array( -0.005, -0.005 ),
+			'55.7557860 N, 37.6176330 W' => array( 55.7557860, -37.6176330 ),
+			'55.7557860, -37.6176330' => array( 55.7557860, -37.6176330 ),
+			'55 S, 37.6176330 W' => array( -55, -37.6176330 ),
+			'-55, -37.6176330' => array( -55, -37.6176330 ),
+			'5.5S,37W ' => array( -5.5, -37 ),
+			'-5.5,-37 ' => array( -5.5, -37 ),
+			'4,2' => array( 4, 2 ),
 		);
 
 		foreach ( $valid as $value => $expected ) {
@@ -94,7 +90,7 @@ class DmsCoordinateParserTest extends StringValueParserTest {
 	 * @return string
 	 */
 	protected function getParserClass() {
-		return 'ValueParsers\DmsCoordinateParser';
+		return 'ValueParsers\FloatCoordinateParser';
 	}
 
 }

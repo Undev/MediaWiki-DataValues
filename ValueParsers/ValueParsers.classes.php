@@ -38,6 +38,7 @@ return array(
 
 	'ValueParsers\BoolParser' => 'includes/parsers/BoolParser.php',
 	'ValueParsers\DmsCoordinateParser' => 'includes/parsers/DmsCoordinateParser.php',
+	'ValueParsers\FloatCoordinateParser' => 'includes/parsers/FloatCoordinateParser.php',
 	'ValueParsers\GeoCoordinateParser' => 'includes/parsers/GeoCoordinateParser.php',
 	'ValueParsers\FloatParser' => 'includes/parsers/FloatParser.php',
 	'ValueParsers\IntParser' => 'includes/parsers/IntParser.php',
