@@ -71,6 +71,13 @@ $messages['cs'] = array(
 	'valuevalidators-desc' => 'Soubor validačních komponent pro DataValues',
 );
 
+/** Danish (dansk)
+ * @author Byrial
+ */
+$messages['da'] = array(
+	'valuevalidators-desc' => 'Samling af validatorer for dataværdier',
+);
+
 /** German (Deutsch)
  * @author Kghbln
  */

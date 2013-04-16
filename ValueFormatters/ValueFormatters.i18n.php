@@ -72,6 +72,13 @@ $messages['cs'] = array(
 	'valueformatters-desc' => 'Soubor formátovačů, které naformátují dodaný vstup',
 );
 
+/** Danish (dansk)
+ * @author Byrial
+ */
+$messages['da'] = array(
+	'valueformatters-desc' => 'Samling af formateringsfunktioner som tager noget input og formaterer det',
+);
+
 /** German (Deutsch)
  * @author Kghbln
  * @author Metalhead64

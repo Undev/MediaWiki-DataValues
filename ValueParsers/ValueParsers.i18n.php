@@ -71,6 +71,13 @@ $messages['cs'] = array(
 	'valueparsers-desc' => 'Soubor parserů, které z dodaného vstupu vytvoří DataValue',
 );
 
+/** Danish (dansk)
+ * @author Byrial
+ */
+$messages['da'] = array(
+	'valueparsers-desc' => 'Samling af parsere som tager noget input og laver det til en dataværdi',
+);
+
 /** German (Deutsch)
  * @author Kghbln
  */
