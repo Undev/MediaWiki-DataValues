@@ -2,6 +2,8 @@
 
 namespace ValueParsers;
 
+use InvalidArgumentException;
+
 /**
  * Factory for creating ValueParser objects.
  *
@@ -46,8 +48,13 @@ class ValueParserFactory {
 	 */
 	public function __construct( array $valueParsers ) {
 		foreach ( $valueParsers as $parserId => $parserClass ) {
-			assert( is_string( $parserId ) );
-			assert( is_string( $parserClass ) );
+			if ( !is_string( $parserId ) ) {
+				throw new InvalidArgumentException( 'Parser id needs to be a string' );
+			}
+
+			if ( !is_string( $parserClass ) ) {
+				throw new InvalidArgumentException( 'Parser class needs to be a string' );
+			}
 
 			$this->parsers[$parserId] = $parserClass;
 		}
