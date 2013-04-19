@@ -1,6 +1,6 @@
 <?php
 /**
- * Definition of 'ValueView' qunit test modules.
+ * Definition of 'DataValues' qunit test modules.
  * When included this returns an array with all qunit test module definitions. Given file patchs
  * are relative to the package's root.
  *
@@ -22,7 +22,7 @@
  * @since 0.1
  *
  * @file
- * @ingroup ValueView
+ * @ingroup DataValues
  *
  * @licence GNU GPL v2+
  * @author Daniel Werner < daniel.werner@wikimedia.de >
@@ -35,30 +35,46 @@ return call_user_func( function() {
 	$bp = 'tests/qunit';
 
 	return array(
-		'jquery.eachchange.tests' => array(
+		'dataValues.tests' => array(
 			'scripts' => array(
-				"$bp/jquery/jquery.eachchange.tests.js",
+				"$bp/dataValues.tests.js",
 			),
 			'dependencies' => array(
-				'jquery.eachchange',
+				'dataValues',
 			),
 		),
 
-		'jquery.inputAutoExpand.tests' => array(
+		'dataValues.DataValue.tests' => array(
 			'scripts' => array(
-				"$bp/jquery/jquery.inputAutoExpand.tests.js",
+				"$bp/dataValues.DataValue.tests.js",
 			),
 			'dependencies' => array(
-				'jquery.inputAutoExpand',
+				'dataValues.DataValue',
 			),
 		),
 
-		'jquery.ui.suggester.tests' => array(
+		'dataValues.values.tests' => array(
 			'scripts' => array(
-				"$bp/jquery.ui/jquery.ui.suggester.tests.js",
+				"$bp/values/BoolValue.tests.js",
+				"$bp/values/MonolingualTextValue.tests.js",
+				"$bp/values/MultilingualTextValue.tests.js",
+				"$bp/values/StringValue.tests.js",
+				"$bp/values/NumberValue.tests.js",
+				"$bp/values/UnknownValue.tests.js",
 			),
 			'dependencies' => array(
-				'jquery.ui.suggester',
+				'dataValues.DataValue.tests',
+				'dataValues.values'
+			),
+		),
+
+		'dataValues.util.tests' => array(
+			'scripts' => array(
+				"$bp/dataValues.util.inherit.tests.js",
+				"$bp/dataValues.util.Notifier.tests.js",
+			),
+			'dependencies' => array(
+				'dataValues.util',
 			),
 		),
 	);
