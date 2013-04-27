@@ -246,3 +246,10 @@ $messages['uk'] = array(
 $messages['vi'] = array(
 	'valueparsers-desc' => 'Bộ sưu tập các bộ xử lý biến đầu vào thành một giá trị dữ liệu',
 );
+
+/** Simplified Chinese (中文（简体）‎)
+ * @author Cwek
+ */
+$messages['zh-hans'] = array(
+	'valueparsers-desc' => '集合的解析器用以将输入转换为 DataValue',
+);
