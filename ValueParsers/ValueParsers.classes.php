@@ -37,6 +37,7 @@ return array(
 	'ValueParsers\ApiParseValue' => 'includes/api/ApiParseValue.php',
 
 	'ValueParsers\BoolParser' => 'includes/parsers/BoolParser.php',
+	'ValueParsers\DmCoordinateParser' => 'includes/parsers/DmCoordinateParser.php',
 	'ValueParsers\DmsCoordinateParser' => 'includes/parsers/DmsCoordinateParser.php',
 	'ValueParsers\FloatCoordinateParser' => 'includes/parsers/FloatCoordinateParser.php',
 	'ValueParsers\GeoCoordinateParser' => 'includes/parsers/GeoCoordinateParser.php',
