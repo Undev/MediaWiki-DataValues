@@ -6,7 +6,7 @@ use DataValues\GeoCoordinateValue;
 use ValueParsers\FloatCoordinateParser;
 
 /**
- * Unit tests for the ValueParsers\FloatCoordinateValue class.
+ * Unit tests for the ValueParsers\FloatCoordinateParser class.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
