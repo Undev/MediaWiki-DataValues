@@ -63,16 +63,18 @@ return call_user_func( function() {
 		),
 
 		'valueParsers.parsers' => $moduleTemplate + array(
-			'scripts' => array(
+			'scripts' => array( // TODO: one module per parser
 				'parsers/BoolParser.js',
 				'parsers/FloatParser.js',
 				'parsers/IntParser.js',
 				'parsers/StringParser.js',
+				'parsers/TimeParser.js',
 				'parsers/NullParser.js',
 			),
 			'dependencies' => array(
 				'valueParsers.ValueParser',
 				'valueParsers.api',
+				'time.js', // required by TimeValue
 			),
 		),
 

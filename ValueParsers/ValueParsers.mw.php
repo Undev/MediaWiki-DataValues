@@ -76,6 +76,7 @@ $wgHooks['UnitTestsList'][] = function( array &$files ) {
 		'includes/parsers/GeoCoordinateParser',
 		'includes/parsers/FloatParser',
 		'includes/parsers/IntParser',
+		'includes/parsers/IntParser',
 		'includes/parsers/NullParser',
 		'includes/parsers/TitleParser',
 
@@ -133,10 +134,12 @@ $wgHooks['ResourceLoaderTestModules'][] = function ( array &$testModules, \Resou
 			'tests/qunit/parsers/FloatParser.tests.js',
 			'tests/qunit/parsers/IntParser.tests.js',
 			'tests/qunit/parsers/StringParser.tests.js',
+			'tests/qunit/parsers/TimeParser.tests.js',
 			'tests/qunit/parsers/NullParser.tests.js',
 		),
 		'dependencies' => array(
 			'ext.valueParsers.tests',
+			'time.js'
 		),
 	);
 
