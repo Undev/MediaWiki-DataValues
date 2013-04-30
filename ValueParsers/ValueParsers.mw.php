@@ -69,6 +69,7 @@ $wgHooks['UnitTestsList'][] = function( array &$files ) {
 		'includes/api/ApiParseValue',
 
 		'includes/parsers/BoolParser',
+		'includes/parsers/DmsCoordinateParser',
 		'includes/parsers/GeoCoordinateParser',
 		'includes/parsers/FloatParser',
 		'includes/parsers/IntParser',
