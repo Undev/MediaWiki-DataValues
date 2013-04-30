@@ -217,7 +217,7 @@ class DmsCoordinateParser extends StringValueParser {
 		}
 
 		$degreePosition = strpos( $coordinate, $this->getOption( self::OPT_DEGREE_SYMBOL ) );
-		$degrees = substr( $coordinate, 0, $degreePosition );
+		$degrees = (float)substr( $coordinate, 0, $degreePosition );
 
 		$minutePosition = strpos( $coordinate, $this->getOption( self::OPT_MINUTE_SYMBOL ) );
 
