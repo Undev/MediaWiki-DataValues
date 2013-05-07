@@ -37,11 +37,12 @@ $messages['en'] = array(
 );
 
 /** Message documentation (Message documentation)
+ * @author Nemo bis
  * @author Shirayuki
  * @author Siebrand
  */
 $messages['qqq'] = array(
-	'valueformatters-desc' => '{{desc|name=Value Formatters|url=http://www.mediawiki.org/wiki/Extension:DataValues}}',
+	'valueformatters-desc' => '{{desc|name=Value Formatters|url=http://www.mediawiki.org/wiki/Extension:ValueFormatters}}',
 );
 
 /** Arabic (العربية)
