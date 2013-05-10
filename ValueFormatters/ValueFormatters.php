@@ -45,14 +45,6 @@
  * @ingroup Test
  */
 
-if ( !defined( 'DATAVALUES' ) && !defined( 'MEDIAWIKI' ) ) {
-	die( 'Not an entry point.' );
-}
-
-if ( !defined( 'DATAVALUES' ) ) {
-	define( 'DATAVALUES', true );
-}
-
 define( 'ValueFormatters_VERSION', '0.1 alpha' );
 
 global $wgValueFormatters;
