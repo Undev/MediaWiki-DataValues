@@ -56,7 +56,6 @@ $wgValueParsers['float'] = 'ValueParsers\FloatParser';
 $wgValueParsers['geocoordinate'] = 'ValueParsers\GeoCoordinateParser';
 $wgValueParsers['int'] = 'ValueParsers\IntParser';
 $wgValueParsers['null'] = 'ValueParsers\NullParser';
-$wgValueParsers['title'] = 'ValueParsers\TitleParser';
 
 if ( defined( 'MEDIAWIKI' ) ) {
 	include __DIR__ . '/ValueParsers.mw.php';
