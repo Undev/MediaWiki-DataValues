@@ -46,7 +46,6 @@ return array(
 	'ValueParsers\IntParser' => 'includes/parsers/IntParser.php',
 	'ValueParsers\NullParser' => 'includes/parsers/NullParser.php',
 	'ValueParsers\StringValueParser' => 'includes/parsers/StringValueParser.php',
-	'ValueParsers\TitleParser' => 'includes/parsers/TitleParser.php',
 
 	'ValueParsers\Test\StringValueParserTest' => 'tests/includes/parsers/StringValueParserTest.php',
 	'ValueParsers\Test\ValueParserTestBase' => 'tests/includes/parsers/ValueParserTestBase.php',
