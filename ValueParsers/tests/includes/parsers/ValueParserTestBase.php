@@ -34,7 +34,7 @@ use ValueParsers\ValueParser;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-abstract class ValueParserTestBase extends \MediaWikiTestCase {
+abstract class ValueParserTestBase extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * @since 0.1

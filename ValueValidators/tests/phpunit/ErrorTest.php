@@ -33,7 +33,7 @@ use ValueValidators\Error;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class ErrorTest extends \MediaWikiTestCase {
+class ErrorTest extends \PHPUnit_Framework_TestCase {
 
 	public function newErrorProvider() {
 		$argLists = array();
@@ -65,7 +65,7 @@ class ErrorTest extends \MediaWikiTestCase {
 
 		$this->assertInternalType( 'string', $error->getText() );
 		$this->assertInternalType( 'integer', $error->getSeverity() );
-		$this->assertTypeOrValue( 'string', $error->getProperty(), null );
+		$this->assertTrue( is_string( $error->getProperty() ) || is_null( $error->getProperty() ) );
 
 		if ( count( $args ) > 0 ) {
 			$this->assertEquals( $args[0], $error->getText() );

@@ -33,7 +33,7 @@ use ValueFormatters\FormatterOptions;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class FormatterOptionsTest extends \MediaWikiTestCase {
+class FormatterOptionsTest extends \PHPUnit_Framework_TestCase {
 
 	public function testConstructor() {
 		$options = array(
@@ -56,17 +56,15 @@ class FormatterOptionsTest extends \MediaWikiTestCase {
 	}
 
 	public function testConstructorFail() {
-		$this->assertException(
-			function() {
-				$options = array(
-					'foo' => 42,
-					'bar' => 4.2,
-					42 => array( 'o_O', false, null, '42' => 42, array() )
-				);
-
-				new FormatterOptions( $options );
-			}
+		$options = array(
+			'foo' => 42,
+			'bar' => 4.2,
+			42 => array( 'o_O', false, null, '42' => 42, array() )
 		);
+
+		$this->setExpectedException( 'Exception' );
+
+		new FormatterOptions( $options );
 	}
 
 	public function setOptionProvider() {
@@ -139,18 +137,28 @@ class FormatterOptionsTest extends \MediaWikiTestCase {
 		$this->assertTrue( (bool)'This is fucking weird' );
 	}
 
-	public function testGetOption() {
+	/**
+	 * @dataProvider nonExistingOptionsProvider
+	 */
+	public function testGetOption( $nonExistingOption ) {
 		$this->assertTrue( true );
 		$formatterOptions = new FormatterOptions( array( 'foo' => 'bar' ) );
 
-		foreach ( array( 'bar', 'Foo', 'FOO', 'spam', 'onoez' ) as $nonExistingOption ) {
-			$this->assertException(
-				function() use ( $formatterOptions, $nonExistingOption ) {
-					$formatterOptions->getOption( $nonExistingOption );
-				},
-				'OutOfBoundsException'
-			);
-		}
+		$this->setExpectedException( 'OutOfBoundsException' );
+
+		$formatterOptions->getOption( $nonExistingOption );
+	}
+
+	public function nonExistingOptionsProvider() {
+		$argLists = array();
+
+		$argLists[] = array( 'bar' );
+		$argLists[] = array( 'Foo' );
+		$argLists[] = array( 'FOO' );
+		$argLists[] = array( 'spam' );
+		$argLists[] = array( 'onoez' );
+
+		return $argLists;
 	}
 
 	public function testRequireOption() {
@@ -166,15 +174,9 @@ class FormatterOptionsTest extends \MediaWikiTestCase {
 			$formatterOptions->requireOption( $option );
 		}
 
-		$notSet = array( 'ohi', 'Foo' );
+		$this->setExpectedException( 'Exception' );
 
-		foreach ( $notSet as $option ) {
-			$this->assertException(
-				function() use ( $formatterOptions, $option ) {
-					$formatterOptions->requireOption( $option );
-				}
-			);
-		}
+		$formatterOptions->requireOption( 'Foo' );
 	}
 
 	public function testDefaultOption() {

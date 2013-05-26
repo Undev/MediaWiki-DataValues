@@ -1,0 +1,33 @@
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         bootstrap="bootstrap.php"
+         cacheTokens="false"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         stopOnError="false"
+         stopOnFailure="false"
+         stopOnIncomplete="false"
+         stopOnSkipped="false"
+         strict="true"
+         verbose="true">
+    <testsuites>
+        <testsuite name="DataTypes">
+            <directory>DataTypes/tests</directory>
+        </testsuite>
+        <testsuite name="DataValues">
+            <directory>DataValues/tests</directory>
+        </testsuite>
+        <testsuite name="ValueFormatters">
+            <directory>ValueFormatters/tests</directory>
+        </testsuite>
+        <testsuite name="ValueParsers">
+            <directory>/ValueParsers/tests</directory>
+            <exclude>/DataValues/ValueParsers/tests/includes/api</exclude>
+        </testsuite>
+        <testsuite name="ValueValidators">
+            <directory>ValueValidators/tests</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

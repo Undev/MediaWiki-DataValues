@@ -33,7 +33,7 @@ use ValueParsers\ValueParserFactory;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class ValueParserFactoryTest extends \MediaWikiTestCase {
+class ValueParserFactoryTest extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * @var null|ValueParserFactory
@@ -61,7 +61,7 @@ class ValueParserFactoryTest extends \MediaWikiTestCase {
 			$this->assertInternalType( 'string', $id );
 		}
 
-		$this->assertArrayEquals( array_unique( $ids ), $ids );
+		$this->assertEquals( array_unique( $ids ), $ids );
 	}
 
 	public function testGetParser() {

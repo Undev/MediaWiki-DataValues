@@ -33,7 +33,7 @@ use ValueParsers\ParserOptions;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class ParserOptionsTest extends \MediaWikiTestCase {
+class ParserOptionsTest extends \PHPUnit_Framework_TestCase {
 
 	public function testConstructor() {
 		$options = array(
@@ -56,17 +56,15 @@ class ParserOptionsTest extends \MediaWikiTestCase {
 	}
 
 	public function testConstructorFail() {
-		$this->assertException(
-			function() {
-				$options = array(
-					'foo' => 42,
-					'bar' => 4.2,
-					42 => array( 'o_O', false, null, '42' => 42, array() )
-				);
-
-				new ParserOptions( $options );
-			}
+		$options = array(
+			'foo' => 42,
+			'bar' => 4.2,
+			42 => array( 'o_O', false, null, '42' => 42, array() )
 		);
+
+		$this->setExpectedException( 'Exception' );
+
+		new ParserOptions( $options );
 	}
 
 	public function setOptionProvider() {
@@ -139,18 +137,28 @@ class ParserOptionsTest extends \MediaWikiTestCase {
 		$this->assertTrue( (bool)'This is fucking weird' );
 	}
 
-	public function testGetOption() {
+	/**
+	 * @dataProvider nonExistingOptionsProvider
+	 */
+	public function testGetOption( $nonExistingOption ) {
 		$this->assertTrue( true );
-		$parserOptions = new ParserOptions( array( 'foo' => 'bar' ) );
+		$formatterOptions = new ParserOptions( array( 'foo' => 'bar' ) );
 
-		foreach ( array( 'bar', 'Foo', 'FOO', 'spam', 'onoez' ) as $nonExistingOption ) {
-			$this->assertException(
-				function() use ( $parserOptions, $nonExistingOption ) {
-					$parserOptions->getOption( $nonExistingOption );
-				},
-				'InvalidArgumentException'
-			);
-		}
+		$this->setExpectedException( 'InvalidArgumentException' );
+
+		$formatterOptions->getOption( $nonExistingOption );
+	}
+
+	public function nonExistingOptionsProvider() {
+		$argLists = array();
+
+		$argLists[] = array( 'bar' );
+		$argLists[] = array( 'Foo' );
+		$argLists[] = array( 'FOO' );
+		$argLists[] = array( 'spam' );
+		$argLists[] = array( 'onoez' );
+
+		return $argLists;
 	}
 
 	public function testRequireOption() {
@@ -166,15 +174,9 @@ class ParserOptionsTest extends \MediaWikiTestCase {
 			$parserOptions->requireOption( $option );
 		}
 
-		$notSet = array( 'ohi', 'Foo' );
+		$this->setExpectedException( 'Exception' );
 
-		foreach ( $notSet as $option ) {
-			$this->assertException(
-				function() use ( $parserOptions, $option ) {
-					$parserOptions->requireOption( $option );
-				}
-			);
-		}
+		$parserOptions->requireOption( 'Foo' );
 	}
 
 	public function testDefaultOption() {

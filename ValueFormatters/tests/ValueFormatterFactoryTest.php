@@ -33,7 +33,7 @@ use ValueFormatters\ValueFormatterFactory;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class ValueFormatterFactoryTest extends \MediaWikiTestCase {
+class ValueFormatterFactoryTest extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * @var null|ValueFormatterFactory
@@ -61,7 +61,7 @@ class ValueFormatterFactoryTest extends \MediaWikiTestCase {
 			$this->assertInternalType( 'string', $id );
 		}
 
-		$this->assertArrayEquals( array_unique( $ids ), $ids );
+		$this->assertEquals( array_unique( $ids ), $ids );
 	}
 
 	public function testGetFormatter() {

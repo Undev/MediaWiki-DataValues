@@ -34,7 +34,7 @@ use ValueFormatters\ValueFormatter;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-abstract class ValueFormatterTestBase extends \MediaWikiTestCase {
+abstract class ValueFormatterTestBase extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * Returns a list with valid inputs and their associated formatting output.
