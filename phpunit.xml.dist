@@ -23,8 +23,8 @@
             <directory>ValueFormatters/tests</directory>
         </testsuite>
         <testsuite name="ValueParsers">
-            <directory>/ValueParsers/tests</directory>
-            <exclude>/DataValues/ValueParsers/tests/includes/api</exclude>
+            <directory>ValueParsers/tests</directory>
+            <exclude>ValueParsers/tests/includes/api</exclude>
         </testsuite>
         <testsuite name="ValueValidators">
             <directory>ValueValidators/tests</directory>
