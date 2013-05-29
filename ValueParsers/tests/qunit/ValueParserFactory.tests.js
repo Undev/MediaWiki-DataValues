@@ -8,7 +8,7 @@
 ( function( vp, $, QUnit, undefined ) {
 	'use strict';
 
-	QUnit.module( 'valueParsers.ValueParserFactory.js', QUnit.newMwEnvironment() );
+	QUnit.module( 'valueParsers.ValueParserFactory.js' );
 
 	QUnit.test(
 		'getParserIds',
