@@ -129,6 +129,7 @@ $wgHooks['ResourceLoaderTestModules'][] = function ( array &$testModules, \Resou
 	$testModules['qunit']['ext.valueParsers.parsers'] = $moduleTemplate + array(
 		'scripts' => array(
 			'tests/qunit/parsers/BoolParser.tests.js',
+			'tests/qunit/parsers/CoordinateParser.tests.js',
 			'tests/qunit/parsers/FloatParser.tests.js',
 			'tests/qunit/parsers/IntParser.tests.js',
 			'tests/qunit/parsers/StringParser.tests.js',
@@ -137,7 +138,6 @@ $wgHooks['ResourceLoaderTestModules'][] = function ( array &$testModules, \Resou
 		),
 		'dependencies' => array(
 			'ext.valueParsers.tests',
-			'time.js'
 		),
 	);
 

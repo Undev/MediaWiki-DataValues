@@ -65,6 +65,7 @@ return call_user_func( function() {
 		'valueParsers.parsers' => $moduleTemplate + array(
 			'scripts' => array( // TODO: one module per parser
 				'parsers/BoolParser.js',
+				'parsers/CoordinateParser.js',
 				'parsers/FloatParser.js',
 				'parsers/IntParser.js',
 				'parsers/StringParser.js',
@@ -74,7 +75,8 @@ return call_user_func( function() {
 			'dependencies' => array(
 				'valueParsers.ValueParser',
 				'valueParsers.api',
-				'time.js', // required by TimeValue
+				'coordinate.js', // required by CoordinateParser
+				'time.js', // required by TimeParser
 			),
 		),
 
