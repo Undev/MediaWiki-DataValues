@@ -72,7 +72,7 @@
 		 * @param {String} moduleName
 		 */
 		runTests: function( moduleName ) {
-			QUnit.module( moduleName, QUnit.newMwEnvironment() );
+			QUnit.module( moduleName );
 
 			var self = this;
 
