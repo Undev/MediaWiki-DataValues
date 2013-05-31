@@ -27,14 +27,8 @@
 		 * @return $.Promise
 		 */
 		parse: function( globeCoordinate ) {
-			var deferred = $.Deferred();
-
-			if( globeCoordinate.isValid() ) {
-				var dataValue = new dv.GlobeCoordinateValue( globeCoordinate );
-				deferred.resolve( dataValue );
-			} else {
-				deferred.reject();
-			}
+			var dataValue = new dv.GlobeCoordinateValue( globeCoordinate ),
+				deferred = $.Deferred().resolve( dataValue );
 
 			return deferred.promise();
 		}
