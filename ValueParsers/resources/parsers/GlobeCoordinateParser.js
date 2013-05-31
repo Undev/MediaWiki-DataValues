@@ -12,25 +12,25 @@
 	var PARENT = vp.ValueParser;
 
 	/**
-	 * Constructor for coordinate parsers.
+	 * Constructor for globe coordinate parsers.
 	 *
 	 * @constructor
 	 * @extends vp.ValueParser
 	 * @since 0.1
 	 */
-	vp.CoordinateParser = dv.util.inherit( PARENT, {
+	vp.GlobeCoordinateParser = dv.util.inherit( PARENT, {
 		/**
 		 * @see vp.ValueParser.parse
 		 * @since 0.1
 		 *
-		 * @param {coordinate.Coordinate} coordinate
+		 * @param {globeCoordinate.GlobeCoordinate} globeCoordinate
 		 * @return $.Promise
 		 */
-		parse: function( coordinate ) {
+		parse: function( globeCoordinate ) {
 			var deferred = $.Deferred();
 
-			if( coordinate.isValid() ) {
-				var dataValue = new dv.CoordinateValue( coordinate );
+			if( globeCoordinate.isValid() ) {
+				var dataValue = new dv.GlobeCoordinateValue( globeCoordinate );
 				deferred.resolve( dataValue );
 			} else {
 				deferred.reject();
