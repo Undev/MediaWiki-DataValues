@@ -44,15 +44,15 @@ $wgExtensionCredits['datavalues'][] = array(
 
 $wgExtensionMessagesFiles['ValueFormatters'] = __DIR__ . '/ValueFormatters.i18n.php';
 
-$wgValueFormatters = array(
-	'globecoordinate' => 'ValueFormatters\GeoCoordinateFormatter'
-);
-
 foreach (include(__DIR__ . '/ValueFormatters.classes.php') as $class => $file ) {
 	if ( !array_key_exists( $class, $GLOBALS['wgAutoloadLocalClasses'] ) ) {
 		$wgAutoloadClasses[$class] = __DIR__ . '/' . $file;
 	}
 }
+
+$wgValueFormatters = array(
+	\DataValues\GeoCoordinateValue::getType() => 'ValueFormatters\GeoCoordinateFormatter'
+);
 
 /**
  * Hook to add PHPUnit test cases.
