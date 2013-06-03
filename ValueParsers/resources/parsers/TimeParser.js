@@ -27,17 +27,7 @@
 		 * @return $.Promise
 		 */
 		parse: function( time ) {
-			var deferred = $.Deferred();
-
-			if( time.isValid() ) {
-				// Valid time:
-				var dataValue = new dv.TimeValue( time );
-				deferred.resolve( dataValue );
-			} else {
-				// Invalid time:
-				deferred.reject();
-			}
-
+			var deferred = $.Deferred().resolve( new dv.TimeValue( time ) );
 			return deferred.promise();
 		}
 	} );
