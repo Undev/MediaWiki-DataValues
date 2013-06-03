@@ -259,3 +259,10 @@ $messages['uk'] = array(
 $messages['vi'] = array(
 	'valuevalidators-desc' => 'Bộ sưu tập các bộ phận phê chuẩn giá trị dữ liệu',
 );
+
+/** Traditional Chinese (中文（繁體）‎)
+ * @author Justincheng12345
+ */
+$messages['zh-hant'] = array(
+	'valuevalidators-desc' => '驗證數值元件集合',
+);

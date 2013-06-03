@@ -263,3 +263,10 @@ $messages['uk'] = array(
 $messages['vi'] = array(
 	'valueformatters-desc' => 'Bộ sưu tập áp dụng định dạng cho đầu vào',
 );
+
+/** Traditional Chinese (中文（繁體）‎)
+ * @author Justincheng12345
+ */
+$messages['zh-hant'] = array(
+	'valueformatters-desc' => '輸入並將其格式化的格式化程式集合',
+);

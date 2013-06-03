@@ -253,3 +253,10 @@ $messages['vi'] = array(
 $messages['zh-hans'] = array(
 	'valueparsers-desc' => '集合的解析器用以将输入转换为 DataValue',
 );
+
+/** Traditional Chinese (中文（繁體）‎)
+ * @author Justincheng12345
+ */
+$messages['zh-hant'] = array(
+	'valueparsers-desc' => '將輸入轉換為數值的解析器集合',
+);
