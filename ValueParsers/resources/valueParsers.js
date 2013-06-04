@@ -14,6 +14,6 @@
  * @since 0.1
  * @type Object
  */
-var valueParsers = {};
+this.valueParsers = {};
 
 window.valueParsers = valueParsers; // global alias

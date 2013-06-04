@@ -47,7 +47,7 @@
 
 					if ( result.hasOwnProperty( 'value' ) && result.hasOwnProperty( 'type' ) ) {
 						try {
-							dataValues.push( dv.newDataValue( result['type'], result['value'] ) );
+							dataValues.push( dv.newDataValue( result.type, result.value ) );
 						}
 						catch ( error ) {
 							deferred.reject( error.hasOwnProperty( 'message' ) ? error.message : 'Unknown error during value unserialization' );
