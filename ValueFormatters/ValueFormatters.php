@@ -52,9 +52,9 @@ global $wgValueFormatters;
 /**
  * @deprecated since 0.1 This is a global registry that provides no control over object lifecycle
  */
-$wgValueFormatters = array();
-
-$wgValueFormatters['geocoordinate'] = 'ValueFormatters\GeoCoordinateFormatter';
+$wgValueFormatters = array(
+	'globecoordinate' => 'ValueFormatters\GeoCoordinateFormatter'
+);
 
 spl_autoload_register( function ( $className ) {
 	// @codeCoverageIgnoreStart
