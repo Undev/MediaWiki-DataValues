@@ -31,11 +31,11 @@
 	},
 	"autoload": {
 		"classmap": [
-			"DataTypes/",
-			"DataValues/",
-			"ValueFormatters/",
-			"ValueParsers/",
-			"ValueValidators/"
+			"DataTypes/includes/",
+			"DataValues/includes/",
+			"ValueFormatters/includes/",
+			"ValueParsers/includes/",
+			"ValueValidators/includes/"
 		]
 	}
 }
