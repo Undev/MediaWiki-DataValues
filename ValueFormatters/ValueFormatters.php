@@ -47,6 +47,12 @@
 
 define( 'ValueFormatters_VERSION', '0.1 alpha' );
 
+global $wgValueFormatters;
+
+$wgValueFormatters = array();
+
+$wgValueFormatters['geocoordinate'] = 'ValueFormatters\GeoCoordinateFormatter';
+
 if ( defined( 'MEDIAWIKI' ) ) {
 	include __DIR__ . '/ValueFormatters.mw.php';
 }

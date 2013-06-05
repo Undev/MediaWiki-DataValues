@@ -31,8 +31,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 'Not an entry point.' );
 }
 
-global $wgExtensionCredits, $wgExtensionMessagesFiles, $wgAutoloadClasses, $wgHooks,
-	$wgValueFormatters;
+global $wgExtensionCredits, $wgExtensionMessagesFiles, $wgAutoloadClasses, $wgHooks;
 
 $wgExtensionCredits['datavalues'][] = array(
 	'path' => __DIR__,
