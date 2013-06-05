@@ -10,7 +10,7 @@
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-throw new Exception();
+
 require_once( __DIR__ . '/DataTypes/tests/bootstrap.php' );
 require_once( __DIR__ . '/DataValues/tests/bootstrap.php' );
 require_once( __DIR__ . '/ValueFormatters/tests/bootstrap.php' );
