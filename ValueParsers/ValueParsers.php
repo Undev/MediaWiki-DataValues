@@ -53,7 +53,7 @@ $wgValueParsers = array();
 
 $wgValueParsers['bool'] = 'ValueParsers\BoolParser';
 $wgValueParsers['float'] = 'ValueParsers\FloatParser';
-$wgValueParsers['geocoordinate'] = 'ValueParsers\GeoCoordinateParser';
+$wgValueParsers['globecoordinate'] = 'ValueParsers\GeoCoordinateParser';
 $wgValueParsers['int'] = 'ValueParsers\IntParser';
 $wgValueParsers['null'] = 'ValueParsers\NullParser';
 

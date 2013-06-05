@@ -39,7 +39,7 @@ class ApiParseValueTest extends \ApiTestCase {
 	public function testStuff() {
 		$params = array(
 			'action' => 'parsevalue',
-			'parser' => 'geocoordinate',
+			'parser' => 'globecoordinate',
 			'values' => '4,2|0,0',
 		);
 
