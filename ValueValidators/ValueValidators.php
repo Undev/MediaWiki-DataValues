@@ -49,6 +49,9 @@ define( 'ValueValidators_VERSION', '0.1 alpha' );
 
 global $wgValueValidators;
 
+/**
+ * @deprecated since 0.1 This is a global registry that provides no control over object lifecycle
+ */
 $wgValueValidators = array();
 
 $wgValueValidators['range'] = 'ValueValidators\RangeValidator';

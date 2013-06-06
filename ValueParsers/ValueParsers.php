@@ -49,6 +49,9 @@ define( 'ValueParsers_VERSION', '0.1 alpha' );
 
 global $wgValueParsers;
 
+/**
+ * @deprecated since 0.1 This is a global registry that provides no control over object lifecycle
+ */
 $wgValueParsers = array();
 
 $wgValueParsers['bool'] = 'ValueParsers\BoolParser';
