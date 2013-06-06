@@ -16,5 +16,3 @@ require_once( __DIR__ . '/DataValues/tests/bootstrap.php' );
 require_once( __DIR__ . '/ValueFormatters/tests/bootstrap.php' );
 require_once( __DIR__ . '/ValueParsers/tests/bootstrap.php' );
 require_once( __DIR__ . '/ValueValidators/tests/bootstrap.php' );
-
-
