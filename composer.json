@@ -7,7 +7,6 @@
 		"valueparsers",
 		"valueformatters",
 		"datatypes",
-		"valueview",
 		"valuevalidators"
 	],
 	"homepage": "https://www.mediawiki.org/wiki/Extension:DataValues",
