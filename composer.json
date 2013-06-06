@@ -1,6 +1,6 @@
 {
 	"name": "mediawiki/data-values",
-	"type": "mediawiki-extension",
+	"type": "library",
 	"description": "A set of simple libraries",
 	"keywords": [
 		"datavalues",
@@ -28,5 +28,14 @@
 	},
 	"require": {
 		"php": ">=5.3.0"
+	},
+	"autoload": {
+		"classmap" : [
+			"DataTypes/",
+			"DataValues/",
+			"ValueFormatters/",
+			"ValueParsers/",
+			"ValueValidators/"
+		]
 	}
 }
