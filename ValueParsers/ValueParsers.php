@@ -60,21 +60,20 @@ $wgValueParsers['globecoordinate'] = 'ValueParsers\GeoCoordinateParser';
 $wgValueParsers['int'] = 'ValueParsers\IntParser';
 $wgValueParsers['null'] = 'ValueParsers\NullParser';
 
+spl_autoload_register( function ( $className ) {
+	// @codeCoverageIgnoreStart
+	static $classes = false;
+
+	if ( $classes === false ) {
+		$classes = include( __DIR__ . '/' . 'ValueParsers.classes.php' );
+	}
+
+	if ( array_key_exists( $className, $classes ) ) {
+		include_once __DIR__ . '/' . $classes[$className];
+	}
+	// @codeCoverageIgnoreEnd
+} );
+
 if ( defined( 'MEDIAWIKI' ) ) {
 	include __DIR__ . '/ValueParsers.mw.php';
-}
-else {
-	spl_autoload_register( function ( $className ) {
-		// @codeCoverageIgnoreStart
-		static $classes = false;
-
-		if ( $classes === false ) {
-			$classes = include( __DIR__ . '/' . 'ValueParsers.classes.php' );
-		}
-
-		if ( array_key_exists( $className, $classes ) ) {
-			include_once __DIR__ . '/' . $classes[$className];
-		}
-		// @codeCoverageIgnoreEnd
-	} );
 }

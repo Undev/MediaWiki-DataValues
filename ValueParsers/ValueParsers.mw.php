@@ -31,7 +31,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 'Not an entry point.' );
 }
 
-global $wgExtensionCredits, $wgExtensionMessagesFiles, $wgAutoloadClasses, $wgHooks, $wgAPIModules, $wgResourceModules;
+global $wgExtensionCredits, $wgExtensionMessagesFiles, $wgHooks, $wgAPIModules, $wgResourceModules;
 
 $wgExtensionCredits['datavalues'][] = array(
 	'path' => __DIR__,
@@ -44,10 +44,8 @@ $wgExtensionCredits['datavalues'][] = array(
 
 $wgExtensionMessagesFiles['ValueParsers'] = __DIR__ . '/ValueParsers.i18n.php';
 
-foreach ( include( __DIR__ . '/ValueParsers.classes.php' ) as $class => $file ) {
-	if ( !array_key_exists( $class, $GLOBALS['wgAutoloadLocalClasses'] ) ) {
-		$wgAutoloadClasses[$class] = __DIR__ . '/' . $file;
-	}
+if ( defined( 'MW_PHPUNIT_TEST' ) ) {
+	require_once __DIR__ . '/tests/testLoader.php';
 }
 
 // API module registration

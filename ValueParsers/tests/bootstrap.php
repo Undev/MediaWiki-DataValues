@@ -13,3 +13,5 @@
  */
 
 require_once( __DIR__ . '/../ValueParsers.php' );
+
+require_once( __DIR__ . '/testLoader.php' );

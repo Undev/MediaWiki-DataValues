@@ -31,7 +31,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 'Not an entry point.' );
 }
 
-global $wgExtensionCredits, $wgExtensionMessagesFiles, $wgAutoloadClasses, $wgHooks;
+global $wgExtensionCredits, $wgExtensionMessagesFiles, $wgHooks;
 
 $wgExtensionCredits['datavalues'][] = array(
 	'path' => __DIR__,
@@ -44,10 +44,8 @@ $wgExtensionCredits['datavalues'][] = array(
 
 $wgExtensionMessagesFiles['ValueFormatters'] = __DIR__ . '/ValueFormatters.i18n.php';
 
-foreach (include(__DIR__ . '/ValueFormatters.classes.php') as $class => $file ) {
-	if ( !array_key_exists( $class, $GLOBALS['wgAutoloadLocalClasses'] ) ) {
-		$wgAutoloadClasses[$class] = __DIR__ . '/' . $file;
-	}
+if ( defined( 'MW_PHPUNIT_TEST' ) ) {
+	require_once __DIR__ . '/tests/testLoader.php';
 }
 
 $wgValueFormatters = array(

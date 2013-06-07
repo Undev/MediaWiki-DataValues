@@ -56,21 +56,20 @@ $wgValueFormatters = array();
 
 $wgValueFormatters['geocoordinate'] = 'ValueFormatters\GeoCoordinateFormatter';
 
+spl_autoload_register( function ( $className ) {
+	// @codeCoverageIgnoreStart
+	static $classes = false;
+
+	if ( $classes === false ) {
+		$classes = include(__DIR__ . '/' . 'ValueFormatters.classes.php');
+	}
+
+	if ( array_key_exists( $className, $classes ) ) {
+		include_once __DIR__ . '/' . $classes[$className];
+	}
+	// @codeCoverageIgnoreEnd
+} );
+
 if ( defined( 'MEDIAWIKI' ) ) {
 	include __DIR__ . '/ValueFormatters.mw.php';
-}
-else {
-	spl_autoload_register( function ( $className ) {
-		// @codeCoverageIgnoreStart
-		static $classes = false;
-
-		if ( $classes === false ) {
-			$classes = include(__DIR__ . '/' . 'ValueFormatters.classes.php');
-		}
-
-		if ( array_key_exists( $className, $classes ) ) {
-			include_once __DIR__ . '/' . $classes[$className];
-		}
-		// @codeCoverageIgnoreEnd
-	} );
 }
