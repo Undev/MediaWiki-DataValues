@@ -65,26 +65,15 @@ $wgAPIModules['parsevalue'] = 'ValueParsers\ApiParseValue';
  */
 $wgHooks['UnitTestsList'][] = function( array &$files ) {
 	// @codeCoverageIgnoreStart
-	$testFiles = array(
-		'includes/api/ApiParseValue',
+	$directoryIterator = new RecursiveDirectoryIterator( __DIR__ . '/tests/phpunit/' );
 
-		'includes/parsers/BoolParser',
-		'includes/parsers/DdCoordinateParser',
-		'includes/parsers/DmCoordinateParser',
-		'includes/parsers/DmsCoordinateParser',
-		'includes/parsers/FloatCoordinateParser',
-		'includes/parsers/GeoCoordinateParser',
-		'includes/parsers/FloatParser',
-		'includes/parsers/IntParser',
-		'includes/parsers/IntParser',
-		'includes/parsers/NullParser',
-
-		'includes/ParserOptions',
-		'includes/ValueParserFactory',
-	);
-
-	foreach ( $testFiles as $file ) {
-		$files[] = __DIR__ . '/tests/' . $file . 'Test.php';
+	/**
+	 * @var SplFileInfo $fileInfo
+	 */
+	foreach ( new RecursiveIteratorIterator( $directoryIterator ) as $fileInfo ) {
+		if ( substr( $fileInfo->getFilename(), -8 ) === 'Test.php' ) {
+			$files[] = $fileInfo->getPathname();
+		}
 	}
 
 	return true;

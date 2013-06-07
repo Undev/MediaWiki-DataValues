@@ -24,7 +24,7 @@
         </testsuite>
         <testsuite name="ValueParsers">
             <directory>ValueParsers/tests</directory>
-            <exclude>ValueParsers/tests/includes/api</exclude>
+            <exclude>ValueParsers/tests/phpunit/api</exclude>
         </testsuite>
         <testsuite name="ValueValidators">
             <directory>ValueValidators/tests</directory>

@@ -37,6 +37,6 @@ return array(
 	'ValueFormatters\IriFormatter' => 'includes/formatters/IriFormatter.php',
 	'ValueFormatters\StringFormatter' => 'includes/formatters/StringFormatter.php',
 
-	'ValueFormatters\Test\ValueFormatterFactoryTest' => 'tests/ValueFormatterFactoryTest.php',
-	'ValueFormatters\Test\ValueFormatterTestBase' => 'tests/ValueFormatterTestBase.php',
+	'ValueFormatters\Test\ValueFormatterFactoryTest' => 'tests/phpunit/ValueFormatterFactoryTest.php',
+	'ValueFormatters\Test\ValueFormatterTestBase' => 'tests/phpunit/ValueFormatterTestBase.php',
 );
