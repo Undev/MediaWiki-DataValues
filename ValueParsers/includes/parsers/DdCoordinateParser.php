@@ -30,6 +30,7 @@ use LogicException;
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
+ * @author H. Snater < mediawiki@snater.com >
  */
 class DdCoordinateParser extends StringValueParser {
 
@@ -101,11 +102,21 @@ class DdCoordinateParser extends StringValueParser {
 		$latitude = $this->getParsedCoordinate( $latitude );
 		$longitude = $this->getParsedCoordinate( $longitude );
 
-		return new GeoCoordinateValue( $latitude, $longitude );
+		$precision = min(
+			$this->detectPrecision( $latitude ),
+			$this->detectPrecision( $longitude )
+		);
+
+		return new GeoCoordinateValue(
+			$latitude,
+			$longitude,
+			null,
+			$precision
+		);
 	}
 
 	/**
-	 * Parsers a single coordinate (either latitude or longitude) and returns it as a float.
+	 * Parses a coordinate segment (either latitude or longitude) and returns it as a float.
 	 *
 	 * @since 0.1
 	 *
@@ -191,7 +202,8 @@ class DdCoordinateParser extends StringValueParser {
 	}
 
 	/**
-	 * Takes a set of coordinates in Decimal Degree representation, and returns them in float representation.
+	 * Takes a coordinate segment in Decimal Degree representation and returns it in float
+	 * representation.
 	 *
 	 * @since 0.1
 	 *
@@ -201,6 +213,27 @@ class DdCoordinateParser extends StringValueParser {
 	 */
 	protected function parseDDCoordinate( $coordinate ) {
 		return (float)str_replace( $this->getOption( self::OPT_DEGREE_SYMBOL ), '', $coordinate );
+	}
+
+	/**
+	 * Detects a number's precision.
+	 *
+	 * @since 0.1
+	 *
+	 * @param float $number
+	 *
+	 * @return int|float
+	 */
+	protected function detectPrecision( $number ) {
+		$split = explode( '.', $number );
+
+		$precision = 1;
+
+		if( isset( $split[1] ) ) {
+			$precision = pow( 10, -1 * strlen( $split[1] ) );
+		}
+
+		return $precision;
 	}
 
 	/**

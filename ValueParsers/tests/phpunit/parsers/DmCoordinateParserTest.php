@@ -50,16 +50,16 @@ class DmCoordinateParserTest extends StringValueParserTest {
 		// TODO: test with different parser options
 
 		$valid = array(
-			"55° 0', 37° 0'" => array( 55, 37 ),
-			"55° 30', 37° 30'" => array( 55.5, 37.5 ),
-			"0° 0', 0° 0'" => array( 0, 0 ),
-			"-55° 30', -37° 30'" => array( -55.5, -37.5 ),
-			"0° 0.3' S, 0° 0.3' W" => array( -0.005, -0.005 ),
-			"55° 30′, 37° 30′" => array( 55.5, 37.5 ),
+			"55° 0', 37° 0'" => array( 55, 37, 1 / 60 ),
+			"55° 30', 37° 30'" => array( 55.5, 37.5, 1 / 60 ),
+			"0° 0', 0° 0'" => array( 0, 0, 1 / 60 ),
+			"-55° 30', -37° 30'" => array( -55.5, -37.5, 1 / 60 ),
+			"0° 0.3' S, 0° 0.3' W" => array( -0.005, -0.005, 1 / 3600 ),
+			"55° 30′, 37° 30′" => array( 55.5, 37.5, 1 / 60 ),
 		);
 
 		foreach ( $valid as $value => $expected ) {
-			$expected = new GeoCoordinateValue( $expected[0], $expected[1] );
+			$expected = new GeoCoordinateValue( $expected[0], $expected[1], null, $expected[2] );
 			$argLists[] = array( (string)$value, $expected );
 		}
 

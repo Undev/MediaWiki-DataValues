@@ -30,6 +30,7 @@ use LogicException;
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
+ * @author H. Snater < mediawiki@snater.com >
  */
 class DmCoordinateParser extends StringValueParser {
 
@@ -103,11 +104,21 @@ class DmCoordinateParser extends StringValueParser {
 		$latitude = $this->getParsedCoordinate( $latitude );
 		$longitude = $this->getParsedCoordinate( $longitude );
 
-		return new GeoCoordinateValue( $latitude, $longitude );
+		$precision = min(
+			$this->detectPrecision( $latitude ),
+			$this->detectPrecision( $longitude )
+		);
+
+		return new GeoCoordinateValue(
+			$latitude,
+			$longitude,
+			null,
+			$precision
+		);
 	}
 
 	/**
-	 * Parsers a single coordinate (either latitude or longitude) and returns it as a float.
+	 * Parses a coordinate segment (either latitude or longitude) and returns it as a float.
 	 *
 	 * @since 0.1
 	 *
@@ -196,7 +207,8 @@ class DmCoordinateParser extends StringValueParser {
 	}
 
 	/**
-	 * Takes a set of coordinates in Decimal Minute representation, and returns them in float representation.
+	 * Takes a coordinate segment in Decimal Minute representation and returns it in float
+	 * representation.
 	 *
 	 * @since 0.1
 	 *
@@ -222,6 +234,38 @@ class DmCoordinateParser extends StringValueParser {
 		}
 
 		return (float)$coordinate;
+	}
+
+	/**
+	 * Detects the precision of given minutes.
+	 *
+	 * @since 0.1
+	 *
+	 * @param float $number
+	 *
+	 * @return float
+	 */
+	protected function detectPrecision( $number ) {
+		$minutes = $number * 60;
+
+		// Since we are in the DM parser, we know that precision needs at least to be an arcminute:
+		$precision = 1 / 60;
+
+		// The minute may be a float; In order to detect a proper precision, we convert the minutes
+		// to seconds.
+		if( $minutes - floor( $minutes ) > 0 ) {
+			$seconds = $minutes * 60;
+
+			$precision = 1 / 3600;
+
+			$secondsSplit = explode( '.', $seconds );
+
+			if( isset( $secondsSplit[1] ) ) {
+				$precision *= pow( 10, -1 * strlen( $secondsSplit[1] ) );
+			}
+		}
+
+		return $precision;
 	}
 
 	/**
