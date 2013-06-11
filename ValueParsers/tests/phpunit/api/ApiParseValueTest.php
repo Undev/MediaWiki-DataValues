@@ -62,6 +62,7 @@ class ApiParseValueTest extends \ApiTestCase {
 			$this->assertArrayHasKey( 'latitude', $value, 'value has latitude key' );
 			$this->assertArrayHasKey( 'longitude', $value, 'value has longitude key' );
 			$this->assertArrayHasKey( 'altitude', $value, 'value has altitude key' );
+			$this->assertArrayHasKey( 'precision', $value, 'value has precision key' );
 			$this->assertArrayHasKey( 'globe', $value, 'value has globe key' );
 		}
 	}
