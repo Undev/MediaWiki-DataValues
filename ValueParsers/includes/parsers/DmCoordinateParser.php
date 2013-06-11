@@ -225,21 +225,77 @@ class DmCoordinateParser extends StringValueParser {
 	}
 
 	/**
-	 * returns whether the coordinates are in Decimal Minute representation.
+	 * Returns whether the coordinate is in Decimal Minute representation.
 	 *
 	 * @since 0.1
 	 *
-	 * @param string $coordinates
+	 * @param string $rawCoordinateString
 	 *
 	 * @return boolean
 	 */
-	protected function areDMCoordinates( $coordinates ) {
+	protected function areDMCoordinates( $rawCoordinateString ) {
 		$sep = $this->getOption( self::OPT_SEPARATOR_SYMBOL );
 
-		$match = preg_match( '/(-)?\d{1,3}°(\d{1,2}(\.\d{1,20})?\')?' . $sep . '(-)?\d{1,3}°(\d{1,2}(\.\d{1,20})?\')?$/i', $coordinates ) // Non-directional
-			|| preg_match( '/\d{1,3}°(\d{1,2}(\.\d{1,20})?\')?(N|S)' . $sep . '\d{1,3}°(\d{1,2}(\.\d{1,20})?\')?(E|W)?$/i', $coordinates ); // Directional
+		$rawCoordinate = explode( $sep, trim( $rawCoordinateString ) );
 
-		return $match;
+		if( count( $rawCoordinate ) !== 2 ) {
+			return false;
+		}
+
+		// At least one coordinate segment needs to have minutes specified.
+		$regExpStrict = '\d{1,3}°(\d{1,2}(\.\d{1,20})?(′|\'))';
+		$regExpLoose = $regExpStrict . '?';
+
+		// Cache whether minutes have been detected within the coordinate:
+		$detectedMinute = false;
+
+		// Cache whether the coordinates are specified in directional format (a mixture of
+		// directional and non-directional is regarded invalid).
+		$directional = false;
+
+		foreach( $rawCoordinate as $i => $segment ) {
+			$segment = trim( $segment );
+
+			$direction = '('
+				. $this->getOption( self::OPT_NORTH_SYMBOL )
+				. '|'
+				. $this->getOption( self::OPT_SOUTH_SYMBOL )
+				. ')';
+
+			if( $i === 1 ) {
+				$direction = '('
+					. $this->getOption( self::OPT_EAST_SYMBOL )
+					. '|'
+					. $this->getOption( self::OPT_WEST_SYMBOL )
+					. ')';
+			}
+
+			$match = preg_match( '/^' . $regExpStrict . $direction . '$/i', $segment );
+
+			if( $match ) {
+				$detectedMinute = true;
+			} else {
+				$match = preg_match( '/^' . $regExpLoose . $direction . '$/i', $segment );
+			}
+
+			if( $match ) {
+				$directional = true;
+			} elseif ( !$directional ) {
+				$match = preg_match( '/^(-)?' . $regExpStrict . '$/i', $segment );
+
+				if( $match ) {
+					$detectedMinute = true;
+				} else  {
+					$match = preg_match( '/^(-)?' . $regExpLoose . '$/i', $segment );
+				}
+			}
+
+			if( !$match ) {
+				return false;
+			}
+		}
+
+		return $detectedMinute;
 	}
 
 }

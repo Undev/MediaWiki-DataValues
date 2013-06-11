@@ -55,6 +55,7 @@ class DmCoordinateParserTest extends StringValueParserTest {
 			"0° 0', 0° 0'" => array( 0, 0 ),
 			"-55° 30', -37° 30'" => array( -55.5, -37.5 ),
 			"0° 0.3' S, 0° 0.3' W" => array( -0.005, -0.005 ),
+			"55° 30′, 37° 30′" => array( 55.5, 37.5 ),
 		);
 
 		foreach ( $valid as $value => $expected ) {

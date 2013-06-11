@@ -204,21 +204,28 @@ class DdCoordinateParser extends StringValueParser {
 	}
 
 	/**
-	 * returns whether the coordinates are in Decimal Degree representation.
+	 * Returns whether the coordinate is in Decimal Degree representation.
 	 *
 	 * @since 0.1
 	 *
-	 * @param string $coordinates
+	 * @param string $rawCoordinateString
 	 *
 	 * @return boolean
 	 */
-	protected function areDDCoordinates( $coordinates ) {
+	protected function areDDCoordinates( $rawCoordinateString ) {
 		$sep = $this->getOption( self::OPT_SEPARATOR_SYMBOL );
 
-		$match = preg_match( '/^(-)?\d{1,3}(|\.\d{1,20})°' . $sep . '(-)?\d{1,3}(|\.\d{1,20})°$/i', $coordinates ) // Non-directional
-			|| preg_match( '/^\d{1,3}(|\.\d{1,20})°(N|S)' . $sep . '\d{1,3}(|\.\d{1,20})°(E|W)?$/i', $coordinates ); // Directional
+		$baseRegExp = '\d{1,3}(|\.\d{1,20})°';
 
-		return $match;
+		$nonDirectionalRegExp = '/^(-)?' . $baseRegExp . $sep . '(-)?' . $baseRegExp . '$/i';
+		$directionalRegExp = '/^' . $baseRegExp . '('
+			. $this->getOption( self::OPT_NORTH_SYMBOL ) . '|'
+			. $this->getOption( self::OPT_SOUTH_SYMBOL ) .')' . $sep . $baseRegExp . '('
+			. $this->getOption( self::OPT_EAST_SYMBOL ) .'|'
+			. $this->getOption( self::OPT_WEST_SYMBOL ) . ')?$/i';
+
+		return preg_match( $nonDirectionalRegExp, $rawCoordinateString )
+			|| preg_match( $directionalRegExp, $rawCoordinateString );
 	}
 
 }

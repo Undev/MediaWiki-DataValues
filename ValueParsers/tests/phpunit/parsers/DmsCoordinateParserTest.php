@@ -61,6 +61,7 @@ class DmsCoordinateParserTest extends StringValueParserTest {
 			'0° 0\' 0", 0° 0\' 0"' => array( 0, 0 ),
 			'0° 0\' 18" N, 0° 0\' 18" E' => array( 0.005, 0.005 ),
 			' 0° 0\' 18" S  , 0°  0\' 18"  W ' => array( -0.005, -0.005 ),
+			'55° 0′ 18″, 37° 0′ 18″' => array( 55.005, 37.005 ),
 		);
 
 		foreach ( $valid as $value => $expected ) {

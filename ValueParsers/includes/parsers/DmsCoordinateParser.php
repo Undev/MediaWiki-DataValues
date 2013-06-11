@@ -250,24 +250,79 @@ class DmsCoordinateParser extends StringValueParser {
 	}
 
 	/**
-	 * returns whether the coordinates are in DMS representation.
+	 * Returns whether the coordinate is in DMS representation.
 	 * TODO: nicify
 	 *
 	 * @since 0.1
 	 *
-	 * @param string $coordinates
+	 * @param string $rawCoordinateString
 	 *
 	 * @return boolean
 	 */
-	protected function areDMSCoordinates( $coordinates ) {
+	protected function areDMSCoordinates( $rawCoordinateString ) {
 		$sep = $this->getOption( self::OPT_SEPARATOR_SYMBOL );
 
-		$match = preg_match( '/^(-)?(\d{1,3}°)(\d{1,2}(\′|\'))?((\d{1,2}(″|"))?|(\d{1,2}\.\d{1,20}(″|"))?)'
-			. $sep . '(-)?(\d{1,3}°)(\d{1,2}(\′|\'))?((\d{1,2}(″|"))?|(\d{1,2}\.\d{1,20}(″|"))?)$/i', $coordinates ) // Non-directional
-			|| preg_match( '/^(\d{1,3}°)(\d{1,2}(\′|\'))?((\d{1,2}(″|"))?|(\d{1,2}\.\d{1,20}(″|"))?)(N|S)'
-				. $sep . '(\d{1,3}°)(\d{1,2}(\′|\'))?((\d{1,2}(″|"))?|(\d{1,2}\.\d{1,20}(″|"))?)(E|W)$/i', $coordinates ); // Directional
+		$rawCoordinates = explode( $sep, trim( $rawCoordinateString ) );
 
-		return $match;
+		if( count( $rawCoordinates ) !== 2 ) {
+			return false;
+		}
+
+		// At least one coordinate segment needs to have seconds specified (which additionally
+		// requires minutes to be specified).
+		$regExpLoose = '(\d{1,3}°)(\d{1,2}(′|\'))?((\d{1,2}(″|"))?|(\d{1,2}\.\d{1,20}(″|"))?)';
+		$regExpStrict = str_replace( '?', '', $regExpLoose );
+
+		// Cache whether seconds have been detected within the coordinate:
+		$detectedSecond = false;
+
+		// Cache whether the coordinates are specified in directional format (a mixture of
+		// directional and non-directional is regarded invalid).
+		$directional = false;
+
+		foreach( $rawCoordinates as $i => $rawCoordinate ) {
+			$rawCoordinate = trim( $rawCoordinate );
+
+			$direction = '('
+				. $this->getOption( self::OPT_NORTH_SYMBOL )
+				. '|'
+				. $this->getOption( self::OPT_SOUTH_SYMBOL )
+				. ')';
+
+			if( $i === 1 ) {
+				$direction = '('
+					. $this->getOption( self::OPT_EAST_SYMBOL )
+					. '|'
+					. $this->getOption( self::OPT_WEST_SYMBOL )
+					. ')';
+			}
+
+			$match = preg_match( '/^' . $regExpStrict . $direction . '$/i', $rawCoordinate );
+
+			if( $match ) {
+				$detectedSecond = true;
+			} else {
+				$match = preg_match( '/^' . $regExpLoose . $direction . '$/i', $rawCoordinate );
+			}
+
+			if( $match ) {
+				$directional = true;
+			} elseif ( !$directional ) {
+				$match = preg_match( '/^(-)?' . $regExpStrict . '$/i', $rawCoordinate );
+
+				if( $match ) {
+					$detectedSecond = true;
+				} else  {
+					$match = preg_match( '/^(-)?' . $regExpLoose . '$/i', $rawCoordinate );
+				}
+			}
+
+			if( !$match ) {
+				return false;
+			}
+		}
+
+		return $detectedSecond;
 	}
 
 }

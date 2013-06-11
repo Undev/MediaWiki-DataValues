@@ -78,6 +78,7 @@ class GeoCoordinateParserTest extends StringValueParserTest {
 			'0° 0\' 0", 0° 0\' 0"' => array( 0, 0 ),
 			'0° 0\' 18" N, 0° 0\' 18" E' => array( 0.005, 0.005 ),
 			' 0° 0\' 18" S  , 0°  0\' 18"  W ' => array( -0.005, -0.005 ),
+			'0° 0′ 18″ N, 0° 0′ 18″ E' => array( 0.005, 0.005 ),
 
 			// DM
 			'55° 0\', 37° 0\'' => array( 55, 37 ),
@@ -85,6 +86,7 @@ class GeoCoordinateParserTest extends StringValueParserTest {
 			'0° 0\', 0° 0\'' => array( 0, 0 ),
 			'-55° 30\', -37° 30\'' => array( -55.5, -37.5 ),
 			'0° 0.3\' S, 0° 0.3\' W' => array( -0.005, -0.005 ),
+			'-55° 30′, -37° 30′' => array( -55.5, -37.5 ),
 		);
 
 		foreach ( $valid as $value => $expected ) {

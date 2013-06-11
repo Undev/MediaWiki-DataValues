@@ -128,8 +128,8 @@ class GeoCoordinateParser extends StringValueParser {
 
 		$parsers[] = new FloatCoordinateParser( $this->options );
 		$parsers[] = new DmsCoordinateParser( $this->options );
-		$parsers[] = new DdCoordinateParser( $this->options );
 		$parsers[] = new DmCoordinateParser( $this->options );
+		$parsers[] = new DdCoordinateParser( $this->options );
 
 		return $parsers;
 	}
