@@ -64,7 +64,7 @@ class StringValidator extends ValueValidatorObject {
 		if ( $lowerBound !== false || $upperBound !== false ) {
 			$rangeValidator = new RangeValidator();
 			$rangeValidator->setRange( $lowerBound, $upperBound );
-			$this->runSubValidator( count( $value ), $rangeValidator, 'length' );
+			$this->runSubValidator( strlen( $value ), $rangeValidator, 'length' );
 		}
 
 		// TODO: this needs tests
