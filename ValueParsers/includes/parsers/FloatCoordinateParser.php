@@ -28,6 +28,7 @@ use LogicException;
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
+ * @author H. Snater < mediawiki@snater.com >
  */
 class FloatCoordinateParser extends StringValueParser {
 
@@ -91,7 +92,17 @@ class FloatCoordinateParser extends StringValueParser {
 		$latitude = $this->getParsedCoordinate( $latitude );
 		$longitude = $this->getParsedCoordinate( $longitude );
 
-		$coordinate = new GeoCoordinateValue( $latitude, $longitude );
+		$precision = min(
+			$this->detectPrecision( $latitude ),
+			$this->detectPrecision( $longitude )
+		);
+
+		$coordinate = new GeoCoordinateValue(
+			$latitude,
+			$longitude,
+			null,
+			$precision
+		);
 
 		return $coordinate;
 	}
@@ -139,6 +150,27 @@ class FloatCoordinateParser extends StringValueParser {
 		}
 
 		return $coordinate;
+	}
+
+	/**
+	 * Detects a number's precision.
+	 *
+	 * @since 0.1
+	 *
+	 * @param float $number
+	 *
+	 * @return int|float
+	 */
+	protected function detectPrecision( $number ) {
+		$split = explode( '.', $number );
+
+		$precision = 1;
+
+		if( isset( $split[1] ) ) {
+			$precision = pow( 10, -1 * strlen( $split[1] ) );
+		}
+
+		return $precision;
 	}
 
 	/**

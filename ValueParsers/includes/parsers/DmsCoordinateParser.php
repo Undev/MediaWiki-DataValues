@@ -30,6 +30,7 @@ use LogicException;
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
+ * @author H. Snater < mediawiki@snater.com >
  */
 class DmsCoordinateParser extends StringValueParser {
 
@@ -105,11 +106,21 @@ class DmsCoordinateParser extends StringValueParser {
 		$latitude = $this->getParsedCoordinate( $latitude );
 		$longitude = $this->getParsedCoordinate( $longitude );
 
-		return new GeoCoordinateValue( $latitude, $longitude );
+		$precision = min(
+			$this->detectPrecision( $latitude ),
+			$this->detectPrecision( $longitude )
+		);
+
+		return new GeoCoordinateValue(
+			$latitude,
+			$longitude,
+			null,
+			$precision
+		);
 	}
 
 	/**
-	 * Parsers a single coordinate (either latitude or longitude) and returns it as a float.
+	 * Parses a coordinate segment (either latitude or longitude) and returns it as a float.
 	 *
 	 * @since 0.1
 	 *
@@ -201,7 +212,7 @@ class DmsCoordinateParser extends StringValueParser {
 	}
 
 	/**
-	 * Takes a set of coordinates in DMS representation, and returns them in float representation.
+	 * Takes a coordinate segment in DMS representation, and returns it in float representation.
 	 *
 	 * @since 0.1
 	 *
@@ -247,6 +258,32 @@ class DmsCoordinateParser extends StringValueParser {
 		}
 
 		return (float)$coordinate;
+	}
+
+	/**
+	 * Detects the precision of a given number.
+	 *
+	 * @since 0.1
+	 *
+	 * @param float $number
+	 *
+	 * @return float
+	 */
+	protected function detectPrecision( $number ) {
+		$seconds = $number * 3600;
+
+		// Since we are in the DMS parser, we know that precision needs at least to be an arcsecond:
+		$precision = 1 / 3600;
+
+		if( $number - floor( $number ) > 0 ) {
+			$secondsSplit = explode( '.', $seconds );
+
+			if( isset( $secondsSplit[1] ) ) {
+				$precision *= pow( 10, -1 * strlen( $secondsSplit[1] ) );
+			}
+		}
+
+		return $precision;
 	}
 
 	/**
