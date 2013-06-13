@@ -50,7 +50,6 @@ class DmsCoordinateParserTest extends StringValueParserTest {
 		// TODO: test with different parser options
 
 		$valid = array(
-			// DMS
 			'55° 45\' 20.8296", 37° 37\' 3.4788"' => array( 55.755786, 37.617633, 1 / 3600 * 0.0001 ),
 			'55° 45\' 20.8296", -37° 37\' 3.4788"' => array( 55.755786, -37.617633, 1 / 3600 * 0.0001 ),
 			'-55° 45\' 20.8296", -37° 37\' 3.4788"' => array( -55.755786, -37.617633, 1 / 3600 * 0.0001 ),
@@ -68,6 +67,12 @@ class DmsCoordinateParserTest extends StringValueParserTest {
 			$expected = new GeoCoordinateValue( $expected[0], $expected[1], null, $expected[2] );
 			$argLists[] = array( (string)$value, $expected );
 		}
+
+		// Checking whether precision gets set via the parser options:
+		$parser = $this->getInstance();
+		$parser->getOptions()->setOption( 'precision', 0.1 );
+		$expected = new GeoCoordinateValue( 1.02, 1.02, null, 0.1 );
+		$argLists[] = array( '1° 1\' 12", 1° 1\' 12"', $expected, $parser );
 
 		return $argLists;
 	}

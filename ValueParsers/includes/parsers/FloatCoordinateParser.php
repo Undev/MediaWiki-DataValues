@@ -92,10 +92,9 @@ class FloatCoordinateParser extends StringValueParser {
 		$latitude = $this->getParsedCoordinate( $latitude );
 		$longitude = $this->getParsedCoordinate( $longitude );
 
-		$precision = min(
-			$this->detectPrecision( $latitude ),
-			$this->detectPrecision( $longitude )
-		);
+		$precision = ( $this->options->hasOption( 'precision' ) )
+			? $this->options->getOption( 'precision' )
+			: min( $this->detectPrecision( $latitude ), $this->detectPrecision( $longitude ) );
 
 		$coordinate = new GeoCoordinateValue(
 			$latitude,
@@ -108,7 +107,7 @@ class FloatCoordinateParser extends StringValueParser {
 	}
 
 	/**
-	 * Parsers a single coordinate (either latitude or longitude) and returns it as a float.
+	 * Parses a single coordinate (either latitude or longitude) and returns it as a float.
 	 *
 	 * @since 0.1
 	 *

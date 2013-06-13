@@ -106,10 +106,9 @@ class DmsCoordinateParser extends StringValueParser {
 		$latitude = $this->getParsedCoordinate( $latitude );
 		$longitude = $this->getParsedCoordinate( $longitude );
 
-		$precision = min(
-			$this->detectPrecision( $latitude ),
-			$this->detectPrecision( $longitude )
-		);
+		$precision = ( $this->options->hasOption( 'precision' ) )
+			? $this->options->getOption( 'precision' )
+			: min( $this->detectPrecision( $latitude ), $this->detectPrecision( $longitude ) );
 
 		return new GeoCoordinateValue(
 			$latitude,

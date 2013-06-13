@@ -63,6 +63,12 @@ class DdCoordinateParserTest extends StringValueParserTest {
 			$argLists[] = array( (string)$value, $expected );
 		}
 
+		// Checking whether precision gets set via the parser options:
+		$parser = $this->getInstance();
+		$parser->getOptions()->setOption( 'precision', 0.1 );
+		$expected = new GeoCoordinateValue( 1, 1, null, 0.1 );
+		$argLists[] = array( '1°, 1°', $expected, $parser );
+
 		return $argLists;
 	}
 
