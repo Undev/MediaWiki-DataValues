@@ -45,6 +45,11 @@
  * @ingroup Test
  */
 
+if ( defined( 'ValueValidators_VERSION' ) ) {
+	// Do not initialize more then once.
+	return;
+}
+
 define( 'ValueValidators_VERSION', '0.1 alpha' );
 
 global $wgValueValidators;
