@@ -45,6 +45,11 @@
  * @ingroup Test
  */
 
+if ( defined( 'ValueParsers_VERSION' ) ) {
+	// Do not initialize more then once.
+	return;
+}
+
 define( 'ValueParsers_VERSION', '0.1 alpha' );
 
 global $wgValueParsers;
