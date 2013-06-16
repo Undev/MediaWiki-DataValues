@@ -1,7 +1,7 @@
 {
 	"name": "data-values/data-values",
 	"type": "library",
-	"description": "A set of simple libraries",
+	"description": "A library containing definitions for various values (ie quantities, times, coordinates, etc)",
 	"keywords": [
 		"datavalues",
 		"valueparsers",
@@ -27,6 +27,9 @@
 	},
 	"require": {
 		"php": ">=5.3.0"
+	},
+	"replace": {
+		"mediawiki/data-values": "*"
 	},
 	"autoload": {
 		"files" : [
