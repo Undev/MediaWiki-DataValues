@@ -35,11 +35,11 @@
 			return [
 				[
 					'1.5, 1.25',
-					new dv.GlobeCoordinateValue( new GlobeCoordinate( '1.5, 1.25' ) )
+					new dv.GlobeCoordinateValue( new GlobeCoordinate( { latitude: 1.5, longitude: 1.25, precision: 0.01 } ) )
 				],
 				[
 					'-50, -20',
-					new dv.GlobeCoordinateValue( new GlobeCoordinate( '-50, -20' ) )
+					new dv.GlobeCoordinateValue( new GlobeCoordinate( { latitude: -50, longitude: -20, precision: 1 } ) )
 				]
 			];
 		}
