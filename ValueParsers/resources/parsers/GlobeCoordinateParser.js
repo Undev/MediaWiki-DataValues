@@ -6,32 +6,42 @@
  *
  * @author H. Snater < mediawiki@snater.com >
  */
-( function( vp, dv, $ ) {
+( function( vp, dv, $, GlobeCoordinate ) {
 	'use strict';
 
-	var PARENT = vp.ValueParser;
+	var PARENT = vp.ApiBasedValueParser;
 
 	/**
 	 * Constructor for globe coordinate parsers.
 	 *
 	 * @constructor
-	 * @extends vp.ValueParser
+	 * @extends vp.ApiBasedValueParser
 	 * @since 0.1
 	 */
 	vp.GlobeCoordinateParser = dv.util.inherit( PARENT, {
 		/**
+		 * @see vp.ApiBasedValueParser.API_VALUE_PARSER_ID
+		 */
+		API_VALUE_PARSER_ID: 'globecoordinate',
+
+		/**
 		 * @see vp.ValueParser.parse
 		 * @since 0.1
 		 *
-		 * @param {globeCoordinate.GlobeCoordinate} globeCoordinate
+		 * TODO: Make this accept strings only.
+		 *
+		 * @param {globeCoordinate.GlobeCoordinate|string} rawValue
 		 * @return $.Promise
 		 */
-		parse: function( globeCoordinate ) {
-			var dataValue = new dv.GlobeCoordinateValue( globeCoordinate ),
-				deferred = $.Deferred().resolve( dataValue );
-
-			return deferred.promise();
+		parse: function( rawValue ) {
+			if( rawValue instanceof GlobeCoordinate ) {
+				var globeCoordinateValue = new dv.GlobeCoordinateValue( rawValue ),
+					deferred = $.Deferred().resolve( globeCoordinateValue );
+				return deferred.promise();
+			} else {
+				return PARENT.prototype.parse.call( this, rawValue );
+			}
 		}
 	} );
 
-}( valueParsers, dataValues, jQuery ) );
+}( valueParsers, dataValues, jQuery, globeCoordinate.GlobeCoordinate ) );
