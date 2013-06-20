@@ -37,31 +37,42 @@ class Error implements \Immutable {
 	protected $severity;
 	protected $property;
 
+	protected $code;
+	protected $params;
+
 	/**
 	 * Create a new error.
 	 *
 	 * @since 0.1
 	 *
-	 * @param string $text
+	 * @param string      $text
 	 * @param string|null $property
+	 * @param string      $code
+	 * @param array       $params
 	 *
 	 * @return Error
 	 */
-	public static function newError( $text = '', $property = null ) {
-		return new static( $text, Error::SEVERITY_ERROR, $property );
+	public static function newError( $text = '', $property = null, $code = 'invalid', $params = array() ) {
+		return new static( $text, Error::SEVERITY_ERROR, $property, $code, $params );
 	}
 
 	/**
 	 * @since 0.1
 	 *
-	 * @param string $text
-	 * @param integer $severity
+	 * @param string      $text
+	 * @param integer     $severity
 	 * @param string|null $property
+	 * @param string      $code
+	 * @param array       $params
+	 *
+	 * @return \ValueValidators\Error
 	 */
-	protected function __construct( $text, $severity, $property ) {
+	protected function __construct( $text, $severity, $property, $code, $params ) {
 		$this->text = $text;
 		$this->severity = $severity;
 		$this->property = $property;
+		$this->code = $code;
+		$this->params = $params;
 	}
 
 	/**
@@ -95,6 +106,20 @@ class Error implements \Immutable {
 	 */
 	public function getProperty() {
 		return $this->property;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getParameters() {
+		return $this->params;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getCode() {
+		return $this->code;
 	}
 
 }
