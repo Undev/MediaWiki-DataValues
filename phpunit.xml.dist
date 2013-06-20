@@ -14,7 +14,8 @@
          verbose="true">
     <testsuites>
         <testsuite name="DataTypes">
-            <directory>DataTypes/tests</directory>
+            <directory>/DataTypes/tests</directory>
+            <exclude>DataTypes/tests/modules/DataTypesModuleTest.php</exclude>
         </testsuite>
         <testsuite name="DataValues">
             <directory>DataValues/tests</directory>
