@@ -95,7 +95,7 @@ class DmsCoordinateParser extends StringValueParser {
 			throw new ParseException( 'Not a geographical coordinate in DMS format' );
 		}
 
-		$coordinates = explode( $this->getOption( self::OPT_SEPARATOR_SYMBOL ), $value );
+		$coordinates = $this->splitString( $value );
 
 		if ( count( $coordinates ) !== 2 ) {
 			throw new LogicException( 'A coordinates string with an incorrect segment count has made it through validation' );
@@ -286,6 +286,45 @@ class DmsCoordinateParser extends StringValueParser {
 	}
 
 	/**
+	 * Splits a string into two strings using the separator specified in the options. If the string
+	 * could not be split using the separator, the method will try to split the string by analyzing
+	 * the used symbols. If the string could not be split into two parts, an empty array is
+	 * returned.
+	 *
+	 * @param string $normalizedCoordinateString
+	 * @return string[]
+	 */
+	protected function splitString( $normalizedCoordinateString ) {
+		$separator = $this->getOption( self::OPT_SEPARATOR_SYMBOL );
+
+		$normalizedCoordinateSegments = explode( $separator, $normalizedCoordinateString );
+
+		if( count( $normalizedCoordinateSegments ) !== 2 ) {
+			// Separator not present within the string, trying to figure out the segments by
+			// splitting after the first direction character or second symbol:
+			$delimiters = array(
+				$this->getOption( self::OPT_NORTH_SYMBOL ),
+				$this->getOption( self::OPT_SOUTH_SYMBOL ),
+				'″',
+				'"'
+			);
+
+			foreach( $delimiters as $delimiter ) {
+				$delimiterPos = mb_strpos( $normalizedCoordinateString, $delimiter );
+				if( $delimiterPos !== false ) {
+					$normalizedCoordinateSegments = array(
+						mb_substr( $normalizedCoordinateString, 0, $delimiterPos + 1 ),
+						mb_substr( $normalizedCoordinateString, $delimiterPos + 1 )
+					);
+					break;
+				}
+			}
+		}
+
+		return $normalizedCoordinateSegments;
+	}
+
+	/**
 	 * Returns whether the coordinate is in DMS representation.
 	 * TODO: nicify
 	 *
@@ -296,9 +335,7 @@ class DmsCoordinateParser extends StringValueParser {
 	 * @return boolean
 	 */
 	protected function areDMSCoordinates( $rawCoordinateString ) {
-		$sep = $this->getOption( self::OPT_SEPARATOR_SYMBOL );
-
-		$rawCoordinates = explode( $sep, trim( $rawCoordinateString ) );
+		$rawCoordinates = $this->splitString( $rawCoordinateString );
 
 		if( count( $rawCoordinates ) !== 2 ) {
 			return false;
@@ -317,20 +354,14 @@ class DmsCoordinateParser extends StringValueParser {
 		$directional = false;
 
 		foreach( $rawCoordinates as $i => $rawCoordinate ) {
-			$rawCoordinate = trim( $rawCoordinate );
-
 			$direction = '('
-				. $this->getOption( self::OPT_NORTH_SYMBOL )
-				. '|'
-				. $this->getOption( self::OPT_SOUTH_SYMBOL )
-				. ')';
+				. $this->getOption( self::OPT_NORTH_SYMBOL ) . '|'
+				. $this->getOption( self::OPT_SOUTH_SYMBOL ) . ')';
 
 			if( $i === 1 ) {
 				$direction = '('
-					. $this->getOption( self::OPT_EAST_SYMBOL )
-					. '|'
-					. $this->getOption( self::OPT_WEST_SYMBOL )
-					. ')';
+					. $this->getOption( self::OPT_EAST_SYMBOL ) . '|'
+					. $this->getOption( self::OPT_WEST_SYMBOL ) . ')';
 			}
 
 			$match = preg_match( '/^' . $regExpStrict . $direction . '$/i', $rawCoordinate );
