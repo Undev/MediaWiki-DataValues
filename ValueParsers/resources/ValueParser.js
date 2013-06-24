@@ -17,7 +17,7 @@
 	 * @param {Object} options
 	 */
 	var SELF = vp.ValueParser = function VpValueParser( options ) {
-		this._options = options || {};
+		this._options = $.extend( {}, options || {} );
 	};
 
 	$.extend( SELF.prototype, {
@@ -28,6 +28,17 @@
 		 * @since 0.1
 		 */
 		_options: {},
+
+		/**
+		 * Returns the parser's options as set in the constructor.
+		 *
+		 * @since 0.1
+		 *
+		 * @returns Object
+		 */
+		getOptions: function() {
+			return $.extend( {}, this._options );
+		},
 
 		/**
 		 * Parses a value. Will return a jQuery.Promise which will be resolved if the parsing is
