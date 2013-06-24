@@ -40,6 +40,12 @@
 			options: $.toJSON( options )
 		} ).done( function( apiResult ) {
 			if ( apiResult.hasOwnProperty( 'results' ) ) {
+
+				if( apiResult.results.length === 0 ) {
+					deferred.reject( 'Parse API returned an empty result set.' );
+					return;
+				}
+
 				var dataValues = [];
 
 				for ( var i in apiResult.results ) {

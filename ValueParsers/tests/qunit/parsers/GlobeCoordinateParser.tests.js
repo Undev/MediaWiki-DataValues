@@ -34,6 +34,14 @@
 		getParseArguments: function() {
 			return [
 				[
+					'-1.5, -1.25',
+					new dv.GlobeCoordinateValue( new GlobeCoordinate( '-1.5, -1.25' ) )
+				],
+				[
+					'10, 12',
+					new dv.GlobeCoordinateValue( new GlobeCoordinate( '10, 12' ) )
+				],
+				[
 					new GlobeCoordinate( '1.5 1.25' ),
 					new dv.GlobeCoordinateValue( new GlobeCoordinate( '1.5 1.25' ) )
 				],
