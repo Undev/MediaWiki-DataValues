@@ -47,6 +47,9 @@ class ErrorTest extends \PHPUnit_Framework_TestCase {
 		$argLists[] = array( ' foo bar ', null );
 		$argLists[] = array( ' foo bar ', 'length' );
 
+		$argLists[] = array( ' foo bar ', null, 'something-went-wrong' );
+		$argLists[] = array( ' foo bar ', null, 'something-went-wrong', array( 'foo', 'bar' ) );
+
 		return $argLists;
 	}
 
@@ -66,6 +69,8 @@ class ErrorTest extends \PHPUnit_Framework_TestCase {
 		$this->assertInternalType( 'string', $error->getText() );
 		$this->assertInternalType( 'integer', $error->getSeverity() );
 		$this->assertTrue( is_string( $error->getProperty() ) || is_null( $error->getProperty() ) );
+		$this->assertInternalType( 'string', $error->getCode() );
+		$this->assertInternalType( 'array', $error->getParameters() );
 
 		if ( count( $args ) > 0 ) {
 			$this->assertEquals( $args[0], $error->getText() );
@@ -73,6 +78,14 @@ class ErrorTest extends \PHPUnit_Framework_TestCase {
 
 		if ( count( $args ) > 1 ) {
 			$this->assertEquals( $args[1], $error->getProperty() );
+		}
+
+		if ( count( $args ) > 2 ) {
+			$this->assertEquals( $args[2], $error->getCode() );
+		}
+
+		if ( count( $args ) > 3 ) {
+			$this->assertEquals( $args[3], $error->getParameters() );
 		}
 	}
 
