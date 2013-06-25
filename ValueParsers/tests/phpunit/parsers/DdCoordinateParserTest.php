@@ -56,12 +56,18 @@ class DdCoordinateParserTest extends StringValueParserTest {
 			'-55°, -37.6176330 °' => array( -55, -37.6176330, 0.000001 ),
 			'5.5°S,37°W ' => array( -5.5, -37, 0.1 ),
 			'-5.5°,-37° ' => array( -5.5, -37, 0.1 ),
+
+			// Coordinate strings without separator:
 			'55.7557860° N 37.6176330° W' => array( 55.7557860, -37.6176330, 0.000001 ),
 			'55.7557860° -37.6176330°' => array( 55.7557860, -37.6176330, 0.000001 ),
 			'55° S 37.6176330 ° W' => array( -55, -37.6176330, 0.000001 ),
 			'-55° -37.6176330 °' => array( -55, -37.6176330, 0.000001 ),
 			'5.5°S 37°W ' => array( -5.5, -37, 0.1 ),
 			'-5.5° -37° ' => array( -5.5, -37, 0.1 ),
+
+			// Coordinate string starting with direction character:
+			'N5.5° W37°' => array( 5.5, -37, 0.1 ),
+			'S 5.5° E 37°' => array( -5.5, 37, 0.1 ),
 		);
 
 		foreach ( $valid as $value => $expected ) {

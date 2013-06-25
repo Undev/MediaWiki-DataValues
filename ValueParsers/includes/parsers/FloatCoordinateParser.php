@@ -130,24 +130,34 @@ class FloatCoordinateParser extends StringValueParser {
 	 * @return string
 	 */
 	protected function resolveDirection( $coordinate ) {
-		// Get the last char, which could be a direction indicator
-		$lastChar = strtoupper( substr( $coordinate, -1 ) );
-
 		$n = $this->getOption( self::OPT_NORTH_SYMBOL );
 		$e = $this->getOption( self::OPT_EAST_SYMBOL );
 		$s = $this->getOption( self::OPT_SOUTH_SYMBOL );
 		$w = $this->getOption( self::OPT_WEST_SYMBOL );
 
-		// If there is a direction indicator, remove it, and prepend a minus sign for south and west directions.
-		// If there is no direction indicator, the coordinate is already non-directional and no work is required.
-		if ( in_array( $lastChar, array( $n, $e, $s, $w ) ) ) {
-			$coordinate = substr( $coordinate, 0, -1 );
+		// If there is a direction indicator, remove it, and prepend a minus sign for south and west
+		// directions. If there is no direction indicator, the coordinate is already non-directional
+		// and no work is required.
+		foreach( array( $n, $e, $s, $w ) as $direction ) {
+			// The coordinate segment may either start or end with a direction symbol.
+			preg_match(
+				'/^(' . $direction . '|)([^' . $direction . ']+)(' . $direction . '|)$/i',
+				$coordinate,
+				$matches
+			);
 
-			if ( in_array( $lastChar, array( $s, $w ) ) ) {
-				$coordinate = '-' . $coordinate;
+			if( $matches[1] === $direction || $matches[3] === $direction ) {
+				$coordinate = $matches[2];
+
+				if ( in_array( $direction, array( $s, $w ) ) ) {
+					$coordinate = '-' . $coordinate;
+				}
+
+				return $coordinate;
 			}
 		}
 
+		// Coordinate segment does not include a direction symbol.
 		return $coordinate;
 	}
 
@@ -216,22 +226,26 @@ class FloatCoordinateParser extends StringValueParser {
 			// splitting at the the first SPACE after the first direction character or digit:
 			$numberRegEx = '-?\d{1,3}(\.\d{1,20})?';
 
-			$latitudeRegEx = $numberRegEx . '(\s*('
+			$ns = '('
 				. $this->getOption( self::OPT_NORTH_SYMBOL ) . '|'
-				. $this->getOption( self::OPT_SOUTH_SYMBOL ) .'))?';
+				. $this->getOption( self::OPT_SOUTH_SYMBOL ) .')';
 
-			$longitudeRegEx = $numberRegEx . '(\s*('
+			$latitudeRegEx = '(' . $ns . '\s*)?' . $numberRegEx . '(\s*' . $ns . ')?';
+
+			$ew = '('
 				. $this->getOption( self::OPT_EAST_SYMBOL ) . '|'
-				. $this->getOption( self::OPT_WEST_SYMBOL ) .'))?';
+				. $this->getOption( self::OPT_WEST_SYMBOL ) .')';
+
+			$longitudeRegEx = '(' . $ew . '\s*)?' . $numberRegEx . '(\s*' . $ew . ')?';
 
 			$match = preg_match(
-				'/^(' . $latitudeRegEx . ') (' . $longitudeRegEx . ')$/',
+				'/^(' . $latitudeRegEx . ') (' . $longitudeRegEx . ')$/i',
 				$normalizedCoordinateString,
 				$matches
 			);
 
 			if( $match ) {
-				$normalizedCoordinateSegments = array( $matches[1], $matches[5] );
+				$normalizedCoordinateSegments = array( $matches[1], $matches[7] );
 			}
 		}
 
@@ -249,9 +263,9 @@ class FloatCoordinateParser extends StringValueParser {
 	 * @return boolean
 	 */
 	protected function areFloatCoordinates( $rawCoordinateString ) {
-		$rawCoordinate = $this->splitString( $rawCoordinateString );
+		$rawCoordinateSegments = $this->splitString( $rawCoordinateString );
 
-		if( count( $rawCoordinate ) !== 2 ) {
+		if( count( $rawCoordinateSegments ) !== 2 ) {
 			return false;
 		}
 
@@ -263,7 +277,7 @@ class FloatCoordinateParser extends StringValueParser {
 
 		$match = false;
 
-		foreach( $rawCoordinate as $i => $segment ) {
+		foreach( $rawCoordinateSegments as $i => $segment ) {
 			$segment = str_replace( ' ', '', $segment );
 
 			$direction = '('
@@ -276,7 +290,10 @@ class FloatCoordinateParser extends StringValueParser {
 					. $this->getOption( self::OPT_WEST_SYMBOL ) . ')';
 			}
 
-			$match = preg_match( '/^' . $baseRegExp . $direction . '$/i', $segment );
+			$match = preg_match(
+				'/^(' . $baseRegExp . $direction . '|' . $direction . $baseRegExp . ')$/i',
+				$segment
+			);
 
 			if( $directional && !$match ) {
 				// Latitude is directional, longitude not.

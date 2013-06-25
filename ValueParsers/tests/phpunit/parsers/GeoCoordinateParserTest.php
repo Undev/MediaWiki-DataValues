@@ -61,6 +61,7 @@ class GeoCoordinateParserTest extends StringValueParserTest {
 			'5.5S 37W ' => array( -5.5, -37, 0.1 ),
 			'-5.5 -37 ' => array( -5.5, -37, 0.1 ),
 			'4 2' => array( 4, 2, 1 ),
+			'S5.5 W37 ' => array( -5.5, -37, 0.1 ),
 
 			// DD
 			'55.7557860° N, 37.6176330° W' => array( 55.7557860, -37.6176330, 0.000001 ),
@@ -72,6 +73,7 @@ class GeoCoordinateParserTest extends StringValueParserTest {
 			'-55° -37.6176330 °' => array( -55, -37.6176330, 0.000001 ),
 			'5.5°S 37°W ' => array( -5.5, -37, 0.1 ),
 			'-5.5 ° -37 ° ' => array( -5.5, -37, 0.1 ),
+			'S5.5° W37°' => array( -5.5, -37, 0.1 ),
 
 			// DMS
 			'55° 45\' 20.8296", 37° 37\' 3.4788"' => array( 55.755786, 37.617633, 1 / 36000000 ),
@@ -88,6 +90,7 @@ class GeoCoordinateParserTest extends StringValueParserTest {
 			'0° 0\' 18" N  0° 0\' 18" E' => array( 0.005, 0.005, 1 / 3600 ),
 			' 0 ° 0 \' 18 " S   0 °  0 \' 18 "  W ' => array( -0.005, -0.005, 1 / 3600 ),
 			'0° 0′ 18″ N 0° 0′ 18″ E' => array( 0.005, 0.005, 1 / 3600 ),
+			'N 0° 0\' 18" E 0° 0\' 18"' => array( 0.005, 0.005, 1 / 3600 ),
 
 			// DM
 			'55° 0\', 37° 0\'' => array( 55, 37, 1 / 60 ),
@@ -99,6 +102,7 @@ class GeoCoordinateParserTest extends StringValueParserTest {
 			'-55 ° 30 \' -37 ° 30 \'' => array( -55.5, -37.5, 1 / 60 ),
 			'0° 0.3\' S 0° 0.3\' W' => array( -0.005, -0.005, 1 / 3600 ),
 			'-55° 30′ -37° 30′' => array( -55.5, -37.5, 1 / 60 ),
+			'S 0° 0.3\' W 0° 0.3\'' => array( -0.005, -0.005, 1 / 3600 ),
 		);
 
 		foreach ( $valid as $value => $expected ) {

@@ -141,24 +141,34 @@ class DmCoordinateParser extends StringValueParser {
 	 * @return string
 	 */
 	protected function resolveDirection( $coordinate ) {
-		// Get the last char, which could be a direction indicator
-		$lastChar = strtoupper( substr( $coordinate, -1 ) );
-
 		$n = $this->getOption( self::OPT_NORTH_SYMBOL );
 		$e = $this->getOption( self::OPT_EAST_SYMBOL );
 		$s = $this->getOption( self::OPT_SOUTH_SYMBOL );
 		$w = $this->getOption( self::OPT_WEST_SYMBOL );
 
-		// If there is a direction indicator, remove it, and prepend a minus sign for south and west directions.
-		// If there is no direction indicator, the coordinate is already non-directional and no work is required.
-		if ( in_array( $lastChar, array( $n, $e, $s, $w ) ) ) {
-			$coordinate = substr( $coordinate, 0, -1 );
+		// If there is a direction indicator, remove it, and prepend a minus sign for south and west
+		// directions. If there is no direction indicator, the coordinate is already non-directional
+		// and no work is required.
+		foreach( array( $n, $e, $s, $w ) as $direction ) {
+			// The coordinate segment may either start or end with a direction symbol.
+			preg_match(
+				'/^(' . $direction . '|)([^' . $direction . ']+)(' . $direction . '|)$/i',
+				$coordinate,
+				$matches
+			);
 
-			if ( in_array( $lastChar, array( $s, $w ) ) ) {
-				$coordinate = '-' . $coordinate;
+			if( $matches[1] === $direction || $matches[3] === $direction ) {
+				$coordinate = $matches[2];
+
+				if ( in_array( $direction, array( $s, $w ) ) ) {
+					$coordinate = '-' . $coordinate;
+				}
+
+				return $coordinate;
 			}
 		}
 
+		// Coordinate segment does not include a direction symbol.
 		return $coordinate;
 	}
 
@@ -285,20 +295,40 @@ class DmCoordinateParser extends StringValueParser {
 			// Separator not present within the string, trying to figure out the segments by
 			// splitting after the first direction character or minute symbol:
 			$delimiters = array(
-				$this->getOption( self::OPT_NORTH_SYMBOL ),
-				$this->getOption( self::OPT_SOUTH_SYMBOL ),
 				'′',
 				'\''
 			);
 
+			$ns = array(
+				$this->getOption( self::OPT_NORTH_SYMBOL ),
+				$this->getOption( self::OPT_SOUTH_SYMBOL )
+			);
+
+			$ew = array(
+				$this->getOption( self::OPT_EAST_SYMBOL ),
+				$this->getOption( self::OPT_WEST_SYMBOL )
+			);
+
+			foreach( $ns as $delimiter ) {
+				if( mb_strpos( $normalizedCoordinateString, $delimiter ) === 0 ) {
+					// String starts with "north" or "west" symbol: Separation needs to be done
+					// before the "east" or "west" symbol.
+					$delimiters = array_merge( $ew, $delimiters );
+					break;
+				}
+			}
+
+			if( count( $delimiters ) !== 4 ) {
+				$delimiters = array_merge( $ns, $delimiters );
+			}
+
 			foreach( $delimiters as $delimiter ) {
 				$delimiterPos = mb_strpos( $normalizedCoordinateString, $delimiter );
 				if( $delimiterPos !== false ) {
-					$delimiterLength = mb_strlen( $delimiter );
-
+					$adjustPosition = ( in_array( $delimiter, $ew ) ) ? 0 : mb_strlen( $delimiter );
 					$normalizedCoordinateSegments = array(
-						mb_substr( $normalizedCoordinateString, 0, $delimiterPos + $delimiterLength ),
-						mb_substr( $normalizedCoordinateString, $delimiterPos + $delimiterLength )
+						mb_substr( $normalizedCoordinateString, 0, $delimiterPos + $adjustPosition ),
+						mb_substr( $normalizedCoordinateString, $delimiterPos + $adjustPosition )
 					);
 					break;
 				}
@@ -318,9 +348,9 @@ class DmCoordinateParser extends StringValueParser {
 	 * @return boolean
 	 */
 	protected function areDMCoordinates( $rawCoordinateString ) {
-		$rawCoordinate = $this->splitString( $rawCoordinateString );
+		$rawCoordinateSegments = $this->splitString( $rawCoordinateString );
 
-		if( count( $rawCoordinate ) !== 2 ) {
+		if( count( $rawCoordinateSegments ) !== 2 ) {
 			return false;
 		}
 
@@ -335,7 +365,7 @@ class DmCoordinateParser extends StringValueParser {
 		// directional and non-directional is regarded invalid).
 		$directional = false;
 
-		foreach( $rawCoordinate as $i => $segment ) {
+		foreach( $rawCoordinateSegments as $i => $segment ) {
 			$direction = '('
 				. $this->getOption( self::OPT_NORTH_SYMBOL ) . '|'
 				. $this->getOption( self::OPT_SOUTH_SYMBOL ) . ')';
@@ -346,12 +376,18 @@ class DmCoordinateParser extends StringValueParser {
 					. $this->getOption( self::OPT_WEST_SYMBOL ) . ')';
 			}
 
-			$match = preg_match( '/^' . $regExpStrict . $direction . '$/i', $segment );
+			$match = preg_match(
+				'/^(' . $regExpStrict . $direction . '|' . $direction . $regExpStrict . ')$/i',
+				$segment
+			);
 
 			if( $match ) {
 				$detectedMinute = true;
 			} else {
-				$match = preg_match( '/^' . $regExpLoose . $direction . '$/i', $segment );
+				$match = preg_match(
+					'/^(' . $regExpLoose . $direction . '|' . $direction . $regExpLoose . ')$/i',
+					$segment
+				);
 			}
 
 			if( $match ) {
