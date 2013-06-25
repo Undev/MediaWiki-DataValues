@@ -261,9 +261,11 @@ class DdCoordinateParser extends StringValueParser {
 			foreach( $delimiters as $delimiter ) {
 				$delimiterPos = mb_strpos( $normalizedCoordinateString, $delimiter );
 				if( $delimiterPos !== false ) {
+					$delimiterLength = mb_strlen( $delimiter );
+
 					$normalizedCoordinateSegments = array(
-						mb_substr( $normalizedCoordinateString, 0, $delimiterPos + 1 ),
-						mb_substr( $normalizedCoordinateString, $delimiterPos + 1 )
+						mb_substr( $normalizedCoordinateString, 0, $delimiterPos + $delimiterLength ),
+						mb_substr( $normalizedCoordinateString, $delimiterPos + $delimiterLength )
 					);
 					break;
 				}
