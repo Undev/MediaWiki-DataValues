@@ -40,6 +40,7 @@ return array(
 	'ValueParsers\DmsCoordinateParser' => 'includes/parsers/DmsCoordinateParser.php',
 	'ValueParsers\FloatCoordinateParser' => 'includes/parsers/FloatCoordinateParser.php',
 	'ValueParsers\GeoCoordinateParser' => 'includes/parsers/GeoCoordinateParser.php',
+	'ValueParsers\GeoCoordinateParserBase' => 'includes/parsers/GeoCoordinateParserBase.php',
 	'ValueParsers\FloatParser' => 'includes/parsers/FloatParser.php',
 	'ValueParsers\IntParser' => 'includes/parsers/IntParser.php',
 	'ValueParsers\NullParser' => 'includes/parsers/NullParser.php',
