@@ -25,6 +25,7 @@ call_user_func( function() {
 		'ValueParsers',
 		'ValueValidators',
 		'ValueFormatters',
+		'DataTypes',
 		'ValueView',
 	);
 

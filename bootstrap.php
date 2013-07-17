@@ -11,6 +11,7 @@
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 
+require_once( __DIR__ . '/DataTypes/tests/bootstrap.php' );
 require_once( __DIR__ . '/DataValues/tests/bootstrap.php' );
 require_once( __DIR__ . '/ValueFormatters/tests/bootstrap.php' );
 require_once( __DIR__ . '/ValueParsers/tests/bootstrap.php' );
