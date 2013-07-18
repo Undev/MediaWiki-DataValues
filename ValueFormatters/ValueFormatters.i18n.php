@@ -264,6 +264,13 @@ $messages['vi'] = array(
 	'valueformatters-desc' => 'Bộ sưu tập áp dụng định dạng cho đầu vào',
 );
 
+/** Simplified Chinese (中文（简体）‎)
+ * @author Qiyue2001
+ */
+$messages['zh-hans'] = array(
+	'valueformatters-desc' => '输入并将其格式化的程序集合',
+);
+
 /** Traditional Chinese (中文（繁體）‎)
  * @author Justincheng12345
  */

@@ -260,6 +260,13 @@ $messages['vi'] = array(
 	'valuevalidators-desc' => 'Bộ sưu tập các bộ phận phê chuẩn giá trị dữ liệu',
 );
 
+/** Simplified Chinese (中文（简体）‎)
+ * @author Qiyue2001
+ */
+$messages['zh-hans'] = array(
+	'valuevalidators-desc' => '验证数值组件集合',
+);
+
 /** Traditional Chinese (中文（繁體）‎)
  * @author Justincheng12345
  */
