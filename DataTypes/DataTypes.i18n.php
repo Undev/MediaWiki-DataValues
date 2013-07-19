@@ -641,7 +641,11 @@ $messages['lb'] = array(
  * @author Eitvys200
  */
 $messages['lt'] = array(
+	'datatypes-type-quantity' => 'Kiekis',
 	'datatypes-type-number' => 'Numeris',
+	'datatypes-type-mediawiki-title' => 'MediaWiki pavadinimas',
+	'datatypes-type-unknown' => 'Nenurodyta',
+	'datatypes-type-time' => 'Laikas',
 );
 
 /** Macedonian (македонски)
