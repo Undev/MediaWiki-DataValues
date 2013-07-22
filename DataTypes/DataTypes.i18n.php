@@ -164,6 +164,13 @@ $messages['ca'] = array(
 	'datatypes-type-time' => 'Data',
 );
 
+/** Chechen (нохчийн)
+ * @author Умар
+ */
+$messages['ce'] = array(
+	'datatypes-type-time' => 'Хан',
+);
+
 /** Sorani Kurdish (کوردی)
  * @author Calak
  */
