@@ -820,9 +820,10 @@ $messages['ps'] = array(
 
 /** Portuguese (português)
  * @author Alchimista
+ * @author Luckas
  */
 $messages['pt'] = array(
-	'datatypes-desc' => 'Colecção de definições de tipo de dados',
+	'datatypes-desc' => 'Coleção de definições de tipos de dados',
 	'datatypes-type-string' => 'String',
 	'datatypes-type-quantity' => 'Quantidade',
 	'datatypes-type-monolingual-text' => 'Texto monolingue',
