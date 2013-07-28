@@ -168,6 +168,7 @@ $messages['ca'] = array(
  * @author Умар
  */
 $messages['ce'] = array(
+	'datatypes-type-globe-coordinate' => 'Географин координаташ',
 	'datatypes-type-time' => 'Хан',
 );
 
