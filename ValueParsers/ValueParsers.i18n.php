@@ -134,6 +134,13 @@ $messages['hsb'] = array(
 	'valueparsers-desc' => 'Zběrka parserow, kotrež zapodaća přijimaja a je do datoweje hódnoty přetworjeja',
 );
 
+/** Interlingua (interlingua)
+ * @author McDutchie
+ */
+$messages['ia'] = array(
+	'valueparsers-desc' => 'Collection de analysatores syntactic que prende un entrata e lo converte in un DataValue',
+);
+
 /** Indonesian (Bahasa Indonesia)
  * @author Farras
  */

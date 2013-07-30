@@ -144,6 +144,13 @@ $messages['hu'] = array(
 	'valueformatters-desc' => 'Formatálók gyűjteménye, amely néhány paramétert vesz és megformázza azokat',
 );
 
+/** Interlingua (interlingua)
+ * @author McDutchie
+ */
+$messages['ia'] = array(
+	'valueformatters-desc' => 'Collection de formatatores que prende un entrata e formata lo',
+);
+
 /** Indonesian (Bahasa Indonesia)
  * @author Farras
  */

@@ -134,6 +134,13 @@ $messages['hsb'] = array(
 	'valuevalidators-desc' => 'Zběrka walidowanskich komponentow za Datowe hódnoty',
 );
 
+/** Interlingua (interlingua)
+ * @author McDutchie
+ */
+$messages['ia'] = array(
+	'valuevalidators-desc' => 'Collection de componentes de validation pro DataValues',
+);
+
 /** Indonesian (Bahasa Indonesia)
  * @author Farras
  */

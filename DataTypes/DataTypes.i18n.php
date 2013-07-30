@@ -504,6 +504,22 @@ $messages['hu'] = array(
 	'datatypes-type-globe-coordinate' => 'Földrajzi koordináta',
 );
 
+/** Interlingua (interlingua)
+ * @author McDutchie
+ */
+$messages['ia'] = array(
+	'datatypes-desc' => 'Collection de definitiones de typos de datos',
+	'datatypes-type-string' => 'Catena de characteres',
+	'datatypes-type-quantity' => 'Quantitate',
+	'datatypes-type-monolingual-text' => 'Texto monolingue',
+	'datatypes-type-multilingual-text' => 'Texto multilingue',
+	'datatypes-type-number' => 'Numero',
+	'datatypes-type-mediawiki-title' => 'Titulo de MediaWiki',
+	'datatypes-type-unknown' => 'Non specificate',
+	'datatypes-type-globe-coordinate' => 'Coordinata geographic',
+	'datatypes-type-time' => 'Hora',
+);
+
 /** Indonesian (Bahasa Indonesia)
  * @author Farras
  */
