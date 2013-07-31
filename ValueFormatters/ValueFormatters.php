@@ -54,13 +54,6 @@ define( 'ValueFormatters_VERSION', '0.1 alpha' );
 
 global $wgValueFormatters;
 
-/**
- * @deprecated since 0.1 This is a global registry that provides no control over object lifecycle
- */
-$wgValueFormatters = array(
-	'globecoordinate' => 'ValueFormatters\GeoCoordinateFormatter'
-);
-
 spl_autoload_register( function ( $className ) {
 	// @codeCoverageIgnoreStart
 	static $classes = false;

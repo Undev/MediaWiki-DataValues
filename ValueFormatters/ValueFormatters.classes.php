@@ -36,6 +36,8 @@ return array(
 	'ValueFormatters\GeoCoordinateFormatter' => 'includes/formatters/GeoCoordinateFormatter.php',
 	'ValueFormatters\IriFormatter' => 'includes/formatters/IriFormatter.php',
 	'ValueFormatters\StringFormatter' => 'includes/formatters/StringFormatter.php',
+	'ValueFormatters\TimeIsoFormatter' => 'includes/formatters/TimeIsoFormatter.php',
+	'ValueFormatters\TimeFormatter' => 'includes/formatters/TimeFormatter.php',
 
 	'ValueFormatters\Test\ValueFormatterFactoryTest' => 'tests/phpunit/ValueFormatterFactoryTest.php',
 	'ValueFormatters\Test\ValueFormatterTestBase' => 'tests/phpunit/ValueFormatterTestBase.php',
