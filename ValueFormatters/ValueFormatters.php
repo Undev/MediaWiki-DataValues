@@ -58,7 +58,8 @@ global $wgValueFormatters;
  * @deprecated since 0.1 This is a global registry that provides no control over object lifecycle
  */
 $wgValueFormatters = array(
-	'globecoordinate' => 'ValueFormatters\GeoCoordinateFormatter'
+	'globecoordinate' => 'ValueFormatters\GeoCoordinateFormatter',
+	'timevalue' => 'ValueFormatters\TimeFormatter',
 );
 
 spl_autoload_register( function ( $className ) {
