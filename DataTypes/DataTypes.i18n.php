@@ -138,12 +138,19 @@ $messages['bn'] = array(
 
 /** Breton (brezhoneg)
  * @author Fohanno
+ * @author Y-M D
  */
 $messages['br'] = array(
 	'datatypes-type-string' => 'Neudennad',
 	'datatypes-type-quantity' => 'Kementad',
 	'datatypes-type-monolingual-text' => 'Testenn unyezhek',
 	'datatypes-type-multilingual-text' => 'Testenn liesyezhek',
+	'datatypes-type-number' => 'Niver',
+	'datatypes-type-mediawiki-title' => 'Titl MediaWiki',
+	'datatypes-type-unknown' => 'Anspisaet',
+	'datatypes-type-boolean' => 'Boulean',
+	'datatypes-type-globe-coordinate' => "Kenvuzulioù lec'hiañ",
+	'datatypes-type-time' => 'Deiziad',
 );
 
 /** Catalan (català)
