@@ -36,6 +36,7 @@ if ( defined( 'MW_PHPUNIT_TEST' ) ) {
 $wgValueFormatters = array(
 	\DataValues\GeoCoordinateValue::getType() => 'ValueFormatters\GeoCoordinateFormatter',
 	\DataValues\TimeValue::getType() => 'ValueFormatters\TimeFormatter',
+	\DataValues\StringValue::getType() => 'ValueFormatters\StringFormatter',
 );
 
 /**
