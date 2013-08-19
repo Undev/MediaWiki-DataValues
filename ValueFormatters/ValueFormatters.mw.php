@@ -16,7 +16,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 'Not an entry point.' );
 }
 
-global $wgExtensionCredits, $wgExtensionMessagesFiles, $wgHooks;
+global $wgExtensionCredits, $wgExtensionMessagesFiles, $wgHooks, $wgValueFormatters;
 
 $wgExtensionCredits['datavalues'][] = array(
 	'path' => __DIR__,
@@ -33,6 +33,9 @@ if ( defined( 'MW_PHPUNIT_TEST' ) ) {
 	require_once __DIR__ . '/tests/testLoader.php';
 }
 
+/**
+ * @deprecated
+ */
 $wgValueFormatters = array(
 	\DataValues\GeoCoordinateValue::getType() => 'ValueFormatters\GeoCoordinateFormatter',
 	\DataValues\TimeValue::getType() => 'ValueFormatters\TimeFormatter',
