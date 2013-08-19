@@ -12,6 +12,7 @@ use DataValues\GeoCoordinateValue;
  *
  * @licence GNU GPL v2+
  * @author H. Snater < mediawiki@snater.com >
+ * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 abstract class GeoCoordinateParserBase extends StringValueParser {
 
