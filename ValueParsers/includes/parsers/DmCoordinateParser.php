@@ -3,7 +3,6 @@
 namespace ValueParsers;
 
 use DataValues\GeoCoordinateValue;
-use LogicException;
 
 /**
  * Parser for geographical coordinates in Decimal Minute notation.

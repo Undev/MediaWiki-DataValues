@@ -2,8 +2,8 @@
 
 namespace DataTypes\Test;
 
-use DataTypes\DataTypesModule;
 use DataTypes\DataTypeFactory;
+use DataTypes\DataTypesModule;
 
 /**
  * @covers DataTypes\DataTypesModule

@@ -3,7 +3,6 @@
 namespace ValueParsers;
 
 use DataValues\GeoCoordinateValue;
-use LogicException;
 
 /**
  * @since 0.1
