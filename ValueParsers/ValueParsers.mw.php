@@ -22,7 +22,11 @@ $wgExtensionCredits['datavalues'][] = array(
 	'path' => __DIR__,
 	'name' => 'ValueParsers',
 	'version' => ValueParsers_VERSION,
-	'author' => array( '[https://www.mediawiki.org/wiki/User:Jeroen_De_Dauw Jeroen De Dauw]' ),
+	'author' => array(
+		'[https://www.mediawiki.org/wiki/User:Jeroen_De_Dauw Jeroen De Dauw]',
+		'[https://www.mediawiki.org/wiki/User:Danwe Daniel Werner]',
+		'[http://www.snater.com H. Snater]',
+	),
 	'url' => 'https://www.mediawiki.org/wiki/Extension:ValueParsers',
 	'descriptionmsg' => 'valueparsers-desc',
 );
