@@ -3,10 +3,11 @@
 namespace ValueParsers\Test;
 
 use DataValues\GeoCoordinateValue;
+use DataValues\LatLongValue;
 use ValueParsers\DdCoordinateParser;
 
 /**
- * Unit tests for the ValueParsers\DdCoordinateParser class.
+ * @covers ValueParsers\DdCoordinateParser
  *
  * @file
  * @since 0.1
@@ -35,36 +36,30 @@ class DdCoordinateParserTest extends StringValueParserTest {
 		// TODO: test with different parser options
 
 		$valid = array(
-			'55.7557860° N, 37.6176330° W' => array( 55.7557860, -37.6176330, 0.000001 ),
-			'55.7557860°, -37.6176330°' => array( 55.7557860, -37.6176330, 0.000001 ),
+			'55.7557860° N, 37.6176330° W' => array( 55.7557860, -37.6176330 ),
+			'55.7557860°, -37.6176330°' => array( 55.7557860, -37.6176330 ),
 			'55° S, 37.6176330 ° W' => array( -55, -37.6176330, 0.000001 ),
 			'-55°, -37.6176330 °' => array( -55, -37.6176330, 0.000001 ),
 			'5.5°S,37°W ' => array( -5.5, -37, 0.1 ),
 			'-5.5°,-37° ' => array( -5.5, -37, 0.1 ),
 
 			// Coordinate strings without separator:
-			'55.7557860° N 37.6176330° W' => array( 55.7557860, -37.6176330, 0.000001 ),
-			'55.7557860° -37.6176330°' => array( 55.7557860, -37.6176330, 0.000001 ),
-			'55° S 37.6176330 ° W' => array( -55, -37.6176330, 0.000001 ),
-			'-55° -37.6176330 °' => array( -55, -37.6176330, 0.000001 ),
-			'5.5°S 37°W ' => array( -5.5, -37, 0.1 ),
-			'-5.5° -37° ' => array( -5.5, -37, 0.1 ),
+			'55.7557860° N 37.6176330° W' => array( 55.7557860, -37.6176330 ),
+			'55.7557860° -37.6176330°' => array( 55.7557860, -37.6176330 ),
+			'55° S 37.6176330 ° W' => array( -55, -37.6176330 ),
+			'-55° -37.6176330 °' => array( -55, -37.6176330 ),
+			'5.5°S 37°W ' => array( -5.5, -37 ),
+			'-5.5° -37° ' => array( -5.5, -37 ),
 
 			// Coordinate string starting with direction character:
-			'N5.5° W37°' => array( 5.5, -37, 0.1 ),
-			'S 5.5° E 37°' => array( -5.5, 37, 0.1 ),
+			'N5.5° W37°' => array( 5.5, -37 ),
+			'S 5.5° E 37°' => array( -5.5, 37 ),
 		);
 
 		foreach ( $valid as $value => $expected ) {
-			$expected = new GeoCoordinateValue( $expected[0], $expected[1], null, $expected[2] );
+			$expected = new LatLongValue( $expected[0], $expected[1] );
 			$argLists[] = array( (string)$value, $expected );
 		}
-
-		// Checking whether precision gets set via the parser options:
-		$parser = $this->getInstance();
-		$parser->getOptions()->setOption( 'precision', 0.1 );
-		$expected = new GeoCoordinateValue( 1, 1, null, 0.1 );
-		$argLists[] = array( '1°, 1°', $expected, $parser );
 
 		return $argLists;
 	}

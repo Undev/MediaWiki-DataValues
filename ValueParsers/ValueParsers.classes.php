@@ -26,6 +26,7 @@ return array(
 	'ValueParsers\FloatCoordinateParser' => 'includes/parsers/FloatCoordinateParser.php',
 	'ValueParsers\GeoCoordinateParser' => 'includes/parsers/GeoCoordinateParser.php',
 	'ValueParsers\GeoCoordinateParserBase' => 'includes/parsers/GeoCoordinateParserBase.php',
+	'ValueParsers\GlobeCoordinateParser' => 'includes/parsers/GlobeCoordinateParser.php',
 	'ValueParsers\FloatParser' => 'includes/parsers/FloatParser.php',
 	'ValueParsers\IntParser' => 'includes/parsers/IntParser.php',
 	'ValueParsers\NullParser' => 'includes/parsers/NullParser.php',
