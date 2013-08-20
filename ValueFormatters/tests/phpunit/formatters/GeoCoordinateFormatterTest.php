@@ -2,11 +2,12 @@
 
 namespace ValueFormatters\Test;
 
-use DataValues\GeoCoordinateValue;
+use DataValues\GlobeCoordinateValue;
+use DataValues\LatLongValue;
 use ValueFormatters\GeoCoordinateFormatter;
 
 /**
- * Unit tests for the ValueFormatters\GeoCoordinateFormatter class.
+ * @covers ValueFormatters\GeoCoordinateFormatter
  *
  * @file
  * @since 0.1
@@ -80,7 +81,7 @@ class GeoCoordinateFormatterTest extends ValueFormatterTestBase {
 			foreach ( $coords as $expected => $arguments ) {
 				$options = new \ValueFormatters\FormatterOptions();
 				$options->setOption( GeoCoordinateFormatter::OPT_FORMAT, $format );
-				$argLists[] = array( new GeoCoordinateValue( $arguments[0], $arguments[1] ), $expected, $options );
+				$argLists[] = array( new LatLongValue( $arguments[0], $arguments[1] ), $expected, $options );
 			}
 		}
 

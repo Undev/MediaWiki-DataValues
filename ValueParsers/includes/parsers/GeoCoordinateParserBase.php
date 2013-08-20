@@ -2,7 +2,7 @@
 
 namespace ValueParsers;
 
-use DataValues\GeoCoordinateValue;
+use DataValues\GlobeCoordinateValue;
 use DataValues\LatLongValue;
 
 /**
@@ -86,7 +86,7 @@ abstract class GeoCoordinateParserBase extends StringValueParser {
 	 *
 	 * @param string $value
 	 *
-	 * @return GeoCoordinateValue
+	 * @return GlobeCoordinateValue
 	 *
 	 * @throws ParseException
 	 */

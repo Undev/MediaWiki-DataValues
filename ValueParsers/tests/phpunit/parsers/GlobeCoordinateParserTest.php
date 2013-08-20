@@ -2,7 +2,8 @@
 
 namespace ValueParsers\Test;
 
-use DataValues\GeoCoordinateValue;
+use DataValues\GlobeCoordinateValue;
+use DataValues\LatLongValue;
 use ValueParsers\GeoCoordinateParser;
 
 /**
@@ -89,7 +90,7 @@ class GlobeCoordinateParserTest extends StringValueParserTest {
 		);
 
 		foreach ( $valid as $value => $expected ) {
-			$expected = new GeoCoordinateValue( $expected[0], $expected[1], null, $expected[2] );
+			$expected = new GlobeCoordinateValue( new LatLongValue( $expected[0], $expected[1] ), $expected[2] );
 			$argLists[] = array( (string)$value, $expected );
 		}
 

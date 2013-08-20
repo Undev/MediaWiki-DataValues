@@ -2,13 +2,13 @@
 
 namespace ValueParsers;
 
-use DataValues\GeoCoordinateValue;
+use DataValues\GlobeCoordinateValue;
 use DataValues\LatLongValue;
 
 /**
  * Extends the GeoCoordinateParser by adding precision detection support.
  *
- * The object that gets constructed is a GeoCoordinateValue rather then a LatLongValue.
+ * The object that gets constructed is a GlobeCoordinateValue rather then a LatLongValue.
  *
  * @since 0.1
  *
@@ -28,7 +28,7 @@ class GlobeCoordinateParser extends StringValueParser {
 	 *
 	 * @param string $value
 	 *
-	 * @return GeoCoordinateValue
+	 * @return GlobeCoordinateValue
 	 * @throws ParseException
 	 */
 	protected function stringParse( $value ) {
@@ -36,10 +36,11 @@ class GlobeCoordinateParser extends StringValueParser {
 			try {
 				$latLong = $parser->parse( $value );
 
-				return new GeoCoordinateValue(
-					$latLong->getLatitude(),
-					$latLong->getLongitude(),
-					null,
+				return new GlobeCoordinateValue(
+					new LatLongValue(
+						$latLong->getLatitude(),
+						$latLong->getLongitude()
+					),
 					$this->detectPrecision( $latLong, $precisionDetector )
 				);
 			}

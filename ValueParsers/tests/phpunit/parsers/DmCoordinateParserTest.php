@@ -2,7 +2,7 @@
 
 namespace ValueParsers\Test;
 
-use DataValues\GeoCoordinateValue;
+use DataValues\GlobeCoordinateValue;
 use DataValues\LatLongValue;
 use ValueParsers\DmCoordinateParser;
 

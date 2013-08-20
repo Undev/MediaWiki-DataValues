@@ -2,7 +2,7 @@
 
 namespace ValueParsers;
 
-use DataValues\GeoCoordinateValue;
+use DataValues\GlobeCoordinateValue;
 
 /**
  * Parser for geographical coordinates in Degree Minute Second notation.

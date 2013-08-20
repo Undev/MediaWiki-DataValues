@@ -2,7 +2,7 @@
 
 namespace ValueParsers;
 
-use DataValues\GeoCoordinateValue;
+use DataValues\GlobeCoordinateValue;
 
 /**
  * @since 0.1

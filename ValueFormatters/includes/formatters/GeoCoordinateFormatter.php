@@ -2,7 +2,8 @@
 
 namespace ValueFormatters;
 
-use DataValues\GeoCoordinateValue;
+use DataValues\GlobeCoordinateValue;
+use DataValues\LatLongValue;
 use InvalidArgumentException;
 
 /**
@@ -88,10 +89,9 @@ class GeoCoordinateFormatter extends ValueFormatterBase {
 	 * @throws InvalidArgumentException
 	 */
 	public function format( $value ) {
-		if ( !( $value instanceof GeoCoordinateValue ) ) {
-			throw new InvalidArgumentException( 'The ValueFormatters\GeoCoordinateFormatter cam only format instances of DataValues\GeoCoordinateValue' );
+		if ( !( $value instanceof LatLongValue ) ) {
+			throw new InvalidArgumentException( 'The ValueFormatters\GeoCoordinateFormatter cam only format instances of DataValues\LatLongValue' );
 		}
-
 
 		$latitude = $this->formatCoordinate( $value->getLatitude() );
 		$longitude = $this->formatCoordinate( $value->getLongitude() );

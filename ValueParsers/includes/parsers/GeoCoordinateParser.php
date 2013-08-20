@@ -2,10 +2,12 @@
 
 namespace ValueParsers;
 
-use DataValues\GeoCoordinateValue;
+use DataValues\GlobeCoordinateValue;
 
 /**
  * ValueParser that parses the string representation of a geographical coordinate.
+ *
+ * The resulting objects are of type DataValues\LatLongValue.
  *
  * Supports the following notations:
  * - Degree minute second
@@ -67,7 +69,7 @@ class GeoCoordinateParser extends StringValueParser {
 	 *
 	 * @param string $value
 	 *
-	 * @return GeoCoordinateValue
+	 * @return GlobeCoordinateValue
 	 * @throws ParseException
 	 */
 	protected function stringParse( $value ) {
