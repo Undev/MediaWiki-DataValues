@@ -46,22 +46,6 @@ class DdCoordinateParser extends GeoCoordinateParserBase {
 	}
 
 	/**
-	 * @see GeoCoordinateParserBase::detectPrecision
-	 */
-	protected function detectPrecision( $number ) {
-		// TODO: Implement localized decimal separator.
-		$split = explode( '.', $number );
-
-		$precision = 1;
-
-		if( isset( $split[1] ) ) {
-			$precision = pow( 10, -1 * strlen( $split[1] ) );
-		}
-
-		return $precision;
-	}
-
-	/**
 	 * @see GeoCoordinateParserBase::areValidCoordinates
 	 */
 	protected function areValidCoordinates( $normalizedCoordinateSegments ) {

@@ -61,26 +61,6 @@ class GeoCoordinateParser extends StringValueParser {
 	const OPT_SEPARATOR_SYMBOL = 'separator';
 
 	/**
-	 * @since 0.1
-	 *
-	 * @param ParserOptions|null $options
-	 */
-	public function __construct( ParserOptions $options = null ) {
-		parent::__construct( $options );
-
-		$this->defaultOption( self::OPT_NORTH_SYMBOL, 'N' );
-		$this->defaultOption( self::OPT_EAST_SYMBOL, 'E' );
-		$this->defaultOption( self::OPT_SOUTH_SYMBOL, 'S' );
-		$this->defaultOption( self::OPT_WEST_SYMBOL, 'W' );
-
-		$this->defaultOption( self::OPT_DEGREE_SYMBOL, '°' );
-		$this->defaultOption( self::OPT_MINUTE_SYMBOL, "'" );
-		$this->defaultOption( self::OPT_SECOND_SYMBOL, '"' );
-
-		$this->defaultOption( self::OPT_SEPARATOR_SYMBOL, ',' );
-	}
-
-	/**
 	 * @see StringValueParser::stringParse
 	 *
 	 * @since 0.1
@@ -118,7 +98,6 @@ class GeoCoordinateParser extends StringValueParser {
 
 		return $parsers;
 	}
-
 
 	/**
 	 * Convenience function for determining if something is a valid coordinate string.

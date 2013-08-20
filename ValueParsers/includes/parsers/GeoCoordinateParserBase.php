@@ -3,6 +3,7 @@
 namespace ValueParsers;
 
 use DataValues\GeoCoordinateValue;
+use DataValues\LatLongValue;
 
 /**
  * @since 0.1
@@ -67,17 +68,6 @@ abstract class GeoCoordinateParserBase extends StringValueParser {
 	abstract protected function getParsedCoordinate( $coordinateSegment );
 
 	/**
-	 * Detects a number's precision.
-	 *
-	 * @since 0.1
-	 *
-	 * @param float $number
-	 *
-	 * @return int|float
-	 */
-	abstract protected function detectPrecision( $number );
-
-	/**
 	 * Returns whether a coordinate split into its two segments is in the representation expected by
 	 * this parser.
 	 *
@@ -111,18 +101,9 @@ abstract class GeoCoordinateParserBase extends StringValueParser {
 
 		list( $latitude, $longitude ) = $normalizedCoordinateSegments;
 
-		$latitude = $this->getParsedCoordinate( $latitude );
-		$longitude = $this->getParsedCoordinate( $longitude );
-
-		$precision = ( $this->options->hasOption( 'precision' ) )
-			? $this->options->getOption( 'precision' )
-			: min( $this->detectPrecision( $latitude ), $this->detectPrecision( $longitude ) );
-
-		return new GeoCoordinateValue(
-			$latitude,
-			$longitude,
-			null,
-			$precision
+		return new LatLongValue(
+			$this->getParsedCoordinate( $latitude ),
+			$this->getParsedCoordinate( $longitude )
 		);
 	}
 

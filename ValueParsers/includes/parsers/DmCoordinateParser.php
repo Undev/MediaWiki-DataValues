@@ -38,33 +38,6 @@ class DmCoordinateParser extends DdCoordinateParser {
 	}
 
 	/**
-	 * @see GeoCoordinateParserBase::detectPrecision
-	 */
-	protected function detectPrecision( $number ) {
-		$minutes = $number * 60;
-
-		// Since we are in the DM parser, we know that precision needs at least to be an arcminute:
-		$precision = 1 / 60;
-
-		// The minute may be a float; In order to detect a proper precision, we convert the minutes
-		// to seconds.
-		if( $minutes - floor( $minutes ) > 0 ) {
-			$seconds = $minutes * 60;
-
-			$precision = 1 / 3600;
-
-			// TODO: Implement localized decimal separator.
-			$secondsSplit = explode( '.', $seconds );
-
-			if( isset( $secondsSplit[1] ) ) {
-				$precision *= pow( 10, -1 * strlen( $secondsSplit[1] ) );
-			}
-		}
-
-		return $precision;
-	}
-
-	/**
 	 * @see GeoCoordinateParserBase::areValidCoordinates
 	 */
 	protected function areValidCoordinates( $normalizedCoordinateSegments ) {
