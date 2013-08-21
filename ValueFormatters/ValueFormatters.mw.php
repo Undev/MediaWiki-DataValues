@@ -37,7 +37,7 @@ if ( defined( 'MW_PHPUNIT_TEST' ) ) {
  * @deprecated
  */
 $wgValueFormatters = array(
-	\DataValues\GlobeCoordinateValue::getType() => 'ValueFormatters\GeoCoordinateFormatter',
+	\DataValues\GlobeCoordinateValue::getType() => 'ValueFormatters\GlobeCoordinateFormatter',
 	\DataValues\TimeValue::getType() => 'ValueFormatters\TimeFormatter',
 	\DataValues\StringValue::getType() => 'ValueFormatters\StringFormatter',
 );

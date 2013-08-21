@@ -8,6 +8,7 @@ use InvalidArgumentException;
 
 /**
  * Geographical coordinates formatter.
+ * Formats LatLongValue objects.
  *
  * Supports the following notations:
  * - Degree minute second
@@ -90,7 +91,7 @@ class GeoCoordinateFormatter extends ValueFormatterBase {
 	 */
 	public function format( $value ) {
 		if ( !( $value instanceof LatLongValue ) ) {
-			throw new InvalidArgumentException( 'The ValueFormatters\GeoCoordinateFormatter cam only format instances of DataValues\LatLongValue' );
+			throw new InvalidArgumentException( 'The ValueFormatters\GeoCoordinateFormatter can only format instances of DataValues\LatLongValue' );
 		}
 
 		$latitude = $this->formatCoordinate( $value->getLatitude() );
