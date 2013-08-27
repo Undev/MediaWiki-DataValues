@@ -780,6 +780,21 @@ $messages['nn'] = array(
 	'datatypes-type-globe-coordinate' => 'Geografisk koordinat',
 );
 
+/** Occitan (occitan)
+ * @author Cedric31
+ */
+$messages['oc'] = array(
+	'datatypes-type-string' => 'Cadena',
+	'datatypes-type-quantity' => 'Quantitat',
+	'datatypes-type-monolingual-text' => 'Tèxte monolingüe',
+	'datatypes-type-multilingual-text' => 'Tèxte multilingüe',
+	'datatypes-type-number' => 'Nombre',
+	'datatypes-type-mediawiki-title' => 'Títol MediaWiki',
+	'datatypes-type-unknown' => 'Pas especificat',
+	'datatypes-type-globe-coordinate' => 'Coordenadas geograficas',
+	'datatypes-type-time' => 'Data',
+);
+
 /** Oriya (ଓଡ଼ିଆ)
  * @author Ansumang
  */
