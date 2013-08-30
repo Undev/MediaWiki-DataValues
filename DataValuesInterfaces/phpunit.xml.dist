@@ -13,8 +13,8 @@
          strict="true"
          verbose="true">
     <testsuites>
-        <testsuite name="DataValues">
-            <directory>tests/phpunit</directory>
+        <testsuite name="DataValuesInterfaces">
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
     <filter>

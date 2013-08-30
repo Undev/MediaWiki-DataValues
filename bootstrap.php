@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PHPUnit test bootstrap file for libraries in the DataValues repository.
+ * PHPUnit bootstrap file for libraries in the DataValues git repository.
  *
  * @since 0.1
  *
@@ -12,6 +12,6 @@
  */
 
 require_once( __DIR__ . '/DataValues/tests/bootstrap.php' );
-require_once( __DIR__ . '/ValueFormatters/tests/bootstrap.php' );
-require_once( __DIR__ . '/ValueParsers/tests/bootstrap.php' );
-require_once( __DIR__ . '/ValueValidators/tests/bootstrap.php' );
+require_once( __DIR__ . '/DataValuesInterfaces/tests/bootstrap.php' );
+require_once( __DIR__ . '/DataValuesCommon/tests/bootstrap.php' );
+

@@ -13,22 +13,15 @@
          strict="true"
          verbose="true">
     <testsuites>
-        <testsuite name="DataTypes">
-            <directory>/DataTypes/tests</directory>
-            <exclude>DataTypes/tests/modules/DataTypesModuleTest.php</exclude>
-        </testsuite>
         <testsuite name="DataValues">
             <directory>DataValues/tests</directory>
         </testsuite>
-        <testsuite name="ValueFormatters">
-            <directory>ValueFormatters/tests</directory>
+        <testsuite name="DataValuesInterfaces">
+            <directory>DataValuesInterfaces/tests</directory>
         </testsuite>
-        <testsuite name="ValueParsers">
-            <directory>ValueParsers/tests</directory>
-            <exclude>ValueParsers/tests/phpunit/api</exclude>
-        </testsuite>
-        <testsuite name="ValueValidators">
-            <directory>ValueValidators/tests</directory>
+        <testsuite name="DataValuesCommon">
+            <directory>DataValuesCommon/tests</directory>
+            <exclude>DataValuesCommon/tests/ValueParsers/api</exclude>
         </testsuite>
     </testsuites>
 </phpunit>

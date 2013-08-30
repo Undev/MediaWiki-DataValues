@@ -9,9 +9,6 @@
  * will be the case when the entry point is included via LocalSettings.php,
  * just like done with regular extensions.
  *
- * In case of another PHP application, you will need to set the DATAVALUES
- * constant (this is required for security reasons).
- *
  * @file
  *
  * @licence GNU GPL v2+
@@ -22,14 +19,13 @@
 call_user_func( function() {
 	$components = array(
 		'DataValues',
-		'ValueParsers',
-		'ValueValidators',
-		'ValueFormatters',
+		'DataValuesInterfaces',
+		'DataValuesCommon',
 		'ValueView',
 	);
 
 	foreach ( $components as $component ) {
-		// Load extensions in non-global scope.
+		// Load components in non-global scope.
 		call_user_func( function() use ( $component ) {
 			require_once __DIR__ . '/' . $component . '/' . $component . '.php';
 		} );

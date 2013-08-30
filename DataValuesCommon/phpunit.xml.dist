@@ -13,8 +13,9 @@
          strict="true"
          verbose="true">
     <testsuites>
-        <testsuite name="DataValues">
-            <directory>tests/phpunit</directory>
+        <testsuite name="DataValuesCommon">
+            <directory>tests</directory>
+            <exclude>tests/ValueParsers/api</exclude>
         </testsuite>
     </testsuites>
     <filter>
