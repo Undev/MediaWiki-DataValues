@@ -2,7 +2,6 @@
 
 This repository contains several small PHP libraries.
 
-DataTypes - A collection of data types composed of a DataValue object, and one or more parsers and formatters.
 DataValues - A collection of objects representing various kinds of values.
 ValueParsers - Holds parsers that parse some representation of a value into a DataValue object.
 ValueFormatters - Holds formatters that format a DataValue object to some representation.
