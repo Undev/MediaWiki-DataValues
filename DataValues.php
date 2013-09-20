@@ -20,8 +20,7 @@ call_user_func( function() {
 	$components = array(
 		'DataValues',
 		'DataValuesInterfaces',
-		'DataValuesCommon',
-		'ValueView',
+		'DataValuesCommon'
 	);
 
 	foreach ( $components as $component ) {
