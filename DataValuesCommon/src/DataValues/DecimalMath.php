@@ -104,6 +104,50 @@ class DecimalMath {
 	}
 
 	/**
+	 * Returns the minimum of the two values
+	 *
+	 * @param DecimalValue $a
+	 * @param DecimalValue $b
+	 *
+	 * @return DecimalValue
+	 */
+	public function min( DecimalValue $a, DecimalValue $b ) {
+
+		if ( $this->useBC ) {
+			$scale = max( strlen( $a->getFractionalPart() ), strlen( $b->getFractionalPart() ) );
+			$comp = bccomp( $a->getValue(), $b->getValue(), $scale );
+			$min = $comp > 0 ? $b : $a;
+		} else {
+			$min = min( $a->getValueFloat(), $b->getValueFloat() );
+			$min = $this->makeDecimalValue( $min );
+		}
+
+		return $min;
+	}
+
+	/**
+	 * Returns the maximum of the two values
+	 *
+	 * @param DecimalValue $a
+	 * @param DecimalValue $b
+	 *
+	 * @return DecimalValue
+	 */
+	public function max( DecimalValue $a, DecimalValue $b ) {
+
+		if ( $this->useBC ) {
+			$scale = max( strlen( $a->getFractionalPart() ), strlen( $b->getFractionalPart() ) );
+			$comp = bccomp( $a->getValue(), $b->getValue(), $scale );
+			$max = $comp > 0 ? $a : $b;
+		} else {
+			$max = max( $a->getValueFloat(), $b->getValueFloat() );
+			$max = $this->makeDecimalValue( $max );
+		}
+
+		return $max;
+	}
+
+	/**
 	 * Returns the given value, with any insignificant digits removed or zeroed.
 	 *
 	 * Rounding is applied  using the "round half away from zero" rule (that is, +0.5 is
@@ -224,8 +268,17 @@ class DecimalMath {
 		// just keep the remainder of the value as is (this includes the sign)
 		$rounded = substr( $value, 0, $i +1 ) . $rounded;
 
+		if ( strlen( $rounded ) < $significantDigits + 1 ) {
+			if ( $inIntPart ) {
+				$rounded .= '.';
+			}
+
+			$rounded = str_pad( $rounded, $significantDigits+1, '0', STR_PAD_RIGHT );
+		}
+
 		// strip trailing decimal point
 		$rounded = rtrim( $rounded, '.' );
+
 		return $rounded;
 	}
 

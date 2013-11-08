@@ -178,26 +178,39 @@ class DecimalMathTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @dataProvider sumWithBCProvider
+	 * @dataProvider minMaxProvider
 	 */
-	public function testSumWithBC( DecimalValue $a, DecimalValue $b, $value ) {
+	public function testMin( DecimalValue $min, DecimalValue $max ) {
 		$math = new DecimalMath();
 
-		if ( !$math->getUseBC() ) {
-			$this->markTestSkipped( 'bcmath library not available' );
-		}
+		$actual = $math->min( $min, $max );
+		$this->assertEquals( $min->getValue(), $actual->getValue() );
 
-		$actual = $math->sum( $a, $b );
-		$this->assertEquals( $value, $actual->getValue() );
-
-		$actual = $math->sum( $b, $a );
-		$this->assertEquals( $value, $actual->getValue() );
+		$actual = $math->min( $max, $min );
+		$this->assertEquals( $min->getValue(), $actual->getValue() );
 	}
 
-	public function sumWithBCProvider() {
+	/**
+	 * @dataProvider minMaxProvider
+	 */
+	public function testMax( DecimalValue $min, DecimalValue $max ) {
+		$math = new DecimalMath();
+
+		$actual = $math->max( $min, $max );
+		$this->assertEquals( $max->getValue(), $actual->getValue() );
+
+		$actual = $math->max( $max, $min );
+		$this->assertEquals( $max->getValue(), $actual->getValue() );
+	}
+
+	public function minMaxProvider() {
 		return array(
-			array( new DecimalValue(  '+0.1'  ), new DecimalValue(  '+0.1'  ), '+0.2' ),
-			array( new DecimalValue(  '-5000000000.000000000000001'  ), new DecimalValue(  '-0.01'  ), '-5000000000.010000000000001' ),
+			array( new DecimalValue(  '+0'  ), new DecimalValue(  '+0'  ) ),
+			array( new DecimalValue(  '+1'  ), new DecimalValue(  '+1'  ) ),
+			array( new DecimalValue(  '-0.2'  ), new DecimalValue(  '-0.2'  ) ),
+
+			array( new DecimalValue(  '-2'  ), new DecimalValue(  '+1'  ) ),
+			array( new DecimalValue(  '+0.33333'  ), new DecimalValue(  '+1'  ) ),
 		);
 	}
 
@@ -231,16 +244,17 @@ class DecimalMathTest extends \PHPUnit_Framework_TestCase {
 
 		$argLists[] = array( new DecimalValue( '+23' ), 1, '+20' );
 		$argLists[] = array( new DecimalValue( '+23' ), 2, '+23' );
-		$argLists[] = array( new DecimalValue( '+23' ), 3, '+23' );
+		$argLists[] = array( new DecimalValue( '+23' ), 3, '+23' ); // not padded (can't end with decimal point)
+		$argLists[] = array( new DecimalValue( '+23' ), 4, '+23.0' ); // padded
 
 		$argLists[] = array( new DecimalValue( '-234' ), 1, '-200' );
 		$argLists[] = array( new DecimalValue( '-234' ), 2, '-230' );
 		$argLists[] = array( new DecimalValue( '-234' ), 3, '-234' );
 
 		$argLists[] = array( new DecimalValue( '-2.0' ), 1, '-2' );
-		$argLists[] = array( new DecimalValue( '-2.0' ), 2, '-2' );   // edge case, may change
+		$argLists[] = array( new DecimalValue( '-2.0' ), 2, '-2' );   // not padded (can't end with decimal point)
 		$argLists[] = array( new DecimalValue( '-2.0' ), 3, '-2.0' );
-		$argLists[] = array( new DecimalValue( '-2.0' ), 4, '-2.0' ); // edge case, may change
+		$argLists[] = array( new DecimalValue( '-2.0' ), 4, '-2.00' ); // padded
 
 		$argLists[] = array( new DecimalValue( '-2.000' ), 1, '-2' );
 		$argLists[] = array( new DecimalValue( '-2.000' ), 2, '-2' );
@@ -250,7 +264,7 @@ class DecimalMathTest extends \PHPUnit_Framework_TestCase {
 		$argLists[] = array( new DecimalValue( '+2.5' ), 1, '+3' ); // rounded up
 		$argLists[] = array( new DecimalValue( '+2.5' ), 2, '+3' );
 		$argLists[] = array( new DecimalValue( '+2.5' ), 3, '+2.5' );
-		$argLists[] = array( new DecimalValue( '+2.5' ), 4, '+2.5' );
+		$argLists[] = array( new DecimalValue( '+2.5' ), 4, '+2.50' ); // padded
 
 		$argLists[] = array( new DecimalValue( '+2.05' ), 1, '+2' );
 		$argLists[] = array( new DecimalValue( '+2.05' ), 2, '+2' );
@@ -259,7 +273,7 @@ class DecimalMathTest extends \PHPUnit_Framework_TestCase {
 
 		$argLists[] = array( new DecimalValue( '-23.05' ), 1, '-20' );
 		$argLists[] = array( new DecimalValue( '-23.05' ), 2, '-23' );
-		$argLists[] = array( new DecimalValue( '-23.05' ), 3, '-23' ); // edge case, may change
+		$argLists[] = array( new DecimalValue( '-23.05' ), 3, '-23' ); // not padded (can't end with decimal point)
 		$argLists[] = array( new DecimalValue( '-23.05' ), 4, '-23.1' ); // rounded down
 		$argLists[] = array( new DecimalValue( '-23.05' ), 5, '-23.05' );
 
@@ -323,10 +337,10 @@ class DecimalMathTest extends \PHPUnit_Framework_TestCase {
 		$argLists[] = array( new DecimalValue( '+0' ), 1, '+0' );
 		$argLists[] = array( new DecimalValue( '+0.0' ), 0, '+0' );
 		$argLists[] = array( new DecimalValue( '+0.0' ), 2, '+0' );
-		$argLists[] = array( new DecimalValue( '+0.0' ), -5, '+0.0' );
+		$argLists[] = array( new DecimalValue( '+0.0' ), -5, '+0.00000' );
 
 		$argLists[] = array( new DecimalValue( '-2' ), 0, '-2' );
-		$argLists[] = array( new DecimalValue( '-2' ), -1, '-2' );
+		$argLists[] = array( new DecimalValue( '-2' ), -1, '-2.0' );
 		$argLists[] = array( new DecimalValue( '-2' ), 1, '+0' );
 
 		$argLists[] = array( new DecimalValue( '+23' ), 0, '+23' );
@@ -339,7 +353,7 @@ class DecimalMathTest extends \PHPUnit_Framework_TestCase {
 
 		$argLists[] = array( new DecimalValue( '-2.0' ), 0, '-2' );
 		$argLists[] = array( new DecimalValue( '-2.0' ), -1, '-2.0' );
-		$argLists[] = array( new DecimalValue( '-2.0' ), -2, '-2.0' ); // edge case, may change
+		$argLists[] = array( new DecimalValue( '-2.0' ), -2, '-2.00' ); // padded
 
 		$argLists[] = array( new DecimalValue( '-2.000' ), 0, '-2' );
 		$argLists[] = array( new DecimalValue( '-2.000' ), -1, '-2.0' );
@@ -347,7 +361,7 @@ class DecimalMathTest extends \PHPUnit_Framework_TestCase {
 
 		$argLists[] = array( new DecimalValue( '+2.5' ), 0, '+3' ); // rounded up
 		$argLists[] = array( new DecimalValue( '+2.5' ), -1, '+2.5' );
-		$argLists[] = array( new DecimalValue( '+2.5' ), -2, '+2.5' );
+		$argLists[] = array( new DecimalValue( '+2.5' ), -2, '+2.50' ); // padded
 
 		$argLists[] = array( new DecimalValue( '+2.05' ), 0, '+2' );
 		$argLists[] = array( new DecimalValue( '+2.05' ), -1, '+2.1' ); // rounded up
