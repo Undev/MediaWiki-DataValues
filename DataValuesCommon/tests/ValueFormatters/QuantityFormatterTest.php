@@ -7,7 +7,6 @@ use ValueFormatters\DecimalFormatter;
 use ValueFormatters\QuantityFormatter;
 use ValueFormatters\FormatterOptions;
 use ValueFormatters\ValueFormatter;
-use Wikibase\Lib\Serializers\SerializationOptions;
 
 /**
  * @covers ValueFormatters\QuantityFormatter
@@ -48,6 +47,11 @@ class QuantityFormatterTest extends ValueFormatterTestBase {
 			QuantityFormatter::OPT_APPLY_ROUNDING => -2
 		) );
 
+		$forceSign= new FormatterOptions( array(
+			QuantityFormatter::OPT_SHOW_UNCERTAINTY_MARGIN => false,
+			DecimalFormatter::OPT_FORCE_SIGN => true,
+		) );
+
 		return array(
 			'+0/nm' => array( QuantityValue::newFromNumber( '+0', '1', '+0', '+0' ), '0', $noMargin ),
 			'+0/wm' => array( QuantityValue::newFromNumber( '+0', '1', '+0', '+0' ), '0', $withMargin ),
@@ -67,6 +71,8 @@ class QuantityFormatterTest extends ValueFormatterTestBase {
 
 			'+3.125/nr' => array( QuantityValue::newFromNumber( '+3.125', '1', '+3.2', '+3.0' ), '3.125±0.125', $noRounding ),
 			'+3.125/xr' => array( QuantityValue::newFromNumber( '+3.125', '1', '+3.2', '+3.0' ), '3.13±0.13', $exactRounding ),
+
+			'+3.125/fs' => array( QuantityValue::newFromNumber( '+3.125', '1', '+3.2', '+3.0' ), '+3.13', $forceSign ),
 		);
 	}
 

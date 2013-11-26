@@ -16,6 +16,19 @@ use InvalidArgumentException;
 class DecimalFormatter extends ValueFormatterBase {
 
 	/**
+	 * Option key for forcing the sign to be included in the
+	 * formatter's output even if it's "+". The value must
+	 * be a boolean.
+	 */
+	const OPT_FORCE_SIGN = 'forceSign';
+
+	public function __construct( FormatterOptions $options ) {
+		$options->defaultOption( self::OPT_FORCE_SIGN, false );
+
+		parent::__construct( $options );
+	}
+
+	/**
 	 * Formats a QuantityValue data value
 	 *
 	 * @since 0.1
@@ -31,10 +44,13 @@ class DecimalFormatter extends ValueFormatterBase {
 		}
 
 		// TODO: Implement localization of decimal numbers!
+		// TODO: Implement optional rounding/padding
 		$decimal = $dataValue->getValue();
 
-		// strip leading +
-		$decimal = ltrim( $decimal, '+' );
+		if ( !$this->getOption( self::OPT_FORCE_SIGN ) ) {
+			// strip leading +
+			$decimal = ltrim( $decimal, '+' );
+		}
 
 		return $decimal;
 	}
