@@ -5,6 +5,7 @@ namespace ValueFormatters\Test;
 use DataValues\DecimalValue;
 use ValueFormatters\DecimalFormatter;
 use ValueFormatters\FormatterOptions;
+use ValueFormatters\ValueFormatter;
 use Wikibase\Lib\Serializers\SerializationOptions;
 
 /**
@@ -62,6 +63,22 @@ class DecimalFormatterTest extends ValueFormatterTestBase {
 	 */
 	protected function getFormatterClass() {
 		return 'ValueFormatters\DecimalFormatter';
+	}
+
+	public function testLocalization() {
+		$localizer = $this->getMock( 'ValueFormatters\Localizer' );
+
+		$localizer->expects( $this->once() )
+			->method( 'localize' )
+			->will( $this->returnCallback( function ( $number, $language ) {
+				return "$language:$number";
+			} ) );
+
+		$options = new FormatterOptions( array( ValueFormatter::OPT_LANG => 'en' ) );
+		$value = new DecimalValue( '+12345' );
+		$formatter = new DecimalFormatter( $options, $localizer );
+
+		$this->assertEquals( 'en:12345', $formatter->format( $value ) );
 	}
 
 }

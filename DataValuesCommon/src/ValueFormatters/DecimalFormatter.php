@@ -4,6 +4,7 @@ namespace ValueFormatters;
 
 use DataValues\DecimalValue;
 use InvalidArgumentException;
+use Language;
 
 /**
  * Formatter for decimal values
@@ -22,10 +23,21 @@ class DecimalFormatter extends ValueFormatterBase {
 	 */
 	const OPT_FORCE_SIGN = 'forceSign';
 
-	public function __construct( FormatterOptions $options ) {
+	/**
+	 * @var Localizer
+	 */
+	protected $localizer;
+
+	/**
+	 * @param FormatterOptions $options
+	 * @param Localizer|null $localizer
+	 */
+	public function __construct( FormatterOptions $options, Localizer $localizer = null ) {
 		$options->defaultOption( self::OPT_FORCE_SIGN, false );
 
 		parent::__construct( $options );
+
+		$this->localizer = $localizer;
 	}
 
 	/**
@@ -43,13 +55,18 @@ class DecimalFormatter extends ValueFormatterBase {
 			throw new InvalidArgumentException( 'DataValue is not a DecimalValue.' );
 		}
 
-		// TODO: Implement localization of decimal numbers!
 		// TODO: Implement optional rounding/padding
 		$decimal = $dataValue->getValue();
 
 		if ( !$this->getOption( self::OPT_FORCE_SIGN ) ) {
 			// strip leading +
 			$decimal = ltrim( $decimal, '+' );
+		}
+
+		if ( $this->localizer ) {
+			// apply number localization
+			$language = $this->getOption( ValueFormatter::OPT_LANG );
+			$decimal = $this->localizer->localize( $decimal, $language, $this->options );
 		}
 
 		return $decimal;

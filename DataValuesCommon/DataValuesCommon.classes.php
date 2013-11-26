@@ -11,6 +11,7 @@ return array(
 	'ValueFormatters\StringFormatter' => 'src/ValueFormatters/StringFormatter.php',
 	'ValueFormatters\TimeIsoFormatter' => 'src/ValueFormatters/TimeIsoFormatter.php',
 	'ValueFormatters\TimeFormatter' => 'src/ValueFormatters/TimeFormatter.php',
+	'ValueFormatters\Localizer' => 'src/ValueFormatters/Localizer.php',
 
 	'ValueFormatters\Test\ValueFormatterFactoryTest' => 'tests/ValueFormatters/ValueFormatterFactoryTest.php',
 
