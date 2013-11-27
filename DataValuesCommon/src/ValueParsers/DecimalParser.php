@@ -2,6 +2,7 @@
 
 namespace ValueParsers;
 
+use DataValues\DecimalMath;
 use DataValues\DecimalValue;
 use DataValues\IllegalValueException;
 
@@ -16,13 +17,29 @@ use DataValues\IllegalValueException;
 class DecimalParser extends StringValueParser {
 
 	/**
+	 * @var DecimalMath
+	 */
+	private $math;
+
+	/**
+	 * @return DecimalMath
+	 */
+	private function getMath() {
+		if ( $this->math === null ) {
+			$this->math = new DecimalMath();
+		}
+
+		return $this->math;
+	}
+
+	/**
 	 * Creates a DecimalValue from a given string.
 	 *
 	 * The decimal notation for the value is based on ISO 31-0, with some modifications:
 	 * - the decimal separator is '.' (period). Comma is not used anywhere.
 	 * - leading and trailing as well as any internal whitespace is ignored
 	 * - the following characters are ignored: comma (","), apostrophe ("'").
-	 * - scientific (exponential) notation is not used.
+	 * - scientific (exponential) notation is supported using the pattern /e[-+][0-9]+/
 	 * - the number may start (or end) with a decimal point.
 	 * - leading zeroes are stripped, except directly before the decimal point
 	 * - trailing zeroes are stripped, except directly after the decimal point
@@ -38,6 +55,17 @@ class DecimalParser extends StringValueParser {
 	 * @throws ParseException
 	 */
 	protected function stringParse( $value ) {
+
+		//handle scientific notation
+		if ( preg_match( '/^(.*)([eE]|x10\^)([-+]?[,\d]+)$/', $value, $matches ) ) {
+			$exponent = $this->normalizeDecimal( $matches[3] );
+			$exponent = intval( $exponent );
+
+			$value = $matches[1];
+		} else {
+			$exponent = 0;
+		}
+
 		$value = $this->normalizeDecimal( $value );
 
 		if ( $value === '' ) {
@@ -46,6 +74,12 @@ class DecimalParser extends StringValueParser {
 
 		try {
 			$decimal = new DecimalValue( $value );
+
+			if ( $exponent ) {
+				$math = $this->getMath();
+				$decimal = $math->shift( $decimal, $exponent );
+			}
+
 			return $decimal;
 		} catch ( IllegalValueException $ex ) {
 			throw new ParseException( $ex->getMessage() );
@@ -80,5 +114,4 @@ class DecimalParser extends StringValueParser {
 
 		return $number;
 	}
-
 }

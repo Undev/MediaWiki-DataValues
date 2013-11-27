@@ -387,4 +387,55 @@ class DecimalMathTest extends \PHPUnit_Framework_TestCase {
 
 		return $argLists;
 	}
+
+	/**
+	 * @dataProvider shiftProvider
+	 *
+	 * @param DecimalValue $value
+	 * @param $exponent
+	 * @param $expected
+	 */
+	public function testShift( DecimalValue $value, $exponent, $expected ) {
+		$math = new DecimalMath();
+
+		$actual = $math->shift( $value, $exponent );
+		$this->assertEquals( $expected, $actual->getValue() );
+	}
+
+	public function shiftProvider() {
+		$argLists = array();
+
+		$argLists[] = array( new DecimalValue( '+0' ), 0, '+0' );
+		$argLists[] = array( new DecimalValue( '+0' ), 1, '+0' );
+		$argLists[] = array( new DecimalValue( '+0' ), 2, '+0' );
+		$argLists[] = array( new DecimalValue( '+0' ), -1, '+0.0' );
+		$argLists[] = array( new DecimalValue( '+0' ), -2, '+0.00' );
+
+		$argLists[] = array( new DecimalValue( '+0.0' ), 0, '+0.0' );
+		$argLists[] = array( new DecimalValue( '+0.0' ), 1, '+0' );
+		$argLists[] = array( new DecimalValue( '+0.0' ), 2, '+0' );
+		$argLists[] = array( new DecimalValue( '+0.0' ), -1, '+0.00' );
+		$argLists[] = array( new DecimalValue( '+0.0' ), -2, '+0.000' );
+
+		$argLists[] = array( new DecimalValue( '-125' ), 0, '-125' );
+		$argLists[] = array( new DecimalValue( '-125' ), 1, '-1250' );
+		$argLists[] = array( new DecimalValue( '-125' ), 2, '-12500' );
+		$argLists[] = array( new DecimalValue( '-125' ), -1, '-12.5' );
+		$argLists[] = array( new DecimalValue( '-125' ), -2, '-1.25' );
+		$argLists[] = array( new DecimalValue( '-125' ), -3, '-0.125' );
+		$argLists[] = array( new DecimalValue( '-125' ), -4, '-0.0125' );
+
+		$argLists[] = array( new DecimalValue( '-2.5' ), 0, '-2.5' );
+		$argLists[] = array( new DecimalValue( '-2.5' ), 1, '-25' );
+		$argLists[] = array( new DecimalValue( '-2.5' ), 2, '-250' );
+		$argLists[] = array( new DecimalValue( '-2.5' ), -1, '-0.25' );
+		$argLists[] = array( new DecimalValue( '-2.5' ), -2, '-0.025' );
+		$argLists[] = array( new DecimalValue( '-2.5' ), -3, '-0.0025' );
+
+		$argLists[] = array( new DecimalValue( '+5' ), -4, '+0.0005' );
+		$argLists[] = array( new DecimalValue( '+5.0' ), -4, '+0.00050' );
+		$argLists[] = array( new DecimalValue( '+5.00' ), -4, '+0.000500' );
+
+		return $argLists;
+	}
 }
