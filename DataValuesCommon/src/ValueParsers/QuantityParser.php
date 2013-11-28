@@ -22,6 +22,23 @@ class QuantityParser extends StringValueParser {
 	const UNIT_PATTERN = '[a-zA-ZµåÅöÖ°%][-.a-zA-Z0-9åÅöÖ°%²³^]*';
 
 	/**
+	 * @var DecimalParser
+	 */
+	protected $decimalParser;
+
+	/**
+	 * @since 0.1
+	 *
+	 * @param DecimalParser $decimalParser
+	 * @param ParserOptions|null $options
+	 */
+	public function __construct( DecimalParser $decimalParser, ParserOptions $options = null ) {
+		parent::__construct( $options );
+
+		$this->decimalParser = $decimalParser;
+	}
+
+	/**
 	 * @see StringValueParser::stringParse
 	 *
 	 * @since 0.1
@@ -62,15 +79,14 @@ class QuantityParser extends StringValueParser {
 	 * @return QuantityValue
 	 */
 	private function newQuantityFromParts( $amount, $exactness, $margin, $unit ) {
-		$decimalParser = new DecimalParser( $this->options );
-		$amountValue = $decimalParser->parse( $amount );
+		$amountValue = $this->decimalParser->parse( $amount );
 
 		if ( $exactness === '!' ) {
 			// the amount is an exact number
 			$quantity = $this->newExactQuantity( $amountValue, $unit );
 		} elseif ( $margin !== null ) {
 			// uncertainty margin given
-			$marginValue = $decimalParser->parse( $margin );
+			$marginValue = $this->decimalParser->parse( $margin );
 			$quantity = $this->newUncertainQuantityFromMargin( $amountValue, $unit, $marginValue );
 		} else {
 			// derive uncertainty from given decimals

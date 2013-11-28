@@ -4,6 +4,7 @@ namespace ValueParsers\Test;
 
 use DataValues\DecimalValue;
 use DataValues\QuantityValue;
+use ValueParsers\DecimalParser;
 use ValueParsers\QuantityParser;
 use ValueParsers\Test\StringValueParserTest;
 
@@ -153,6 +154,17 @@ class QuantityParserTest extends StringValueParserTest {
 	 */
 	protected function getParserClass() {
 		return 'ValueParsers\QuantityParser';
+	}
+
+	/**
+	 * @since 0.1
+	 * @return QuantityParser
+	 */
+	protected function getInstance() {
+		$options = $this->newParserOptions();
+
+		$class = $this->getParserClass();
+		return new $class( new DecimalParser( $options ), $options );
 	}
 
 }

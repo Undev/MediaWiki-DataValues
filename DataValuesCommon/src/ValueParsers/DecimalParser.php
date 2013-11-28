@@ -22,6 +22,23 @@ class DecimalParser extends StringValueParser {
 	private $math;
 
 	/**
+	 * @var null|Unlocalizer
+	 */
+	protected $unlocalizer;
+
+	/**
+	 * @since 0.1
+	 *
+	 * @param ParserOptions|null $options
+	 * @param Unlocalizer|null $unlocalizer
+	 */
+	public function __construct( ParserOptions $options = null, Unlocalizer $unlocalizer = null) {
+		parent::__construct( $options );
+
+		$this->unlocalizer = $unlocalizer;
+	}
+
+	/**
 	 * @return DecimalMath
 	 */
 	private function getMath() {
@@ -55,6 +72,10 @@ class DecimalParser extends StringValueParser {
 	 * @throws ParseException
 	 */
 	protected function stringParse( $value ) {
+		if ( $this->unlocalizer !== null ) {
+			$lang = $this->options->getOption( ValueParser::OPT_LANG );
+			$value = $this->unlocalizer->unlocalize( $value, $lang, $this->options );
+		}
 
 		//handle scientific notation
 		if ( preg_match( '/^(.*)([eE]|x10\^)([-+]?[,\d]+)$/', $value, $matches ) ) {
@@ -114,4 +135,5 @@ class DecimalParser extends StringValueParser {
 
 		return $number;
 	}
+
 }

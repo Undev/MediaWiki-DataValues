@@ -121,9 +121,13 @@ class ApiParseValue extends ApiBase {
 		$parserOptions = new ParserOptions();
 		$parserOptions->setOption( ValueParser::OPT_LANG, $this->getLanguage()->getCode() );
 
-		$options = \FormatJson::decode( $optionsParam, true );
+		if ( $optionsParam !== null && $optionsParam !== '' ) {
+			$options = \FormatJson::decode( $optionsParam, true );
 
-		if ( is_array( $options ) ) {
+			if ( !is_array( $options ) ) {
+				$this->dieUsage( 'Malformed options parameter', 'malformed-options' );
+			}
+
 			foreach ( $options as $name => $value ) {
 				$parserOptions->setOption( $name, $value );
 			}
