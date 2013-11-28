@@ -2,21 +2,21 @@
 
 namespace ValueFormatters\Test;
 
+use ValueFormatters\StringFormatter;
+use ValueFormatters\FormatterOptions;
 use ValueFormatters\ValueFormatterFactory;
 
 /**
  * @covers ValueFormatters\ValueFormatterFactory
  *
- * @file
  * @since 0.1
- *
- * @ingroup ValueFormattersTest
  *
  * @group ValueFormatters
  * @group DataValueExtensions
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
+ * @author Daniel Kinzler
  */
 class ValueFormatterFactoryTest extends \PHPUnit_Framework_TestCase {
 
@@ -27,7 +27,10 @@ class ValueFormatterFactoryTest extends \PHPUnit_Framework_TestCase {
 	 */
 	protected function newFactory() {
 		return new ValueFormatterFactory( array(
-			'string' => 'ValueFormatters\StringFormatter'
+			'string' => 'ValueFormatters\StringFormatter',
+			'dummy' => function( FormatterOptions $options ) {
+					return new StringFormatter( $options );
+				}
 		) );
 	}
 
@@ -45,23 +48,30 @@ class ValueFormatterFactoryTest extends \PHPUnit_Framework_TestCase {
 	public function testGetFormatter() {
 		$factory = $this->newFactory();
 
-		$options = new \ValueFormatters\FormatterOptions();
+		$options = new FormatterOptions();
 
 		foreach ( $factory->getFormatterIds() as $id ) {
-			$this->assertInstanceOf( 'ValueFormatters\ValueFormatter', $factory->newFormatter( $id, $options ) );
+			$formatter = $factory->newFormatter( $id, $options );
+			$this->assertInstanceOf( 'ValueFormatters\ValueFormatter', $formatter );
 		}
 
-		$this->assertInternalType( 'null', $factory->newFormatter( "I'm in your tests, being rather silly ~=[,,_,,]:3", $options ) );
+		$this->setExpectedException( 'OutOfBoundsException' );
+		$factory->newFormatter( "I'm in your tests, being rather silly ~=[,,_,,]:3", $options );
 	}
 
-	public function testGetFormatterClass() {
+	public function testGetFormatterBuilder() {
 		$factory = $this->newFactory();
 
 		foreach ( $factory->getFormatterIds() as $id ) {
-			$this->assertInternalType( 'string', $factory->getFormatterClass( $id ) );
+			$builder = $factory->getFormatterBuilder( $id );
+
+			if ( !is_callable( $builder ) ) {
+				$this->assertInternalType( 'string', $builder );
+			}
 		}
 
-		$this->assertInternalType( 'null', $factory->getFormatterClass( "I'm in your tests, being rather silly ~=[,,_,,]:3" ) );
+		$builder = $factory->getFormatterBuilder( "I'm in your tests, being rather silly ~=[,,_,,]:3" );
+		$this->assertInternalType( 'null', $builder );
 	}
 
 }

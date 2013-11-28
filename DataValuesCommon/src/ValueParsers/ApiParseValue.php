@@ -6,6 +6,7 @@ use ApiBase;
 use DataValues\DataValue;
 use LogicException;
 use MWException;
+use OutOfBoundsException;
 
 /**
  * API module for using value parsers.
@@ -65,10 +66,10 @@ class ApiParseValue extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		$options = $this->getOptionsObject( $params['options'] );
-		$parser = $this->getFactory()->newParser( $params['parser'], $options );
 
-		// Paranoid check, should never fail as we only accept registered parsers for the parser parameter.
-		if ( $parser === null ) {
+		try {
+			$parser = $this->getFactory()->newParser( $params['parser'], $options );
+		} catch ( OutOfBoundsException $ex ) {
 			throw new LogicException( 'Could not obtain a ValueParser instance' );
 		}
 
