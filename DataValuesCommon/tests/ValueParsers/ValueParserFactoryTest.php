@@ -2,21 +2,21 @@
 
 namespace ValueParsers\Test;
 
+use ValueParsers\NullParser;
+use ValueParsers\ParserOptions;
 use ValueParsers\ValueParserFactory;
 
 /**
  * @covers ValueParsers\ValueParserFactory
  *
- * @file
  * @since 0.1
- *
- * @ingroup ValueParsersTest
  *
  * @group ValueParsers
  * @group DataValueExtensions
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
+ * @author Daniel Kinzler
  */
 class ValueParserFactoryTest extends \PHPUnit_Framework_TestCase {
 
@@ -27,7 +27,10 @@ class ValueParserFactoryTest extends \PHPUnit_Framework_TestCase {
 	 */
 	protected function newFactory() {
 		return new ValueParserFactory( array(
-			'null' => 'ValueParsers\NullParser'
+			'null' => 'ValueParsers\NullParser',
+			'dummy' => function( ParserOptions $options ) {
+					return new NullParser( $options );
+				}
 		) );
 	}
 
@@ -45,29 +48,30 @@ class ValueParserFactoryTest extends \PHPUnit_Framework_TestCase {
 	public function testGetParser() {
 		$factory = $this->newFactory();
 
-		$options = new \ValueParsers\ParserOptions();
+		$options = new ParserOptions();
 
 		foreach ( $factory->getParserIds() as $id ) {
-			try {
-				$parser = $factory->newParser( $id, $options );
-				$this->assertInstanceOf( 'ValueParsers\ValueParser', $parser );
-			}
-			catch ( \Exception $ex ) {
-				$this->assertTrue( true, 'Exceptions can be raised due to not providing required options' );
-			}
+			$parser = $factory->newParser( $id, $options );
+			$this->assertInstanceOf( 'ValueParsers\ValueParser', $parser );
 		}
 
-		$this->assertInternalType( 'null', $factory->newParser( "I'm in your tests, being rather silly ~=[,,_,,]:3", $options ) );
+		$this->setExpectedException( 'OutOfBoundsException' );
+		$factory->newParser( "I'm in your tests, being rather silly ~=[,,_,,]:3", $options );
 	}
 
-	public function testGetParserClass() {
+	public function testGetParserBuilder() {
 		$factory = $this->newFactory();
 
 		foreach ( $factory->getParserIds() as $id ) {
-			$this->assertInternalType( 'string', $factory->getParserClass( $id ) );
+			$builder = $factory->getParserBuilder( $id );
+
+			if ( !is_callable( $builder ) ) {
+				$this->assertInternalType( 'string', $builder );
+			}
 		}
 
-		$this->assertInternalType( 'null', $factory->getParserClass( "I'm in your tests, being rather silly ~=[,,_,,]:3" ) );
+		$builder = $factory->getParserBuilder( "I'm in your tests, being rather silly ~=[,,_,,]:3" );
+		$this->assertInternalType( 'null', $builder );
 	}
 
 }
