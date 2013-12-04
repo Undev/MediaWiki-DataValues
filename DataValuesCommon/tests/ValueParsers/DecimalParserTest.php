@@ -4,6 +4,8 @@ namespace ValueParsers\Test;
 
 use DataValues\DecimalValue;
 use ValueParsers\DecimalParser;
+use ValueParsers\ParserOptions;
+use ValueParsers\ValueParser;
 
 /**
  * @covers ValueParsers\DecimalParser
@@ -98,6 +100,23 @@ class DecimalParserTest extends StringValueParserTest {
 	 */
 	protected function getParserClass() {
 		return 'ValueParsers\DecimalParser';
+	}
+
+	public function testUnlocalization() {
+		$unlocalizer = $this->getMock( 'ValueParsers\Unlocalizer' );
+		$unlocalizer->expects( $this->once() )
+			->method( 'unlocalize' )
+			->will( $this->returnCallback( function( $number, $language, ParserOptions $options ) {
+				return str_replace( '#', '', $number );
+			} ) );
+
+		$options = new ParserOptions();
+		$parser = new DecimalParser( $options, $unlocalizer );
+
+		$input = '###20#000#000###';
+		$value = $parser->parse( $input );
+
+		$this->assertEquals( '20000000', $value->getValue() );
 	}
 
 }

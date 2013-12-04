@@ -24,6 +24,10 @@ $wgValueFormatters = array(
 	'globecoordinate' => 'ValueFormatters\GlobeCoordinateFormatter',
 	'time' => 'ValueFormatters\TimeFormatter',
 	'string' => 'ValueFormatters\StringFormatter',
+	'decimal' => 'ValueFormatters\DecimalFormatter',
+	'quantity' => function( ValueFormatters\FormatterOptions $options ) {
+		return new \ValueFormatters\QuantityFormatter( new \ValueFormatters\DecimalFormatter( $options ), $options );
+	},
 );
 
 global $wgValueParsers;
@@ -38,7 +42,10 @@ $wgValueParsers['float'] = 'ValueParsers\FloatParser';
 $wgValueParsers['globecoordinate'] = 'ValueParsers\GlobeCoordinateParser';
 $wgValueParsers['int'] = 'ValueParsers\IntParser';
 $wgValueParsers['null'] = 'ValueParsers\NullParser';
-$wgValueParsers['quantity'] = 'ValueParsers\QuantityParser';
+$wgValueParsers['decimal'] = 'ValueParsers\DecimalParser';
+$wgValueParsers['quantity'] = function( ValueParsers\ParserOptions $options ) {
+	return new \ValueParsers\QuantityParser( new \ValueParsers\DecimalParser( $options ), $options );
+};
 
 global $wgValueValidators;
 
