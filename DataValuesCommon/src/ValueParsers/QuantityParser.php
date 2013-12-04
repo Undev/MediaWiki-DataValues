@@ -17,7 +17,7 @@ use DataValues\QuantityValue;
  */
 class QuantityParser extends StringValueParser {
 
-	const NUMBER_PATTERN = '(?:[-+]\s*)?(?:[0-9,\'`]+\.[0-9,\'`]*|\.?[0-9,\'`]+)?';
+	const NUMBER_PATTERN = '(?:[-+]\s*)?(?:[0-9,\'`]+\.[0-9,\'`]*|\.?[0-9,\'`]+)(?:[eE][-+]?[0-9,\'`]+)?';
 
 	const UNIT_PATTERN = '[a-zA-ZµåÅöÖ°%][-.a-zA-Z0-9åÅöÖ°%²³^]*';
 
@@ -105,7 +105,7 @@ class QuantityParser extends StringValueParser {
 		$pattern = '@^'
 			. '\s*(' . self::NUMBER_PATTERN . ')' // $1: amount
 			. '\s*(?:'
-				. '([!~])'  // $2: '!' for "exact", '~' for "approx", or nothing
+				. '([~!])'  // $2: '!' for "exact", '~' for "approx", or nothing
 				. '|(?:\+/?-|±)\s*(' . self::NUMBER_PATTERN . ')' // $3: plus/minus offset (uncertainty margin)
 				. '|' // or nothing
 			. ')'
