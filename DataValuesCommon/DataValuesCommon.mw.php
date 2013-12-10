@@ -135,6 +135,7 @@ $wgHooks['ResourceLoaderTestModules'][] = function ( array &$testModules, \Resou
 				'ValueParserFactory.tests.js',
 			),
 			'dependencies' => array(
+				'qunit.parameterize',
 				'valueParsers.factory',
 				'valueParsers.parsers',
 			),
@@ -163,5 +164,5 @@ $wgHooks['ResourceLoaderTestModules'][] = function ( array &$testModules, \Resou
 // Resource Loader module registration
 $GLOBALS['wgResourceModules'] = array_merge(
 	$GLOBALS['wgResourceModules'],
-	include( __DIR__ . '/js/ValueParsers.resources.php' )
+	include( __DIR__ . '/js/ValueParsers.resources.mw.php' )
 );
