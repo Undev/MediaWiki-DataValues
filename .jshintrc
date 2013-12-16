@@ -30,6 +30,7 @@
 	"predef": [
 		"dataValues",
 		"dataTypes",
+		"valueFormatters",
 		"valueParsers",
 		"time",
 		"globeCoordinate",
