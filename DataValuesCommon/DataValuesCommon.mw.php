@@ -134,6 +134,17 @@ $wgHooks['ResourceLoaderTestModules'][] = function(
 		),
 	);
 
+	$testModules['qunit']['ext.valueFormatters.factory'] = $moduleTemplate + array(
+		'scripts' => array(
+			'ValueFormatterFactory.tests.js',
+		),
+		'dependencies' => array(
+			'qunit.parameterize',
+			'valueFormatters.factory',
+			'valueFormatters.formatters',
+		),
+	);
+
 	$testModules['qunit']['ext.valueFormatters.formatters'] = $moduleTemplate + array(
 		'scripts' => array(
 			'formatters/NullFormatter.tests.js',
@@ -208,6 +219,6 @@ $wgHooks['ResourceLoaderTestModules'][] = function ( array &$testModules, \Resou
 // Resource Loader module registration
 $GLOBALS['wgResourceModules'] = array_merge(
 	$GLOBALS['wgResourceModules'],
-	include( __DIR__ . '/js/ValueFormatters.resources.php' ),
+	include( __DIR__ . '/js/ValueFormatters.resources.mw.php' ),
 	include( __DIR__ . '/js/ValueParsers.resources.mw.php' )
 );

@@ -35,6 +35,16 @@ return call_user_func( function() {
 			),
 		),
 
+		'valueFormatters.factory' => $moduleTemplate + array(
+			'scripts' => array(
+				'ValueFormatterFactory.js',
+			),
+			'dependencies' => array(
+				'dataTypes',
+				'valueFormatters',
+			),
+		),
+
 		'valueFormatters.formatters' => $moduleTemplate + array(
 			'scripts' => array(
 				'formatters/NullFormatter.js',
