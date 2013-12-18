@@ -41,14 +41,20 @@ function expertProxy( fnName ) {
  * @option valueParserProvider {valueParsers.valueParserFactory} (required) Factory providing the
  *         parsers that values may be parsed with.
  *
+ * @option valueFormatterProvider {valueFormatters.valueFormatterFactory} (required) Factory
+ *         providing the formatters which value may be formatted with.
+ *
  * @option on {dataTypes.DataType|Function|null} If this option is not null, then the widget will
- *         choose a jQuery.valueview.Expert and a valueParser.ValueParser based on a provided data
- *         type or on a given data value's constructor's data value type. Basically, this means that
- *         all data values, set as value, not valid against the given data (value) type will be
- *         displayed with a note that they are not suitable for the widget's current definition.
- *         If null is set, then expert and parser will be chosen on the widget's current value. If
- *         the value is null, then the widget will not be able to offer any input for new values
- *         though.
+ *         choose an expert (jQuery.valueview.Expert), a parser (valueParsers.ValueParser) and a
+ *         formatter (valueFormatters.ValueFormatter) based on the provided purpose. The purpose may
+ *         be a data type (dataTypes.DataType instance) or a data value (dataValues.DataValue
+ *         constructor).
+ *         When setting the valueview's value to a data value that is not valid against the given
+ *         data (value) type, a note that it is not suitable for the widget's current definition
+ *         will be displayed.
+ *         If the "on" option is null, expert, parser and formatter will be chosen on the widget's
+ *         current value. Consequently, if the value itself is null, the widget will not be able to
+ *         offer any input for new values.
  *         Default: null
  *
  * @option value {dataValues.DataValue|null} The data value this view should represent initially.
@@ -91,6 +97,13 @@ $.widget( 'valueview.valueview', PARENT, {
 	_value: null,
 
 	/**
+	 * Most current formatted value. Might be "behind" the expert's raw value as well as the
+	 * valueview's parsed DataValue since formatting might involve an asynchronous request.
+	 * @type {string|jQuery|null}
+	 */
+	_formattedValue: null,
+
+	/**
 	 * The DOM node containing the actual value representation. This is the expert's viewport.
 	 * @type jQuery
 	 */
@@ -129,6 +142,7 @@ $.widget( 'valueview.valueview', PARENT, {
 	options: {
 		expertProvider: null,
 		valueParserProvider: null,
+		valueFormatterProvider: null,
 		on: null,
 		value: null,
 		autoStartEditing: false,
@@ -242,7 +256,7 @@ $.widget( 'valueview.valueview', PARENT, {
 		}
 		if( dropValue ) {
 			// reinstate initial value from before edit mode
-			this._value = this.initialValue();
+			this.value( this.initialValue() );
 		}
 		this._initialValue = null;
 		this._isInEditMode = false;
@@ -346,7 +360,30 @@ $.widget( 'valueview.valueview', PARENT, {
 		//  to ultimately set a value without triggering validation, some kind of ValidatedDataValue,
 		//  as mentioned in the 'value' function's todo, would be required.
 
-		this.draw();
+		var self = this;
+
+		if( this._value === null ) {
+			this._formattedValue = null;
+			this.draw();
+		} else {
+			// TODO: Cache the initial formatted value in order to not have to trigger an API
+			// request when resetting.
+			this._formatValue( this._value )
+			.done( function( formattedValue ) {
+				self._formattedValue = formattedValue;
+				self.draw();
+			} );
+		}
+	},
+
+	/**
+	 * Returns the most current formatted value featured by this valueview.
+	 * @since 0.1
+	 *
+	 * @return {string|jQuery|null}
+	 */
+	getFormattedValue: function() {
+		return this._formattedValue;
 	},
 
 	/**
@@ -521,9 +558,52 @@ $.widget( 'valueview.valueview', PARENT, {
 	 * @since 0.1
 	 */
 	_updateValue: function() {
+		var self = this;
+
+		this._parseValue()
+		.done( function( parsedValue ) {
+			self._value = parsedValue;
+
+			if( self._value === null ) {
+				self._formattedValue = null;
+				self._expert.draw();
+				return;
+			}
+
+			self._formatValue( parsedValue )
+			.done( function( formattedValue ) {
+				self._formattedValue = formattedValue;
+				self._expert.draw();
+			} )
+			.fail( function( error, details ) {
+				if( error !== undefined ) {
+					// TODO: display some message if parsing failed due to bad API connection etc.
+					self._formattedValue = null;
+				}
+			} );
+
+		} )
+		.fail( function( error, details ) {
+			if( error !== undefined ) {
+				// TODO: display some message if parsing failed due to bad API connection etc.
+				self._value = null;
+			}
+		} );
+	},
+
+	/**
+	 * Parses the current raw value.
+	 *
+	 * @return {jQuery.Promise}
+	 *
+	 * @throws {Error} if the parser result is neither a DataValue instance nor null.
+	 * @triggers afterparse
+	 */
+	_parseValue: function() {
 		var self = this,
 			expert = this._expert,
-			rawValue = expert.rawValue();
+			rawValue = expert.rawValue(),
+			deferred = $.Deferred();
 
 		this._trigger( 'parse' );
 
@@ -531,7 +611,8 @@ $.widget( 'valueview.valueview', PARENT, {
 			this.__lastUpdateValue = undefined;
 			this._value = rawValue;
 			self._trigger( 'afterparse' );
-			return;
+			deferred.resolve();
+			return deferred.promise();
 		}
 
 		if( this._parseTimer ) {
@@ -554,7 +635,8 @@ $.widget( 'valueview.valueview', PARENT, {
 
 			valueParser.parse(
 				rawValue
-			).done( function( parsedValue ) {
+			)
+			.done( function( parsedValue ) {
 				// Paranoia check against ValueParser interface:
 				if( parsedValue !== null && !( parsedValue instanceof dv.DataValue ) ) {
 					throw new Error( 'Unexpected value parser result' );
@@ -563,10 +645,8 @@ $.widget( 'valueview.valueview', PARENT, {
 				if( self.__lastUpdateValue === undefined ) {
 					// latest update job is done, this one must be a late response for some weird
 					// reason
-					return;
+					deferred.reject();
 				}
-
-				self._value = parsedValue; // NOTE: can be null!
 
 				if( expert.rawValueCompare( self.__lastUpdateValue, rawValue ) ) {
 					// this is the response for the latest update! by setting this to undefined, we
@@ -575,16 +655,18 @@ $.widget( 'valueview.valueview', PARENT, {
 					// first response comes back and the following two can be ignored.
 					self.__lastUpdateValue = undefined;
 				}
-			} ).fail( function( error, details ) {
-				// TODO: display some message if parsing failed due to bad API connection etc.
-				self._value = null;
-			} ).always( function() {
-				// Call experts draw() for allowing update of "advanced adjustments" in some experts.
-				expert.draw();
 
+				deferred.resolve( parsedValue );
+			} )
+			.fail( function( error, details ) {
+				deferred.reject( error, details );
+			} )
+			.always( function() {
 				self._trigger( 'afterparse' );
 			} );
 		} , delay );
+
+		return deferred.promise();
 	},
 
 	/**
@@ -594,26 +676,87 @@ $.widget( 'valueview.valueview', PARENT, {
 	 * @return {valueParsers.ValueParser}
 	 */
 	_instantiateParser: function( additionalParserOptions ) {
-		additionalParserOptions = additionalParserOptions || {};
-
-		var parserHint = this.options.on;
-
-		if( !parserHint && this._value instanceof dv.DataValue ) {
-			parserHint = this._value.getType();
-		}
-
-		if( !parserHint ) {
-			throw new Error( 'No adequate information to find a parser' );
-		}
-
-		var Parser = this.options.valueParserProvider.getParser( parserHint ),
+		var Parser = this.options.valueParserProvider.getParser( this._getPurpose() ),
 			parserOptions = $.extend(
 				{},
 				Parser.prototype.getOptions(),
-				additionalParserOptions
+				additionalParserOptions || {}
 			);
 
 		return new Parser( parserOptions );
+	},
+
+	/**
+	 * Formats a specific data value.
+	 *
+	 * @param {dataValues.DataValue} dataValue
+	 * @return {jQuery.Promise}
+	 *
+	 * @triggers afterformat
+	 */
+	_formatValue: function( dataValue ) {
+		var self = this,
+			deferred = $.Deferred(),
+			valueFormatter = this._instantiateFormatter( this._expert.valueCharacteristics() );
+
+		valueFormatter.format( dataValue )
+		.done( function( formattedValue, formattedDataValue ) {
+			if( dataValue === formattedDataValue ) {
+				deferred.resolve( formattedValue );
+			} else {
+				// Late response that should be ignored.
+				deferred.reject();
+			}
+		} )
+		.fail( function( error, details ) {
+			deferred.reject( error, details );
+		} )
+		.always( function() {
+			self._trigger( 'afterformat' );
+		} );
+
+		return deferred.promise();
+	},
+
+	/**
+	 * Instantiates a formatter adequate to the "on" option or the current value.
+	 *
+	 * @param {Object} [additionalFormatterOptions]
+	 * @return {valueFormatters.ValueFormatter}
+	 */
+	_instantiateFormatter: function( additionalFormatterOptions ) {
+		var Formatter = this.options.valueFormatterProvider.getFormatter( this._getPurpose() ),
+			formatterOptions = $.extend(
+				{},
+				Formatter.prototype.getOptions(),
+				additionalFormatterOptions || {}
+			);
+
+		return new Formatter( formatterOptions );
+	},
+
+	/**
+	 * Tries to figure out the purpose of this valueview. The purpose - either a DataType instance
+	 * or a DataValue type string - may be used to retrieve a parser or a formatter.
+	 *
+	 * @return {dataTypes.DataType|string}
+	 *
+	 * @throws {Error} if no proper purpose could be determined.
+	 */
+	_getPurpose: function() {
+		var purpose = this.options.on;
+
+		if( purpose instanceof dv.DataValue ) {
+			purpose = purpose.getType();
+		} else if( !purpose && this._value instanceof dv.DataValue ) {
+			purpose = this._value.getType();
+		}
+
+		if( !purpose ) {
+			throw new Error( 'No adequate information to figure out a purpose' );
+		}
+
+		return purpose;
 	},
 
 	/**
