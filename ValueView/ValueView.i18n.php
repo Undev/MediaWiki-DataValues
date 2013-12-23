@@ -283,10 +283,11 @@ $messages['de'] = array(
 );
 
 /** Lower Sorbian (dolnoserbski)
+ * @author Michawiki
  */
 $messages['dsb'] = array(
-	'valueview-expert-unsupportedvalue-unsupporteddatavalue' => 'Wobźěłowanje datowych gódnotow "$1" hyšći se njepódpěra.', # Fuzzy
-	'valueview-expert-unsupportedvalue-unsupporteddatatype' => 'Wobźěłowanje gódnotow za datowy typ "$1" hyšći se njepódpěra.', # Fuzzy
+	'valueview-expert-unsupportedvalue-unsupporteddatavalue' => 'Wobźěłowanje gódnotow typa "$1" hyšći se njepódpěra.',
+	'valueview-expert-unsupportedvalue-unsupporteddatatype' => 'Wobźěłowanje gódnotow za datowy typ "$1" hyšći se njepódpěra.',
 );
 
 /** Greek (Ελληνικά)
