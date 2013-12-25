@@ -488,13 +488,20 @@ $messages['he'] = array(
  * @author Michawiki
  */
 $messages['hsb'] = array(
+	'valueview-desc' => 'Komponenty wužiwarskeho powjercha za zwobraznjenje a wobdźěłowanje datowych hódnotow',
 	'valueview-expert-advancedadjustments' => 'rozšěrjene přiměrjenja',
 	'valueview-expert-unsupportedvalue-unsupporteddatavalue' => 'Wobdźěłowanje hódnotow "$1" so hišće njepodpěruje.',
 	'valueview-expert-unsupportedvalue-unsupporteddatatype' => 'Wobdźěłowanje hódnotow za datowy typ "$1" hišće so njepodpěruje.',
 	'valueview-expert-emptyvalue-empty' => 'prózdny',
 	'valueview-expert-globecoordinateinput-precision' => 'Dokładnosć:',
+	'valueview-expert-timevalue-calendar-gregorian' => 'Gregorianska',
+	'valueview-expert-timevalue-calendar-julian' => 'Julianska',
 	'valueview-expert-timeinput-precision' => 'Dokładnosć:',
 	'valueview-expert-timeinput-calendar' => 'Protyka',
+	'valueview-expert-timeinput-calendarhint-gregorian' => '(Gregorianska protyka)',
+	'valueview-expert-timeinput-calendarhint-julian' => '(Julianska protyka)',
+	'valueview-expert-timeinput-calendarhint-switch-gregorian' => '&rarr; do Gregorianskeje protyki změnić',
+	'valueview-expert-timeinput-calendarhint-switch-julian' => '&rarr; do Julianskeje protyki změnić',
 	'valueview-preview-label' => 'zwobrazni so jako:',
 	'valueview-preview-novalue' => 'žana płaćiwa hódnota spóznata',
 	'valueview-listrotator-auto' => 'awtomatisce',
