@@ -12,7 +12,7 @@ return call_user_func( function() {
 
 	$moduleTemplate = array(
 		'localBasePath' => __DIR__ . '/src/ValueParsers/',
-		'remoteExtPath' =>  'DataValues/DataValuesCommon/js/src/ValueParsers',
+		'remoteExtPath' => '..' . substr( __DIR__, strlen( $GLOBALS['IP'] ) ) . '/src/ValueParsers',
 	);
 
 	$mwVpResources = array(

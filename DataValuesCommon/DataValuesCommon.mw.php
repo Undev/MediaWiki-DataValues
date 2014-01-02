@@ -118,7 +118,7 @@ $wgHooks['ResourceLoaderTestModules'][] = function ( array &$testModules, \Resou
 	// @codeCoverageIgnoreStart
 	$moduleTemplate = array(
 		'localBasePath' => __DIR__ . '/js/tests/ValueParsers',
-		'remoteExtPath' => 'DataValues/DataValuesCommon/js/tests/ValueParsers',
+		'remoteExtPath' => '..' . substr( __DIR__, strlen( $GLOBALS['IP'] ) ) . '/js/tests/ValueParsers',
 	);
 
 	$testModules['qunit']['ext.valueParsers.tests'] = $moduleTemplate + array(
