@@ -106,7 +106,51 @@ $wgHooks['UnitTestsList'][] = function( array &$files ) {
 };
 
 /**
- * Hook to add QUnit test cases.
+ * Adding valueFormatters QUnit tests.
+ * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderTestModules
+ * @since 0.1
+ *
+ * @param array &$testModules
+ * @param \ResourceLoader &$resourceLoader
+ * @return boolean
+ */
+$wgHooks['ResourceLoaderTestModules'][] = function(
+	array &$testModules,
+	\ResourceLoader &$resourceLoader
+) {
+	// @codeCoverageIgnoreStart
+	$moduleTemplate = array(
+		'localBasePath' => __DIR__ . '/js/tests/ValueFormatters',
+		'remoteExtPath' => 'DataValues/DataValuesCommon/js/tests/ValueFormatters',
+	);
+
+	$testModules['qunit']['ext.valueFormatters.tests'] = $moduleTemplate + array(
+		'scripts' => array(
+			'ValueFormatter.tests.js',
+		),
+		'dependencies' => array(
+			'valueFormatters',
+			'valueFormatters.ValueFormatter',
+		),
+	);
+
+	$testModules['qunit']['ext.valueFormatters.formatters'] = $moduleTemplate + array(
+		'scripts' => array(
+			'formatters/NullFormatter.tests.js',
+			'formatters/StringFormatter.tests.js',
+		),
+		'dependencies' => array(
+			'ext.valueFormatters.tests',
+			'valueFormatters.formatters',
+		),
+	);
+
+	return true;
+	// @codeCoverageIgnoreEnd
+};
+
+/**
+ * Adding valueParsers QUnit tests.
  * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderTestModules
  * @since 0.1
  *
@@ -164,5 +208,6 @@ $wgHooks['ResourceLoaderTestModules'][] = function ( array &$testModules, \Resou
 // Resource Loader module registration
 $GLOBALS['wgResourceModules'] = array_merge(
 	$GLOBALS['wgResourceModules'],
+	include( __DIR__ . '/js/ValueFormatters.resources.php' ),
 	include( __DIR__ . '/js/ValueParsers.resources.mw.php' )
 );
